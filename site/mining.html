@@ -12,7 +12,7 @@
     } catch (e) {}
   </script>
   <title>Mining. Autarki</title>
-  <meta name="description" content="Hire a listed rig from RouteHash. Mine XBT or Mine BTC. Rewards come back to this wallet. Nothing is spent until you click Mine.">
+  <meta name="description" content="Paste a RouteHash token, then click Mine XBT or Mine BTC. The next reward address is this wallet's. Nothing is spent until Mine.">
   <link rel="canonical" href="https://autarki.app/mining.html">
   <meta name="theme-color" content="#f7f4ef">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -54,36 +54,32 @@
       <div class="wrap">
         <p class="kicker">Mining</p>
         <h1>Hire a rig. Rewards come back here.</h1>
-        <p class="lede">Mining is a tab once the wallet is open. It hires a listed rig from RouteHash. It does not mine on this computer.</p>
+        <p class="lede">The hire happens in this wallet. routehash.com is where the rig is listed. This computer does not mine.</p>
       </div>
     </header>
 
     <section class="band">
       <div class="wrap prose">
-        <h2>Two cards.</h2>
-        <ul class="brief">
-          <li>Open a RouteHash account at <a href="https://routehash.com">routehash.com</a> and paste that account's API token.</li>
-          <li>The same connection is under Settings, then Other.</li>
-          <li>routehash.com is the mining site. The hire happens here.</li>
-          <li>Mine XBT hires a listed Blake2b rig and pays in Blake2b XBT.</li>
-          <li>Mine BTC hires a listed SHA-256 rig and pays in SHA-256 BTC.</li>
-          <li>XBTC is not a mining card.</li>
-          <li>The payout address is the next address from this wallet. Rewards come back here.</li>
-        </ul>
+        <h2>The hire, in order.</h2>
+        <ol class="steps">
+          <li>Open a RouteHash account at <a href="https://routehash.com">routehash.com</a>.</li>
+          <li>Paste that account's API token. The same connection is under Settings, then Other.</li>
+          <li>Mine XBT hires a listed Blake2b rig and pays in Blake2b XBT. Mine BTC hires a listed SHA-256 rig and pays in SHA-256 BTC. XBTC is not a mining card.</li>
+          <li>The next reward address is already this wallet's. Nothing is spent until Mine, or until the hours are confirmed.</li>
+        </ol>
       </div>
     </section>
 
     <section class="band">
       <div class="wrap prose">
-        <h2>Nothing is spent until Mine.</h2>
+        <h2>What leaves this wallet.</h2>
         <ul class="brief">
-          <li>Nothing is spent until Mine, or until the hours are confirmed.</li>
           <li>A rig can be hired by the hour from a RouteHash balance. That path does not spend this wallet's Lightning.</li>
           <li>A short account says to deposit on RouteHash.</li>
           <li>The meter is paid from this wallet's Lightning node for that chain, when a channel can cover it.</li>
           <li>A mining payment does not use Autarki's pool.</li>
           <li>Mine needs AMD or Intel. It stays off on a Raspberry Pi and on Umbrel arm64.</li>
-          <li>Paste a RouteHash token and click Mine XBT. The next reward address is already this wallet's.</li>
+          <li>Rewards come back to this wallet.</li>
         </ul>
       </div>
     </section>

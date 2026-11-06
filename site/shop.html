@@ -12,7 +12,7 @@
     } catch (e) {}
   </script>
   <title>Shop. Autarki</title>
-  <meta name="description" content="Look through shops before you make a wallet. The stall is public. The order is private. Autarki does not take a cut of the catalog price. Lightning has a routing fee and a room fee.">
+  <meta name="description" content="The shop runs on your computer. The stall is public. The order is private. Autarki does not take a cut of the catalog price. Lightning has a routing fee and a room fee.">
   <link rel="canonical" href="https://autarki.app/shop.html">
   <meta name="theme-color" content="#f7f4ef">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -54,10 +54,33 @@
       <div class="wrap">
         <p class="kicker">Shop</p>
         <h1>The stall is public. The order is private.</h1>
-        <p class="lede">Shop is the notice board. You can look through shops before you make a wallet. Sending an order needs the wallet open.</p>
+        <p class="lede">The shop runs on your computer. People can look before they make a wallet. An order needs that wallet, and the relay cannot read it.</p>
         <p class="more"><a href="notice-board.html">See the stalls that are published</a><a href="classifieds.html#protection">How a shipment is protected</a></p>
       </div>
     </header>
+
+    <section class="band">
+      <div class="wrap">
+        <h2>The shop stays on this computer.</h2>
+        <div class="benefits">
+          <article>
+            <h3>The price is yours.</h3>
+            <ul class="brief">
+              <li>Autarki does not take a cut of the catalog price. Lightning still costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000.</li>
+              <li>The pool does not hold the sale. A shipped order stays on the seller's node until Mark received, and only after a float.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>The order is a private note.</h3>
+            <p>The stall, each product, and the place are public. The relay that carries the order cannot read it. The key and the books stay with the shop.</p>
+          </article>
+          <article>
+            <h3>The counter is the clerk's.</h3>
+            <p>Pay Counter records cash, debit, credit, a coupon, store credit, bitcoin, or a mix. The page does not charge the card or talk to a card terminal. The clerk uses the card machine. It prints its own slip.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
     <section class="band">
       <div class="wrap">
@@ -67,10 +90,10 @@
           <li>A logo, a picture, and a map link show when the shop published them.</li>
           <li>An unlisted shop opens by its public name, or by scanning its printed card.</li>
           <li>A cart, a tip, then Check-Out.</li>
-          <li>The stall, each product, and the place are public. The order is a private note: products, quantities, an optional note, an optional tip.</li>
-          <li>The order has no price and no payment code. The shop charges its catalog and makes the code.</li>
-          <li>The stall uses Autarki's relay until the shop names its own. The relay cannot read the order.</li>
-          <li>Pay-to-relay is off. The key and the books stay with the shop.</li>
+          <li>The order names products, quantities, an optional note, and an optional tip.</li>
+          <li>It has no price and no payment code. The shop charges its catalog and makes the code.</li>
+          <li>The stall uses Autarki's relay until the shop names its own.</li>
+          <li>Pay-to-relay is off.</li>
         </ul>
       </div>
     </section>
@@ -84,12 +107,8 @@
           <li>Pay with XBT, Pay with BTC, and, when both sides have it, Pay with XBTC.</li>
           <li>Lightning sits under the chain that was pressed. XBTC has no Lightning.</li>
           <li>Prepare fills Send. Broadcast is a separate press.</li>
-          <li>Pay Counter records cash, debit, credit, a coupon, store credit, bitcoin, or a mix.</li>
-          <li>The page does not charge the card or talk to a card terminal. The clerk uses the card machine. It prints its own slip.</li>
           <li>There is no receipt printer in the app yet.</li>
           <li>A buyer can search, add a product, and pay with Lightning. The shop sees the order. The relay does not.</li>
-          <li>Autarki does not take a cut of the catalog price. Lightning still costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000.</li>
-          <li>The pool does not hold the sale.</li>
         </ul>
         <p class="more"><a href="wallet.html#lightning">How a channel opens</a><a href="classifieds.html#protection">How a shipped order is held</a></p>
       </div>

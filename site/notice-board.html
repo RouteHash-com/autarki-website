@@ -12,7 +12,7 @@
     } catch (e) {}
   </script>
   <title>Notice board. Autarki</title>
-  <meta name="description" content="Look through published stalls and classifieds. The page reads the public relay and does not take an order.">
+  <meta name="description" content="A wallet publishes the stall. This page reads the relay, stores nothing, and does not take an order.">
   <link rel="canonical" href="https://autarki.app/notice-board.html">
   <meta name="theme-color" content="#f7f4ef">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -54,10 +54,25 @@
       <div class="wrap">
         <p class="kicker">Notice board</p>
         <h1>Look through what is published.</h1>
-        <p class="lede">Stalls and classifieds, read from the public relay. You can look before you make a wallet. This page does not take an order.</p>
+        <p class="lede">A person publishes a stall or a classified from their own wallet. This page reads the relay. It keeps no copy and takes no order.</p>
         <p class="more"><a href="classifieds.html#protection">How a shipment is protected</a></p>
       </div>
     </header>
+
+    <section class="band">
+      <div class="wrap">
+        <h2>No catalog of our own.</h2>
+        <ul class="brief">
+          <li>The stall and the classified are public notes. The wallet publishes them.</li>
+          <li>This page asks one relay, shows what came back, and closes. Nothing is stored on this site.</li>
+          <li>Search and the chips run on this page. Nothing is ranked by payment.</li>
+          <li>Autarki does not approve a stall and does not take the order.</li>
+          <li>The order is a private note. The relay cannot read it.</li>
+          <li>A shop uses this relay until it names its own. This page does not follow a shop onto another relay.</li>
+          <li>You can look before you make a wallet. Sending an order needs the wallet on your computer.</li>
+        </ul>
+      </div>
+    </section>
 
     <div class="wrap" id="board">
       <p class="board-status" data-board-status role="status">Reading the relay.</p>

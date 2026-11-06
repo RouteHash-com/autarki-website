@@ -12,7 +12,7 @@
     } catch (e) {}
   </script>
   <title>Classifieds. Autarki</title>
-  <meta name="description" content="Classifieds are a separate public board. Ship holds the coins until the parcel is received. A named referee can decide, and does not hold the coins.">
+  <meta name="description" content="Ship pays with Lightning. With a float, the coins sit on the seller's node until Mark received. The named referee decides and does not hold the coins.">
   <link rel="canonical" href="https://autarki.app/classifieds.html">
   <meta name="theme-color" content="#f7f4ef">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -54,7 +54,7 @@
       <div class="wrap">
         <p class="kicker">Classifieds</p>
         <h1>Ship it. The coins wait.</h1>
-        <p class="lede">Classifieds are a separate public board from the shop catalog. They stay off until Enable Classifieds under Settings. A new wallet leaves them off.</p>
+        <p class="lede">Ship pays with Lightning. With a float, the coins sit on the seller's node until Mark received. Autarki does not hold them.</p>
         <p class="more"><a href="notice-board.html">See the classifieds that are published</a></p>
         <nav class="page-nav" aria-label="On this page">
           <a href="#post">What you can post</a>
@@ -69,6 +69,7 @@
       <div class="wrap">
         <h2>What you can post.</h2>
         <ul class="brief">
+          <li>A separate public board from the shop catalog. Off until Enable Classifieds under Settings. A new wallet leaves them off.</li>
           <li>Goods, services, rentals, jobs, giveaways, and personals.</li>
           <li>Same key as the shop. No store required.</li>
           <li>A giveaway, a personal, or a job hire needs no coin node.</li>
@@ -93,15 +94,16 @@
             <li class="flow-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></li>
             <li><span>Mark received</span><strong>Seller is paid</strong><em>Or the hold ends</em></li>
           </ol>
-          <figcaption>Not received asks the referee. The referee does not hold the coins.</figcaption>
+          <figcaption>Not received asks the person both sides named. That person decides. The coins stay on the seller's node.</figcaption>
         </figure>
         <ol class="path">
           <li>
             <h3>Name a referee, or nobody.</h3>
             <ul class="brief">
-              <li>Before payment, each side names one referee, or nobody.</li>
+              <li>Before payment, each side names one public name, or nobody.</li>
               <li>That choice stops when the payment is accepted.</li>
-              <li>The referee does not hold the coins.</li>
+              <li>After Not received, that person gives one decision: pay the seller, or send the coins back.</li>
+              <li>The referee does not hold the coins. They stay on the seller's node.</li>
             </ul>
           </li>
           <li>
@@ -164,7 +166,7 @@
     <section class="band" id="dispute">
       <div class="wrap">
         <h2>Not received.</h2>
-        <p class="lede">The dispute. It stops both automatic moves. It does not return the coins by itself.</p>
+        <p class="lede">Not received stops both automatic moves. The named person gives one decision. That press does not return the coins by itself, and the referee does not hold them.</p>
         <div class="benefits">
           <article>
             <h3>The coins stay put.</h3>
