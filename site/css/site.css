@@ -466,12 +466,29 @@ code {
     align-items: flex-start;
   }
 
+  .hero {
+    padding-block: 3rem 2.5rem;
+  }
+
   .prose p {
-    margin-top: 1.1rem;
+    margin-top: 1.15rem;
   }
 
   .band {
-    padding-block: 1.85rem;
+    padding-block: 3.25rem;
+  }
+
+  .benefits,
+  .examples {
+    gap: 1.75rem;
+  }
+
+  .benefits {
+    padding-bottom: 3rem;
+  }
+
+  .page-hero {
+    padding-bottom: 1.75rem;
   }
 }
 

@@ -9,7 +9,7 @@
     if (board) api.mount(board);
   }
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
-  var RELAY = "wss://165.245.235.36:51911";
+  var RELAY = "wss://nostr.autarki.app";
   var CHARSET = "qpzry9x8gf2tvdw0s3jn54khce6mua7l";
 
   function npubFromHex(hex) {
@@ -393,7 +393,7 @@
         : "The relay answered. No stall or classified is published. Nothing was stored on this site.";
     }).catch(function () {
       tools.hidden = true;
-      status.textContent = "The relay did not answer. This page asked " + RELAY + " and then stopped. Ordinary browsers reject that certificate: it is issued to localhost by the StartOS local authority. The board can be read in a browser that already trusts that authority. A public hostname on port 443, with a certificate browsers already trust, has to forward to the relay before everyone else can read it. This site did not keep a copy.";
+      status.textContent = "The relay did not answer. This page asked " + RELAY + " and then stopped. Nothing was stored on this site.";
     });
 
     var form = board.querySelector("form");
