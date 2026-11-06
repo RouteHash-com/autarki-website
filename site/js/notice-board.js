@@ -9,7 +9,7 @@
     if (board) api.mount(board);
   }
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
-  var RELAY = "wss://nostr.autarki.app:8444";
+  var RELAY = "wss://nostr.autarki.app";
   var CHARSET = "qpzry9x8gf2tvdw0s3jn54khce6mua7l";
 
   function npubFromHex(hex) {
