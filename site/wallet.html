@@ -66,94 +66,192 @@
     </header>
 
     <section class="band" id="words">
-      <div class="wrap prose">
+      <div class="wrap">
         <h2>Write them on paper.</h2>
-        <p>The backup is 24 English words, shown once. The words restore the funds on another machine. They do not restore the shop book, the orders, the catalog, or a Lightning channel.</p>
-        <p>A new wallet can be made from 99 digits, each from 1 through 6. This computer does not add its own randomness.</p>
-        <p>A password is optional, and at least 12 characters when you set one. It encrypts only this copy of the wallet file. It is not part of the 24 words. Leave it blank and the words are stored unencrypted on the device. A backup of that service is then the seed.</p>
-        <p>Closing the browser does not lock the page. Restarting Autarki does. There is no Lock button.</p>
+        <ul class="brief">
+          <li>24 English words, shown once. They restore the funds on another machine.</li>
+          <li>They do not restore the shop book, the orders, the catalog, or a Lightning channel.</li>
+          <li>A new wallet can be 99 digits, each from 1 through 6. This computer adds no randomness of its own.</li>
+          <li>A password is optional. At least 12 characters. It encrypts only this copy of the wallet file.</li>
+          <li>It is not part of the 24 words. Blank leaves the words unencrypted on the device. A backup of that service is then the seed.</li>
+          <li>Closing the browser does not lock the page. Restarting Autarki does. There is no Lock button.</li>
+        </ul>
       </div>
     </section>
 
     <section class="band" id="chains">
-      <div class="wrap prose">
+      <div class="wrap">
         <h2>Three chains.</h2>
-        <p>Blake2b XBT bitcoin. Buttons say XBT or Pay with XBT. Its node is Bitcoin Knots. Its Lightning is Blake2b Lightning.</p>
-        <p>SHA-256 BTC bitcoin. Buttons say BTC or Pay with BTC. Its node is Bitcoin Core. Its Lightning is SHA-256 Lightning.</p>
-        <p>XBTC. Receive, Send, and Balance. Shop checkout and classified pickup can offer Pay with XBTC when this wallet's XBTC node is on and the seller published an XBTC account. A shipment does not offer XBTC. XBTC has no Lightning.</p>
-        <p>XBT and SHA-256 BTC share history only up to the fork. A payment is signed for one chain. Coins from the wrong chain do not pay the sale. A Bitcoin payment to an XBTC address does not arrive as XBTC. One XBTC sat is not one Bitcoin sat and is not one XBT sat.</p>
-        <p>Prices are whole satoshis. A dollar figure beside a price is a hint, in US dollars or Canadian dollars. The amount due stays in sats. The hint does not change the sats.</p>
+        <div class="benefits">
+          <article>
+            <h3>Blake2b XBT</h3>
+            <p>Buttons say XBT or Pay with XBT. The node is Bitcoin Knots. Lightning is Blake2b Lightning.</p>
+          </article>
+          <article>
+            <h3>SHA-256 BTC</h3>
+            <p>Buttons say BTC or Pay with BTC. The node is Bitcoin Core. Lightning is SHA-256 Lightning.</p>
+          </article>
+          <article>
+            <h3>XBTC</h3>
+            <p>Receive, Send, and Balance. Pay with XBTC when both sides have it. No Lightning. A shipment does not offer it.</p>
+          </article>
+        </div>
+        <ul class="brief">
+          <li>XBT and SHA-256 BTC share history only up to the fork. A payment is signed for one chain.</li>
+          <li>Coins from the wrong chain do not pay the sale.</li>
+          <li>Bitcoin sent to an XBTC address does not arrive as XBTC.</li>
+          <li>One XBTC sat is not one Bitcoin sat, and not one XBT sat.</li>
+          <li>Prices are whole sats. A dollar hint, in US dollars or Canadian dollars, does not change the sats.</li>
+        </ul>
       </div>
     </section>
 
     <section class="band" id="balance">
-      <div class="wrap prose">
+      <div class="wrap">
         <h2>Receive, Send, and Balance.</h2>
-        <p>Amounts are whole sats. Prepare builds the payment. Sign is a separate press. Broadcast is a separate press. The browser never receives the signed transaction.</p>
-        <p>A coin with no confirmation is not spendable. An ordinary coin can be spent after one confirmation. A mining reward waits longer: 100 confirmations on BTC, 4320 on XBTC, and a longer XBT wait that depends on the block it was mined in. Balance is the confirmed coins still held. Lightning is a separate jar. It is not added to Balance. Moving coins into Lightning sends them out of Balance. They have to confirm before a channel can open.</p>
-        <p>A chain can be hidden on this browser. The saved connection stays on the computer.</p>
+        <ul class="brief">
+          <li>Whole sats. Prepare builds it. Sign is separate. Broadcast is separate.</li>
+          <li>The browser never receives the signed transaction.</li>
+          <li>No confirmation: not spendable. An ordinary coin spends after one.</li>
+          <li>A mining reward waits longer: 100 confirmations on BTC, 4320 on XBTC, and a longer XBT wait that depends on the block.</li>
+          <li>Balance is confirmed coins still held. Lightning is a separate jar, not added to Balance.</li>
+          <li>Moving coins into Lightning sends them out of Balance. They confirm before a channel can open.</li>
+          <li>A chain can be hidden on this browser. The saved connection stays on the computer.</li>
+        </ul>
       </div>
     </section>
 
     <section class="band" id="lightning">
       <div class="wrap">
         <h2>Lightning, on AMD and Intel.</h2>
-        <div class="prose">
-          <p>AMD and Intel StartOS, Umbrel, and Ubuntu start both programs: Blake2b Lightning for XBT, and SHA-256 Lightning for BTC. A Raspberry Pi and Umbrel arm64 start the wallet and the shop and leave Lightning off. XBTC has no Lightning. A Lightning payment, a shipment, and Mine need AMD or Intel.</p>
-          <p>You do not install a second Lightning app. You do not paste a node address, a macaroon, or a certificate. On a new wallet the app creates a Blake2b Lightning home and a SHA-256 Lightning home, writes each missing seed, starts both programs, and saves the local link. An existing seed is left as it is. The wallet's 24 words are not given to either node.</p>
-          <p>If this computer has no coin node of its own, the wallet can still start those programs against Autarki's servers. A person who connects their own node uses that node. The first start of each node takes about ten minutes. The page keeps checking. Later starts are quicker.</p>
-          <p>Before a node can take coins, its backup is shown once, and you confirm that you wrote it down. The Blake2b backup is that node's own 24 words. The Bitcoin backup is a one-time paper copy of its two seed files. The page does not show either backup again. Do not reuse the wallet words for Lightning. Blake2b Lightning and SHA-256 Lightning are different networks. A Bitcoin payment request is refused on Blake2b.</p>
+        <div class="benefits">
+          <article>
+            <h3>Where it runs.</h3>
+            <ul class="brief">
+              <li>AMD or Intel StartOS, Umbrel, and Ubuntu start Blake2b Lightning and SHA-256 Lightning.</li>
+              <li>A Raspberry Pi and Umbrel arm64 start the wallet and the shop. Lightning stays off.</li>
+              <li>XBTC has no Lightning. A payment, a shipment, and Mine need AMD or Intel.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>What you skip.</h3>
+            <ul class="brief">
+              <li>No second Lightning app.</li>
+              <li>Do not paste a node address, a macaroon, or a certificate.</li>
+              <li>The wallet's 24 words are not given to either node.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>First start.</h3>
+            <ul class="brief">
+              <li>A new wallet creates both homes, writes each missing seed, and leaves an existing seed as it is.</li>
+              <li>It starts both programs and saves the local link.</li>
+              <li>No coin node of your own: they can still start against Autarki's servers. Your node is used when you connect it.</li>
+              <li>About ten minutes. The page keeps checking. Later starts are quicker.</li>
+            </ul>
+          </article>
         </div>
+        <ul class="brief">
+          <li>Before a node can take coins, its backup is shown once. You confirm you wrote it down. It is not shown again.</li>
+          <li>Blake2b: that node's own 24 words. Bitcoin: a one-time paper copy of its two seed files.</li>
+          <li>Do not reuse the wallet words. A Bitcoin payment request is refused on Blake2b.</li>
+        </ul>
         <blockquote class="pull">
           <p>On-chain is your bank. Keep savings there. Lightning is the money you spend. Load it before you go shopping in person.</p>
         </blockquote>
-        <div class="prose">
-          <p>The load is Show the node's address, Fill Send with this amount, Prepare, then one confirmation. Those coins leave Balance and sit in your own Lightning node. They are not sent to a shop. The first load takes about ten minutes. After that, a payment on a channel that can already cover the amount does not wait. Skip this step and on-chain still works. Install does not open a channel. Lightning sats are not Balance, and they are not the shop's accounted sats. A Lightning sale is on the sales spreadsheet and absent from the coin journal.</p>
-        </div>
+        <figure class="flow flow-4">
+          <ol>
+            <li><span>1</span><strong>Show the node's address</strong></li>
+            <li class="flow-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></li>
+            <li><span>2</span><strong>Fill Send with this amount</strong></li>
+            <li class="flow-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></li>
+            <li><span>3</span><strong>Prepare</strong></li>
+            <li class="flow-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></li>
+            <li><span>4</span><strong>One confirmation</strong></li>
+          </ol>
+          <figcaption>Those coins leave Balance and sit in your own Lightning node. They are not sent to a shop.</figcaption>
+        </figure>
+        <ul class="brief">
+          <li>The first load takes about ten minutes. A later payment on a channel that can cover the amount does not wait.</li>
+          <li>Skip this and on-chain still works. Install does not open a channel.</li>
+          <li>Lightning sats are not Balance, and not the shop's accounted sats.</li>
+          <li>A Lightning sale is on the sales spreadsheet and absent from the coin journal.</li>
+        </ul>
         <h3 class="subhead">When a payment needs a new channel.</h3>
-        <div class="prose">
-          <p>A buyer who already has a channel that can pay the shop, or the classified seller, pays that channel. No choice appears. A store order uses that store's node. A classified uses the seller's node. A mining payment does not use the pool.</p>
-          <p>When a payment needs a new channel, the page asks. Nothing opens until you confirm. You never type the shop's node. Blake2b and SHA-256 already know which pool to open to. Both ways use coins already confirmed in that node's own wallet, and both pay a miner fee to open. If Autarki's pool cannot be reached from this wallet right now, the page says so and offers the direct channel. Nothing was sent.</p>
-        </div>
+        <ul class="brief">
+          <li>A channel that can already pay is used. No choice appears.</li>
+          <li>A store order uses that store's node. A classified uses the seller's node.</li>
+          <li>A mining payment does not use the pool.</li>
+          <li>A new channel asks first. Nothing opens until you confirm.</li>
+          <li>You never type the shop's node. Blake2b and SHA-256 already know the pool.</li>
+          <li>Both ways use coins already confirmed in that node's wallet, and both pay a miner fee.</li>
+          <li>If Autarki's pool cannot be reached, the page says so and offers the direct channel. Nothing was sent.</li>
+        </ul>
         <div class="choices">
           <article>
             <p class="kicker">Use Autarki's pool</p>
             <h3>One channel, later shops.</h3>
-            <p>One channel to the pool can pay this shop, or this seller, and later shops that already have room. The routing fee is at most 1,000 sats. Your coins stay on your side until the payment. The first opening waits about ten minutes for one confirmation. A later payment can reuse it.</p>
+            <ul class="brief">
+              <li>Pays this shop, or this seller, and later shops that already have room.</li>
+              <li>Routing fee at most 1,000 sats. Your coins stay on your side until the payment.</li>
+              <li>First opening waits about ten minutes. A later payment can reuse it.</li>
+            </ul>
           </article>
           <article>
             <p class="kicker">Open a direct channel</p>
             <h3>This shop, or this seller.</h3>
-            <p>The button is Open a direct channel to this shop, or Open a direct channel to this seller. There is no pool fee. It pays only that one node. The first opening is the same ten minutes. A later payment to that same node can reuse it.</p>
+            <ul class="brief">
+              <li>Open a direct channel to this shop, or Open a direct channel to this seller.</li>
+              <li>No pool fee. It pays only that one node.</li>
+              <li>Same ten minutes. A later payment to that node can reuse it.</li>
+            </ul>
           </article>
         </div>
         <h3 class="subhead">A seller does not have to find a peer.</h3>
-        <div class="prose">
-          <p>On-chain works with no channel. For Lightning, the selling card offers the same two ways on Blake2b and on SHA-256. Autarki's pool is the convenient way.</p>
-        </div>
+        <p class="lede">On-chain needs no channel. Lightning offers the same two ways on Blake2b and on SHA-256.</p>
         <div class="choices">
           <article>
             <p class="kicker">Pay for pool room</p>
             <h3>The fee fills Send.</h3>
-            <p>You pay one fee so the pool opens incoming room toward this node. 20,000 sats of room costs 1,200 sats, and 100,000 sats of room costs 2,000 sats. The buttons are Pay 1,200 sats for Blake2b pool room and Pay 1,200 sats for Bitcoin pool room. Paying the fee fills Send. Nothing is sent until Prepare, then Broadcast. The page does not open the room itself. After that room is open, a buyer who already has a channel to the pool can pay this node. The routing fee is at most 1,000 sats. The seller's node has to be on. It does not need its own confirmed sats to accept that channel.</p>
+            <ul class="brief">
+              <li>20,000 sats of room costs 1,200 sats. 100,000 sats of room costs 2,000 sats.</li>
+              <li>Pay 1,200 sats for Blake2b pool room. Pay 1,200 sats for Bitcoin pool room.</li>
+              <li>Nothing is sent until Prepare, then Broadcast. The page does not open the room.</li>
+              <li>Then a buyer who already has a channel to the pool can pay this node. Routing at most 1,000 sats.</li>
+              <li>The seller's node has to be on. It does not need its own confirmed sats to accept that channel.</li>
+            </ul>
           </article>
           <article>
             <p class="kicker">Use a direct channel</p>
             <h3>Leave the fee unpaid.</h3>
-            <p>Use a direct channel leaves the fee unpaid. A buyer then opens a channel to this shop or this seller. That channel pays only them. Zero incoming room does not block a buyer who will open a channel. A buyer who will not open one needs the room to be there already. A channel the seller just funded from their own wallet has almost no incoming room, because those coins are on the seller's side.</p>
+            <ul class="brief">
+              <li>A buyer opens a channel to this shop or this seller. It pays only them.</li>
+              <li>Zero incoming room does not block a buyer who will open a channel.</li>
+              <li>A buyer who will not open one needs the room to be there already.</li>
+              <li>A channel the seller just funded has almost no incoming room. Those coins are on the seller's side.</li>
+            </ul>
           </article>
         </div>
-        <div class="prose">
-          <p>The pool does not hold the sale and does not take a cut of the catalog price. The seller's room fee and the buyer's routing fee are the Lightning costs. A shipped order is still held on the seller's node until Mark received, and only after the seller has a float. The pool does not replace that hold. <a href="classifieds.html#protection">How a shipment is protected</a>.</p>
-        </div>
+        <ul class="brief">
+          <li>The pool does not hold the sale and does not take a cut of the catalog price.</li>
+          <li>The room fee and the routing fee are the Lightning costs.</li>
+          <li>A shipped order stays on the seller's node until Mark received, and only after a float. The pool does not replace that hold.</li>
+        </ul>
+        <p class="more"><a href="classifieds.html#protection">How a shipment is protected</a></p>
       </div>
     </section>
 
     <section class="band" id="node">
-      <div class="wrap prose">
+      <div class="wrap">
         <h2>Your node, or Autarki's servers.</h2>
-        <p>You can connect your own coin node under Settings, then Coin Nodes, or keep using Autarki's servers for ordinary addresses. Until your own node is connected, those servers can see a normal address. They do not make a silent-payment code, and they cannot see a coin paid to one. A silent-payment code appears after your own node is connected.</p>
-        <p>XBTC can use Autarki's public node for reading and broadcasting until you connect your own. The StartOS and Umbrel packages do not include an XBTC node. XBT Knots and Bitcoin Core do not run on the same computer. XBTC Knots can run beside XBT Knots.</p>
+        <ul class="brief">
+          <li>Connect your own coin node under Settings, then Coin Nodes, or use Autarki's servers for ordinary addresses.</li>
+          <li>Until your node is connected, those servers can see a normal address.</li>
+          <li>They do not make a silent-payment code, and they cannot see a coin paid to one.</li>
+          <li>A silent-payment code appears after your own node is connected.</li>
+          <li>XBTC can use Autarki's public node for reading and broadcasting until you connect your own.</li>
+          <li>StartOS and Umbrel do not include an XBTC node. XBT Knots and Bitcoin Core do not run on the same computer. XBTC Knots can run beside XBT Knots.</li>
+        </ul>
         <p class="more"><a href="shop.html">Next: the shop</a></p>
       </div>
     </section>

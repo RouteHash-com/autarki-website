@@ -60,43 +60,74 @@
     </header>
 
     <section class="band">
-      <div class="wrap prose">
+      <div class="wrap">
         <h2>Search, then Check-Out.</h2>
-        <p>Search a shop, a product, or a place. Country, province or state, city, neighbourhood, and up to four categories are optional. A logo, a picture, and a map link show when the shop published them. An unlisted shop opens by its public name or by scanning its printed card.</p>
-        <p>A cart, a tip, then Check-Out. The stall, each product, and the place are public notes. The order is a private note to that shop: the products, the quantities, an optional note, and an optional tip. It does not contain the price. The shop charges its own catalog. It does not contain a payment code. The shop makes the code.</p>
-        <p>The public stall uses Autarki's relay until the shop names its own. The relay cannot read the order. Pay-to-relay is off. The key and the books stay with the shop.</p>
+        <ul class="brief">
+          <li>Search a shop, a product, or a place. Country, province or state, city, neighbourhood, and up to four categories are optional.</li>
+          <li>A logo, a picture, and a map link show when the shop published them.</li>
+          <li>An unlisted shop opens by its public name, or by scanning its printed card.</li>
+          <li>A cart, a tip, then Check-Out.</li>
+          <li>The stall, each product, and the place are public. The order is a private note: products, quantities, an optional note, an optional tip.</li>
+          <li>The order has no price and no payment code. The shop charges its catalog and makes the code.</li>
+          <li>The stall uses Autarki's relay until the shop names its own. The relay cannot read the order.</li>
+          <li>Pay-to-relay is off. The key and the books stay with the shop.</li>
+        </ul>
       </div>
     </section>
 
     <section class="band">
-      <div class="wrap prose">
+      <div class="wrap">
         <h2>Counter, or online.</h2>
-        <p>A shop is the counter until the owner picks Online and publishes. The counter shows Pay Counter and a clerk ticket with the last four characters and a QR. Online does not show Pay Counter.</p>
-        <p>Pay with XBT, Pay with BTC, and, when both sides have it, Pay with XBTC. Lightning sits under the chain that was pressed. XBTC has no Lightning. Prepare fills Send. Broadcast is still a separate press.</p>
-        <p>Pay Counter records cash, a debit card, a credit card, a coupon, store credit, bitcoin, or a mix. The page does not charge the card and does not talk to a card terminal. The clerk types the amount on the card machine. The card machine prints its own slip. There is no receipt printer in the app yet.</p>
-        <p>A buyer can search a shop, add a product, and pay with Lightning. The shop sees the order. The relay does not.</p>
-        <p>Autarki does not take a cut of the catalog price. A routing fee of at most 1,000 sats, and a seller's room fee of 1,200 sats for 20,000 sats of room or 2,000 sats for 100,000, are Lightning costs. The pool does not hold the sale. <a href="wallet.html#lightning">How a channel opens</a>. <a href="classifieds.html#protection">How a shipped order is held</a>.</p>
+        <ul class="brief">
+          <li>A shop is the counter until the owner picks Online and publishes.</li>
+          <li>The counter shows Pay Counter and a clerk ticket: last four characters and a QR. Online does not show Pay Counter.</li>
+          <li>Pay with XBT, Pay with BTC, and, when both sides have it, Pay with XBTC.</li>
+          <li>Lightning sits under the chain that was pressed. XBTC has no Lightning.</li>
+          <li>Prepare fills Send. Broadcast is a separate press.</li>
+          <li>Pay Counter records cash, debit, credit, a coupon, store credit, bitcoin, or a mix.</li>
+          <li>The page does not charge the card or talk to a card terminal. The clerk uses the card machine. It prints its own slip.</li>
+          <li>There is no receipt printer in the app yet.</li>
+          <li>A buyer can search, add a product, and pay with Lightning. The shop sees the order. The relay does not.</li>
+          <li>Autarki does not take a cut of the catalog price. Lightning still costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000.</li>
+          <li>The pool does not hold the sale.</li>
+        </ul>
+        <p class="more"><a href="wallet.html#lightning">How a channel opens</a><a href="classifieds.html#protection">How a shipped order is held</a></p>
       </div>
     </section>
 
     <section class="band">
-      <div class="wrap prose">
+      <div class="wrap">
         <h2>The books stay on this computer.</h2>
-        <p>Enable storefront features shows the Store tab. A product has a name, a price in sats, an optional picture link, one description line, and an optional shelf count. The count stays on this computer and is not published.</p>
-        <p>Taxes are two names and two rates. They apply to products, shipping, and the other fee. The tip is not taxed. Clerks are staff names on this computer. They are not published.</p>
-        <p>With the store on, Ledger has Sell, Buy, Check Outs, Open POs, Sales, a coin journal, and a till. Sales can be downloaded as a spreadsheet. The coin journal can be downloaded as CSV. A Lightning sale and a counter payment are on the sales spreadsheet. They do not write a coin, so they are absent from the coin journal and from Balance.</p>
-        <p>An unpaid checkout with nothing settled is cancelled after 24 hours. A paid sale cannot be cancelled. There is no refund button. A refund is a later order. Shop books can be saved to a file and brought back. That file leaves out the 24 words, the wallet file, secret keys, and Lightning channel state.</p>
+        <ul class="brief">
+          <li>Enable storefront features shows the Store tab.</li>
+          <li>A product: name, price in sats, optional picture link, one description line, optional shelf count.</li>
+          <li>The shelf count stays on this computer. It is not published.</li>
+          <li>Taxes are two names and two rates. They apply to products, shipping, and the other fee. The tip is not taxed.</li>
+          <li>Clerks are staff names on this computer. They are not published.</li>
+          <li>Ledger: Sell, Buy, Check Outs, Open POs, Sales, a coin journal, and a till.</li>
+          <li>Sales download as a spreadsheet. The coin journal downloads as CSV.</li>
+          <li>A Lightning sale and a counter payment are on the spreadsheet. They are absent from the coin journal and from Balance.</li>
+          <li>An unpaid checkout with nothing settled is cancelled after 24 hours.</li>
+          <li>A paid sale cannot be cancelled. There is no refund button. A refund is a later order.</li>
+          <li>Shop books can be saved and brought back. That file leaves out the 24 words, the wallet file, secret keys, and Lightning channel state.</li>
+        </ul>
       </div>
     </section>
 
     <section class="band" id="note">
-      <div class="wrap prose">
+      <div class="wrap">
         <h2>A name, and a private note.</h2>
-        <p>The public name is what people see instead of the raw key. A profile can add a display name, a short about line, and a picture. The shortened key still copies. There is no Autarki username. A website name is not required.</p>
-        <p>Message, beside a copied public name, opens one private note to that person. On a phone the sheet fills the screen. On a desktop it stays over the page, so the order remains. Send does not create an order, move coins, or change a shipment. One short plain-text note, up to 1000 characters. Contacts is the thread list. There is no public chat room.</p>
-        <p>Someone taps Message beside a shop name, writes one note, and sends it. The order on the screen does not change. Writing to someone does not follow them.</p>
-        <p>Discord is optional. It is not required to buy or sell. The person posts "Verifying that I control the following Nostr public key:" and the public name, then publishes the username and the message link. Autarki does not join Discord, does not use a bot, and does not check that the message is real. The rest of that account sits with the classifieds.</p>
-        <p>That private note is in the current app source. An install built before that work does not show Message until it is updated.</p>
+        <ul class="brief">
+          <li>The public name is what people see instead of the raw key. The shortened key still copies.</li>
+          <li>A profile can add a display name, a short about line, and a picture.</li>
+          <li>There is no Autarki username. A website name is not required.</li>
+          <li>Message opens one private note. On a phone it fills the screen. On a desktop the order stays visible.</li>
+          <li>Send does not create an order, move coins, or change a shipment. Up to 1000 characters. No public chat room.</li>
+          <li>Contacts is the thread list. Writing to someone does not follow them.</li>
+          <li>Discord is optional. Post "Verifying that I control the following Nostr public key:" and the public name, then the username and the message link.</li>
+          <li>Autarki does not join Discord, use a bot, or check the message.</li>
+          <li>An older install does not show Message until it is updated.</li>
+        </ul>
         <p class="more"><a href="classifieds.html#protection">How a shipment is protected</a><a href="classifieds.html">Next: classifieds</a></p>
       </div>
     </section>

@@ -698,7 +698,7 @@
       var text = stall.deliveries + (stall.deliveries === 1 ? " shipment received" : " shipments received");
       if (stall.firstDelivery) text += ". First on " + day(stall.firstDelivery);
       if (stall.unfinished) text += ". " + stall.unfinished + " not received";
-      text += ". That number is the seller's own book. The hold, the referee, the vouch, and the Discord link are in the wallet.";
+      text += ". The seller's own book. Hold, referee, vouch, and the Discord link are in the wallet.";
       rows.push({
         label: "Deliveries",
         value: text,

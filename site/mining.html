@@ -61,26 +61,42 @@
     <section class="band">
       <div class="wrap prose">
         <h2>Two cards.</h2>
-        <p>Open a RouteHash account at <a href="https://routehash.com">routehash.com</a> and paste that account's API token. The same connection is under Settings, then Other. routehash.com is the mining site. It does not describe the wallet. This page is where the hire happens.</p>
-        <p>Mine XBT hires a listed Blake2b rig and pays in Blake2b XBT. Mine BTC hires a listed SHA-256 rig and pays in SHA-256 BTC. XBTC is not a mining card.</p>
-        <p>The payout address is the next address from this wallet. Rewards come back to this wallet.</p>
+        <ul class="brief">
+          <li>Open a RouteHash account at <a href="https://routehash.com">routehash.com</a> and paste that account's API token.</li>
+          <li>The same connection is under Settings, then Other.</li>
+          <li>routehash.com is the mining site. The hire happens here.</li>
+          <li>Mine XBT hires a listed Blake2b rig and pays in Blake2b XBT.</li>
+          <li>Mine BTC hires a listed SHA-256 rig and pays in SHA-256 BTC.</li>
+          <li>XBTC is not a mining card.</li>
+          <li>The payout address is the next address from this wallet. Rewards come back here.</li>
+        </ul>
       </div>
     </section>
 
     <section class="band">
       <div class="wrap prose">
         <h2>Nothing is spent until Mine.</h2>
-        <p>Click Mine. Nothing is spent until Mine, or until you confirm the hours. A rig can be hired by the hour from a RouteHash balance. That path does not spend this wallet's Lightning balance. A short account says to deposit on RouteHash.</p>
-        <p>The meter is paid from this wallet's Lightning node for that chain, when a channel can cover it. A mining payment does not use Autarki's pool. Mine needs the AMD or Intel package. Lightning stays off on a Raspberry Pi and on Umbrel arm64, so Mine stays off there too.</p>
-        <p>Someone pastes a RouteHash token and clicks Mine XBT. The next reward address is already this wallet's.</p>
+        <ul class="brief">
+          <li>Nothing is spent until Mine, or until the hours are confirmed.</li>
+          <li>A rig can be hired by the hour from a RouteHash balance. That path does not spend this wallet's Lightning.</li>
+          <li>A short account says to deposit on RouteHash.</li>
+          <li>The meter is paid from this wallet's Lightning node for that chain, when a channel can cover it.</li>
+          <li>A mining payment does not use Autarki's pool.</li>
+          <li>Mine needs AMD or Intel. It stays off on a Raspberry Pi and on Umbrel arm64.</li>
+          <li>Paste a RouteHash token and click Mine XBT. The next reward address is already this wallet's.</li>
+        </ul>
       </div>
     </section>
 
     <section class="band">
       <div class="wrap prose">
         <h2>Where the coins show.</h2>
-        <p>Before RouteHash is connected, Balance says to hire a rig and that the rewards come back to this wallet. After it is connected, Balance lists Open Mining Invoices.</p>
-        <p>Spendable coins from a reward stay on Balance after the confirmation wait for that chain. On BTC that wait is 100 confirmations. On XBT the wait is longer and depends on the block the coin was mined in. The Mining card is not a second balance.</p>
+        <ul class="brief">
+          <li>Before RouteHash is connected, Balance says to hire a rig and that rewards come back here.</li>
+          <li>After it is connected, Balance lists Open Mining Invoices.</li>
+          <li>A reward becomes spendable on Balance after that chain's wait: 100 confirmations on BTC. On XBT the wait is longer and depends on the block.</li>
+          <li>The Mining card is not a second balance.</li>
+        </ul>
         <p class="more"><a href="install.html">Next: install it</a></p>
       </div>
     </section>
