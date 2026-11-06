@@ -16,6 +16,8 @@ Open http://127.0.0.1:8080/
 
 Paper is the default contrast. Ink and Console stay in this browser.
 
+The notice board (`site/notice-board.html`) reads public stalls and classifieds in the browser from `wss://165.245.235.36:51911`, then closes the connection. This site does not store those notes and does not take an order. Ordinary browsers reject that relay certificate until a public hostname on port 443 forwards to it.
+
 ## Cloudflare Pages
 
 Connect the Git repository in the Cloudflare dashboard. Do not put an API token, account id, or other secret in this repo.

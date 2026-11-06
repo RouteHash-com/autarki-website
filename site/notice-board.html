@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="paper">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    try {
+      var t = localStorage.getItem("autarki-theme");
+      if (t === "ink" || t === "console" || t === "paper") {
+        document.documentElement.setAttribute("data-theme", t);
+      }
+    } catch (e) {}
+  </script>
+  <title>Notice board. Autarki</title>
+  <meta name="description" content="Look through published stalls and classifieds. The page reads the public relay and does not take an order.">
+  <link rel="canonical" href="https://autarki.app/notice-board.html">
+  <meta name="theme-color" content="#f7f4ef">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-bar">
+      <a class="brand" href="index.html">
+        <svg class="mark" viewBox="-80 -80 1000 1000" aria-hidden="true">
+          <path fill="currentColor" fill-rule="evenodd" d="M435 0H840V345H640V840H0V200H435Z M145 345H495V695H145Z"/>
+        </svg>
+        <span class="brand-name">Autarki</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="wallet.html">Wallet</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="classifieds.html">Classifieds</a></li>
+          <li><a href="mining.html">Mining</a></li>
+          <li><a href="install.html">Install</a></li>
+        </ul>
+      </nav>
+      <div class="themes" role="group" aria-label="Contrast">
+        <button type="button" data-theme-choice="paper" aria-pressed="true">Paper</button>
+        <button type="button" data-theme-choice="ink" aria-pressed="false">Ink</button>
+        <button type="button" data-theme-choice="console" aria-pressed="false">Console</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <header class="page-hero">
+      <div class="wrap">
+        <p class="kicker">Notice board</p>
+        <h1>Look through what is published.</h1>
+        <p class="lede">Stalls and classifieds, read from the public relay. You can look before you make a wallet. This page does not take an order.</p>
+      </div>
+    </header>
+
+    <div class="wrap" id="board">
+      <p class="board-status" data-board-status role="status">Reading the relay.</p>
+      <div data-board-tools hidden>
+        <form class="board-search" role="search">
+          <label for="board-query">Search a shop, a product, or a place</label>
+          <input id="board-query" data-board-query type="search" autocomplete="off" enterkeyhint="search">
+        </form>
+
+        <section class="board-section" aria-labelledby="stall-heading">
+          <h2 id="stall-heading">Stalls <span data-stall-count></span></h2>
+          <div class="chips" data-stall-chips role="group" aria-label="Stall categories"></div>
+          <div class="board-list" data-stall-list></div>
+        </section>
+
+        <section class="board-section" aria-labelledby="ad-heading">
+          <h2 id="ad-heading">Classifieds <span data-ad-count></span></h2>
+          <div class="chips" data-ad-chips role="group" aria-label="Classified categories"></div>
+          <div class="board-list" data-ad-list></div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="footer-slogan">No platform. Just the sale.</p>
+      <p>Autarki is a beta. It runs on your computer. A phone on the same network opens that page. There is no separate phone app.</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/RouteHash-com/autarki/releases/tag/0.1.0">Download 0.1.0</a></li>
+        <li><a href="https://github.com/RouteHash-com/umbrel-store">Umbrel community store</a></li>
+        <li><a href="https://discord.gg/VBxvzQXvt">Discord #autarki</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script src="js/site.js"></script>
+  <script src="js/notice-board.js"></script>
+</body>
+</html>
