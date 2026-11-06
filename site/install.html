@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="paper">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    try {
+      var t = localStorage.getItem("autarki-theme");
+      if (t === "ink" || t === "console" || t === "paper") {
+        document.documentElement.setAttribute("data-theme", t);
+      }
+    } catch (e) {}
+  </script>
+  <title>Install. Autarki</title>
+  <meta name="description" content="Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi runs the wallet and the shop, and leaves Lightning off.">
+  <link rel="canonical" href="https://autarki.app/install.html">
+  <meta name="theme-color" content="#f7f4ef">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-bar">
+      <a class="brand" href="index.html">
+        <svg class="mark" viewBox="-80 -80 1000 1000" aria-hidden="true">
+          <path fill="currentColor" fill-rule="evenodd" d="M435 0H840V345H640V840H0V200H435Z M145 345H495V695H145Z"/>
+        </svg>
+        <span class="brand-name">Autarki</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="wallet.html">Wallet</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="classifieds.html">Classifieds</a></li>
+          <li><a href="mining.html">Mining</a></li>
+          <li><a href="install.html" aria-current="page">Install</a></li>
+        </ul>
+      </nav>
+      <div class="themes" role="group" aria-label="Contrast">
+        <button type="button" data-theme-choice="paper" aria-pressed="true">Paper</button>
+        <button type="button" data-theme-choice="ink" aria-pressed="false">Ink</button>
+        <button type="button" data-theme-choice="console" aria-pressed="false">Console</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <header class="page-hero">
+      <div class="wrap">
+        <p class="kicker">Install</p>
+        <h1>Install it on your computer.</h1>
+        <p class="lede">AMD and Intel include Lightning. A Raspberry Pi runs the wallet, the shop, Nostr, and on-chain payment, and leaves Lightning off. A phone on the same network opens that computer's page. There is no separate phone app.</p>
+      </div>
+    </header>
+
+    <section class="band">
+      <div class="wrap">
+        <h2>Which machine</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Install on</th>
+                <th scope="col">Machine</th>
+                <th scope="col">Lightning</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>StartOS</td>
+                <td>AMD or Intel. File <code>autarki_x86_64.s9pk</code>.</td>
+                <td>Included. Blake2b Lightning and SHA-256 Lightning.</td>
+              </tr>
+              <tr>
+                <td>StartOS</td>
+                <td>Raspberry Pi. File <code>autarki_aarch64.s9pk</code>.</td>
+                <td>Off. The wallet, the shop, and on-chain payment still run.</td>
+              </tr>
+              <tr>
+                <td>Umbrel</td>
+                <td>The AMD or Intel image from the RouteHash community store.</td>
+                <td>Included.</td>
+              </tr>
+              <tr>
+                <td>Umbrel</td>
+                <td>arm64, including a Raspberry Pi.</td>
+                <td>Off.</td>
+              </tr>
+              <tr>
+                <td>Ubuntu</td>
+                <td>The image in the repository, <code>autarki_ubuntu_amd64.tar</code>.</td>
+                <td>Included. It is the AMD or Intel build.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="prose">The public download is <a href="https://github.com/RouteHash-com/autarki/releases/tag/0.1.0">release 0.1.0</a>. Source is <a href="https://github.com/RouteHash-com/autarki">github.com/RouteHash-com/autarki</a>.</p>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap prose">
+        <h2>StartOS</h2>
+        <ol class="steps">
+          <li>Download the package that matches the server from release 0.1.0.</li>
+          <li>Check it against <code>SHA256SUMS</code> from that same release.</li>
+          <li>Sideload the file and install Autarki. Install does not ask for Bitcoin Knots or Bitcoin Core.</li>
+          <li>Open Autarki. Create the wallet. Write the 24 words on paper before you leave that screen.</li>
+        </ol>
+        <p>A computer with no wallet yet opens on Shop. After a wallet exists, the page opens on Receive.</p>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap prose">
+        <h2>Umbrel</h2>
+        <p>This site does not give you an Umbrel file. Add the RouteHash community store, then install Autarki. That store is not the official Umbrel App Store. Load the image that matches the machine.</p>
+        <ol class="steps">
+          <li>In Umbrel, open Settings, then App stores, then Add a community app store.</li>
+          <li>Paste <code>https://github.com/RouteHash-com/umbrel-store</code>.</li>
+          <li>Install Autarki.</li>
+        </ol>
+        <p>The store listing is <a href="https://github.com/RouteHash-com/umbrel-store">github.com/RouteHash-com/umbrel-store</a>.</p>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap prose">
+        <h2>Ubuntu</h2>
+        <p>An Ubuntu server with Docker uses <code>autarki_ubuntu_amd64.tar</code> from the same release. The steps are on the <a href="https://github.com/RouteHash-com/autarki/blob/main/ubuntu/README.md">Ubuntu page in the repository</a>.</p>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap prose">
+        <h2>Check the download</h2>
+        <p>Put <code>SHA256SUMS</code> from the release in the same folder as the file you downloaded. Then run:</p>
+        <p><code>sha256sum -c SHA256SUMS --ignore-missing</code></p>
+        <p>The line for your file ends in OK when the download matches.</p>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap prose">
+        <h2>Help</h2>
+        <p>Bug reports go to the RouteHash Discord channel <a href="https://discord.gg/VBxvzQXvt">#autarki</a>. The page can show English, Español, Português, Français, or Deutsch. The choice stays in this browser. The 24 words stay the English list. Amounts stay in sats. The dollar hint stays US dollars or Canadian dollars.</p>
+        <p>Paper, Ink, and Console on this website are the same three contrasts as the wallet. Paper is the default. The choice stays in this browser.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="footer-slogan">No platform. Just the sale.</p>
+      <p>Autarki is a beta. It runs on your computer. A phone on the same network opens that page. There is no separate phone app.</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/RouteHash-com/autarki/releases/tag/0.1.0">Download 0.1.0</a></li>
+        <li><a href="https://github.com/RouteHash-com/umbrel-store">Umbrel community store</a></li>
+        <li><a href="https://discord.gg/VBxvzQXvt">Discord #autarki</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script src="js/site.js"></script>
+</body>
+</html>

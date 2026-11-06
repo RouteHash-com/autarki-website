@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="paper">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    try {
+      var t = localStorage.getItem("autarki-theme");
+      if (t === "ink" || t === "console" || t === "paper") {
+        document.documentElement.setAttribute("data-theme", t);
+      }
+    } catch (e) {}
+  </script>
+  <title>Shop. Autarki</title>
+  <meta name="description" content="Look through shops before you make a wallet. The stall is public. The order is private. Pay the person. Autarki does not take a cut.">
+  <link rel="canonical" href="https://autarki.app/shop.html">
+  <meta name="theme-color" content="#f7f4ef">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-bar">
+      <a class="brand" href="index.html">
+        <svg class="mark" viewBox="-80 -80 1000 1000" aria-hidden="true">
+          <path fill="currentColor" fill-rule="evenodd" d="M435 0H840V345H640V840H0V200H435Z M145 345H495V695H145Z"/>
+        </svg>
+        <span class="brand-name">Autarki</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="wallet.html">Wallet</a></li>
+          <li><a href="shop.html" aria-current="page">Shop</a></li>
+          <li><a href="classifieds.html">Classifieds</a></li>
+          <li><a href="mining.html">Mining</a></li>
+          <li><a href="install.html">Install</a></li>
+        </ul>
+      </nav>
+      <div class="themes" role="group" aria-label="Contrast">
+        <button type="button" data-theme-choice="paper" aria-pressed="true">Paper</button>
+        <button type="button" data-theme-choice="ink" aria-pressed="false">Ink</button>
+        <button type="button" data-theme-choice="console" aria-pressed="false">Console</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <header class="page-hero">
+      <div class="wrap">
+        <p class="kicker">Shop</p>
+        <h1>The stall is public. The order is private.</h1>
+        <p class="lede">Shop is the notice board. You can look through shops before you make a wallet. Sending an order needs the wallet open.</p>
+      </div>
+    </header>
+
+    <section class="band">
+      <div class="wrap prose">
+        <h2>Search, then Check-Out.</h2>
+        <p>Search a shop, a product, or a place. Country, province or state, city, neighbourhood, and up to four categories are optional. A logo, a picture, and a map link show when the shop published them. An unlisted shop opens by its public name or by scanning its printed card.</p>
+        <p>A cart, a tip, then Check-Out. The stall, each product, and the place are public notes. The order is a private note to that shop: the products, the quantities, an optional note, and an optional tip. It does not contain the price. The shop charges its own catalog. It does not contain a payment code. The shop makes the code.</p>
+        <p>The public stall uses Autarki's relay until the shop names its own. The relay cannot read the order. Pay-to-relay is off. The key and the books stay with the shop.</p>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap prose">
+        <h2>Counter, or online.</h2>
+        <p>A shop is the counter until the owner picks Online and publishes. The counter shows Pay Counter and a clerk ticket with the last four characters and a QR. Online does not show Pay Counter.</p>
+        <p>Pay with XBT, Pay with BTC, and, when both sides have it, Pay with XBTC. Lightning sits under the chain that was pressed. XBTC has no Lightning. Prepare fills Send. Broadcast is still a separate press.</p>
+        <p>Pay Counter records cash, a debit card, a credit card, a coupon, store credit, bitcoin, or a mix. The page does not charge the card and does not talk to a card terminal. The clerk types the amount on the card machine. The card machine prints its own slip. There is no receipt printer in the app yet.</p>
+        <p>A buyer can search a shop, add a product, and pay with Lightning. The shop sees the order. The relay does not.</p>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap prose">
+        <h2>The books stay on this computer.</h2>
+        <p>Enable storefront features shows the Store tab. A product has a name, a price in sats, an optional picture link, one description line, and an optional shelf count. The count stays on this computer and is not published.</p>
+        <p>Taxes are two names and two rates. They apply to products, shipping, and the other fee. The tip is not taxed. Clerks are staff names on this computer. They are not published.</p>
+        <p>With the store on, Ledger has Sell, Buy, Check Outs, Open POs, Sales, a coin journal, and a till. Sales can be downloaded as a spreadsheet. The coin journal can be downloaded as CSV. A Lightning sale and a counter payment are on the sales spreadsheet. They do not write a coin, so they are absent from the coin journal and from Balance.</p>
+        <p>An unpaid checkout with nothing settled is cancelled after 24 hours. A paid sale cannot be cancelled. There is no refund button. A refund is a later order. Shop books can be saved to a file and brought back. That file leaves out the 24 words, the wallet file, secret keys, and Lightning channel state.</p>
+      </div>
+    </section>
+
+    <section class="band" id="note">
+      <div class="wrap prose">
+        <h2>A name, and a private note.</h2>
+        <p>The public name is what people see instead of the raw key. A profile can add a display name, a short about line, and a picture. The shortened key still copies. There is no Autarki username. A website name is not required.</p>
+        <p>Message, beside a copied public name, opens one private note to that person. On a phone the sheet fills the screen. On a desktop it stays over the page, so the order remains. Send does not create an order, move coins, or change a shipment. One short plain-text note, up to 1000 characters. Contacts is the thread list. There is no public chat room.</p>
+        <p>Someone taps Message beside a shop name, writes one note, and sends it. The order on the screen does not change. Writing to someone does not follow them.</p>
+        <p>Discord is optional. It is not required to buy or sell. Autarki does not join Discord, does not use a bot, and does not check that the message is real.</p>
+        <p>That private note is in the current app source. An install built before that work does not show Message until it is updated.</p>
+        <p class="more"><a href="classifieds.html">Next: classifieds</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="footer-slogan">No platform. Just the sale.</p>
+      <p>Autarki is a beta. It runs on your computer. A phone on the same network opens that page. There is no separate phone app.</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/RouteHash-com/autarki/releases/tag/0.1.0">Download 0.1.0</a></li>
+        <li><a href="https://github.com/RouteHash-com/umbrel-store">Umbrel community store</a></li>
+        <li><a href="https://discord.gg/VBxvzQXvt">Discord #autarki</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script src="js/site.js"></script>
+</body>
+</html>

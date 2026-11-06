@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="paper">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    try {
+      var t = localStorage.getItem("autarki-theme");
+      if (t === "ink" || t === "console" || t === "paper") {
+        document.documentElement.setAttribute("data-theme", t);
+      }
+    } catch (e) {}
+  </script>
+  <title>Classifieds. Autarki</title>
+  <meta name="description" content="Classifieds are a separate public board. Ship holds the coins until the parcel is received. A named referee can decide, and does not hold the coins.">
+  <link rel="canonical" href="https://autarki.app/classifieds.html">
+  <meta name="theme-color" content="#f7f4ef">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-bar">
+      <a class="brand" href="index.html">
+        <svg class="mark" viewBox="-80 -80 1000 1000" aria-hidden="true">
+          <path fill="currentColor" fill-rule="evenodd" d="M435 0H840V345H640V840H0V200H435Z M145 345H495V695H145Z"/>
+        </svg>
+        <span class="brand-name">Autarki</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="wallet.html">Wallet</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="classifieds.html" aria-current="page">Classifieds</a></li>
+          <li><a href="mining.html">Mining</a></li>
+          <li><a href="install.html">Install</a></li>
+        </ul>
+      </nav>
+      <div class="themes" role="group" aria-label="Contrast">
+        <button type="button" data-theme-choice="paper" aria-pressed="true">Paper</button>
+        <button type="button" data-theme-choice="ink" aria-pressed="false">Ink</button>
+        <button type="button" data-theme-choice="console" aria-pressed="false">Console</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <header class="page-hero">
+      <div class="wrap">
+        <p class="kicker">Classifieds</p>
+        <h1>Ship it. The coins wait.</h1>
+        <p class="lede">Classifieds are a separate public board from the shop catalog. They stay off until Enable Classifieds under Settings. A new wallet leaves them off.</p>
+      </div>
+    </header>
+
+    <section class="band">
+      <div class="wrap prose">
+        <h2>What you can post.</h2>
+        <p>Goods, services, rentals, jobs, giveaways, and personals. A classified uses the same key as the shop. Publishing an ad does not require a store.</p>
+        <p>A giveaway, a personal, or a job hire can be posted with no coin node. Goods, a service, a rental, or a job offered for a price needs your own XBT node or Bitcoin node, because that ad publishes a silent-payment code. Autarki's servers do not make that code.</p>
+        <p>The buyer chooses Pick up or Ship. There is no default. Pick up can pay on-chain or with Lightning, including XBTC when that account is published. Ship pays with Lightning only. On-chain is not offered for a shipment. Ship does not offer XBTC.</p>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap prose">
+        <h2>The coins stay held.</h2>
+        <p>The buyer pays with Lightning. The coins sit on the seller's node. The seller can send the parcel knowing the money is there. The buyer marks it received, and the seller is paid. A shipment needs the AMD or Intel package, because Lightning stays off on a Raspberry Pi and on Umbrel arm64.</p>
+        <p>Before it is marked shipped, Cancel is still open and the coins go back to the buyer. After it is marked shipped, Cancel is closed. The buyer sees the carrier, the tracking number, and a link to the shipper's page. Mark received pays the seller.</p>
+        <p>The seller names how many days they have to hand the parcel to the carrier, from one to four, and whether the hold is 14 days at home or 28 days overseas. The ad shows both dates. The 14-day home hold is the usual shipment. If the seller does not mark it shipped, with a carrier and a tracking number, by the ship-by day, the coins go back. If they did ship it and the buyer does nothing, the seller is paid when the hold ends, when the seller's wallet is on.</p>
+        <p>The seller's wallet and Lightning node need to stay on through the window. If the wallet never acts, the window still sends the coins back to the buyer.</p>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap prose">
+        <h2>Not received.</h2>
+        <p>Not received stops both automatic moves. The coins stay held until the buyer marks it received, the chosen referee decides, or the Lightning window ends and the coins come back.</p>
+        <p>A referee is optional. Each side can name one public name before payment. The referee does not hold the coins. After Not received, the referee sees the carrier, the tracking, the saved scan, and each side's note, then gives one decision. A decision for the seller pays the seller. A decision for the buyer sends the coins back. The shipment is recorded as returned. If no decision arrives, the window still sends the coins back.</p>
+        <p>Check the carrier saves the latest scan as words. Canada Post, UPS, FedEx, and DHL are the names it can look up. You do not create a carrier account. The scan does not pay anyone and does not send the coins back.</p>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap prose">
+        <h2>Counts, not stars.</h2>
+        <p>The stall can say how many shipments were received after a completed payment, the day of the first, and how many are still not received. The seller's own book writes those numbers. Nobody types a count by hand. Pickup does not count.</p>
+        <p>After a completed shipment, each side can sign a short note that names the order and the other key. It does not name the goods or the price. A vouch is a name, shown only after those two keys share a completed shipment. A vouch is not required to buy or sell.</p>
+        <p>The seller can add a postal code, a country, and a weight. The buyer then chooses a shipping price. The published item price stays the item price. The shipping price is added before payment. Set location searches by a city. Use my location asks the browser. The position is not saved and is not sent to Autarki.</p>
+        <p class="more"><a href="mining.html">Next: hire a rig</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="footer-slogan">No platform. Just the sale.</p>
+      <p>Autarki is a beta. It runs on your computer. A phone on the same network opens that page. There is no separate phone app.</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/RouteHash-com/autarki/releases/tag/0.1.0">Download 0.1.0</a></li>
+        <li><a href="https://github.com/RouteHash-com/umbrel-store">Umbrel community store</a></li>
+        <li><a href="https://discord.gg/VBxvzQXvt">Discord #autarki</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script src="js/site.js"></script>
+</body>
+</html>

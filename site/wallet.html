@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="paper">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    try {
+      var t = localStorage.getItem("autarki-theme");
+      if (t === "ink" || t === "console" || t === "paper") {
+        document.documentElement.setAttribute("data-theme", t);
+      }
+    } catch (e) {}
+  </script>
+  <title>Wallet. Autarki</title>
+  <meta name="description" content="One install is one wallet. You hold the 24 words. Pay with XBT, Pay with BTC, or Pay with XBTC. Lightning is built in on AMD and Intel.">
+  <link rel="canonical" href="https://autarki.app/wallet.html">
+  <meta name="theme-color" content="#f7f4ef">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-bar">
+      <a class="brand" href="index.html">
+        <svg class="mark" viewBox="-80 -80 1000 1000" aria-hidden="true">
+          <path fill="currentColor" fill-rule="evenodd" d="M435 0H840V345H640V840H0V200H435Z M145 345H495V695H145Z"/>
+        </svg>
+        <span class="brand-name">Autarki</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="wallet.html" aria-current="page">Wallet</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="classifieds.html">Classifieds</a></li>
+          <li><a href="mining.html">Mining</a></li>
+          <li><a href="install.html">Install</a></li>
+        </ul>
+      </nav>
+      <div class="themes" role="group" aria-label="Contrast">
+        <button type="button" data-theme-choice="paper" aria-pressed="true">Paper</button>
+        <button type="button" data-theme-choice="ink" aria-pressed="false">Ink</button>
+        <button type="button" data-theme-choice="console" aria-pressed="false">Console</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <header class="page-hero">
+      <div class="wrap">
+        <p class="kicker">Wallet</p>
+        <h1>You hold the 24 words.</h1>
+        <p class="lede">One install is one wallet. The same program is the shop and the customer. Autarki does not hold the keys.</p>
+      </div>
+    </header>
+
+    <section class="band">
+      <div class="wrap prose">
+        <h2>Write them on paper.</h2>
+        <p>The backup is 24 English words, shown once. The words restore the funds on another machine. They do not restore the shop book, the orders, the catalog, or a Lightning channel.</p>
+        <p>A new wallet can be made from 99 digits, each from 1 through 6. This computer does not add its own randomness.</p>
+        <p>A password is optional, and at least 12 characters when you set one. It encrypts only this copy of the wallet file. It is not part of the 24 words. Leave it blank and the words are stored unencrypted on the device. A backup of that service is then the seed.</p>
+        <p>Closing the browser does not lock the page. Restarting Autarki does. There is no Lock button.</p>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap prose">
+        <h2>Three chains.</h2>
+        <p>Blake2b XBT bitcoin. Buttons say XBT or Pay with XBT. Its node is Bitcoin Knots. Its Lightning is Blake2b Lightning.</p>
+        <p>SHA-256 BTC bitcoin. Buttons say BTC or Pay with BTC. Its node is Bitcoin Core. Its Lightning is SHA-256 Lightning.</p>
+        <p>XBTC. Receive, Send, and Balance. Shop checkout and classified pickup can offer Pay with XBTC when this wallet's XBTC node is on and the seller published an XBTC account. A shipment does not offer XBTC. XBTC has no Lightning.</p>
+        <p>XBT and SHA-256 BTC share history only up to the fork. A payment is signed for one chain. Coins from the wrong chain do not pay the sale. A Bitcoin payment to an XBTC address does not arrive as XBTC. One XBTC sat is not one Bitcoin sat and is not one XBT sat.</p>
+        <p>Prices are whole satoshis. A dollar figure beside a price is a hint, in US dollars or Canadian dollars. The amount due stays in sats. The hint does not change the sats.</p>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap prose">
+        <h2>Receive, Send, and Balance.</h2>
+        <p>Amounts are whole sats. Prepare builds the payment. Sign is a separate press. Broadcast is a separate press. The browser never receives the signed transaction.</p>
+        <p>A coin with no confirmation is not spendable. An ordinary coin can be spent after one confirmation. A mining reward waits longer: 100 confirmations on BTC, 4320 on XBTC, and a longer XBT wait that depends on the block it was mined in. Balance is the confirmed coins still held. Lightning is a separate jar. It is not added to Balance. Moving coins into Lightning sends them out of Balance. They have to confirm before a channel can open.</p>
+        <p>A chain can be hidden on this browser. The saved connection stays on the computer.</p>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap prose">
+        <h2>Lightning, on AMD and Intel.</h2>
+        <p>On an AMD or Intel computer, Autarki starts two Lightning nodes: one for Blake2b XBT and one for SHA-256 BTC. You do not install a separate Lightning app, and you do not paste a node address to start them. The first start of each node takes about ten minutes. Later starts are quicker.</p>
+        <p>On-chain is where savings stay. Lightning is what you load before a sale in person. The first Lightning payment still needs a channel. After that channel has one confirmation, a later payment on it does not wait for a new confirmation. When a purchase needs a channel, the app can open one. A channel that can already cover the amount pays without a new on-chain wait.</p>
+        <p>Blake2b Lightning and SHA-256 Lightning are different networks. A Bitcoin payment request is refused on the Blake2b rail. Each Lightning node has its own backup, separate from the 24 words. Those backups are shown once. Do not reuse the wallet words for Lightning.</p>
+        <p>A Raspberry Pi, and an Umbrel arm64 package, run the wallet, the shop, Nostr, and on-chain payment. Lightning stays off on those packages. A Lightning payment, a shipment, and Mine need the AMD or Intel package.</p>
+        <p>A shared pool, so one channel can pay many shops, is the direction. The app can open a channel when a payment needs one. That pool does not already pay every sale.</p>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap prose">
+        <h2>Your node, or Autarki's servers.</h2>
+        <p>You can connect your own coin node under Settings, then Coin Nodes, or keep using Autarki's servers for ordinary addresses. Until your own node is connected, those servers can see a normal address. They do not make a silent-payment code, and they cannot see a coin paid to one. A silent-payment code appears after your own node is connected.</p>
+        <p>XBTC can use Autarki's public node for reading and broadcasting until you connect your own. The StartOS and Umbrel packages do not include an XBTC node. XBT Knots and Bitcoin Core do not run on the same computer. XBTC Knots can run beside XBT Knots.</p>
+        <p class="more"><a href="shop.html">Next: the shop</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="footer-slogan">No platform. Just the sale.</p>
+      <p>Autarki is a beta. It runs on your computer. A phone on the same network opens that page. There is no separate phone app.</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/RouteHash-com/autarki/releases/tag/0.1.0">Download 0.1.0</a></li>
+        <li><a href="https://github.com/RouteHash-com/umbrel-store">Umbrel community store</a></li>
+        <li><a href="https://discord.gg/VBxvzQXvt">Discord #autarki</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script src="js/site.js"></script>
+</body>
+</html>

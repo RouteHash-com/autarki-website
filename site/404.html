@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="paper">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    try {
+      var t = localStorage.getItem("autarki-theme");
+      if (t === "ink" || t === "console" || t === "paper") {
+        document.documentElement.setAttribute("data-theme", t);
+      }
+    } catch (e) {}
+  </script>
+  <title>Page not found. Autarki</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#f7f4ef">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-bar">
+      <a class="brand" href="index.html">
+        <svg class="mark" viewBox="-80 -80 1000 1000" aria-hidden="true">
+          <path fill="currentColor" fill-rule="evenodd" d="M435 0H840V345H640V840H0V200H435Z M145 345H495V695H145Z"/>
+        </svg>
+        <span class="brand-name">Autarki</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="wallet.html">Wallet</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="classifieds.html">Classifieds</a></li>
+          <li><a href="mining.html">Mining</a></li>
+          <li><a href="install.html">Install</a></li>
+        </ul>
+      </nav>
+      <div class="themes" role="group" aria-label="Contrast">
+        <button type="button" data-theme-choice="paper" aria-pressed="true">Paper</button>
+        <button type="button" data-theme-choice="ink" aria-pressed="false">Ink</button>
+        <button type="button" data-theme-choice="console" aria-pressed="false">Console</button>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <header class="page-hero">
+      <div class="wrap prose">
+        <p class="kicker">404</p>
+        <h1>That page is not here.</h1>
+        <p class="lede">The site is the wallet, the shop, classifieds, mining, and install.</p>
+        <p class="more"><a href="index.html">Back to the start</a></p>
+      </div>
+    </header>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="footer-slogan">No platform. Just the sale.</p>
+    </div>
+  </footer>
+  <script src="js/site.js"></script>
+</body>
+</html>

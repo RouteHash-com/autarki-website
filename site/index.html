@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="paper">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    try {
+      var t = localStorage.getItem("autarki-theme");
+      if (t === "ink" || t === "console" || t === "paper") {
+        document.documentElement.setAttribute("data-theme", t);
+      }
+    } catch (e) {}
+  </script>
+  <title>Autarki. No platform. Just the sale.</title>
+  <meta name="description" content="Autarki is your wallet and your shop. You hold the keys, you pay over Lightning or on-chain, and you buy and sell without a platform in the middle.">
+  <link rel="canonical" href="https://autarki.app/">
+  <meta property="og:title" content="Autarki. No platform. Just the sale.">
+  <meta property="og:description" content="Autarki is your wallet and your shop. You hold the keys, you pay over Lightning or on-chain, and you buy and sell without a platform in the middle.">
+  <meta property="og:url" content="https://autarki.app/">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#f7f4ef">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-bar">
+      <a class="brand" href="index.html">
+        <svg class="mark" viewBox="-80 -80 1000 1000" aria-hidden="true">
+          <path fill="currentColor" fill-rule="evenodd" d="M435 0H840V345H640V840H0V200H435Z M145 345H495V695H145Z"/>
+        </svg>
+        <span class="brand-name">Autarki</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="wallet.html">Wallet</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="classifieds.html">Classifieds</a></li>
+          <li><a href="mining.html">Mining</a></li>
+          <li><a href="install.html">Install</a></li>
+        </ul>
+      </nav>
+      <div class="themes" role="group" aria-label="Contrast">
+        <button type="button" data-theme-choice="paper" aria-pressed="true">Paper</button>
+        <button type="button" data-theme-choice="ink" aria-pressed="false">Ink</button>
+        <button type="button" data-theme-choice="console" aria-pressed="false">Console</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-lockup">
+          <svg class="mark" viewBox="-80 -80 1000 1000" aria-hidden="true">
+            <path fill="currentColor" fill-rule="evenodd" d="M435 0H840V345H640V840H0V200H435Z M145 345H495V695H145Z"/>
+          </svg>
+        </div>
+        <h1>No platform.<span class="line">Just the sale.</span></h1>
+        <p class="lede">Autarki is your wallet and your shop. You hold the keys, you pay over Lightning or on-chain, and you buy and sell without a platform in the middle.</p>
+        <div class="actions">
+          <a class="button" href="install.html">Install it</a>
+          <a class="button button-ghost" href="shop.html">Look through a shop</a>
+        </div>
+        <p class="beta">Autarki is a beta. It runs on your own computer: StartOS, Umbrel, or Ubuntu. A phone on the same network opens that computer's page. There is no separate phone app.</p>
+      </div>
+    </section>
+
+    <section class="wrap benefits" aria-label="Three benefits">
+      <article>
+        <h2>You hold the keys.</h2>
+        <p>You keep the 24 words. Autarki does not hold the coins, does not clear the sale, and does not take a fee from it.</p>
+      </article>
+      <article>
+        <h2>Lightning is in the app.</h2>
+        <p>On an AMD or Intel computer, Autarki starts Blake2b Lightning and SHA-256 Lightning. You do not install a second Lightning app. A Raspberry Pi runs the wallet and the shop, and leaves Lightning off.</p>
+      </article>
+      <article>
+        <h2>Two people settle it.</h2>
+        <p>The stall is public. The order is private. The node that carries the order cannot read it. You pay the person, not a platform.</p>
+      </article>
+    </section>
+
+    <section class="band">
+      <div class="wrap prose">
+        <h2>You hold the 24 words.</h2>
+        <p>The backup is 24 English words, shown once. Write them on paper. The words restore the funds on another machine. They do not restore the shop book, the orders, the catalog, or a Lightning channel.</p>
+        <p>A password is optional. Leave it blank and the words are stored unencrypted on this device. A backup of that service is then the seed.</p>
+        <p class="more"><a href="wallet.html">The wallet</a></p>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap prose">
+        <h2>Pay the person.</h2>
+        <p>Pay with XBT, Pay with BTC, or, when both sides have it, Pay with XBTC. Lightning sits under the chain you pressed. XBTC has no Lightning. A shipment does not offer XBTC. On-chain still works when Lightning is off.</p>
+        <p>Blake2b XBT bitcoin, SHA-256 BTC bitcoin, and XBTC are three chains. XBT and SHA-256 BTC share history only up to the fork. A payment is signed for one chain. Coins from the wrong chain do not pay the sale. A Bitcoin payment to an XBTC address does not arrive as XBTC.</p>
+        <p>At the counter, Pay Counter records cash, a debit card, a credit card, or a mix. This page does not charge the card. The clerk types the amount on the card machine.</p>
+        <p>Until you connect your own node, ordinary XBT and Bitcoin addresses use Autarki's servers. Those servers can see a normal address. A silent-payment code appears after your own node is connected.</p>
+        <p class="more"><a href="wallet.html">Coins and Lightning</a></p>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap prose">
+        <h2>The stall is public. The order is private.</h2>
+        <p>You can look through shops before you make a wallet. Sending an order, paying, and posting need the wallet open.</p>
+        <p>The stall, each product, and the place are public notes. The order is a private note to that shop. It does not contain the price. The shop charges its own catalog. The public stall uses Autarki's relay until the shop names its own. The relay cannot read the order. The key and the books stay with the shop.</p>
+        <p class="more"><a href="shop.html">The shop</a></p>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap prose">
+        <h2>Ship it.</h2>
+        <p>The buyer pays with Lightning. The coins sit on the seller's node until the buyer marks the parcel received. Before it is marked shipped, Cancel is still open and the coins go back. After it is marked shipped, the buyer sees the carrier and the tracking number.</p>
+        <p>Not received stops both automatic moves. Each side can name one person before payment. That referee does not hold the coins. The seller's wallet has to stay on through the window.</p>
+        <p class="more"><a href="classifieds.html">Classifieds and a shipment</a></p>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap prose">
+        <h2>Hire a rig.</h2>
+        <p>Mining hires a listed rig from RouteHash. It does not mine on this computer. Open a RouteHash account, paste that account's API token, and click Mine XBT or Mine BTC. The payout address is the next address from this wallet. Rewards come back to this wallet.</p>
+        <p>Nothing is spent until you click Mine, or until you confirm the hours. XBTC is not a mining card. Mine needs the AMD or Intel package, because it pays through Lightning.</p>
+        <p class="more"><a href="mining.html">Mining</a></p>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap prose">
+        <h2>A name, not a raw key.</h2>
+        <p>A profile can add a display name, a short about line, and a picture. People see that name. Message, beside a copied public name, opens one private note to that person. Send does not create an order, move coins, or change a shipment. There is no public chat room.</p>
+        <p>That private note is in the current app source. An install built before that work does not show Message until it is updated.</p>
+        <p class="more"><a href="shop.html#note">A private note</a></p>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap">
+        <h2>Four sales, as they happen.</h2>
+        <div class="examples">
+          <article class="example">
+            <h3>At the counter</h3>
+            <p>A clerk marks a sale paid with cash. The card machine is the clerk's. Autarki records the sale. The page does not charge the card.</p>
+          </article>
+          <article class="example">
+            <h3>A shipped classified</h3>
+            <p>A seller posts a classified. The buyer chooses Ship. The coins stay held until Mark received. Not received asks the named referee. The referee does not hold the coins.</p>
+          </article>
+          <article class="example">
+            <h3>A private note</h3>
+            <p>Someone taps Message beside a shop name, writes one note, and sends it. The order on the screen does not change.</p>
+          </article>
+          <article class="example">
+            <h3>A listed rig</h3>
+            <p>Someone pastes a RouteHash token and clicks Mine XBT. The next reward address is already this wallet's. Nothing is spent until that click, or until the hours are confirmed.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap prose">
+        <h2>Install it on your computer.</h2>
+        <p>AMD and Intel include Lightning. A Raspberry Pi runs the wallet, the shop, Nostr, and on-chain payment, and leaves Lightning off. The same is true of an Umbrel arm64 package.</p>
+        <p>Download release 0.1.0 and check <code>SHA256SUMS</code>. Umbrel installs from the RouteHash community store, which is not the official Umbrel App Store. Help is the RouteHash Discord channel #autarki.</p>
+        <p class="more"><a href="install.html">How to install</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="footer-slogan">No platform. Just the sale.</p>
+      <p>Autarki is a beta. It runs on your computer. A phone on the same network opens that page. There is no separate phone app.</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/RouteHash-com/autarki/releases/tag/0.1.0">Download 0.1.0</a></li>
+        <li><a href="https://github.com/RouteHash-com/umbrel-store">Umbrel community store</a></li>
+        <li><a href="https://discord.gg/VBxvzQXvt">Discord #autarki</a></li>
+      </ul>
+      <p>routehash.com is the mining site. The hire happens in this wallet. The page can show English, Español, Português, Français, or Deutsch. The 24 words stay the English list. Amounts stay in sats.</p>
+    </div>
+  </footer>
+  <script src="js/site.js"></script>
+</body>
+</html>
