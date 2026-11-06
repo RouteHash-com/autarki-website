@@ -16,7 +16,7 @@ Open http://127.0.0.1:8080/
 
 Paper is the default contrast. Ink and Console stay in this browser.
 
-The notice board (`site/notice-board.html`) reads public stalls and classifieds in the browser from `wss://nostr.autarki.app`, then closes the connection. This site does not store those notes and does not take an order.
+The notice board (`site/notice-board.html`) reads public stalls and classifieds in the browser from `wss://nostr.autarki.app:8444`, then closes the connection. This site does not store those notes and does not take an order.
 
 ## Cloudflare Pages
 
