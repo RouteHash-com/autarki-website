@@ -555,7 +555,7 @@
     var summary = document.createElement("summary");
     var top = document.createElement("div");
     top.className = "card-top";
-    addImage(top, ad.pictures[0], "");
+    addImage(top, ad.pictures[0], "ad-thumb");
     var heading = document.createElement("div");
     var title = document.createElement("h3");
     title.textContent = ad.title || "Classified";

@@ -39,6 +39,7 @@
           <li><a href="classifieds.html">Classifieds</a></li>
           <li><a href="mining.html">Mining</a></li>
           <li><a href="install.html">Install</a></li>
+          <li><a href="notice-board.html">Notice board</a></li>
         </ul>
       </nav>
       <div class="themes" role="group" aria-label="Contrast">
@@ -60,7 +61,7 @@
         <h1>No platform.<span class="line">Just the sale.</span></h1>
         <p class="lede">Autarki is your wallet and your shop. You hold the keys, you pay over Lightning or on-chain, and you buy and sell without a platform in the middle.</p>
         <div class="actions">
-          <a class="button" href="install.html">Install it</a>
+          <a class="button" href="install.html">Install Autarki</a>
           <a class="button button-ghost" href="notice-board.html">Look through a shop</a>
         </div>
         <p class="beta">Autarki is a beta. It runs on your own computer: StartOS, Umbrel, or Ubuntu. A phone on the same network opens that computer's page. There is no separate phone app.</p>
@@ -83,58 +84,40 @@
     </section>
 
     <section class="band">
-      <div class="wrap prose">
-        <h2>You hold the 24 words.</h2>
-        <p>The backup is 24 English words, shown once. Write them on paper. The words restore the funds on another machine. They do not restore the shop book, the orders, the catalog, or a Lightning channel.</p>
-        <p>A password is optional. Leave it blank and the words are stored unencrypted on this device. A backup of that service is then the seed.</p>
-        <p class="more"><a href="wallet.html">The wallet</a></p>
-      </div>
-    </section>
-
-    <section class="band">
-      <div class="wrap prose">
-        <h2>Pay the person.</h2>
-        <p>Pay with XBT, Pay with BTC, or, when both sides have it, Pay with XBTC. Lightning sits under the chain you pressed. XBTC has no Lightning. A shipment does not offer XBTC. On-chain still works when Lightning is off.</p>
-        <p>Blake2b XBT bitcoin, SHA-256 BTC bitcoin, and XBTC are three chains. XBT and SHA-256 BTC share history only up to the fork. A payment is signed for one chain. Coins from the wrong chain do not pay the sale. A Bitcoin payment to an XBTC address does not arrive as XBTC.</p>
-        <p>At the counter, Pay Counter records cash, a debit card, a credit card, or a mix. This page does not charge the card. The clerk types the amount on the card machine.</p>
-        <p>Until you connect your own node, ordinary XBT and Bitcoin addresses use Autarki's servers. Those servers can see a normal address. A silent-payment code appears after your own node is connected.</p>
-        <p class="more"><a href="wallet.html">Coins and Lightning</a></p>
-      </div>
-    </section>
-
-    <section class="band">
-      <div class="wrap prose">
-        <h2>The stall is public. The order is private.</h2>
-        <p>You can look through shops before you make a wallet. Sending an order, paying, and posting need the wallet open.</p>
-        <p>The stall, each product, and the place are public notes. The order is a private note to that shop. It does not contain the price. The shop charges its own catalog. The public stall uses Autarki's relay until the shop names its own. The relay cannot read the order. The key and the books stay with the shop.</p>
-        <p class="more"><a href="shop.html">The shop</a></p>
-      </div>
-    </section>
-
-    <section class="band">
-      <div class="wrap prose">
-        <h2>Ship it.</h2>
-        <p>The buyer pays with Lightning. The coins sit on the seller's node until the buyer marks the parcel received. Before it is marked shipped, Cancel is still open and the coins go back. After it is marked shipped, the buyer sees the carrier and the tracking number.</p>
-        <p>Not received stops both automatic moves. Each side can name one person before payment. That referee does not hold the coins. The seller's wallet has to stay on through the window.</p>
-        <p class="more"><a href="classifieds.html">Classifieds and a shipment</a></p>
-      </div>
-    </section>
-
-    <section class="band">
-      <div class="wrap prose">
-        <h2>Hire a rig.</h2>
-        <p>Mining hires a listed rig from RouteHash. It does not mine on this computer. Open a RouteHash account, paste that account's API token, and click Mine XBT or Mine BTC. The payout address is the next address from this wallet. Rewards come back to this wallet.</p>
-        <p>Nothing is spent until you click Mine, or until you confirm the hours. XBTC is not a mining card. Mine needs the AMD or Intel package, because it pays through Lightning.</p>
-        <p class="more"><a href="mining.html">Mining</a></p>
-      </div>
-    </section>
-
-    <section class="band">
-      <div class="wrap prose">
-        <h2>A name, not a raw key.</h2>
-        <p>A profile can add a display name, a short about line, and a picture. People see that name. Message, beside a copied public name, opens one private note to that person. Send does not create an order, move coins, or change a shipment. There is no public chat room.</p>
-        <p>That private note is in the current app source. An install built before that work does not show Message until it is updated.</p>
-        <p class="more"><a href="shop.html#note">A private note</a></p>
+      <div class="wrap">
+        <h2>What you can do.</h2>
+        <div class="benefits">
+          <article>
+            <h3>You hold the 24 words.</h3>
+            <p>Write them on paper. They restore the funds on another machine. They do not restore the shop book, the orders, or a Lightning channel. Leave the password blank and the words are stored unencrypted on this device.</p>
+            <p class="more"><a href="wallet.html">The wallet</a></p>
+          </article>
+          <article>
+            <h3>Three coins.</h3>
+            <p>Pay with XBT, Pay with BTC, or Pay with XBTC. Coins from the wrong chain do not pay the sale. A Bitcoin payment to an XBTC address does not arrive as XBTC.</p>
+            <p class="more"><a href="wallet.html">Coins and Lightning</a></p>
+          </article>
+          <article>
+            <h3>Lightning stays in the app.</h3>
+            <p>An AMD or Intel computer starts Lightning. A Raspberry Pi and Umbrel arm64 leave it off. XBTC has no Lightning and is not offered for a shipment.</p>
+            <p class="more"><a href="wallet.html">Where Lightning runs</a></p>
+          </article>
+          <article>
+            <h3>The stall is public.</h3>
+            <p>You can look before you make a wallet. The order is a private note, and the relay cannot read it. Pay Counter records cash or a card. This page does not charge the card. Ordinary addresses use Autarki's servers until your own node is connected. A silent-payment code appears after that.</p>
+            <p class="more"><a href="shop.html">The shop</a></p>
+          </article>
+          <article>
+            <h3>Ship it.</h3>
+            <p>The buyer pays with Lightning. The coins sit on the seller's node until the parcel is marked received. Cancel stays open until it is marked shipped. A named referee does not hold the coins.</p>
+            <p class="more"><a href="classifieds.html">Classifieds</a></p>
+          </article>
+          <article>
+            <h3>Hire a rig.</h3>
+            <p>Mining hires a listed rig from RouteHash. Nothing is spent until you click Mine, or until the hours are confirmed. XBTC is not a mining card.</p>
+            <p class="more"><a href="mining.html">Mining</a></p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -152,7 +135,7 @@
           </article>
           <article class="example">
             <h3>A private note</h3>
-            <p>Someone taps Message beside a shop name, writes one note, and sends it. The order on the screen does not change.</p>
+            <p>Someone taps Message beside a shop name, writes one note, and sends it. The order on the screen does not change. An older install does not show Message until it is updated.</p>
           </article>
           <article class="example">
             <h3>A listed rig</h3>
@@ -163,11 +146,13 @@
     </section>
 
     <section class="band">
-      <div class="wrap prose">
-        <h2>Install it on your computer.</h2>
-        <p>AMD and Intel include Lightning. A Raspberry Pi runs the wallet, the shop, Nostr, and on-chain payment, and leaves Lightning off. The same is true of an Umbrel arm64 package.</p>
-        <p>Download release 0.1.0 and check <code>SHA256SUMS</code>. Umbrel installs from the RouteHash community store, which is not the official Umbrel App Store. Help is the RouteHash Discord channel #autarki.</p>
-        <p class="more"><a href="install.html">How to install</a></p>
+      <div class="wrap">
+        <h2>Install Autarki.</h2>
+        <p class="lede">It runs on your computer. A phone on the same network opens that page. There is no separate phone app.</p>
+        <div class="actions">
+          <a class="button" href="install.html">Install Autarki</a>
+          <a class="button button-ghost" href="notice-board.html">Look through a shop</a>
+        </div>
       </div>
     </section>
   </main>
