@@ -12,7 +12,7 @@
     } catch (e) {}
   </script>
   <title>Shop. Autarki</title>
-  <meta name="description" content="Look through shops before you make a wallet. The stall is public. The order is private. Pay the person. Autarki does not take a cut.">
+  <meta name="description" content="Look through shops before you make a wallet. The stall is public. The order is private. Autarki does not take a cut of the catalog price. Lightning has a routing fee and a room fee.">
   <link rel="canonical" href="https://autarki.app/shop.html">
   <meta name="theme-color" content="#f7f4ef">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -20,6 +20,9 @@
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
+  <div class="beta-banner">
+    <p class="wrap">Autarki is in beta. Please report bugs in <a href="https://discord.gg/VBxvzQXvt">Discord #autarki</a>.</p>
+  </div>
   <header class="site-header">
     <div class="wrap header-bar">
       <a class="brand" href="index.html">
@@ -52,7 +55,7 @@
         <p class="kicker">Shop</p>
         <h1>The stall is public. The order is private.</h1>
         <p class="lede">Shop is the notice board. You can look through shops before you make a wallet. Sending an order needs the wallet open.</p>
-        <p class="more"><a href="notice-board.html">See the stalls that are published</a></p>
+        <p class="more"><a href="notice-board.html">See the stalls that are published</a><a href="classifieds.html#protection">How a shipment is protected</a></p>
       </div>
     </header>
 
@@ -72,6 +75,7 @@
         <p>Pay with XBT, Pay with BTC, and, when both sides have it, Pay with XBTC. Lightning sits under the chain that was pressed. XBTC has no Lightning. Prepare fills Send. Broadcast is still a separate press.</p>
         <p>Pay Counter records cash, a debit card, a credit card, a coupon, store credit, bitcoin, or a mix. The page does not charge the card and does not talk to a card terminal. The clerk types the amount on the card machine. The card machine prints its own slip. There is no receipt printer in the app yet.</p>
         <p>A buyer can search a shop, add a product, and pay with Lightning. The shop sees the order. The relay does not.</p>
+        <p>Autarki does not take a cut of the catalog price. A routing fee of at most 1,000 sats, and a seller's room fee of 1,200 sats for 20,000 sats of room or 2,000 sats for 100,000, are Lightning costs. The pool does not hold the sale. <a href="wallet.html#lightning">How a channel opens</a>. <a href="classifieds.html#protection">How a shipped order is held</a>.</p>
       </div>
     </section>
 
@@ -91,9 +95,9 @@
         <p>The public name is what people see instead of the raw key. A profile can add a display name, a short about line, and a picture. The shortened key still copies. There is no Autarki username. A website name is not required.</p>
         <p>Message, beside a copied public name, opens one private note to that person. On a phone the sheet fills the screen. On a desktop it stays over the page, so the order remains. Send does not create an order, move coins, or change a shipment. One short plain-text note, up to 1000 characters. Contacts is the thread list. There is no public chat room.</p>
         <p>Someone taps Message beside a shop name, writes one note, and sends it. The order on the screen does not change. Writing to someone does not follow them.</p>
-        <p>Discord is optional. It is not required to buy or sell. Autarki does not join Discord, does not use a bot, and does not check that the message is real.</p>
+        <p>Discord is optional. It is not required to buy or sell. The person posts "Verifying that I control the following Nostr public key:" and the public name, then publishes the username and the message link. Autarki does not join Discord, does not use a bot, and does not check that the message is real. The rest of that account sits with the classifieds.</p>
         <p>That private note is in the current app source. An install built before that work does not show Message until it is updated.</p>
-        <p class="more"><a href="classifieds.html">Next: classifieds</a></p>
+        <p class="more"><a href="classifieds.html#protection">How a shipment is protected</a><a href="classifieds.html">Next: classifieds</a></p>
       </div>
     </section>
 

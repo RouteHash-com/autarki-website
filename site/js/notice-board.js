@@ -665,6 +665,13 @@
         value.appendChild(link);
       } else {
         value.textContent = row.value;
+        if (row.linkHref) {
+          value.appendChild(document.createTextNode(" "));
+          var extra = document.createElement("a");
+          extra.href = row.linkHref;
+          extra.textContent = row.linkText;
+          value.appendChild(extra);
+        }
       }
       list.appendChild(term);
       list.appendChild(value);
@@ -687,11 +694,17 @@
     if (stall.tipsOn) {
       rows.push({ label: "Tips", value: stall.tips.length ? stall.tips.map(function (n) { return n + "%"; }).join(", ") : "On" });
     }
-    if (stall.deliveries) {
+    if (stall.online && stall.deliveries) {
       var text = stall.deliveries + (stall.deliveries === 1 ? " shipment received" : " shipments received");
       if (stall.firstDelivery) text += ". First on " + day(stall.firstDelivery);
       if (stall.unfinished) text += ". " + stall.unfinished + " not received";
-      rows.push({ label: "Deliveries", value: text });
+      text += ". That number is the seller's own book. The hold, the referee, the vouch, and the Discord link are in the wallet.";
+      rows.push({
+        label: "Deliveries",
+        value: text,
+        linkHref: "classifieds.html#protection",
+        linkText: "How a shipment is protected"
+      });
     }
     if (stall.online && (stall.shipPostal || stall.shipCc || stall.shipKg)) {
       rows.push({ label: "Ships from", value: [stall.shipPostal, stall.shipCc, stall.shipKg ? stall.shipKg + " kg" : ""].filter(Boolean).join(", ") });

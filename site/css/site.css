@@ -285,6 +285,7 @@ h1 .line {
 .benefits {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  align-items: start;
   gap: 1.5rem;
   padding-bottom: clamp(2rem, 5vw, 3.5rem);
 }
@@ -296,9 +297,12 @@ h1 .line {
 
 .benefits article,
 .example,
-.panel {
+.panel,
+.choices article,
+.signs article {
   background: var(--bg-raised);
   border: 1px solid var(--line);
+  border-top: 2px solid var(--accent);
   padding: 1.25rem 1.25rem 1.35rem;
 }
 
@@ -306,7 +310,9 @@ h1 .line {
 .benefits h3,
 .example h3,
 .panel h2,
-.panel h3 {
+.panel h3,
+.choices h3,
+.signs h3 {
   font-size: 1.55rem;
   margin-bottom: 0.75rem;
 }
@@ -314,7 +320,10 @@ h1 .line {
 .benefits p,
 .example p,
 .panel p,
-.prose p {
+.prose p,
+.choices p,
+.signs p,
+.path p {
   margin: 0.75rem 0 0;
 }
 
@@ -345,11 +354,154 @@ h1 .line {
 }
 
 .more {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.25rem;
   margin-top: 1rem;
 }
 
 .more a {
   color: var(--accent);
+}
+
+.page-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.page-nav a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.page-nav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.beta-banner {
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--accent) 9%, var(--bg));
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+.beta-banner p {
+  margin: 0;
+  padding-block: 0.6rem;
+}
+
+.beta-banner a {
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.path {
+  list-style: none;
+  max-width: 44rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  counter-reset: path;
+}
+
+.path > li {
+  position: relative;
+  padding: 0 0 1.85rem 3.6rem;
+}
+
+.path > li:last-child {
+  padding-bottom: 0;
+}
+
+.path > li::before {
+  counter-increment: path;
+  content: counter(path);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2.45rem;
+  height: 2.45rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  background: var(--bg);
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.path > li::after {
+  content: "";
+  position: absolute;
+  left: 1.2rem;
+  top: 2.65rem;
+  bottom: 0.2rem;
+  width: 1px;
+  background: var(--line);
+}
+
+.path > li:last-child::after {
+  display: none;
+}
+
+.path h3 {
+  font-size: 1.45rem;
+  margin: 0.35rem 0 0;
+}
+
+.limits,
+.choices,
+.signs {
+  margin-top: 2rem;
+}
+
+.choices,
+.signs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: 1rem;
+}
+
+.signs .kicker,
+.choices .kicker {
+  margin-bottom: 0.45rem;
+}
+
+.pull {
+  max-width: 38rem;
+  margin: 2rem 0 0;
+  padding: 0.15rem 0 0.15rem 1.15rem;
+  border-left: 2px solid var(--accent);
+}
+
+.pull p {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 2.4vw, 1.7rem);
+  line-height: 1.28;
+  letter-spacing: -0.02em;
+}
+
+.subhead {
+  max-width: 22ch;
+  margin-top: 2.75rem;
+  font-size: clamp(1.7rem, 3vw, 2.15rem);
+}
+
+#protection,
+#dispute,
+#signs,
+#lightning,
+#post,
+#words,
+#chains,
+#balance,
+#node {
+  scroll-margin-top: 5.5rem;
 }
 
 .examples {
@@ -458,7 +610,9 @@ code {
   }
 
   .benefits,
-  .examples {
+  .examples,
+  .choices,
+  .signs {
     grid-template-columns: 1fr;
   }
 
@@ -479,7 +633,9 @@ code {
   }
 
   .benefits,
-  .examples {
+  .examples,
+  .choices,
+  .signs {
     gap: 1.75rem;
   }
 
@@ -489,6 +645,18 @@ code {
 
   .page-hero {
     padding-bottom: 1.75rem;
+  }
+
+  #protection,
+  #dispute,
+  #signs,
+  #lightning,
+  #post,
+  #words,
+  #chains,
+  #balance,
+  #node {
+    scroll-margin-top: 1rem;
   }
 }
 
@@ -629,6 +797,10 @@ code {
 
 .facts dd {
   margin: 0;
+}
+
+.facts a {
+  color: var(--accent);
 }
 
 .products {

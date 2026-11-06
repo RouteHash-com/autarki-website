@@ -24,6 +24,9 @@
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
+  <div class="beta-banner">
+    <p class="wrap">Autarki is in beta. Please report bugs in <a href="https://discord.gg/VBxvzQXvt">Discord #autarki</a>.</p>
+  </div>
   <header class="site-header">
     <div class="wrap header-bar">
       <a class="brand" href="index.html">
@@ -70,11 +73,11 @@
     <section class="wrap benefits" aria-label="Three benefits">
       <article>
         <h2>You hold the keys.</h2>
-        <p>You keep the 24 words. Autarki does not hold the coins, does not clear the sale, and does not take a fee from it.</p>
+        <p>You keep the 24 words. Autarki does not hold the coins, does not clear the sale, and does not take a cut of the catalog price. A buyer may pay a routing fee of at most 1,000 sats. A seller may pay a room fee: 20,000 sats of room costs 1,200 sats, and 100,000 sats of room costs 2,000 sats. Those are Lightning costs. The pool does not hold the sale. A shipped order stays on the seller's node until Mark received, and only after a float.</p>
       </article>
       <article>
         <h2>Lightning is in the app.</h2>
-        <p>On an AMD or Intel computer, Autarki starts Blake2b Lightning and SHA-256 Lightning. You do not install a second Lightning app. A Raspberry Pi runs the wallet and the shop, and leaves Lightning off.</p>
+        <p>On AMD and Intel, StartOS, Umbrel, and Ubuntu start Blake2b Lightning and SHA-256 Lightning. You do not install a second Lightning app. A Raspberry Pi and Umbrel arm64 leave Lightning off.</p>
       </article>
       <article>
         <h2>Two people settle it.</h2>
@@ -98,8 +101,8 @@
           </article>
           <article>
             <h3>Lightning stays in the app.</h3>
-            <p>An AMD or Intel computer starts it. A Raspberry Pi and Umbrel arm64 leave it off.</p>
-            <p class="more"><a href="wallet.html">Where Lightning runs</a></p>
+            <p>StartOS, Umbrel, and Ubuntu start it on AMD and Intel. A Raspberry Pi and Umbrel arm64 leave it off.</p>
+            <p class="more"><a href="wallet.html#lightning">Where Lightning runs</a></p>
           </article>
           <article>
             <h3>The stall is public.</h3>
@@ -108,8 +111,8 @@
           </article>
           <article>
             <h3>Ship it.</h3>
-            <p>The coins stay on the seller's node until the parcel is marked received.</p>
-            <p class="more"><a href="classifieds.html">Classifieds</a></p>
+            <p>The coins stay on the seller's node until Mark received. Not received asks the named referee. The referee does not hold the coins.</p>
+            <p class="more"><a href="classifieds.html#protection">How a shipment is protected</a></p>
           </article>
           <article>
             <h3>Hire a rig.</h3>
@@ -131,6 +134,7 @@
           <article class="example">
             <h3>A shipped classified</h3>
             <p>A seller posts a classified. The buyer chooses Ship. The coins stay held until Mark received. Not received asks the named referee. The referee does not hold the coins.</p>
+            <p class="more"><a href="classifieds.html#protection">How the coins wait</a></p>
           </article>
           <article class="example">
             <h3>A private note</h3>

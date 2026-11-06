@@ -20,6 +20,9 @@
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
+  <div class="beta-banner">
+    <p class="wrap">Autarki is in beta. Please report bugs in <a href="https://discord.gg/VBxvzQXvt">Discord #autarki</a>.</p>
+  </div>
   <header class="site-header">
     <div class="wrap header-bar">
       <a class="brand" href="index.html">
@@ -53,10 +56,16 @@
         <h1>Ship it. The coins wait.</h1>
         <p class="lede">Classifieds are a separate public board from the shop catalog. They stay off until Enable Classifieds under Settings. A new wallet leaves them off.</p>
         <p class="more"><a href="notice-board.html">See the classifieds that are published</a></p>
+        <nav class="page-nav" aria-label="On this page">
+          <a href="#post">What you can post</a>
+          <a href="#protection">The coins stay held</a>
+          <a href="#dispute">Not received</a>
+          <a href="#signs">Four public signs</a>
+        </nav>
       </div>
     </header>
 
-    <section class="band">
+    <section class="band" id="post">
       <div class="wrap prose">
         <h2>What you can post.</h2>
         <p>Goods, services, rentals, jobs, giveaways, and personals. A classified uses the same key as the shop. Publishing an ad does not require a store.</p>
@@ -65,32 +74,101 @@
       </div>
     </section>
 
-    <section class="band">
-      <div class="wrap prose">
+    <section class="band" id="protection">
+      <div class="wrap">
         <h2>The coins stay held.</h2>
-        <p>The buyer pays with Lightning. The coins sit on the seller's node. The seller can send the parcel knowing the money is there. The buyer marks it received, and the seller is paid. A shipment needs the AMD or Intel package, because Lightning stays off on a Raspberry Pi and on Umbrel arm64.</p>
-        <p>Before it is marked shipped, Cancel is still open and the coins go back to the buyer. After it is marked shipped, Cancel is closed. The buyer sees the carrier, the tracking number, and a link to the shipper's page. Mark received pays the seller.</p>
-        <p>The seller names how many days they have to hand the parcel to the carrier, from one to four, and whether the hold is 14 days at home or 28 days overseas. The ad shows both dates. The 14-day home hold is the usual shipment. If the seller does not mark it shipped, with a carrier and a tracking number, by the ship-by day, the coins go back. If they did ship it and the buyer does nothing, the seller is paid when the hold ends, when the seller's wallet is on.</p>
-        <p>The seller's wallet and Lightning node need to stay on through the window. If the wallet never acts, the window still sends the coins back to the buyer.</p>
+        <p class="lede">A shipment pays the seller when the parcel arrives. Until then the coins sit on the seller's node.</p>
+        <ol class="path">
+          <li>
+            <h3>Name a referee, or nobody.</h3>
+            <p>Before payment, each side can name one referee or nobody. That choice stops when the payment is accepted. The referee does not hold the coins.</p>
+          </li>
+          <li>
+            <h3>The buyer pays with Lightning.</h3>
+            <p>The coins sit on the seller's node. The seller can send the parcel knowing the money is there. The clock starts when the payment is accepted. Ship pays with Lightning only. On-chain is not offered for a shipment, and Ship does not offer XBTC. A shipment needs AMD or Intel. Lightning stays off on a Raspberry Pi and on Umbrel arm64.</p>
+          </li>
+          <li>
+            <h3>Cancel stays open.</h3>
+            <p>Cancel stays open until the seller presses Mark shipped, with a carrier and a tracking number, inside one to four days. Until that mark, Cancel sends the coins back. If the parcel is not marked shipped by the ship-by day, the coins go back.</p>
+          </li>
+          <li>
+            <h3>Mark shipped closes Cancel.</h3>
+            <p>After that mark, Cancel is closed. The buyer sees the carrier, the tracking number, and the shipper's page. Check the carrier saves the latest scan as words for Canada Post, UPS, FedEx, or DHL. You do not create a carrier account. The scan does not pay anyone and does not send the coins back. Check the carrier is not on an order already marked received.</p>
+          </li>
+          <li>
+            <h3>Mark received pays the seller.</h3>
+            <p>The hold is 14 days at home or 28 days overseas. The ad shows both dates. The 14-day home hold is the usual shipment. If the parcel was shipped and the buyer does nothing, the seller is paid when the hold ends, and only while the seller's wallet is on. If that wallet never acts, the coins come back. The seller's wallet and Lightning node need to stay on through the window.</p>
+          </li>
+        </ol>
+        <div class="benefits limits">
+          <article>
+            <h3>Pick up does not wait.</h3>
+            <p>Pick up does not use this hold. The buyer still chooses Pick up or Ship. There is no default. Pick up can pay on-chain or with Lightning.</p>
+          </article>
+          <article>
+            <h3>On-chain has no hold.</h3>
+            <p>An on-chain payment finishes when it confirms. It is not offered for a shipment.</p>
+          </article>
+          <article>
+            <h3>A float comes first.</h3>
+            <p>On-chain works with no float. A float is the seller's own coins, set aside so Lightning can arrive immediately. Customer payments replace that float, and what nobody spent comes back when the seller stops. Most sellers continue without a float. In person, Lightning is then not instant. Provide a float records that choice. It does not send coins. A shipped order is not held until that float is set aside.</p>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section class="band">
-      <div class="wrap prose">
+    <section class="band" id="dispute">
+      <div class="wrap">
         <h2>Not received.</h2>
-        <p>Not received stops both automatic moves. The coins stay held until the buyer marks it received, the chosen referee decides, or the Lightning window ends and the coins come back.</p>
-        <p>A referee is optional. Each side can name one public name before payment. The referee does not hold the coins. After Not received, the referee sees the carrier, the tracking, the saved scan, and each side's note, then gives one decision. A decision for the seller pays the seller. A decision for the buyer sends the coins back. The shipment is recorded as returned. If no decision arrives, the window still sends the coins back.</p>
-        <p>Check the carrier saves the latest scan as words. Canada Post, UPS, FedEx, and DHL are the names it can look up. You do not create a carrier account. The scan does not pay anyone and does not send the coins back.</p>
+        <p class="lede">Not received is the dispute. It stops both automatic moves. It does not return the coins by itself.</p>
+        <div class="benefits">
+          <article>
+            <h3>The coins stay put.</h3>
+            <p>They stay held until Mark received, the referee's one decision, or the window ends and the coins come back.</p>
+          </article>
+          <article>
+            <h3>Each side writes one note.</h3>
+            <p>The referee sees the carrier, the tracking, the saved scan, and those notes. The bell shows the other person's note. Opening that notice does not move the coins. The referee does not hold the coins.</p>
+          </article>
+          <article>
+            <h3>One decision.</h3>
+            <p>A decision for the seller pays the seller. A decision for the buyer sends the coins back, and the shipment is recorded as returned. Once that decision is stored, Mark received closes. If the seller's wallet is off when the window ends, a decision to pay the seller loses. If nobody decides, the coins still come back.</p>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section class="band">
-      <div class="wrap prose">
-        <h2>Counts, not stars.</h2>
-        <p>The stall can say how many shipments were received after a completed payment, the day of the first, and how many are still not received. The seller's own book writes those numbers. Nobody types a count by hand. Pickup does not count.</p>
-        <p>After a completed shipment, each side can sign a short note that names the order and the other key. It does not name the goods or the price. A vouch is a name, shown only after those two keys share a completed shipment. A vouch is not required to buy or sell.</p>
-        <p>The seller can add a postal code, a country, and a weight. The buyer then chooses a shipping price. The published item price stays the item price. The shipping price is added before payment. Set location searches by a city. Use my location asks the browser. The position is not saved and is not sent to Autarki.</p>
-        <p class="more"><a href="mining.html">Next: hire a rig</a></p>
+    <section class="band" id="signs">
+      <div class="wrap">
+        <h2>Four public signs. No star.</h2>
+        <p class="lede">None of these is required to buy or sell. Nobody types a count by hand. The page does not show a star.</p>
+        <div class="signs">
+          <article>
+            <p class="kicker">Received shipments</p>
+            <h3>The seller's own book.</h3>
+            <p>The stall can say how many shipments were received after a completed payment, the day of the first, and how many are still not received. A visitor on an online shop reads Received shipments. An opened classified reads the same numbers. Pickup does not count. A counter shop leaves that card off.</p>
+          </article>
+          <article>
+            <p class="kicker">Both keys signed</p>
+            <h3>A note from each side.</h3>
+            <p>Both keys signed counts an order only when each side has published a note that names the order and the other key. The note does not name the goods or the price. The page shows that line when the count differs from the stall's number. The unfinished count and the day of the first stay the stall's. On an order, Completed shipments counts the orders both keys signed, in either direction.</p>
+          </article>
+          <article>
+            <p class="kicker">Vouch for this key</p>
+            <h3>You said you know this key.</h3>
+            <p>A vouch is allowed only after those two keys share a completed shipment. The page then says You said you know this key. Other names are listed as Known by. Without that shipment, the page answers A vouch follows a completed shipment. A vouch is not a delivery.</p>
+          </article>
+          <article>
+            <p class="kicker">Discord</p>
+            <h3>A link the wallet does not check.</h3>
+            <p>Discord is separate from the counts. The person posts "Verifying that I control the following Nostr public key:" and the public name, then publishes the username and the message link. The fields are on Settings, then Nostr, then Discord. There is no Save button. The username is the small name, not the display name and not a User ID. The link starts with https://discord.com/channels/. Publish Discord link saves it. Publishing again replaces it. Remove clears the Discord link and keeps a tag for another site. Autarki does not join Discord and does not check the message. A member of that server can open it. Anyone else still sees the stall.</p>
+          </article>
+        </div>
+        <div class="prose">
+          <p>Add to contacts, Unfollow, and Block do not pay anyone and do not change a shipment. Unfollow removes that key from the contact list. Block publishes a mute list. Unblock removes it from that list.</p>
+          <p>The seller can add a postal code, a country, and a weight. The buyer then chooses a shipping price. The published item price stays the item price. The shipping price is added before payment. Set location searches by a city. Use my location asks the browser. The position is not saved and is not sent to Autarki.</p>
+          <p class="more"><a href="mining.html">Next: hire a rig</a></p>
+        </div>
       </div>
     </section>
 
