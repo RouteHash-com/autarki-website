@@ -240,6 +240,8 @@
       shipPostal: online ? line(body.ship_postal, 16) : "",
       shipCc: online ? countryCode(body.ship_cc) : "",
       shipKg: online ? line(body.ship_kg, 12) : "",
+      roomXbt: whole(body.room_xbt),
+      roomBtc: whole(body.room_btc),
       products: []
     };
   }
@@ -548,6 +550,7 @@
     meta.className = "card-meta";
     meta.textContent = (stall.online ? "Online" : "Counter") + " · " + products.length + (products.length === 1 ? " product" : " products");
     heading.appendChild(meta);
+    addLightning(heading, stall);
     if (stall.categories.length) {
       var cats = document.createElement("p");
       cats.className = "card-meta";
@@ -626,6 +629,7 @@
       raw.textContent = ad.priceText;
       heading.appendChild(raw);
     }
+    addLightning(heading, shop);
     var place = placeLine(ad);
     if (place) {
       var where = document.createElement("p");
@@ -686,6 +690,25 @@
     hint.textContent = "Open Shop in Autarki and search this name.";
     block.appendChild(hint);
     return block;
+  }
+
+  function lightningLine(roomXbt, roomBtc) {
+    var xbt = roomXbt > 0;
+    var btc = roomBtc > 0;
+    if (xbt && btc) return "Lightning on XBT and BTC";
+    if (xbt) return "Lightning on XBT";
+    if (btc) return "Lightning on BTC";
+    return "";
+  }
+
+  function addLightning(heading, stall) {
+    if (!stall) return;
+    var text = lightningLine(stall.roomXbt, stall.roomBtc);
+    if (!text) return;
+    var mark = document.createElement("p");
+    mark.className = "lightning-mark";
+    mark.textContent = text;
+    heading.appendChild(mark);
   }
 
   function addPersonLine(heading, person) {

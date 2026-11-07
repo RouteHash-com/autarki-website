@@ -1067,6 +1067,17 @@ code {
   margin: 0.35rem 0 0;
 }
 
+.lightning-mark {
+  display: inline-block;
+  margin: 0.5rem 0 0;
+  padding: 0.08rem 0.4rem 0.12rem;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
 .order-path {
   margin-top: 1rem;
   padding-top: 0.9rem;

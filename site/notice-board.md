@@ -9,6 +9,7 @@ The page is [https://autarki.app/notice-board](https://autarki.app/notice-board)
 A person publishes a stall or a classified from their own wallet. This page reads the relay. It keeps no copy and takes no order.
 
 - The stall and the classified are public notes. The wallet publishes them.
+- A store shows Lightning on XBT or Lightning on BTC when its published stall includes incoming room. A classified from that seller shows the same line. This page does not see the node.
 - This page asks one relay, shows what came back, and closes. Nothing is stored on this site.
 - Search a shop, a product, a place, or a public name. Search and the chips run on this page. Nothing is ranked by payment.
 - Autarki does not approve a stall and does not take the order.
