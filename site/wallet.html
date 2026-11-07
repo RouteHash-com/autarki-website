@@ -12,13 +12,13 @@
     } catch (e) {}
   </script>
   <title>Wallet. Autarki</title>
-  <meta name="description" content="One install is one wallet. You hold the 24 words. Pay with XBT or Pay with BTC. Lightning is built in on AMD and Intel.">
+  <meta name="description" content="You hold the 24 words. Lightning is built in on AMD and Intel. The Autarki LSP is one channel that can pay later shops.">
   <link rel="canonical" href="https://autarki.app/wallet">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta property="og:site_name" content="Autarki">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Wallet. Autarki">
-  <meta property="og:description" content="One install is one wallet. You hold the 24 words. Pay with XBT or Pay with BTC. Lightning is built in on AMD and Intel.">
+  <meta property="og:description" content="You hold the 24 words. Lightning is built in on AMD and Intel. The Autarki LSP is one channel that can pay later shops.">
   <meta property="og:url" content="https://autarki.app/wallet">
   <meta property="og:image" content="https://autarki.app/assets/og.png">
   <meta property="og:image:type" content="image/png">
@@ -27,7 +27,7 @@
   <meta property="og:image:alt" content="Autarki. No platform. Just the sale.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Wallet. Autarki">
-  <meta name="twitter:description" content="One install is one wallet. You hold the 24 words. Pay with XBT or Pay with BTC. Lightning is built in on AMD and Intel.">
+  <meta name="twitter:description" content="You hold the 24 words. Lightning is built in on AMD and Intel. The Autarki LSP is one channel that can pay later shops.">
   <meta name="twitter:image" content="https://autarki.app/assets/og.png">
   <meta name="twitter:image:alt" content="Autarki. No platform. Just the sale.">
   <link rel="alternate" type="text/markdown" href="https://autarki.app/wallet.md" title="Wallet">
@@ -71,7 +71,7 @@
         "@id": "https://autarki.app/wallet#webpage",
         "url": "https://autarki.app/wallet",
         "name": "Wallet. Autarki",
-        "description": "One install is one wallet. You hold the 24 words. Pay with XBT or Pay with BTC. Lightning is built in on AMD and Intel.",
+        "description": "You hold the 24 words. Lightning is built in on AMD and Intel. The Autarki LSP is one channel that can pay later shops.",
         "isPartOf": {
           "@id": "https://autarki.app/#website"
         },
@@ -150,6 +150,7 @@
           <a href="#chains">XBT and BTC</a>
           <a href="#balance">Balance</a>
           <a href="#lightning">Lightning</a>
+          <a href="#lsp">The Autarki LSP</a>
           <a href="#node">Your node</a>
         </nav>
       </div>
@@ -262,15 +263,109 @@
           <li>Lightning sats are not Balance, and not the shop's accounted sats.</li>
           <li>A Lightning sale is on the sales spreadsheet and absent from the coin journal.</li>
         </ul>
+        <h3 class="subhead" id="lsp">Why a Lightning channel is necessary.</h3>
+        <p class="lede">On-chain needs no channel. A Lightning payment spends sats already locked in a channel between two nodes.</p>
+        <ul class="brief">
+          <li>On-chain is the bank. Each payment waits for a confirmation and pays a miner fee. Savings stay there.</li>
+          <li>Capacity is the sats locked in the channel.</li>
+          <li>Outbound capacity is what your node can send. Those coins sit on your side.</li>
+          <li>Inbound capacity is what your node can receive. Those coins sit on the other node's side.</li>
+          <li>You can pay only up to your outbound capacity. A shop can receive only up to its inbound capacity.</li>
+          <li>A channel you just funded has almost no inbound capacity. The coins are on your side, so a customer cannot pay you on it yet.</li>
+        </ul>
+        <h3 class="subhead">The Autarki LSP, or your own channel.</h3>
+        <p class="lede">The Autarki LSP is a Lightning node you open one channel to. In the wallet that button says Use Autarki's pool.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Compared</th>
+                <th scope="col">Autarki LSP</th>
+                <th scope="col">Your own channel</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Who it pays</th>
+                <td>This shop, or this seller, and later shops that already have inbound capacity with the LSP.</td>
+                <td>Only that one node.</td>
+              </tr>
+              <tr>
+                <th scope="row">Fee</th>
+                <td>Routing at most 1,000 sats. Your coins stay on your side until the payment.</td>
+                <td>No LSP fee. The wallet already knows the node.</td>
+              </tr>
+              <tr>
+                <th scope="row">First open</th>
+                <td>About ten minutes, and a miner fee. Nothing opens until you confirm.</td>
+                <td>The same wait, and a miner fee. Nothing opens until you confirm.</td>
+              </tr>
+              <tr>
+                <th scope="row">Inbound for a shop</th>
+                <td>Bought as room. The seller's node stays on. It does not need its own confirmed sats.</td>
+                <td>A buyer can still open toward you. Zero inbound capacity does not block that buyer.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <ul class="brief">
+          <li>There is an Autarki LSP for Blake2b Lightning, on XBT, and one for SHA-256 Lightning, on BTC.</li>
+          <li>A channel that can already pay is used. No choice appears.</li>
+          <li>If the Autarki LSP cannot be reached, the page offers the direct channel. Nothing was sent.</li>
+          <li>Install does not open a channel. A mining payment does not use the LSP.</li>
+          <li>The LSP does not hold the sale and does not take a cut of the catalog price. Lightning still costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000. A buyer still needs a channel.</li>
+        </ul>
+        <h3 class="subhead">What the fees are, in dollars.</h3>
+        <p class="lede">Sats are the price. These hints are for 7 November 2026: about $276 for one XBT, from a USDC quote, and about $75,800 for one BTC. They move. A dollar hint does not change the sats.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Cost</th>
+                <th scope="col">Sats</th>
+                <th scope="col">XBT hint</th>
+                <th scope="col">BTC hint</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Routing through the LSP, each payment</th>
+                <td>At most 1,000</td>
+                <td>About $0.003</td>
+                <td>About $0.76</td>
+              </tr>
+              <tr>
+                <th scope="row">Inbound room of 20,000 sats, once</th>
+                <td>1,200</td>
+                <td>About $0.003</td>
+                <td>About $0.91</td>
+              </tr>
+              <tr>
+                <th scope="row">Inbound room of 100,000 sats, once</th>
+                <td>2,000</td>
+                <td>About $0.006</td>
+                <td>About $1.52</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <ul class="brief">
+          <li>On XBT those three fees are each under one cent. On BTC the routing cap is about 76 cents.</li>
+          <li>20,000 sats of inbound capacity is about $0.06 of XBT, or about $15 of BTC. 100,000 sats is about $0.28 of XBT, or about $76 of BTC. That figure is the capacity.</li>
+          <li>A card takes a percent of every sale. A common online rate is 2.9% plus $0.30, about $3.20 on a $100 sale. In person, 2.6% plus $0.15 is about $2.75 on $100.</li>
+          <li>Autarki does not charge the card and does not take that percent. On a $100 BTC sale the routing cap is about $0.76. On a sale near $5, the online card fee is about $0.45, and the BTC cap can cost more.</li>
+          <li>Room is paid once. Opening a channel also pays a miner fee. That amount is whatever the chain asks that day.</li>
+          <li>A node publishes a fee to forward toward each peer, and each peer publishes a fee to forward back. Those are the fees in both directions. The routing cap is what you pay through the LSP. Inbound capacity is the room a shop buys.</li>
+        </ul>
         <h3 class="subhead">When a payment needs a new channel.</h3>
         <ul class="brief">
           <li>A channel that can already pay is used. No choice appears.</li>
           <li>A store order uses that store's node. A classified uses the seller's node.</li>
-          <li>A mining payment does not use the pool.</li>
+          <li>A mining payment does not use the Autarki LSP.</li>
           <li>A new channel asks first. Nothing opens until you confirm.</li>
-          <li>You never type the shop's node. Blake2b and SHA-256 already know the pool.</li>
+          <li>You never type the shop's node. Blake2b and SHA-256 already know the Autarki LSP.</li>
           <li>Both ways use coins already confirmed in that node's wallet, and both pay a miner fee.</li>
-          <li>If Autarki's pool cannot be reached, the page says so and offers the direct channel. Nothing was sent.</li>
+          <li>If the Autarki LSP cannot be reached, the page says so and offers the direct channel. Nothing was sent.</li>
         </ul>
         <div class="choices">
           <article>
@@ -287,7 +382,7 @@
             <h3>This shop, or this seller.</h3>
             <ul class="brief">
               <li>Open a direct channel to this shop, or Open a direct channel to this seller.</li>
-              <li>No pool fee. It pays only that one node.</li>
+              <li>No LSP fee. It pays only that one node.</li>
               <li>Same ten minutes. A later payment to that node can reuse it.</li>
             </ul>
           </article>
@@ -302,7 +397,7 @@
               <li>20,000 sats of room costs 1,200 sats. 100,000 sats of room costs 2,000 sats.</li>
               <li>Pay 1,200 sats for Blake2b pool room. Pay 1,200 sats for Bitcoin pool room.</li>
               <li>Nothing is sent until Prepare, then Broadcast. The page does not open the room.</li>
-              <li>Then a buyer who already has a channel to the pool can pay this node. Routing at most 1,000 sats.</li>
+              <li>Then a buyer who already has a channel to the Autarki LSP can pay this node. Routing at most 1,000 sats.</li>
               <li>The seller's node has to be on. It does not need its own confirmed sats to accept that channel.</li>
             </ul>
           </article>
@@ -318,9 +413,9 @@
           </article>
         </div>
         <ul class="brief">
-          <li>The pool does not hold the sale and does not take a cut of the catalog price.</li>
+          <li>The Autarki LSP does not hold the sale and does not take a cut of the catalog price.</li>
           <li>The room fee and the routing fee are the Lightning costs.</li>
-          <li>A shipped order stays on the seller's node until Mark received, and only after a float. The pool does not replace that hold.</li>
+          <li>A shipped order stays on the seller's node until Mark received, and only after a float. The Autarki LSP does not replace that hold.</li>
         </ul>
         <p class="more"><a href="/classifieds#protection">How a shipment is protected</a></p>
       </div>

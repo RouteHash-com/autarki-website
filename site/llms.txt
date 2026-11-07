@@ -8,7 +8,7 @@ Autarki is in beta. It runs on your computer. A phone on the same network opens 
 
 - [Home](https://autarki.app/index.md): No platform. Just the sale. The buyer pays you, and you keep the keys.
 - [Notice board](https://autarki.app/notice-board.md): A wallet publishes the stall. This page reads the relay, stores nothing, and does not take an order.
-- [Wallet](https://autarki.app/wallet.md): One install is one wallet. You hold the 24 words. Pay with XBT or Pay with BTC. Lightning is built in on AMD and Intel.
+- [Wallet](https://autarki.app/wallet.md): You hold the 24 words. Lightning is built in on AMD and Intel. The Autarki LSP is one channel that can pay later shops.
 - [Shop](https://autarki.app/shop.md): The shop runs on your computer. The stall is public. The order is private. Autarki does not take a cut of the catalog price. Lightning has a routing fee and a room fee.
 - [Classifieds](https://autarki.app/classifieds.md): Ship pays with Lightning. With a float, the coins sit on the seller's node until Mark received. The named referee decides and does not hold the coins.
 - [Mining](https://autarki.app/mining.md): Paste a RouteHash token, then click Mine XBT or Mine BTC. The next reward address is your wallet's. Nothing is spent until Mine.

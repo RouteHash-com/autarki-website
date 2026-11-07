@@ -12,7 +12,7 @@ The hire happens in your wallet. routehash.com is where the rig is listed. Your 
 - Paste that account's API token. The same connection is under Settings, then Other.
 - Mine XBT hires a listed Blake2b rig and pays in Blake2b XBT. Mine BTC hires a listed SHA-256 rig and pays in SHA-256 BTC.
 - The next reward address is already your wallet's. Nothing is spent until Mine, or until the hours are confirmed.
-- A mining payment does not use Autarki's pool.
+- A mining payment does not use the Autarki LSP.
 - Mine needs AMD or Intel. It stays off on a Raspberry Pi and on Umbrel arm64.
 - Rewards come back to your wallet.
 - After RouteHash is connected, Balance lists Open Mining Invoices.
