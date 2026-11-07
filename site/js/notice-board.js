@@ -366,14 +366,15 @@
 
   function taxes(body) {
     var rows = [];
-    pushTax(rows, body.federal_name, body.federal_rate);
-    pushTax(rows, body.state_name, body.state_rate);
+    pushTax(rows, body.federal_name, body.federal_rate, "");
+    pushTax(rows, body.state_name, body.state_rate, "PST");
     return rows;
   }
 
-  function pushTax(rows, name, rate) {
-    var label = line(name, 40);
+  function pushTax(rows, name, rate, fallback) {
     var figure = rateText(rate);
+    var label = line(name, 40);
+    if (!label && figure) label = fallback;
     if (!label && !figure) return;
     rows.push({ name: label, rate: figure });
   }
@@ -446,9 +447,10 @@
       });
     }
     board.querySelector("[data-board-query]").addEventListener("input", function (event) {
-      filters.query = event.target.value.trim().toLowerCase();
+      filters.query = foldQuery(event.target.value);
       paint();
     });
+    wireScan(board);
 
     function paint() {
       var stallCats = unique(state.stalls.flatMap(function (stall) { return stall.categories; }));
@@ -735,34 +737,48 @@
   }
 
   function facts(rows) {
-    var list = document.createElement("dl");
+    var list = document.createElement("div");
     list.className = "facts";
     rows.forEach(function (row) {
       if (!row.value) return;
-      var term = document.createElement("dt");
-      term.textContent = row.label;
-      var value = document.createElement("dd");
-      if (row.href) {
-        var link = document.createElement("a");
-        link.href = row.href;
-        link.target = "_blank";
-        link.rel = "noopener noreferrer";
-        link.textContent = "Map";
-        value.appendChild(link);
-      } else {
-        value.textContent = row.value;
-        if (row.linkHref) {
-          value.appendChild(document.createTextNode(" "));
-          var extra = document.createElement("a");
-          extra.href = row.linkHref;
-          extra.textContent = row.linkText;
-          value.appendChild(extra);
-        }
+      var lineEl = document.createElement("p");
+      lineEl.className = "fact";
+      if (row.href && !row.label) {
+        lineEl.appendChild(mapLink(row.href));
+        list.appendChild(lineEl);
+        return;
       }
-      list.appendChild(term);
-      list.appendChild(value);
+      if (row.stack) lineEl.classList.add("fact-stack");
+      if (row.label) {
+        var term = document.createElement("span");
+        term.className = "fact-label";
+        term.textContent = row.stack ? row.label : row.label + ": ";
+        lineEl.appendChild(term);
+      }
+      var value = document.createElement("span");
+      value.className = "fact-value";
+      if (row.href) value.appendChild(mapLink(row.href));
+      else value.appendChild(document.createTextNode(row.value));
+      if (row.linkHref) {
+        value.appendChild(document.createTextNode(" "));
+        var extra = document.createElement("a");
+        extra.href = row.linkHref;
+        extra.textContent = row.linkText;
+        value.appendChild(extra);
+      }
+      lineEl.appendChild(value);
+      list.appendChild(lineEl);
     });
     return list;
+  }
+
+  function mapLink(href) {
+    var link = document.createElement("a");
+    link.href = href;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = "Map";
+    return link;
   }
 
   function stallFacts(stall) {
@@ -772,13 +788,13 @@
       { label: "City", value: stall.city },
       { label: "Neighbourhood", value: stall.neighbourhood },
       { label: "Sale", value: stall.online ? "Online" : "Counter" },
-      { label: "Map", value: stall.map ? "Map" : "", href: stall.map }
+      { value: stall.map ? "Map" : "", href: stall.map }
     ];
     stall.taxes.forEach(function (tax) {
       rows.push({ label: "Tax", value: taxLine(tax) });
     });
     if (stall.tipsOn) {
-      rows.push({ label: "Tips", value: stall.tips.length ? stall.tips.map(function (n) { return n + "%"; }).join(", ") : "On" });
+      rows.push({ label: "Tips", stack: true, value: stall.tips.length ? stall.tips.map(function (n) { return n + "%"; }).join(", ") : "On" });
     }
     if (stall.online && stall.deliveries) {
       var text = stall.deliveries + (stall.deliveries === 1 ? " shipment received" : " shipments received");
@@ -795,7 +811,7 @@
     if (stall.online && (stall.shipPostal || stall.shipCc || stall.shipKg)) {
       rows.push({ label: "Ships from", value: [stall.shipPostal, stall.shipCc, stall.shipKg ? stall.shipKg + " kg" : ""].filter(Boolean).join(", ") });
     }
-    if (stall.categories.length) rows.push({ label: "Categories", value: stall.categories.join(", ") });
+    if (stall.categories.length) rows.push({ label: "Categories", stack: true, value: stall.categories.join(", ") });
     return rows;
   }
 
@@ -805,8 +821,8 @@
       { label: "Province", value: ad.province },
       { label: "City", value: ad.city },
       { label: "Neighbourhood", value: ad.neighbourhood },
-      { label: "Categories", value: ad.categories.join(", ") },
-      { label: "Map", value: ad.map ? "Map" : "", href: ad.map }
+      { label: "Categories", stack: true, value: ad.categories.join(", ") },
+      { value: ad.map ? "Map" : "", href: ad.map }
     ];
     if (ad.shipDays) {
       rows.push({ label: "Ship by", value: ad.shipDays + (ad.shipDays === 1 ? " day" : " days") });
@@ -860,8 +876,25 @@
     return date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
   }
 
+  function foldQuery(value) {
+    var text = String(value || "").trim().toLowerCase();
+    if (text.indexOf("nostr:") === 0) text = text.slice("nostr:".length).trim();
+    var found = text.match(/npub1[023456789acdefghjklmnpqrstuvwxyz]{6,}/);
+    return found ? found[0] : text;
+  }
+
+  function keyHit(item, query) {
+    if (!item || query.length < 6) return false;
+    var npub = String(item.npub || "").toLowerCase();
+    var pub = String(item.pubkey || "").toLowerCase();
+    if (npub && (npub.indexOf(query) !== -1 || query.indexOf(npub) !== -1)) return true;
+    if (pub && query.length >= 8 && (pub.indexOf(query) !== -1 || query.indexOf(pub) !== -1)) return true;
+    return false;
+  }
+
   function stallMatches(stall, query) {
     if (!query) return true;
+    if (keyHit(stall, query)) return true;
     var shop = [stall.name, stall.country, stall.province, stall.city, stall.neighbourhood, stall.nickname, stall.discordName].join("\n").toLowerCase();
     if (shop.indexOf(query) !== -1) return true;
     return stall.products.some(function (product) { return product.name.toLowerCase().indexOf(query) !== -1; });
@@ -869,6 +902,7 @@
 
   function visibleProducts(stall, query) {
     if (!query) return stall.products;
+    if (keyHit(stall, query)) return stall.products;
     var shop = [stall.name, stall.country, stall.province, stall.city, stall.neighbourhood, stall.nickname, stall.discordName].join("\n").toLowerCase();
     if (shop.indexOf(query) !== -1) return stall.products;
     return stall.products.filter(function (product) { return product.name.toLowerCase().indexOf(query) !== -1; });
@@ -876,6 +910,7 @@
 
   function adMatches(ad, query) {
     if (!query) return true;
+    if (keyHit(ad, query)) return true;
     var text = [ad.title, ad.summary, ad.body, ad.country, ad.province, ad.city, ad.neighbourhood, ad.nickname, ad.discordName].join("\n").toLowerCase();
     return text.indexOf(query) !== -1;
   }
@@ -1009,7 +1044,7 @@
       var proof = discordProof(tag[2]);
       if (!proof) continue;
       if (found) return null;
-      found = { name: name, url: "https://discord.com/channels/" + proof };
+      found = { name: name, url: "https://discord.com/users/" + name };
     }
     return found;
   }
@@ -1152,6 +1187,145 @@
     }
     if (host === "maps.apple.com" || host === "openstreetmap.org" || host === "www.openstreetmap.org") return text;
     return path ? "" : "";
+  }
+
+  function wireScan(board) {
+    var input = board.querySelector("[data-board-query]");
+    var open = board.querySelector("[data-board-scan]");
+    var panel = board.querySelector("[data-scan-panel]");
+    var video = board.querySelector("[data-scan-video]");
+    var note = board.querySelector("[data-scan-note]");
+    var stop = board.querySelector("[data-scan-stop]");
+    if (!input || !open || !panel || !video) return;
+    var stream = null;
+    var timer = 0;
+    var session = 0;
+    var canvas = document.createElement("canvas");
+    var context = canvas.getContext("2d", { willReadFrequently: true });
+
+    function setNote(text) {
+      if (note) note.textContent = text;
+    }
+
+    function stopTracks() {
+      if (timer) clearTimeout(timer);
+      timer = 0;
+      if (stream) {
+        stream.getTracks().forEach(function (track) { track.stop(); });
+        stream = null;
+      }
+      video.srcObject = null;
+    }
+
+    function halt() {
+      session += 1;
+      stopTracks();
+      panel.hidden = true;
+    }
+
+    function apply(raw) {
+      var text = String(raw || "").trim();
+      if (!text) return;
+      halt();
+      input.value = text;
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+      input.focus();
+    }
+
+    function readJsQR() {
+      if (!window.jsQR || !video.videoWidth || !context) return "";
+      var width = video.videoWidth;
+      var height = video.videoHeight;
+      if (width > 640) {
+        height = Math.round(height * (640 / width));
+        width = 640;
+      }
+      canvas.width = width;
+      canvas.height = height;
+      context.drawImage(video, 0, 0, width, height);
+      var image = context.getImageData(0, 0, width, height);
+      var code = window.jsQR(image.data, image.width, image.height, { inversionAttempts: "dontInvert" });
+      return code && code.data ? code.data : "";
+    }
+
+    function loadJsQR() {
+      if (window.jsQR) return Promise.resolve();
+      return new Promise(function (resolve, reject) {
+        var script = document.createElement("script");
+        script.src = "js/jsQR.js";
+        script.onload = function () { window.jsQR ? resolve() : reject(new Error("qr")); };
+        script.onerror = function () { reject(new Error("qr")); };
+        document.head.appendChild(script);
+      });
+    }
+
+    function reader() {
+      if (typeof BarcodeDetector === "function") {
+        try { return Promise.resolve(new BarcodeDetector({ formats: ["qr_code"] })); } catch (e) {}
+      }
+      return loadJsQR().then(function () { return null; });
+    }
+
+    function camera() {
+      var tries = [
+        { video: { facingMode: { ideal: "environment" } }, audio: false },
+        { video: true, audio: false }
+      ];
+      function attempt(index) {
+        return navigator.mediaDevices.getUserMedia(tries[index]).catch(function () {
+          if (index + 1 < tries.length) return attempt(index + 1);
+          throw new Error("camera");
+        });
+      }
+      return attempt(0);
+    }
+
+    function tick(mine, detector) {
+      if (mine !== session) return;
+      var job = detector
+        ? detector.detect(video).then(function (codes) {
+          return codes && codes[0] && codes[0].rawValue ? codes[0].rawValue : "";
+        }).catch(function () { return ""; })
+        : Promise.resolve(readJsQR());
+      job.then(function (value) {
+        if (mine !== session) return;
+        if (value) { apply(value); return; }
+        timer = setTimeout(function () { tick(mine, detector); }, 140);
+      });
+    }
+
+    open.addEventListener("click", function () {
+      var mine = session + 1;
+      session = mine;
+      stopTracks();
+      panel.hidden = false;
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        setNote("The camera did not open.");
+        return;
+      }
+      setNote("Point the camera at the code.");
+      reader().then(function (detector) {
+        if (mine !== session) return null;
+        return camera().then(function (next) { return { detector: detector, next: next }; });
+      }).then(function (opened) {
+        if (!opened || mine !== session) {
+          if (opened && opened.next) opened.next.getTracks().forEach(function (track) { track.stop(); });
+          return;
+        }
+        stream = opened.next;
+        video.srcObject = stream;
+        video.playsInline = true;
+        return video.play().catch(function () {}).then(function () { tick(mine, opened.detector); });
+      }).catch(function () {
+        if (mine !== session) return;
+        stopTracks();
+        panel.hidden = false;
+        setNote("The camera did not open.");
+      });
+    });
+
+    if (stop) stop.addEventListener("click", halt);
+    window.addEventListener("pagehide", halt);
   }
 
   return { parseBoard: parseBoard, npubFromHex: npubFromHex, readRelay: readRelay, mount: mount };

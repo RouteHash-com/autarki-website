@@ -78,8 +78,16 @@
       <p class="board-status" data-board-status role="status">Reading the relay.</p>
       <div data-board-tools hidden>
         <form class="board-search" role="search">
-          <label for="board-query">Search a shop, a product, or a place</label>
-          <input id="board-query" data-board-query type="search" autocomplete="off" enterkeyhint="search">
+          <label for="board-query">Search a shop, a product, a place, or a public name</label>
+          <div class="search-line">
+            <input id="board-query" data-board-query type="search" autocomplete="off" enterkeyhint="search">
+            <button type="button" class="scan-button" data-board-scan>Scan</button>
+          </div>
+          <div class="scan-panel" data-scan-panel hidden>
+            <video data-scan-video playsinline muted></video>
+            <p class="scan-note" data-scan-note></p>
+            <button type="button" data-scan-stop>Stop</button>
+          </div>
         </form>
 
         <section class="board-section" aria-labelledby="stall-heading">
