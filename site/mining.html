@@ -13,10 +13,100 @@
   </script>
   <title>Mining. Autarki</title>
   <meta name="description" content="Paste a RouteHash token, then click Mine XBT or Mine BTC. The next reward address is your wallet's. Nothing is spent until Mine.">
-  <link rel="canonical" href="https://autarki.app/mining.html">
+  <link rel="canonical" href="https://autarki.app/mining">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta property="og:site_name" content="Autarki">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Mining. Autarki">
+  <meta property="og:description" content="Paste a RouteHash token, then click Mine XBT or Mine BTC. The next reward address is your wallet's. Nothing is spent until Mine.">
+  <meta property="og:url" content="https://autarki.app/mining">
+  <meta property="og:image" content="https://autarki.app/assets/og.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Autarki. No platform. Just the sale.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mining. Autarki">
+  <meta name="twitter:description" content="Paste a RouteHash token, then click Mine XBT or Mine BTC. The next reward address is your wallet's. Nothing is spent until Mine.">
+  <meta name="twitter:image" content="https://autarki.app/assets/og.png">
+  <meta name="twitter:image:alt" content="Autarki. No platform. Just the sale.">
+  <link rel="alternate" type="text/markdown" href="https://autarki.app/mining.md" title="Mining">
+  <link rel="describedby" href="https://autarki.app/llms.txt" type="text/plain">
   <meta name="theme-color" content="#f7f4ef">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://autarki.app/#website",
+        "name": "Autarki",
+        "url": "https://autarki.app/",
+        "description": "The buyer pays you, and you keep the keys. Autarki is the wallet and the shop.",
+        "inLanguage": "en",
+        "publisher": {
+          "@id": "https://autarki.app/#software"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://autarki.app/#software",
+        "name": "Autarki",
+        "url": "https://autarki.app/",
+        "description": "The buyer pays you, and you keep the keys. Autarki is the wallet and the shop. It runs on your computer. A phone on the same network opens that page. There is no separate phone app.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "StartOS, Umbrel, Ubuntu",
+        "softwareVersion": "0.1.0",
+        "downloadUrl": "https://github.com/RouteHash-com/autarki/releases/tag/0.1.0",
+        "image": "https://autarki.app/assets/og.png",
+        "sameAs": [
+          "https://github.com/RouteHash-com/autarki",
+          "https://discord.gg/VBxvzQXvt"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://autarki.app/mining#webpage",
+        "url": "https://autarki.app/mining",
+        "name": "Mining. Autarki",
+        "description": "Paste a RouteHash token, then click Mine XBT or Mine BTC. The next reward address is your wallet's. Nothing is spent until Mine.",
+        "isPartOf": {
+          "@id": "https://autarki.app/#website"
+        },
+        "about": {
+          "@id": "https://autarki.app/#software"
+        },
+        "inLanguage": "en",
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://autarki.app/assets/og.png",
+          "width": 1200,
+          "height": 630
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://autarki.app/mining#webpage-crumbs",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Autarki",
+            "item": "https://autarki.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Mining",
+            "item": "https://autarki.app/mining"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -25,7 +115,7 @@
   </div>
   <header class="site-header">
     <div class="wrap header-bar">
-      <a class="brand" href="index.html">
+      <a class="brand" href="/">
         <svg class="mark" viewBox="-80 -80 1000 1000" aria-hidden="true">
           <path fill="currentColor" fill-rule="evenodd" d="M435 0H840V345H640V840H0V200H435Z M145 345H495V695H145Z"/>
         </svg>
@@ -33,12 +123,12 @@
       </a>
       <nav class="site-nav" aria-label="Primary">
         <ul>
-          <li><a href="notice-board.html">Notice board</a></li>
-          <li><a href="wallet.html">Wallet</a></li>
-          <li><a href="shop.html">Shop</a></li>
-          <li><a href="classifieds.html">Classifieds</a></li>
-          <li><a href="mining.html" aria-current="page">Mining</a></li>
-          <li><a href="install.html">Install</a></li>
+          <li><a href="/notice-board">Notice board</a></li>
+          <li><a href="/wallet">Wallet</a></li>
+          <li><a href="/shop">Shop</a></li>
+          <li><a href="/classifieds">Classifieds</a></li>
+          <li><a href="/mining" aria-current="page">Mining</a></li>
+          <li><a href="/install">Install</a></li>
         </ul>
       </nav>
       <div class="themes" role="group" aria-label="Contrast">
@@ -93,7 +183,7 @@
           <li>A reward becomes spendable on Balance after that chain's wait. On XBT the wait is longer and depends on the block. On BTC it is 100 confirmations.</li>
           <li>The Mining card is not a second balance.</li>
         </ul>
-        <p class="more"><a href="install.html">Next: install it</a></p>
+        <p class="more"><a href="/install">Next: install it</a></p>
       </div>
     </section>
 
@@ -102,8 +192,8 @@
         <h2>Install Autarki.</h2>
         <p class="lede">It runs on your computer. A phone on the same network opens that page. There is no separate phone app.</p>
         <div class="actions">
-          <a class="button" href="install.html">Install Autarki</a>
-          <a class="button button-ghost" href="notice-board.html">Look through the notice board</a>
+          <a class="button" href="/install">Install Autarki</a>
+          <a class="button button-ghost" href="/notice-board">Look through the notice board</a>
         </div>
       </div>
     </section>

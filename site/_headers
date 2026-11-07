@@ -9,3 +9,13 @@
 
 /notice-board.html
   Permissions-Policy: camera=(self), microphone=(), geolocation=()
+
+/*.md
+  Content-Type: text/markdown; charset=utf-8
+
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+
+/c687d6f23396fb9f04a1a4797f3772c8.txt
+  X-Robots-Tag: noindex
+  Content-Type: text/plain; charset=utf-8

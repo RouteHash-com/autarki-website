@@ -590,7 +590,7 @@
     var action = document.createElement("p");
     action.className = "more";
     var link = document.createElement("a");
-    link.href = "install.html";
+    link.href = "/install";
     link.textContent = "Install Autarki to order";
     action.appendChild(link);
     body.appendChild(action);
@@ -671,7 +671,7 @@
     block.className = "order-path";
     var action = document.createElement("a");
     action.className = "button";
-    action.href = "install.html";
+    action.href = "/install";
     action.textContent = "Install Autarki to order";
     block.appendChild(action);
     if (shopName) {
@@ -810,7 +810,7 @@
       rows.push({
         label: "Deliveries",
         value: text,
-        linkHref: "classifieds.html#protection",
+        linkHref: "/classifieds#protection",
         linkText: "How a shipment is protected"
       });
     }

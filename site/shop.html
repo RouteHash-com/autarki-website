@@ -13,10 +13,100 @@
   </script>
   <title>Shop. Autarki</title>
   <meta name="description" content="The shop runs on your computer. The stall is public. The order is private. Autarki does not take a cut of the catalog price. Lightning has a routing fee and a room fee.">
-  <link rel="canonical" href="https://autarki.app/shop.html">
+  <link rel="canonical" href="https://autarki.app/shop">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta property="og:site_name" content="Autarki">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Shop. Autarki">
+  <meta property="og:description" content="The shop runs on your computer. The stall is public. The order is private. Autarki does not take a cut of the catalog price. Lightning has a routing fee and a room fee.">
+  <meta property="og:url" content="https://autarki.app/shop">
+  <meta property="og:image" content="https://autarki.app/assets/og.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Autarki. No platform. Just the sale.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Shop. Autarki">
+  <meta name="twitter:description" content="The shop runs on your computer. The stall is public. The order is private. Autarki does not take a cut of the catalog price. Lightning has a routing fee and a room fee.">
+  <meta name="twitter:image" content="https://autarki.app/assets/og.png">
+  <meta name="twitter:image:alt" content="Autarki. No platform. Just the sale.">
+  <link rel="alternate" type="text/markdown" href="https://autarki.app/shop.md" title="Shop">
+  <link rel="describedby" href="https://autarki.app/llms.txt" type="text/plain">
   <meta name="theme-color" content="#f7f4ef">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://autarki.app/#website",
+        "name": "Autarki",
+        "url": "https://autarki.app/",
+        "description": "The buyer pays you, and you keep the keys. Autarki is the wallet and the shop.",
+        "inLanguage": "en",
+        "publisher": {
+          "@id": "https://autarki.app/#software"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://autarki.app/#software",
+        "name": "Autarki",
+        "url": "https://autarki.app/",
+        "description": "The buyer pays you, and you keep the keys. Autarki is the wallet and the shop. It runs on your computer. A phone on the same network opens that page. There is no separate phone app.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "StartOS, Umbrel, Ubuntu",
+        "softwareVersion": "0.1.0",
+        "downloadUrl": "https://github.com/RouteHash-com/autarki/releases/tag/0.1.0",
+        "image": "https://autarki.app/assets/og.png",
+        "sameAs": [
+          "https://github.com/RouteHash-com/autarki",
+          "https://discord.gg/VBxvzQXvt"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://autarki.app/shop#webpage",
+        "url": "https://autarki.app/shop",
+        "name": "Shop. Autarki",
+        "description": "The shop runs on your computer. The stall is public. The order is private. Autarki does not take a cut of the catalog price. Lightning has a routing fee and a room fee.",
+        "isPartOf": {
+          "@id": "https://autarki.app/#website"
+        },
+        "about": {
+          "@id": "https://autarki.app/#software"
+        },
+        "inLanguage": "en",
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://autarki.app/assets/og.png",
+          "width": 1200,
+          "height": 630
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://autarki.app/shop#webpage-crumbs",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Autarki",
+            "item": "https://autarki.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Shop",
+            "item": "https://autarki.app/shop"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -25,7 +115,7 @@
   </div>
   <header class="site-header">
     <div class="wrap header-bar">
-      <a class="brand" href="index.html">
+      <a class="brand" href="/">
         <svg class="mark" viewBox="-80 -80 1000 1000" aria-hidden="true">
           <path fill="currentColor" fill-rule="evenodd" d="M435 0H840V345H640V840H0V200H435Z M145 345H495V695H145Z"/>
         </svg>
@@ -33,12 +123,12 @@
       </a>
       <nav class="site-nav" aria-label="Primary">
         <ul>
-          <li><a href="notice-board.html">Notice board</a></li>
-          <li><a href="wallet.html">Wallet</a></li>
-          <li><a href="shop.html" aria-current="page">Shop</a></li>
-          <li><a href="classifieds.html">Classifieds</a></li>
-          <li><a href="mining.html">Mining</a></li>
-          <li><a href="install.html">Install</a></li>
+          <li><a href="/notice-board">Notice board</a></li>
+          <li><a href="/wallet">Wallet</a></li>
+          <li><a href="/shop" aria-current="page">Shop</a></li>
+          <li><a href="/classifieds">Classifieds</a></li>
+          <li><a href="/mining">Mining</a></li>
+          <li><a href="/install">Install</a></li>
         </ul>
       </nav>
       <div class="themes" role="group" aria-label="Contrast">
@@ -55,7 +145,7 @@
         <p class="kicker">Shop</p>
         <h1>The stall is public. The order is private.</h1>
         <p class="lede">The shop runs on your computer. People can look before they make a wallet. An order needs that wallet, and the relay cannot read it.</p>
-        <p class="more"><a href="notice-board.html">See the stalls that are published</a><a href="classifieds.html#protection">How a shipment is protected</a></p>
+        <p class="more"><a href="/notice-board">See the stalls that are published</a><a href="/classifieds#protection">How a shipment is protected</a></p>
       </div>
     </header>
 
@@ -110,7 +200,7 @@
           <li>There is no receipt printer in the app yet.</li>
           <li>A buyer can search, add a product, and pay with Lightning. The shop sees the order. The relay does not.</li>
         </ul>
-        <p class="more"><a href="wallet.html#lightning">How a channel opens</a><a href="classifieds.html#protection">How a shipped order is held</a></p>
+        <p class="more"><a href="/wallet#lightning">How a channel opens</a><a href="/classifieds#protection">How a shipped order is held</a></p>
       </div>
     </section>
 
@@ -147,7 +237,7 @@
           <li>Autarki does not join Discord, use a bot, or check the message.</li>
           <li>An older install does not show Message until it is updated.</li>
         </ul>
-        <p class="more"><a href="classifieds.html#protection">How a shipment is protected</a><a href="classifieds.html">Next: classifieds</a></p>
+        <p class="more"><a href="/classifieds#protection">How a shipment is protected</a><a href="/classifieds">Next: classifieds</a></p>
       </div>
     </section>
 
@@ -156,8 +246,8 @@
         <h2>Install Autarki.</h2>
         <p class="lede">It runs on your computer. A phone on the same network opens that page. There is no separate phone app.</p>
         <div class="actions">
-          <a class="button" href="install.html">Install Autarki</a>
-          <a class="button button-ghost" href="notice-board.html">Look through the notice board</a>
+          <a class="button" href="/install">Install Autarki</a>
+          <a class="button button-ghost" href="/notice-board">Look through the notice board</a>
         </div>
       </div>
     </section>

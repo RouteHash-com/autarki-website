@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+# Markdown map for answer engines: https://autarki.app/llms.txt
 Sitemap: https://autarki.app/sitemap.xml

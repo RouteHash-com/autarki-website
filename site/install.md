@@ -1,0 +1,23 @@
+# Install
+
+> Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi runs the wallet and the shop, and leaves Lightning off.
+
+The page is [https://autarki.app/install](https://autarki.app/install).
+
+## Install it on your computer.
+
+AMD and Intel include Lightning. A Raspberry Pi runs the wallet, the shop, Nostr, and on-chain payment, and leaves Lightning off. A phone on the same network opens your computer's page. There is no separate phone app.
+
+- StartOS on AMD or Intel uses `autarki_x86_64.s9pk`. Lightning is included: Blake2b Lightning and SHA-256 Lightning.
+- StartOS on a Raspberry Pi uses `autarki_aarch64.s9pk`. Lightning is off. The wallet, the shop, and on-chain payment still run.
+- Umbrel on AMD or Intel uses the image from the RouteHash community store. Lightning is included.
+- Umbrel on arm64, including a Raspberry Pi, leaves Lightning off.
+- Ubuntu with Docker uses `autarki_ubuntu_amd64.tar`. Lightning is included. It is the AMD or Intel build.
+- The public download is [release 0.1.0](https://github.com/RouteHash-com/autarki/releases/tag/0.1.0). Source is [github.com/RouteHash-com/autarki](https://github.com/RouteHash-com/autarki).
+- Install starts the wallet. It does not open a Lightning channel.
+- This site does not give you an Umbrel file. Add the RouteHash community store, then install Autarki. That store is not the official Umbrel App Store. The listing is [github.com/RouteHash-com/umbrel-store](https://github.com/RouteHash-com/umbrel-store).
+- Check the download with `SHA256SUMS` from that same release: `sha256sum -c SHA256SUMS --ignore-missing`.
+- Bug reports go to [Discord #autarki](https://discord.gg/VBxvzQXvt).
+- The wallet page can show English, Español, Português, Français, or Deutsch. The 24 words stay the English list. Amounts stay in sats.
+
+XBT Knots and Bitcoin Core do not run on the same computer. Mine, a Lightning payment, and a shipment need AMD or Intel.
