@@ -33,19 +33,18 @@ It is a poor fit for someone who wants Autarki to custody the coins, invest them
 
 ## Coins
 
-Three chains. Say all three when the page names coins. Do not say "two chains."
+Promote XBT first and BTC second. Do not name XBTC. Do not say "two chains" or "three chains."
 
 - **Blake2b XBT bitcoin.** Buttons say **XBT** or **Pay with XBT**. Its own node is Bitcoin Knots. Its Lightning is **Blake2b Lightning**.
 - **SHA-256 BTC bitcoin.** Buttons say **BTC** or **Pay with BTC**. Settings headings say SHA-256d BTC and SHA-256 Lightning. Its own node is Bitcoin Core. Its Lightning is **SHA-256 Lightning**. Check Outs on-chain labels say **XBT** and **Bitcoin**.
-- **XBTC.** Receive, Send, and Balance. Shop checkout and classified pickup can offer **Pay with XBTC** when this wallet's XBTC node is on and the seller published an XBTC account. A shipment does not offer XBTC. XBTC has no Lightning.
 
-XBT and SHA-256d BTC share history only up to the fork. A payment is signed for one chain. Coins from the wrong chain do not pay the sale. A Bitcoin payment to an XBTC address does not arrive as XBTC. Say that whenever an address could be confused.
+XBT and SHA-256d BTC share history only up to the fork. A payment is signed for one chain. Coins from the wrong chain do not pay the sale.
 
-Prices are whole satoshis. A dollar figure beside a price is a hint, in US dollars or Canadian dollars. The amount due stays in sats. The hint does not change the sats, the tax, or the spreadsheet. XBTC's dollar hint uses a different public price from XBT and BTC. One XBTC sat is not one Bitcoin sat and is not one XBT sat.
+Prices are whole satoshis. A dollar figure beside a price is a hint, in US dollars or Canadian dollars. The amount due stays in sats. The hint does not change the sats, the tax, or the spreadsheet.
 
-Until the person connects their own node, ordinary XBT and Bitcoin addresses use Autarki's servers. Those servers can see a normal address. They do not make a silent-payment code, and they cannot see a coin paid to one. A silent-payment code appears after the person's own node is connected. XBTC can use Autarki's public node for reading and broadcasting until the person connects their own. The StartOS and Umbrel packages do not include an XBTC node.
+Until the person connects their own node, ordinary XBT and Bitcoin addresses use Autarki's servers. Those servers can see a normal address. They do not make a silent-payment code, and they cannot see a coin paid to one. A silent-payment code appears after the person's own node is connected.
 
-XBT Knots and Bitcoin Core do not run on the same computer. XBTC Knots can run beside XBT Knots.
+XBT Knots and Bitcoin Core do not run on the same computer.
 
 ---
 
@@ -59,7 +58,7 @@ XBT Knots and Bitcoin Core do not run on the same computer. XBTC Knots can run b
 - A password is optional and at least 12 characters when set. It encrypts only this copy of the wallet file. It is not part of the 24 words and it is not a BIP-39 passphrase. A blank password stores the words unencrypted on the device. A backup of that service is then the seed. Say that plainly. Do not claim a secure element, biometrics, or that a backed-up file is unreadable.
 - Closing the browser does not lock the page. Restarting Autarki does. There is no Lock button.
 - Receive, Send, and Balance. Amounts are whole sats. Prepare builds the payment. Sign is a separate press. Broadcast is a separate press. The browser never receives the signed transaction.
-- A coin with no confirmation is not spendable. An ordinary coin can be spent after one confirmation. The page counts on toward six for display. A mining reward waits longer: 100 confirmations on BTC, 4320 on XBTC, and a longer XBT wait that depends on the block it was mined in.
+- A coin with no confirmation is not spendable. An ordinary coin can be spent after one confirmation. The page counts on toward six for display. A mining reward waits longer. On XBT the wait depends on the block it was mined in. On BTC it is 100 confirmations.
 - Balance is the confirmed coins still held. Lightning is a separate jar. It is not added to Balance. Moving coins into Lightning sends them out of Balance. They have to confirm before a channel can open.
 - The person can connect their own coin node under Settings, then Coin Nodes, or keep using Autarki's servers for ordinary addresses. Pair those two choices in the same sentence. Do not say the person's own node always counts the coins.
 - A chain can be hidden on this browser. The saved connection stays on the computer.
@@ -71,7 +70,7 @@ XBT Knots and Bitcoin Core do not run on the same computer. XBTC Knots can run b
 - The first start of each node takes about ten minutes. The page keeps checking. Later starts are quicker.
 - On-chain is the bank. Lightning is the money loaded before shopping in person. Savings stay on-chain. The first Lightning payment still needs a channel. After that channel has one confirmation, a later payment on it does not wait for a new confirmation.
 - A Raspberry Pi, and an Umbrel arm64 package, run the wallet, the shop, Nostr, and on-chain payment. Lightning stays off on those packages. A Lightning payment, a shipment, and Mine need the AMD or Intel package. Do not claim built-in Lightning on a Pi.
-- Blake2b Lightning and SHA-256 Lightning are different networks. A Bitcoin payment request is refused on the Blake2b rail. XBTC has no Lightning.
+- Blake2b Lightning and SHA-256 Lightning are different networks. A Bitcoin payment request is refused on the Blake2b rail.
 - Each Lightning node has its own backup, separate from the 24 words. The Blake2b node has its own 24 words. The Bitcoin Lightning node does not use a phrase. Those backups are shown once. Do not tell people to reuse the wallet words for Lightning.
 - When a purchase needs a channel, the app can open one. The person does not type a node name for that purchase. A channel that can already cover the amount pays without a new on-chain wait.
 - A shared pool, so one channel can pay many shops, is the direction of the product. Do not say that pool already pays every sale, or that a buyer never needs a channel. Do not describe splice, trampoline, or a "Lightning fork" by those names. Say Blake2b Lightning and SHA-256 Lightning.
@@ -87,7 +86,7 @@ XBT Knots and Bitcoin Core do not run on the same computer. XBTC Knots can run b
 - The stall, each product, and the place are public notes. The order is a private note to that shop: the products, the quantities, an optional note, and an optional tip. It does not contain the price. The shop charges its own catalog. It does not contain a payment code. The shop makes the code.
 - The public stall uses Autarki's relay until the shop names its own. The relay cannot read the order. Pay-to-relay is off. The key and the books stay with the shop. Do not say the shop is unhosted.
 - A shop is POS (the counter) or Online. POS is the choice until the owner picks Online and publishes. POS shows Pay Counter and a clerk ticket with the last four characters and a QR. Online does not show Pay Counter.
-- Pay with XBT, Pay with BTC, and, when both sides have it, Pay with XBTC. Lightning sits under the chain that was pressed.
+- Pay with XBT or Pay with BTC. Lightning sits under the chain that was pressed. Blake2b Lightning for XBT. SHA-256 Lightning for BTC.
 - Prepare payment fills Send and prepares. Broadcast is still a separate press.
 - Enable storefront features shows the Store tab. The catalog has products for sale and supplies the shop buys. A product has a name, a price in sats, an optional picture link, one description line, and an optional shelf count. The count stays on this computer and is not published.
 - Taxes are two names and two rates, such as GST and PST. They apply to products, shipping, and the other fee. The tip is not taxed. Tips can offer up to four percentages, or another amount.
@@ -105,7 +104,7 @@ XBT Knots and Bitcoin Core do not run on the same computer. XBTC Knots can run b
 - A classified uses the same key as the shop. Publishing an ad does not require a store.
 - Goods, services, rentals, jobs, giveaways, and personals. A giveaway, a personal, or a job hire can be posted with no coin node. Goods, a service, a rental, or a job offered for a price needs the person's own XBT node or Bitcoin node, because that ad publishes a silent-payment code. Autarki's servers do not make that code.
 - The buyer chooses Pick up or Ship. There is no default.
-- Pick up can pay on-chain or with Lightning, including XBTC when that account is published. Ship pays with Lightning only. On-chain is not offered for a shipment. Ship does not offer XBTC.
+- Pick up can pay on-chain or with Lightning, in XBT or in BTC. Ship pays with Lightning only. On-chain is not offered for a shipment.
 - The seller names how many days they have to hand the parcel to the carrier, from one to four, and whether the hold is 14 days at home or 28 days overseas. The ad shows both dates.
 - The seller can add a postal code, a country, and a weight. The buyer then chooses a shipping price. Canada Post is offered from a Canadian origin. FedEx can be offered too. Pickup and a counter sale do not ask. The published item price stays the item price. The shipping price is added before payment.
 - Ignore an ad, or block a seller on this device. My Ads shows the ads saved on this computer. Only the person who posted an ad sees Edit.
@@ -127,13 +126,13 @@ XBT Knots and Bitcoin Core do not run on the same computer. XBTC Knots can run b
 
 - Mining is a tab once the wallet is open. It hires a listed rig from RouteHash. It does not mine on this computer. The phone must not hash.
 - Open a RouteHash account at routehash.com and paste that account's API token. The same connection is under Settings, then Other.
-- Two cards: **Mine XBT** hires a listed Blake2b rig and pays in Blake2b XBT. **Mine BTC** hires a listed SHA-256 rig and pays in SHA-256 BTC. XBTC is not a mining card.
+- Two cards: **Mine XBT** hires a listed Blake2b rig and pays in Blake2b XBT. **Mine BTC** hires a listed SHA-256 rig and pays in SHA-256 BTC.
 - The payout address is the next address from this wallet. Rewards come back to this wallet.
 - Click Mine. Nothing is spent until Mine, or until the person confirms the hours. Do not call mining one click that spends. Do not call a hire free.
 - A rig can be hired by the hour from a RouteHash balance. That path does not spend this wallet's Lightning balance. A short account says to deposit on RouteHash.
 - A meter invoice is paid from this wallet's Lightning node for that chain, when a channel can cover it.
 - Before RouteHash is connected, Balance says to hire a rig and that the rewards come back to this wallet. After it is connected, Balance lists Open Mining Invoices.
-- Spendable coins from a reward stay on Balance after the confirmation wait for that chain: 100 on BTC, or 4320 on XBT. The Mining card is not a second balance.
+- Spendable coins from a reward stay on Balance after the confirmation wait for that chain. On XBT the wait is longer and depends on the block. On BTC it is 100 confirmations. The Mining card is not a second balance.
 - routehash.com is the mining site. It does not describe the wallet. The wallet page is where the hire happens.
 
 ### Names, contacts, and a private note
@@ -178,7 +177,7 @@ Four public signs. No stars, no thumbs, no review essays, and no zaps.
 - A native SegWit watcher account is shown and not spent.
 - A Krux device can be imported as watch-only. The 24 words stay on the device. This copy can receive and show a balance. It cannot sign, and it cannot run the shop key, Lightning, the till, or a silent-payment code.
 - An ordinary XBT Taproot payment can be signed on a Yahboom K210 running Paperclip's Krux firmware, by file or by scan. The device shows the destination, the amount, the change, and the fee. Official Krux and a stock Bitcoin hardware wallet sign a sighash the XBT chain rejects. The device does not sign SHA-256d payments, Lightning, or silent-payment coins.
-- A native SegWit phrase can be imported for SHA-256d BTC. XBT from those words stays a different Taproot account. XBTC stays on its own chain.
+- A native SegWit phrase can be imported for SHA-256d BTC. XBT from those words stays a different Taproot account.
 
 ### The page itself
 
@@ -222,7 +221,6 @@ Four public signs. No stars, no thumbs, no review essays, and no zaps.
 - Built-in Blake2b Lightning and SHA-256 Lightning on AMD and Intel packages.
 - Shipment holds, ship-by of one to four days, a 14-day home hold, cancel before ship, mark received, Not received, and one referee decision.
 - Silent-payment codes after the person's own node is connected. Ordinary addresses on Autarki's servers before that.
-- XBTC receive, send, balance, and checkout or pickup when that node is connected.
 - English, Spanish, Portuguese, French, and German as a browser language choice.
 - Paper, Ink, and Console.
 - StartOS on AMD/Intel, Umbrel from the RouteHash community store, and Ubuntu.
@@ -320,6 +318,6 @@ Four public signs. No stars, no thumbs, no review essays, and no zaps.
 
 ## Words
 
-Use: wallet, shop, sale, classified, Receive, Send, Balance, Pay with XBT, Pay with BTC, Pay with XBTC, Blake2b Lightning, SHA-256 Lightning, Pay Counter, shipment, Mark received, Not received, referee, Mine, public name, contact, private note, 24 words, your own node, Autarki's servers.
+Use: wallet, shop, sale, classified, Receive, Send, Balance, Pay with XBT, Pay with BTC, Blake2b Lightning, SHA-256 Lightning, Pay Counter, shipment, Mark received, Not received, referee, Mine, public name, contact, private note, 24 words, your own node, Autarki's servers.
 
-Avoid: invoice, online store, two chains, Lightning fork, trampoline, splice, gift wrap, zap, yield, stake, invest, guaranteed, exchange, payment processor, passive income, audited, unhosted, one-click mining that spends, free rig, emoji.
+Avoid: XBTC, invoice, online store, two chains, three chains, Lightning fork, trampoline, splice, gift wrap, zap, yield, stake, invest, guaranteed, exchange, payment processor, passive income, audited, unhosted, one-click mining that spends, free rig, emoji.

@@ -290,6 +290,12 @@ h1 .line {
   padding-bottom: clamp(2rem, 5vw, 3.5rem);
 }
 
+@media (min-width: 801px) {
+  .benefits.pair {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 .band .benefits {
   margin-top: 1.5rem;
   padding-bottom: 0;

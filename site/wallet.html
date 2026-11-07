@@ -12,7 +12,7 @@
     } catch (e) {}
   </script>
   <title>Wallet. Autarki</title>
-  <meta name="description" content="One install is one wallet. You hold the 24 words. Pay with XBT, Pay with BTC, or Pay with XBTC. Lightning is built in on AMD and Intel.">
+  <meta name="description" content="One install is one wallet. You hold the 24 words. Pay with XBT or Pay with BTC. Lightning is built in on AMD and Intel.">
   <link rel="canonical" href="https://autarki.app/wallet.html">
   <meta name="theme-color" content="#f7f4ef">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -57,7 +57,7 @@
         <p class="lede">Autarki does not hold them, and there is no account that can reset them. The same install is the shop and the customer.</p>
         <nav class="page-nav" aria-label="On this page">
           <a href="#words">The 24 words</a>
-          <a href="#chains">Three chains</a>
+          <a href="#chains">XBT and BTC</a>
           <a href="#balance">Balance</a>
           <a href="#lightning">Lightning</a>
           <a href="#node">Your node</a>
@@ -81,9 +81,9 @@
 
     <section class="band" id="chains">
       <div class="wrap">
-        <h2>Three chains.</h2>
-        <p class="lede">Pay with XBT, Pay with BTC, or Pay with XBTC. You choose the coin, and the payment stays in that coin.</p>
-        <div class="benefits">
+        <h2>XBT and BTC.</h2>
+        <p class="lede">Pay with XBT or Pay with BTC. You choose the coin, and the payment stays in that coin.</p>
+        <div class="benefits pair">
           <article>
             <h3>Blake2b XBT</h3>
             <p>Buttons say XBT or Pay with XBT. The node is Bitcoin Knots. Lightning is Blake2b Lightning.</p>
@@ -92,16 +92,10 @@
             <h3>SHA-256 BTC</h3>
             <p>Buttons say BTC or Pay with BTC. The node is Bitcoin Core. Lightning is SHA-256 Lightning.</p>
           </article>
-          <article>
-            <h3>XBTC</h3>
-            <p>Receive, Send, and Balance. Pay with XBTC when both sides have it. No Lightning. A shipment does not offer it.</p>
-          </article>
         </div>
         <ul class="brief">
           <li>XBT and SHA-256 BTC share history only up to the fork. A payment is signed for one chain.</li>
           <li>Coins from the wrong chain do not pay the sale.</li>
-          <li>Check the coin before you send. Bitcoin sent to an XBTC address does not arrive as XBTC.</li>
-          <li>One XBTC sat is not one Bitcoin sat, and not one XBT sat.</li>
           <li>Prices are whole sats. A dollar hint, in US dollars or Canadian dollars, does not change the sats.</li>
         </ul>
       </div>
@@ -114,7 +108,7 @@
           <li>Whole sats. Prepare builds it. Sign is separate. Broadcast is separate.</li>
           <li>The browser never receives the signed transaction.</li>
           <li>No confirmation: not spendable. An ordinary coin spends after one.</li>
-          <li>A mining reward waits longer: 100 confirmations on BTC, 4320 on XBTC, and a longer XBT wait that depends on the block.</li>
+          <li>A mining reward waits longer. On XBT the wait depends on the block. On BTC it is 100 confirmations.</li>
           <li>Balance is confirmed coins still held. Lightning is a separate jar, not added to Balance.</li>
           <li>Moving coins into Lightning sends them out of Balance. They confirm before a channel can open.</li>
           <li>A chain can be hidden in your browser. The saved connection stays on your computer.</li>
@@ -131,7 +125,7 @@
             <ul class="brief">
               <li>AMD or Intel StartOS, Umbrel, and Ubuntu start Blake2b Lightning and SHA-256 Lightning.</li>
               <li>A Raspberry Pi and Umbrel arm64 start the wallet and the shop. Lightning stays off.</li>
-              <li>XBTC has no Lightning. A payment, a shipment, and Mine need AMD or Intel.</li>
+              <li>A Lightning payment, a shipment, and Mine need AMD or Intel.</li>
             </ul>
           </article>
           <article>
@@ -250,8 +244,7 @@
           <li>Until your node is connected, those servers can see a normal address.</li>
           <li>They do not make a silent-payment code, and they cannot see a coin paid to one.</li>
           <li>A silent-payment code appears after your own node is connected.</li>
-          <li>XBTC can use Autarki's public node for reading and broadcasting until you connect your own.</li>
-          <li>StartOS and Umbrel do not include an XBTC node. XBT Knots and Bitcoin Core do not run on the same computer. XBTC Knots can run beside XBT Knots.</li>
+          <li>XBT Knots and Bitcoin Core do not run on the same computer.</li>
         </ul>
         <p class="more"><a href="shop.html">Next: the shop</a></p>
       </div>
