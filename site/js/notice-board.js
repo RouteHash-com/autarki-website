@@ -10,6 +10,12 @@
   }
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   var RELAY = "wss://165.245.235.36:8444";
+  var PROFILE_RELAYS = [
+    "wss://nos.lol",
+    "wss://relay.damus.io",
+    "wss://relay.primal.net",
+    "wss://purplepag.es"
+  ];
   var CHARSET = "qpzry9x8gf2tvdw0s3jn54khce6mua7l";
 
   function npubFromHex(hex) {
@@ -63,14 +69,14 @@
     return out;
   }
 
-  function readRelay() {
+  function readSocket(url, id, filters, timeoutMs) {
     return new Promise(function (resolve, reject) {
       var settled = false;
       var events = [];
       var ws;
       var timer = setTimeout(function () {
         finish(reject, new Error("timeout"));
-      }, 12000);
+      }, timeoutMs);
 
       function finish(fn, value) {
         if (settled) return;
@@ -83,13 +89,13 @@
       }
 
       try {
-        ws = new WebSocket(RELAY);
+        ws = new WebSocket(url);
       } catch (error) {
         finish(reject, error);
         return;
       }
       ws.onopen = function () {
-        ws.send(JSON.stringify(["REQ", "board", { kinds: [30017, 30018, 30402, 5], limit: 400 }]));
+        ws.send(JSON.stringify(["REQ", id].concat(filters)));
       };
       ws.onmessage = function (message) {
         var frame;
@@ -108,6 +114,29 @@
       ws.onclose = function () {
         if (!settled) finish(reject, new Error("closed"));
       };
+    });
+  }
+
+  function readRelay() {
+    return readSocket(RELAY, "board", [
+      { kinds: [30017, 30018, 30402, 5], limit: 400 },
+      { kinds: [0, 10011], limit: 200 }
+    ], 12000);
+  }
+
+  function readProfiles(authors) {
+    if (!authors.length) return Promise.resolve([]);
+    var filter = [{ kinds: [0], authors: authors, limit: Math.min(80, Math.max(authors.length * 4, 4)) }];
+    return Promise.all(PROFILE_RELAYS.map(function (url) {
+      return readSocket(url, "names", filter, 8000).catch(function () { return []; });
+    })).then(function (lists) {
+      var out = [];
+      lists.forEach(function (list) {
+        list.forEach(function (event) {
+          if (event && event.kind === 0 && authors.indexOf(hex(event.pubkey)) !== -1) out.push(event);
+        });
+      });
+      return out;
     });
   }
 
@@ -140,11 +169,15 @@
         if (ad) ads.push(ad);
       }
     });
+    var profiles = profilesByPubkey(list, dels);
+    var discords = discordByPubkey(list, dels);
     stalls.forEach(function (stall) {
       stall.products = products
         .filter(function (product) { return product.pubkey === stall.pubkey; })
         .sort(function (a, b) { return a.name.localeCompare(b.name); });
+      attachPerson(stall, profiles, discords);
     });
+    ads.forEach(function (ad) { attachPerson(ad, profiles, discords); });
     stalls.sort(function (a, b) { return a.name.localeCompare(b.name); });
     ads.sort(function (a, b) { return b.publishedAt - a.publishedAt || a.title.localeCompare(b.title); });
     return { stalls: stalls, classifieds: ads };
@@ -384,13 +417,23 @@
     var filters = { query: "", stall: "", ad: "" };
     status.textContent = "Reading the relay.";
     readRelay().then(function (events) {
-      state = parseBoard(events);
-      tools.hidden = false;
-      paint();
+      var shown = events;
+      function show(next) {
+        state = parseBoard(next);
+        tools.hidden = false;
+        paint();
+      }
+      show(shown);
       var total = state.stalls.length + state.classifieds.length;
       status.textContent = total
         ? "Read from the relay, then the connection was closed. Nothing was stored on this site."
-        : "The relay answered. No stall or classified is published. Nothing was stored on this site.";
+        : "The relay answered. No store or classified is published. Nothing was stored on this site.";
+      var authors = authorHexes(state);
+      if (!authors.length) return;
+      readProfiles(authors).then(function (extra) {
+        if (!extra.length) return;
+        show(shown.concat(extra));
+      });
     }).catch(function () {
       tools.hidden = true;
       status.textContent = "The relay did not answer. This page asked " + RELAY + " and then stopped. Nothing was stored on this site.";
@@ -460,7 +503,7 @@
   function fillStalls(list, rows, query) {
     list.replaceChildren();
     if (!rows.length) {
-      list.appendChild(empty(query ? "No stall matches." : "No stall is published."));
+      list.appendChild(empty(query ? "No store matches." : "No store is published."));
       return;
     }
     rows.forEach(function (row) {
@@ -491,6 +534,7 @@
     var title = document.createElement("h3");
     title.textContent = stall.name;
     heading.appendChild(title);
+    addPersonLine(heading, stall);
     var place = placeLine(stall);
     if (place) {
       var where = document.createElement("p");
@@ -516,7 +560,7 @@
     grid.className = "products";
     products.forEach(function (product) { grid.appendChild(productCard(product)); });
     card.appendChild(grid);
-    card.appendChild(orderBlock(stall.name, stall.npub));
+    card.appendChild(orderBlock(stall.name, stall));
     return card;
   }
 
@@ -560,6 +604,7 @@
     var title = document.createElement("h3");
     title.textContent = ad.title || "Classified";
     heading.appendChild(title);
+    addPersonLine(heading, ad);
     if (ad.status === "sold" || ad.status === "held") {
       var mark = document.createElement("p");
       mark.className = "sold";
@@ -605,11 +650,15 @@
       card.appendChild(pics);
     }
     card.appendChild(facts(adFacts(ad)));
-    if (ad.status === "active") card.appendChild(orderBlock(shop ? shop.name : "", ad.npub));
+    if (ad.status === "active") card.appendChild(orderBlock(shop ? shop.name : "", ad));
+    else {
+      var who = personRow(ad);
+      if (who) card.appendChild(who);
+    }
     return card;
   }
 
-  function orderBlock(shopName, npub) {
+  function orderBlock(shopName, person) {
     var block = document.createElement("div");
     block.className = "order-path";
     var action = document.createElement("a");
@@ -622,31 +671,67 @@
       name.textContent = shopName;
       block.appendChild(name);
     }
-    if (npub) {
-      var row = document.createElement("p");
-      row.className = "public-name";
-      var code = document.createElement("code");
-      code.textContent = npub.slice(0, 12) + "..." + npub.slice(-6);
-      code.title = npub;
-      var button = document.createElement("button");
-      button.type = "button";
-      button.textContent = "Copy";
-      button.setAttribute("aria-label", "Copy the public name");
-      button.addEventListener("click", function () {
-        copyText(npub).then(function () {
-          button.textContent = "Copied";
-          setTimeout(function () { button.textContent = "Copy"; }, 1600);
-        });
-      });
-      row.appendChild(code);
-      row.appendChild(button);
-      block.appendChild(row);
-    }
+    var who = personRow(person);
+    if (who) block.appendChild(who);
     var hint = document.createElement("p");
     hint.className = "quiet";
     hint.textContent = "Open Shop in Autarki and search this name.";
     block.appendChild(hint);
     return block;
+  }
+
+  function addPersonLine(heading, person) {
+    var text = personText(person);
+    if (!text) return;
+    var line = document.createElement("p");
+    line.className = "card-meta";
+    line.textContent = text;
+    heading.appendChild(line);
+  }
+
+  function personText(person) {
+    if (!person) return "";
+    var parts = [];
+    if (person.nickname) parts.push(person.nickname);
+    if (person.discordName) parts.push("Discord " + person.discordName);
+    return parts.join(" · ");
+  }
+
+  function personRow(person) {
+    if (!person || !person.npub) return null;
+    var row = document.createElement("p");
+    row.className = "public-name";
+    if (person.nickname) {
+      var nick = document.createElement("span");
+      nick.className = "nostr-name";
+      nick.textContent = person.nickname;
+      row.appendChild(nick);
+    }
+    var code = document.createElement("code");
+    code.textContent = person.npub.slice(0, 12) + "..." + person.npub.slice(-6);
+    code.title = person.npub;
+    var button = document.createElement("button");
+    button.type = "button";
+    button.textContent = "Copy";
+    button.setAttribute("aria-label", "Copy the public name");
+    button.addEventListener("click", function () {
+      copyText(person.npub).then(function () {
+        button.textContent = "Copied";
+        setTimeout(function () { button.textContent = "Copy"; }, 1600);
+      });
+    });
+    row.appendChild(code);
+    row.appendChild(button);
+    if (person.discordName && person.discordUrl) {
+      var link = document.createElement("a");
+      link.className = "discord-name";
+      link.href = person.discordUrl;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "Discord " + person.discordName;
+      row.appendChild(link);
+    }
+    return row;
   }
 
   function facts(rows) {
@@ -660,6 +745,7 @@
       if (row.href) {
         var link = document.createElement("a");
         link.href = row.href;
+        link.target = "_blank";
         link.rel = "noopener noreferrer";
         link.textContent = "Map";
         value.appendChild(link);
@@ -776,21 +862,21 @@
 
   function stallMatches(stall, query) {
     if (!query) return true;
-    var shop = [stall.name, stall.country, stall.province, stall.city, stall.neighbourhood].join("\n").toLowerCase();
+    var shop = [stall.name, stall.country, stall.province, stall.city, stall.neighbourhood, stall.nickname, stall.discordName].join("\n").toLowerCase();
     if (shop.indexOf(query) !== -1) return true;
     return stall.products.some(function (product) { return product.name.toLowerCase().indexOf(query) !== -1; });
   }
 
   function visibleProducts(stall, query) {
     if (!query) return stall.products;
-    var shop = [stall.name, stall.country, stall.province, stall.city, stall.neighbourhood].join("\n").toLowerCase();
+    var shop = [stall.name, stall.country, stall.province, stall.city, stall.neighbourhood, stall.nickname, stall.discordName].join("\n").toLowerCase();
     if (shop.indexOf(query) !== -1) return stall.products;
     return stall.products.filter(function (product) { return product.name.toLowerCase().indexOf(query) !== -1; });
   }
 
   function adMatches(ad, query) {
     if (!query) return true;
-    var text = [ad.title, ad.summary, ad.body, ad.country, ad.province, ad.city, ad.neighbourhood].join("\n").toLowerCase();
+    var text = [ad.title, ad.summary, ad.body, ad.country, ad.province, ad.city, ad.neighbourhood, ad.nickname, ad.discordName].join("\n").toLowerCase();
     return text.indexOf(query) !== -1;
   }
 
@@ -824,6 +910,134 @@
       area.remove();
       resolve();
     });
+  }
+
+  function authorHexes(board) {
+    var seen = {};
+    var out = [];
+    board.stalls.concat(board.classifieds).forEach(function (item) {
+      if (!item || !item.pubkey || seen[item.pubkey] || out.length >= 40) return;
+      seen[item.pubkey] = true;
+      out.push(item.pubkey);
+    });
+    return out;
+  }
+
+  function attachPerson(item, profiles, discords) {
+    var profile = profiles.get(item.pubkey);
+    item.nickname = profile && profile.label ? profile.label : "";
+    var discord = discords.get(item.pubkey);
+    item.discordName = discord && discord.link ? discord.link.name : "";
+    item.discordUrl = discord && discord.link ? discord.link.url : "";
+  }
+
+  function profilesByPubkey(events, dels) {
+    var best = new Map();
+    events.forEach(function (event) {
+      if (!event || event.kind !== 0) return;
+      var pubkey = hex(event.pubkey);
+      if (!pubkey) return;
+      var content = typeof event.content === "string" ? event.content : "";
+      if (content.length > 100000) return;
+      if (removed(event, first(event, "d"), dels)) return;
+      var at = created(event);
+      var have = best.get(pubkey);
+      if (have && have.at >= at) return;
+      best.set(pubkey, { at: at, label: profileLabel(content) });
+    });
+    return best;
+  }
+
+  function discordByPubkey(events, dels) {
+    var best = new Map();
+    events.forEach(function (event) {
+      if (!event || event.kind !== 10011) return;
+      var pubkey = hex(event.pubkey);
+      if (!pubkey) return;
+      var content = typeof event.content === "string" ? event.content : "";
+      if (content.length > 4096) return;
+      if (removed(event, first(event, "d"), dels)) return;
+      var at = created(event);
+      var have = best.get(pubkey);
+      if (have && have.at >= at) return;
+      best.set(pubkey, { at: at, link: discordClaim(event.tags || []) });
+    });
+    return best;
+  }
+
+  function profileLabel(content) {
+    var value;
+    try {
+      value = JSON.parse(content || "");
+    } catch (e) {
+      return "";
+    }
+    if (!value || typeof value !== "object") return "";
+    var display = typeof value.display_name === "string" ? value.display_name : "";
+    var name = typeof value.name === "string" ? value.name : "";
+    return cleanProfileLabel(display) || cleanProfileLabel(name);
+  }
+
+  function cleanProfileLabel(raw) {
+    var trimmed = String(raw || "").trim();
+    if (!trimmed || hasControl(trimmed)) return "";
+    var body = trimmed.replace(/^@+/, "").trim();
+    if (!body || hasControl(body) || [...body].length > 80) return "";
+    var lower = body.toLowerCase();
+    if (lower.indexOf("npub1") === 0 || lower.indexOf("nsec1") === 0) return "";
+    return "@" + body;
+  }
+
+  function hasControl(text) {
+    var chars = [...text];
+    for (var i = 0; i < chars.length; i += 1) {
+      var code = chars[i].codePointAt(0);
+      if (code < 32 || code === 127 || (code >= 128 && code <= 159) || code === 0x2028 || code === 0x2029) return true;
+    }
+    return false;
+  }
+
+  function discordClaim(tags) {
+    var found = null;
+    for (var i = 0; i < tags.length; i += 1) {
+      var tag = tags[i];
+      if (!tag || tag[0] !== "i" || tag.length < 3) continue;
+      var raw = String(tag[1]);
+      if (raw.indexOf("discord:") !== 0) continue;
+      var name = discordName(raw.slice("discord:".length));
+      if (!name) continue;
+      var proof = discordProof(tag[2]);
+      if (!proof) continue;
+      if (found) return null;
+      found = { name: name, url: "https://discord.com/channels/" + proof };
+    }
+    return found;
+  }
+
+  function discordName(raw) {
+    var name = String(raw || "").trim().toLowerCase();
+    if (name.charAt(0) === "@") name = name.slice(1);
+    if (!/^[a-z0-9._]{2,32}$/.test(name)) return "";
+    if (name.charAt(0) === "." || name.charAt(name.length - 1) === "." || name.indexOf("..") !== -1) return "";
+    if (/^[1-9][0-9]{14,19}$/.test(name)) return "";
+    return name;
+  }
+
+  function discordProof(raw) {
+    var text = String(raw || "").trim();
+    if (!text || text.length > 160 || /\s/.test(text) || text.indexOf("<") !== -1 || text.indexOf(">") !== -1) return "";
+    var prefix = "https://discord.com/channels/";
+    var path = text;
+    if (text.indexOf(prefix) === 0) path = text.slice(prefix.length);
+    else if (text.indexOf(":") !== -1 || text.indexOf("@") !== -1) return "";
+    if (path.charAt(path.length - 1) === "/") path = path.slice(0, -1);
+    if (path.indexOf("?") !== -1 || path.indexOf("#") !== -1 || path.indexOf("\\") !== -1) return "";
+    var parts = path.split("/");
+    if (parts.length !== 3) return "";
+    for (var i = 0; i < 3; i += 1) {
+      if (!/^[1-9][0-9]{14,19}$/.test(parts[i])) return "";
+    }
+    return parts.join("/");
   }
 
   function jsonBody(event) {

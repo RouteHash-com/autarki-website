@@ -976,6 +976,10 @@ code {
   overflow-wrap: anywhere;
 }
 
+.public-name .discord-name {
+  white-space: nowrap;
+}
+
 .summary,
 .ad-body {
   max-width: var(--measure);
