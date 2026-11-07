@@ -24,7 +24,7 @@ AMD and Intel include Lightning. A Raspberry Pi runs the wallet, the shop, Nostr
 
 Version 0.1.0 is the same program as the computer. The phone needs a 64-bit processor and Android 8 or newer. It keeps its own wallet file. Restoring the 24 words onto the phone makes a second copy.
 
-It is a tester install. Open the release on the phone and sign in with the Google account that was invited. If the phone stops the file, allow that browser to install apps, then come back and install. The release is [Android 0.1.0](https://appdistribution.firebase.google.com/testerapps/1:43589462633:android:a23c056f1344bd226b10f8/releases/13r4esks6cab0).
+Download [autarki-android.apk](https://github.com/RouteHash-com/autarki/releases/download/0.1.0/autarki-android.apk) from release 0.1.0 and allow the phone to install it. Check that file against `SHA256SUMS` from the same release. Or [request access](https://appdistribution.firebase.dev/i/2ae8a6c81ce866a4). Sign in with a Google account. Firebase emails the install, and that mail opens the [tester release](https://appdistribution.firebase.google.com/testerapps/1:43589462633:android:a23c056f1344bd226b10f8/releases/13r4esks6cab0).
 
 This package does not include Lightning. The page still offers it, and it stays closed until a node is connected. A phone that only opens your computer's page holds no seed. That path is still there.
 
