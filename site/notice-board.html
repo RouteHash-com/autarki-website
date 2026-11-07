@@ -84,9 +84,14 @@
             <button type="button" class="scan-button" data-board-scan>Scan</button>
           </div>
           <div class="scan-panel" data-scan-panel hidden>
-            <video data-scan-video playsinline muted></video>
-            <p class="scan-note" data-scan-note></p>
-            <button type="button" data-scan-stop>Stop</button>
+            <video data-scan-video autoplay muted playsinline disablepictureinpicture></video>
+            <p class="scan-note" data-scan-note role="status"></p>
+            <div class="scan-actions">
+              <label class="scan-photo">Take a photo
+                <input data-scan-photo type="file" accept="image/*" capture="environment">
+              </label>
+              <button type="button" data-scan-stop>Stop</button>
+            </div>
           </div>
         </form>
 

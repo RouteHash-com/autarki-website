@@ -1196,15 +1196,26 @@
     var video = board.querySelector("[data-scan-video]");
     var note = board.querySelector("[data-scan-note]");
     var stop = board.querySelector("[data-scan-stop]");
+    var photo = board.querySelector("[data-scan-photo]");
     if (!input || !open || !panel || !video) return;
     var stream = null;
     var timer = 0;
     var session = 0;
+    var pass = 0;
+    var cameraGen = 0;
+    var detector = null;
+    var detectorOff = false;
+    var loading = null;
     var canvas = document.createElement("canvas");
     var context = canvas.getContext("2d", { willReadFrequently: true });
 
     function setNote(text) {
       if (note) note.textContent = text;
+    }
+
+    function kick() {
+      var play = video.play();
+      if (play && play.catch) play.catch(function () {});
     }
 
     function stopTracks() {
@@ -1214,6 +1225,8 @@
         stream.getTracks().forEach(function (track) { track.stop(); });
         stream = null;
       }
+      video.removeEventListener("loadedmetadata", kick);
+      try { video.pause(); } catch (e) {}
       video.srcObject = null;
     }
 
@@ -1229,46 +1242,51 @@
       halt();
       input.value = text;
       input.dispatchEvent(new Event("input", { bubbles: true }));
-      input.focus();
+      try { input.focus({ preventScroll: true }); } catch (e) { input.focus(); }
     }
 
-    function readJsQR() {
-      if (!window.jsQR || !video.videoWidth || !context) return "";
-      var width = video.videoWidth;
-      var height = video.videoHeight;
-      if (width > 640) {
-        height = Math.round(height * (640 / width));
-        width = 640;
-      }
-      canvas.width = width;
-      canvas.height = height;
-      context.drawImage(video, 0, 0, width, height);
-      var image = context.getImageData(0, 0, width, height);
-      var code = window.jsQR(image.data, image.width, image.height, { inversionAttempts: "dontInvert" });
-      return code && code.data ? code.data : "";
+    function prepareVideo() {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      video.autoplay = true;
+      video.setAttribute("muted", "");
+      video.setAttribute("autoplay", "");
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
     }
 
     function loadJsQR() {
       if (window.jsQR) return Promise.resolve();
-      return new Promise(function (resolve, reject) {
+      if (loading) return loading;
+      loading = new Promise(function (resolve, reject) {
         var script = document.createElement("script");
         script.src = "js/jsQR.js";
-        script.onload = function () { window.jsQR ? resolve() : reject(new Error("qr")); };
-        script.onerror = function () { reject(new Error("qr")); };
+        script.onload = function () {
+          if (window.jsQR) resolve();
+          else {
+            loading = null;
+            reject(new Error("qr"));
+          }
+        };
+        script.onerror = function () {
+          loading = null;
+          reject(new Error("qr"));
+        };
         document.head.appendChild(script);
       });
+      return loading;
     }
 
-    function reader() {
-      if (typeof BarcodeDetector === "function") {
-        try { return Promise.resolve(new BarcodeDetector({ formats: ["qr_code"] })); } catch (e) {}
-      }
-      return loadJsQR().then(function () { return null; });
+    function makeDetector() {
+      if (typeof BarcodeDetector !== "function") return null;
+      try { return new BarcodeDetector({ formats: ["qr_code"] }); } catch (e) { return null; }
     }
 
     function camera() {
       var tries = [
-        { video: { facingMode: { ideal: "environment" } }, audio: false },
+        { video: { facingMode: { ideal: "environment" }, width: { ideal: 1280 }, height: { ideal: 720 } }, audio: false },
+        { video: { facingMode: "environment" }, audio: false },
         { video: true, audio: false }
       ];
       function attempt(index) {
@@ -1280,17 +1298,240 @@
       return attempt(0);
     }
 
-    function tick(mine, detector) {
-      if (mine !== session) return;
-      var job = detector
-        ? detector.detect(video).then(function (codes) {
-          return codes && codes[0] && codes[0].rawValue ? codes[0].rawValue : "";
-        }).catch(function () { return ""; })
-        : Promise.resolve(readJsQR());
-      job.then(function (value) {
+    function sourceSize(source) {
+      if (source.videoWidth && source.videoHeight) return { width: source.videoWidth, height: source.videoHeight };
+      if (source.naturalWidth && source.naturalHeight) return { width: source.naturalWidth, height: source.naturalHeight };
+      if (source.width && source.height) return { width: source.width, height: source.height };
+      return { width: 0, height: 0 };
+    }
+
+    function drawSource(source, crop, maxEdge) {
+      var size = sourceSize(source);
+      if (!context || !size.width || !size.height) return false;
+      var sx = 0;
+      var sy = 0;
+      var sw = size.width;
+      var sh = size.height;
+      if (crop) {
+        var nextW = Math.round(sw * crop);
+        var nextH = Math.round(sh * crop);
+        sx = Math.round((size.width - nextW) / 2);
+        sy = Math.round((size.height - nextH) / 2);
+        sw = nextW;
+        sh = nextH;
+      }
+      var scale = Math.min(1, maxEdge / Math.max(sw, sh));
+      var width = Math.max(1, Math.round(sw * scale));
+      var height = Math.max(1, Math.round(sh * scale));
+      canvas.width = width;
+      canvas.height = height;
+      context.drawImage(source, sx, sy, sw, sh, 0, 0, width, height);
+      return width > 0 && height > 0;
+    }
+
+    function readJsQR(invert) {
+      if (!window.jsQR || !context || !canvas.width || !canvas.height) return "";
+      try {
+        var image = context.getImageData(0, 0, canvas.width, canvas.height);
+        var code = window.jsQR(image.data, image.width, image.height, {
+          inversionAttempts: invert ? "attemptBoth" : "dontInvert"
+        });
+        return code && code.data ? code.data : "";
+      } catch (e) {
+        return "";
+      }
+    }
+
+    function codeText(codes) {
+      return codes && codes[0] && codes[0].rawValue ? codes[0].rawValue : "";
+    }
+
+    function detectBitmap(active) {
+      if (!active || detectorOff || typeof active.detect !== "function") return Promise.resolve("");
+      var made;
+      try {
+        made = typeof createImageBitmap === "function" ? createImageBitmap(canvas) : Promise.resolve(null);
+      } catch (e) {
+        made = Promise.resolve(null);
+      }
+      var job = made.then(function (bitmap) {
+        var source = bitmap || canvas;
+        try {
+          return active.detect(source).then(function (codes) {
+            if (bitmap && bitmap.close) bitmap.close();
+            return codeText(codes);
+          }, function () {
+            if (bitmap && bitmap.close) bitmap.close();
+            return "";
+          });
+        } catch (e) {
+          if (bitmap && bitmap.close) bitmap.close();
+          return "";
+        }
+      }, function () {
+        try { return active.detect(canvas).then(codeText, function () { return ""; }); } catch (e) { return ""; }
+      });
+      return new Promise(function (resolve) {
+        var settled = false;
+        var watch = setTimeout(function () {
+          if (settled) return;
+          settled = true;
+          detectorOff = true;
+          resolve("");
+        }, 450);
+        Promise.resolve(job).then(function (value) {
+          if (settled) return;
+          settled = true;
+          clearTimeout(watch);
+          resolve(value || "");
+        }, function () {
+          if (settled) return;
+          settled = true;
+          clearTimeout(watch);
+          detectorOff = true;
+          resolve("");
+        });
+      });
+    }
+
+    function decodeCanvas(active, invert) {
+      return Promise.all([
+        detectBitmap(active),
+        Promise.resolve().then(function () { return readJsQR(invert); })
+      ]).then(function (found) {
+        return found[0] || found[1] || "";
+      });
+    }
+
+    function tick(mine, generation, started) {
+      if (mine !== session || generation !== cameraGen || !stream) return;
+      if (video.readyState < 2 || !video.videoWidth) {
+        if (Date.now() - started > 2500) setNote("The camera did not open. Take a photo of the code instead.");
+        timer = setTimeout(function () { tick(mine, generation, started); }, 200);
+        return;
+      }
+      if (note && note.textContent !== "Point the camera at the code.") setNote("Point the camera at the code.");
+      var mode = pass % 4;
+      pass += 1;
+      var crop = mode === 1 ? 0.72 : mode === 3 ? 0.46 : 0;
+      if (!drawSource(video, crop, 1280)) {
+        timer = setTimeout(function () { tick(mine, generation, started); }, 200);
+        return;
+      }
+      decodeCanvas(detector, mode === 2).then(function (value) {
+        if (mine !== session || generation !== cameraGen || !stream) return;
+        if (value) {
+          apply(value);
+          return;
+        }
+        timer = setTimeout(function () { tick(mine, generation, started); }, 180);
+      }, function () {
+        if (mine !== session || generation !== cameraGen || !stream) return;
+        timer = setTimeout(function () { tick(mine, generation, started); }, 180);
+      });
+    }
+
+    function begin(mine) {
+      var generation = cameraGen;
+      prepareVideo();
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || !window.isSecureContext) {
+        setNote("The camera did not open. Take a photo of the code instead.");
+        return;
+      }
+      setNote("Point the camera at the code.");
+      detectorOff = false;
+      detector = makeDetector();
+      pass = 0;
+      var pending = camera();
+      var scripts = loadJsQR().catch(function () {});
+      pending.then(function (next) {
+        if (mine !== session || generation !== cameraGen) {
+          next.getTracks().forEach(function (track) { track.stop(); });
+          return;
+        }
+        stream = next;
+        video.srcObject = next;
+        video.addEventListener("loadedmetadata", kick);
+        kick();
+        return scripts.then(function () {
+          if (mine !== session || generation !== cameraGen || !stream) return;
+          tick(mine, generation, Date.now());
+        });
+      }).catch(function () {
+        if (mine !== session || generation !== cameraGen) return;
+        stopTracks();
+        panel.hidden = false;
+        setNote("The camera did not open. Take a photo of the code instead.");
+      });
+    }
+
+    function finishPhoto(mine, source, done) {
+      loadJsQR().catch(function () {}).then(function () {
+        if (mine !== session) {
+          done();
+          return;
+        }
+        if (!detector) detector = makeDetector();
+        function scan(crop) {
+          if (!drawSource(source, crop, 1600)) return Promise.resolve("");
+          return decodeCanvas(detector, true);
+        }
+        scan(0).then(function (value) {
+          if (value || mine !== session) return value || "";
+          return scan(0.62);
+        }).then(function (value) {
+          done();
+          if (mine !== session) return;
+          if (value) {
+            apply(value);
+            return;
+          }
+          setNote("The photo has no code.");
+        }, function () {
+          done();
+          if (mine === session) setNote("The photo has no code.");
+        });
+      });
+    }
+
+    function readPhotoElement(file, mine) {
+      var url = URL.createObjectURL(file);
+      var image = new Image();
+      image.onload = function () {
+        URL.revokeObjectURL(url);
         if (mine !== session) return;
-        if (value) { apply(value); return; }
-        timer = setTimeout(function () { tick(mine, detector); }, 140);
+        finishPhoto(mine, image, function () {});
+      };
+      image.onerror = function () {
+        URL.revokeObjectURL(url);
+        if (mine === session) setNote("The photo has no code.");
+      };
+      image.src = url;
+    }
+
+    function readPhoto(file) {
+      var mine = session;
+      if (!file || !context) {
+        setNote("The photo has no code.");
+        return;
+      }
+      cameraGen += 1;
+      stopTracks();
+      setNote("Reading the photo.");
+      var oriented = null;
+      try {
+        if (typeof createImageBitmap === "function") oriented = createImageBitmap(file, { imageOrientation: "from-image" });
+      } catch (e) {
+        oriented = null;
+      }
+      if (!oriented || !oriented.then) {
+        readPhotoElement(file, mine);
+        return;
+      }
+      oriented.then(function (bitmap) {
+        finishPhoto(mine, bitmap, function () { if (bitmap && bitmap.close) bitmap.close(); });
+      }, function () {
+        readPhotoElement(file, mine);
       });
     }
 
@@ -1299,34 +1540,34 @@
       session = mine;
       stopTracks();
       panel.hidden = false;
-      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-        setNote("The camera did not open.");
-        return;
-      }
-      setNote("Point the camera at the code.");
-      reader().then(function (detector) {
-        if (mine !== session) return null;
-        return camera().then(function (next) { return { detector: detector, next: next }; });
-      }).then(function (opened) {
-        if (!opened || mine !== session) {
-          if (opened && opened.next) opened.next.getTracks().forEach(function (track) { track.stop(); });
-          return;
-        }
-        stream = opened.next;
-        video.srcObject = stream;
-        video.playsInline = true;
-        return video.play().catch(function () {}).then(function () { tick(mine, opened.detector); });
-      }).catch(function () {
-        if (mine !== session) return;
-        stopTracks();
-        panel.hidden = false;
-        setNote("The camera did not open.");
-      });
+      if (photo) photo.value = "";
+      begin(mine);
     });
+
+    if (photo) {
+      var photoLabel = photo.closest("label");
+      function releaseForPhoto() {
+        cameraGen += 1;
+        stopTracks();
+      }
+      if (photoLabel) {
+        photoLabel.addEventListener("pointerdown", releaseForPhoto);
+        photoLabel.addEventListener("touchstart", releaseForPhoto, { passive: true });
+      }
+      photo.addEventListener("change", function () {
+        var file = photo.files && photo.files[0];
+        photo.value = "";
+        if (!file || panel.hidden) return;
+        readPhoto(file);
+      });
+      photo.addEventListener("cancel", function () {
+        if (panel.hidden || stream) return;
+        begin(session);
+      });
+    }
 
     if (stop) stop.addEventListener("click", halt);
     window.addEventListener("pagehide", halt);
   }
-
   return { parseBoard: parseBoard, npubFromHex: npubFromHex, readRelay: readRelay, mount: mount };
 });
