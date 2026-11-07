@@ -14,7 +14,7 @@ Store line already in use: **Your wallet and your shop. Lightning, Nostr, and on
 
 Autarki is a self-custodial wallet and a shop in one app. The same program receives and sends coins, lists a shop, takes a counter sale, posts a classified, hires a mining rig, and keeps a private note with another person. The person holds the 24 words. Autarki does not hold the keys, does not clear the sale, and does not take a fee from it. Shops and classifieds are public notes anyone can read. An order is a private note. The node that carries the order cannot read it. People can look through shops before they create a wallet. Sending an order, paying, and posting need the wallet open.
 
-Autarki is a beta. It runs on the person's own computer: StartOS, Umbrel, or Ubuntu. A phone on the same network opens that computer's page. There is no separate phone app yet.
+Autarki is a beta. It runs on the person's own computer: StartOS, Umbrel, or Ubuntu. A 64-bit Android phone can install the same program as a tester build and keep its own wallet file. A phone on the same network can still open the computer's page, and that phone holds no seed.
 
 ---
 
@@ -233,7 +233,7 @@ Four public signs. No stars, no thumbs, no review essays, and no zaps.
 
 ### Do not claim these
 
-- A phone app, an App Store listing, or a Play Store listing. A phone opens the computer's page. The phone app is parked.
+- An App Store listing or a Play Store listing. The Android tester install is not a store listing. iPhone stays later.
 - On-device mining. Apple's rules also forbid mining on the device. The hire is a remote rig.
 - A receipt printer.
 - Zaps, a public chat room, a group chat, reactions, or a Lightning address as a mailbox.

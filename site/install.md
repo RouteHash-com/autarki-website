@@ -1,12 +1,12 @@
 # Install
 
-> Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi runs the wallet and the shop, and leaves Lightning off.
+> Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi leaves Lightning off. A 64-bit Android phone can install its own copy.
 
 The page is [https://autarki.app/install](https://autarki.app/install).
 
 ## Install it on your computer.
 
-AMD and Intel include Lightning. A Raspberry Pi runs the wallet, the shop, Nostr, and on-chain payment, and leaves Lightning off. A phone on the same network opens your computer's page. There is no separate phone app.
+AMD and Intel include Lightning. A Raspberry Pi runs the wallet, the shop, Nostr, and on-chain payment, and leaves Lightning off. A 64-bit Android phone can install the same program and keep its own wallet.
 
 - StartOS on AMD or Intel uses `autarki_x86_64.s9pk`. Lightning is included: Blake2b Lightning and SHA-256 Lightning.
 - StartOS on a Raspberry Pi uses `autarki_aarch64.s9pk`. Lightning is off. The wallet, the shop, and on-chain payment still run.
@@ -19,5 +19,15 @@ AMD and Intel include Lightning. A Raspberry Pi runs the wallet, the shop, Nostr
 - Check the download with `SHA256SUMS` from that same release: `sha256sum -c SHA256SUMS --ignore-missing`.
 - Bug reports go to [Discord #autarki](https://discord.gg/VBxvzQXvt).
 - The wallet page can show English, Español, Português, Français, or Deutsch. The 24 words stay the English list. Amounts stay in sats.
+
+## Android
+
+Version 0.1.0 is the same program as the computer. The phone needs a 64-bit processor and Android 8 or newer. It keeps its own wallet file. Restoring the 24 words onto the phone makes a second copy.
+
+It is a tester install. Open the release on the phone and sign in with the Google account that was invited. If the phone stops the file, allow that browser to install apps, then come back and install. The release is [Android 0.1.0](https://appdistribution.firebase.google.com/testerapps/1:43589462633:android:a23c056f1344bd226b10f8/releases/13r4esks6cab0).
+
+This package does not include Lightning. The page still offers it, and it stays closed until a node is connected. A phone that only opens your computer's page holds no seed. That path is still there.
+
+This build was checked on an emulator. It has not been checked on a handset yet.
 
 XBT Knots and Bitcoin Core do not run on the same computer. Mine, a Lightning payment, and a shipment need AMD or Intel.

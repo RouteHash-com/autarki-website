@@ -18,6 +18,6 @@ Ship pays with Lightning. With a float, the coins sit on the seller's node until
 - The referee does not hold the coins. They stay on the seller's node.
 - 14 days at home, or 28 days overseas. If the buyer does nothing, the seller is paid when the hold ends, only while that wallet is on.
 - Four public signs. None is required to buy or sell. Nobody types a count. No star.
-- There is no separate phone app.
+- A 64-bit Android phone can install its own copy. A phone on the same network can still open your computer's page.
 
 Published classifieds are on the [notice board](https://autarki.app/notice-board.md).

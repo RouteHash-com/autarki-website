@@ -15,7 +15,7 @@ The buyer pays you, and you keep the keys.
 - Lightning starts with the wallet. You do not install a second app.
 - The stall is public. The order is private. You pay the person, not a platform.
 - Pay with XBT or Pay with BTC. You choose the coin, and the payment stays in that coin.
-- It runs on your computer. A phone on the same network opens that page. There is no separate phone app.
+- It runs on your computer. A 64-bit Android phone can install its own copy. A phone on the same network can still open your computer's page.
 
 ## Pages
 

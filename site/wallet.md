@@ -72,4 +72,4 @@ Sats are the price. Hints on 7 November 2026 use about $276 for one XBT, from a 
 
 ## Install
 
-It runs on your computer. A phone on the same network opens that page. There is no separate phone app. See [Install](https://autarki.app/install.md).
+It runs on your computer. A 64-bit Android phone can install its own copy. A phone on the same network can still open your computer's page. See [Install](https://autarki.app/install.md).

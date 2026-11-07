@@ -18,6 +18,6 @@ The hire happens in your wallet. routehash.com is where the rig is listed. Your 
 - After RouteHash is connected, Balance lists Open Mining Invoices.
 - A reward becomes spendable on Balance after that chain's wait. On XBT the wait is longer and depends on the block. On BTC it is 100 confirmations.
 - The Mining card is not a second balance.
-- There is no separate phone app.
+- A 64-bit Android phone can install its own copy. Mining still needs AMD or Intel.
 
 See [Install](https://autarki.app/install.md).

@@ -12,13 +12,13 @@
     } catch (e) {}
   </script>
   <title>Install. Autarki</title>
-  <meta name="description" content="Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi runs the wallet and the shop, and leaves Lightning off.">
+  <meta name="description" content="Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi leaves Lightning off. A 64-bit Android phone can install its own copy.">
   <link rel="canonical" href="https://autarki.app/install">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta property="og:site_name" content="Autarki">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Install. Autarki">
-  <meta property="og:description" content="Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi runs the wallet and the shop, and leaves Lightning off.">
+  <meta property="og:description" content="Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi leaves Lightning off. A 64-bit Android phone can install its own copy.">
   <meta property="og:url" content="https://autarki.app/install">
   <meta property="og:image" content="https://autarki.app/assets/og.png">
   <meta property="og:image:type" content="image/png">
@@ -27,7 +27,7 @@
   <meta property="og:image:alt" content="Autarki. No platform. Just the sale.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Install. Autarki">
-  <meta name="twitter:description" content="Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi runs the wallet and the shop, and leaves Lightning off.">
+  <meta name="twitter:description" content="Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi leaves Lightning off. A 64-bit Android phone can install its own copy.">
   <meta name="twitter:image" content="https://autarki.app/assets/og.png">
   <meta name="twitter:image:alt" content="Autarki. No platform. Just the sale.">
   <link rel="alternate" type="text/markdown" href="https://autarki.app/install.md" title="Install">
@@ -55,9 +55,9 @@
         "@id": "https://autarki.app/#software",
         "name": "Autarki",
         "url": "https://autarki.app/",
-        "description": "The buyer pays you, and you keep the keys. Autarki is the wallet and the shop. It runs on your computer. A phone on the same network opens that page. There is no separate phone app.",
+        "description": "The buyer pays you, and you keep the keys. Autarki is the wallet and the shop. It runs on your computer. A 64-bit Android phone can install its own copy. A phone on the same network can still open your computer's page.",
         "applicationCategory": "FinanceApplication",
-        "operatingSystem": "StartOS, Umbrel, Ubuntu",
+        "operatingSystem": "StartOS, Umbrel, Ubuntu, Android",
         "softwareVersion": "0.1.0",
         "downloadUrl": "https://github.com/RouteHash-com/autarki/releases/tag/0.1.0",
         "image": "https://autarki.app/assets/og.png",
@@ -71,7 +71,7 @@
         "@id": "https://autarki.app/install#webpage",
         "url": "https://autarki.app/install",
         "name": "Install. Autarki",
-        "description": "Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi runs the wallet and the shop, and leaves Lightning off.",
+        "description": "Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi leaves Lightning off. A 64-bit Android phone can install its own copy.",
         "isPartOf": {
           "@id": "https://autarki.app/#website"
         },
@@ -144,7 +144,7 @@
       <div class="wrap">
         <p class="kicker">Install</p>
         <h1>Install it on your computer.</h1>
-        <p class="lede">AMD and Intel include Lightning. A Raspberry Pi runs the wallet, the shop, Nostr, and on-chain payment, and leaves Lightning off. A phone on the same network opens your computer's page. There is no separate phone app.</p>
+        <p class="lede">AMD and Intel include Lightning. A Raspberry Pi runs the wallet, the shop, Nostr, and on-chain payment, and leaves Lightning off. A 64-bit Android phone can install the same program and keep its own wallet.</p>
       </div>
     </header>
 
@@ -190,6 +190,19 @@
           </table>
         </div>
         <p class="prose">The public download is <a href="https://github.com/RouteHash-com/autarki/releases/tag/0.1.0">release 0.1.0</a>. Source is <a href="https://github.com/RouteHash-com/autarki">github.com/RouteHash-com/autarki</a>. Install starts the wallet. It does not open a Lightning channel.</p>
+      </div>
+    </section>
+
+    <section class="band" id="android">
+      <div class="wrap prose">
+        <h2>Android</h2>
+        <p>Version 0.1.0 is the same program as the computer. The phone needs a 64-bit processor and Android 8 or newer. It keeps its own wallet file. Restoring the 24 words onto the phone makes a second copy.</p>
+        <p>It is a tester install. Open the release on the phone and sign in with the Google account that was invited. If the phone stops the file, allow that browser to install apps, then come back and install.</p>
+        <p>This package does not include Lightning. The page still offers it, and it stays closed until a node is connected. A phone that only opens your computer's page holds no seed. That path is still there.</p>
+        <p>This build was checked on an emulator. It has not been checked on a handset yet.</p>
+        <div class="actions">
+          <a class="button" href="https://appdistribution.firebase.google.com/testerapps/1:43589462633:android:a23c056f1344bd226b10f8/releases/13r4esks6cab0">Install on Android</a>
+        </div>
       </div>
     </section>
 
@@ -246,9 +259,10 @@
     <section class="band">
       <div class="wrap">
         <h2>Install Autarki.</h2>
-        <p class="lede">Download release 0.1.0 and check <code>SHA256SUMS</code>. A phone on the same network opens your computer's page. There is no separate phone app.</p>
+        <p class="lede">Download release 0.1.0 and check <code>SHA256SUMS</code>. A 64-bit Android phone installs version 0.1.0 from the tester release.</p>
         <div class="actions">
           <a class="button" href="https://github.com/RouteHash-com/autarki/releases/tag/0.1.0">Install Autarki</a>
+          <a class="button button-ghost" href="#android">Install on Android</a>
           <a class="button button-ghost" href="/notice-board">Look through the notice board</a>
         </div>
       </div>
@@ -258,9 +272,10 @@
   <footer class="site-footer">
     <div class="wrap">
       <p class="footer-slogan">No platform. Just the sale.</p>
-      <p>Autarki is a beta. It runs on your computer. A phone on the same network opens that page. There is no separate phone app.</p>
+      <p>Autarki is a beta. It runs on your computer. A 64-bit Android phone can install its own copy. A phone on the same network can still open your computer's page.</p>
       <ul class="footer-links">
         <li><a href="https://github.com/RouteHash-com/autarki/releases/tag/0.1.0">Download 0.1.0</a></li>
+        <li><a href="/install#android">Android 0.1.0</a></li>
         <li><a href="https://github.com/RouteHash-com/umbrel-store">Umbrel community store</a></li>
         <li><a href="https://discord.gg/VBxvzQXvt">Discord #autarki</a></li>
       </ul>

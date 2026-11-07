@@ -2,7 +2,7 @@
 
 > The buyer pays you, and you keep the keys. Autarki is the wallet and the shop.
 
-Autarki is in beta. It runs on your computer. A phone on the same network opens that page. There is no separate phone app. This website stores nothing and does not take an order. Pay with XBT or Pay with BTC. XBT is named first.
+Autarki is in beta. It runs on your computer. A 64-bit Android phone can install its own copy. A phone on the same network can still open your computer's page. This website stores nothing and does not take an order. Pay with XBT or Pay with BTC. XBT is named first.
 
 ## Pages
 
@@ -12,11 +12,12 @@ Autarki is in beta. It runs on your computer. A phone on the same network opens 
 - [Shop](https://autarki.app/shop.md): The shop runs on your computer. The stall is public. The order is private. Autarki does not take a cut of the catalog price. Lightning has a routing fee and a room fee.
 - [Classifieds](https://autarki.app/classifieds.md): Ship pays with Lightning. With a float, the coins sit on the seller's node until Mark received. The named referee decides and does not hold the coins.
 - [Mining](https://autarki.app/mining.md): Paste a RouteHash token, then click Mine XBT or Mine BTC. The next reward address is your wallet's. Nothing is spent until Mine.
-- [Install](https://autarki.app/install.md): Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi runs the wallet and the shop, and leaves Lightning off.
+- [Install](https://autarki.app/install.md): Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi leaves Lightning off. A 64-bit Android phone can install its own copy.
 
 ## Optional
 
 - [Download 0.1.0](https://github.com/RouteHash-com/autarki/releases/tag/0.1.0): The public download. Check SHA256SUMS from that same release.
+- [Android 0.1.0](https://appdistribution.firebase.google.com/testerapps/1:43589462633:android:a23c056f1344bd226b10f8/releases/13r4esks6cab0): Tester install for a 64-bit Android phone. The phone keeps its own wallet file.
 - [Source](https://github.com/RouteHash-com/autarki): The Autarki repository.
 - [Umbrel community store](https://github.com/RouteHash-com/umbrel-store): The RouteHash community store. It is not the official Umbrel App Store.
 - [Discord #autarki](https://discord.gg/VBxvzQXvt): Bug reports.

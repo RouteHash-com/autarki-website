@@ -17,6 +17,6 @@ The shop runs on your computer. People can look before they make a wallet. An or
 - A paid sale cannot be cancelled. There is no refund button. A refund is a later order.
 - Message opens one private note. Send does not create an order, move coins, or change a shipment.
 - An older install does not show Message until it is updated.
-- There is no separate phone app.
+- A 64-bit Android phone can install its own copy. A phone on the same network can still open your computer's page.
 
 See the published stalls on the [notice board](https://autarki.app/notice-board.md). A shipment is described on [Classifieds](https://autarki.app/classifieds.md).
