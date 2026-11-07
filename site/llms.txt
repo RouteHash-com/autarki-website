@@ -13,6 +13,8 @@ Autarki is in beta. It runs on your computer. A 64-bit Android phone can install
 - [Classifieds](https://autarki.app/classifieds.md): Ship pays with Lightning. With a float, the coins sit on the seller's node until Mark received. The named referee decides and does not hold the coins.
 - [Mining](https://autarki.app/mining.md): Paste a RouteHash token, then click Mine XBT or Mine BTC. The next reward address is your wallet's. Nothing is spent until Mine.
 - [Install](https://autarki.app/install.md): Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi leaves Lightning off. A 64-bit Android phone can install its own copy.
+- [Privacy](https://autarki.app/privacy.md): The 24 words stay on your device. The camera scans a code. Location fills the shop. The page talks to relays and nodes.
+- [Support](https://autarki.app/support.md): Help with Autarki is in Discord #autarki. This site does not sign in and cannot recover the 24 words.
 
 ## Optional
 

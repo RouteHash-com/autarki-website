@@ -17,7 +17,7 @@ AMD and Intel include Lightning. A Raspberry Pi runs the wallet, the shop, Nostr
 - Install starts the wallet. It does not open a Lightning channel.
 - This site does not give you an Umbrel file. Add the RouteHash community store, then install Autarki. That store is not the official Umbrel App Store. The listing is [github.com/RouteHash-com/umbrel-store](https://github.com/RouteHash-com/umbrel-store).
 - Check the download with `SHA256SUMS` from that same release: `sha256sum -c SHA256SUMS --ignore-missing`.
-- Bug reports go to [Discord #autarki](https://discord.gg/VBxvzQXvt).
+- Bug reports go to [Discord #autarki](https://discord.gg/VBxvzQXvt). The [support page](https://autarki.app/support.md) is that contact. The [privacy policy](https://autarki.app/privacy.md) covers the keys, the camera, location, relays, and nodes.
 - The wallet page can show English, Español, Português, Français, or Deutsch. The 24 words stay the English list. Amounts stay in sats.
 
 ## Android
