@@ -3,3 +3,9 @@
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: DENY
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+/notice-board
+  Permissions-Policy: camera=(self), microphone=(), geolocation=()
+
+/notice-board.html
+  Permissions-Policy: camera=(self), microphone=(), geolocation=()

@@ -925,9 +925,13 @@ code {
 }
 
 .board-card summary {
-  display: block;
+  display: list-item;
   cursor: pointer;
   list-style: none;
+}
+
+.board-card summary::marker {
+  content: "";
 }
 
 .board-card summary::-webkit-details-marker {
@@ -972,23 +976,44 @@ code {
   margin: 0.35rem 0 0;
 }
 
+.card-body {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  clear: both;
+}
+
 .facts {
   margin: 0.6rem 0 0;
+  text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
 .fact {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: baseline;
+  gap: 0;
   margin: 0.45rem 0 0;
+  white-space: nowrap;
 }
 
 .fact-label {
   color: var(--muted);
+  flex: none;
+}
+
+.fact-value {
+  min-width: 0;
+  white-space: normal;
 }
 
 .fact-stack {
-  display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.15rem;
+  white-space: normal;
 }
 
 .fact a {

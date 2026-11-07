@@ -557,12 +557,15 @@
     top.appendChild(heading);
     summary.appendChild(top);
     card.appendChild(summary);
-    card.appendChild(facts(stallFacts(stall)));
+    var body = document.createElement("div");
+    body.className = "card-body";
+    body.appendChild(facts(stallFacts(stall)));
     var grid = document.createElement("div");
     grid.className = "products";
     products.forEach(function (product) { grid.appendChild(productCard(product)); });
-    card.appendChild(grid);
-    card.appendChild(orderBlock(stall.name, stall));
+    body.appendChild(grid);
+    body.appendChild(orderBlock(stall.name, stall));
+    card.appendChild(body);
     return card;
   }
 
@@ -639,24 +642,27 @@
     top.appendChild(heading);
     summary.appendChild(top);
     card.appendChild(summary);
+    var body = document.createElement("div");
+    body.className = "card-body";
     if (ad.body) {
       var text = document.createElement("p");
       text.className = "ad-body";
       text.textContent = ad.body;
-      card.appendChild(text);
+      body.appendChild(text);
     }
     if (ad.pictures.length) {
       var pics = document.createElement("div");
       pics.className = "ad-pictures";
       ad.pictures.forEach(function (url) { addImage(pics, url, ""); });
-      card.appendChild(pics);
+      body.appendChild(pics);
     }
-    card.appendChild(facts(adFacts(ad)));
-    if (ad.status === "active") card.appendChild(orderBlock(shop ? shop.name : "", ad));
+    body.appendChild(facts(adFacts(ad)));
+    if (ad.status === "active") body.appendChild(orderBlock(shop ? shop.name : "", ad));
     else {
       var who = personRow(ad);
-      if (who) card.appendChild(who);
+      if (who) body.appendChild(who);
     }
+    card.appendChild(body);
     return card;
   }
 
