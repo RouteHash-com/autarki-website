@@ -60,13 +60,14 @@ The Autarki LSP is a Lightning node you open one channel to. In the wallet that 
 
 ## Fees, with a dollar hint
 
-Sats are the price. Hints on 7 November 2026 use about $276 for one XBT, from a USDC quote, and about $75,800 for one BTC. They move. A dollar hint does not change the sats.
+Sats are the price. One XBT sat and one BTC sat are not the same dollar. The wallet page reads the current NeoEX USDC quote and replaces these hints. A dollar hint does not change the sats. This file keeps the quote from the last publish: about $280 for one XBT, and about $75,000 for one BTC.
 
-- Routing through the LSP, at most 1,000 sats: about $0.003 on XBT, about $0.76 on BTC.
-- Inbound room of 20,000 sats costs 1,200 sats: about $0.003 on XBT, about $0.91 on BTC. That room is about $0.06 of XBT, or about $15 of BTC. The figure is the capacity.
-- Inbound room of 100,000 sats costs 2,000 sats: about $0.006 on XBT, about $1.52 on BTC. That room is about $0.28 of XBT, or about $76 of BTC.
+- Routing through the LSP, at most 1,000 sats: about $0.0028 on XBT, about $0.75 on BTC.
+- Inbound room of 20,000 sats costs 1,200 sats: about $0.0034 on XBT, about $0.90 on BTC. That room is about $0.06 of XBT, or about $15 of BTC. The figure is the capacity.
+- Inbound room of 100,000 sats costs 2,000 sats: about $0.0056 on XBT, about $1.50 on BTC. That room is about $0.28 of XBT, or about $75 of BTC.
+- On XBT those three fees are each under one cent. On BTC the routing cap is about 75 cents.
 - A card takes a percent of every sale. A common online rate is 2.9% plus $0.30, about $3.20 on a $100 sale. In person, 2.6% plus $0.15 is about $2.75 on $100.
-- Autarki does not charge the card and does not take that percent. On a $100 BTC sale the routing cap is about $0.76. On a sale near $5, the online card fee is about $0.45, and the BTC cap can cost more.
+- Autarki does not charge the card and does not take that percent. On a $100 BTC sale the routing cap is about $0.75. On a sale near $5, the online card fee is about $0.45, and the BTC cap can cost more.
 - Room is paid once. Opening a channel also pays a miner fee. That amount is whatever the chain asks that day.
 - A node publishes a fee to forward toward each peer, and each peer publishes a fee to forward back. Those are the fees in both directions. The routing cap is what you pay through the LSP. Inbound capacity is the room a shop buys.
 
