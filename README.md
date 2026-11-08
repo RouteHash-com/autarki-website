@@ -1,6 +1,6 @@
 # Autarki website
 
-Static marketing site for [autarki.app](https://autarki.app). The published files are in `site/`. There is no build step. `functions/api/spot.js` is a Pages Function. It reads the public NeoEX price list on the server and returns only the XBT and BTC quotes. The wallet page uses those quotes for the dollar hints. Sats stay the price.
+Static marketing site for [autarki.app](https://autarki.app). The published files are in `site/`. There is no build step. `functions/api/spot.js` is a Pages Function. It reads the public NeoEX price list on the server and returns only the XBT and BTC quotes. The wallet page uses those quotes for the dollar hints. Sats stay the price. `functions/api/iphone.js` sends an iPhone tester request to apple@autarki.app with the subject Apple Autarki Tester Request. It does not keep the address.
 
 Claims follow `autarki-marketing-brief.md`. That brief is not part of the published site.
 
@@ -14,7 +14,7 @@ python3 -m http.server 8080 -d site
 
 Open http://127.0.0.1:8080/
 
-That server does not run the Pages Function, so the wallet page keeps the last written dollar hints.
+That server does not run the Pages Functions, so the wallet page keeps the last written dollar hints and the iPhone form cannot send.
 
 Paper is the default contrast. Ink and Console stay in this browser.
 

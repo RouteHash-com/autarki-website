@@ -14,7 +14,7 @@ Store line already in use: **Your wallet and your shop. Lightning, Nostr, and on
 
 Autarki is a self-custodial wallet and a shop in one app. The same program receives and sends coins, lists a shop, takes a counter sale, posts a classified, hires a mining rig, and keeps a private note with another person. The person holds the 24 words. Autarki does not hold the keys, does not clear the sale, and does not take a fee from it. Shops and classifieds are public notes anyone can read. An order is a private note. The node that carries the order cannot read it. People can look through shops before they create a wallet. Sending an order, paying, and posting need the wallet open.
 
-Autarki is a beta. It runs on the person's own computer: StartOS, Umbrel, or Ubuntu. A 64-bit Android phone can install version 0.1.0 (3) of the same program from the public apk and keep its own wallet file. Request access is a separate Google sign-in. A phone that already has 0.1.0 (1) has to uninstall that copy first. A phone on the same network can still open the computer's page, and that phone holds no seed.
+Autarki is a beta. It runs on the person's own computer: StartOS, Umbrel, or Ubuntu. A 64-bit Android phone can install version 0.1.0 (3) of the same program from the public apk and keep its own wallet file. Request access is a separate Google sign-in. A phone that already has 0.1.0 (1) has to uninstall that copy first. An iPhone can request a TestFlight invite for version 0.1.0 (3). That request is an email to apple@autarki.app. It is not an App Store listing. A phone on the same network can still open the computer's page, and that phone holds no seed.
 
 ---
 
@@ -233,7 +233,7 @@ Four public signs. No stars, no thumbs, no review essays, and no zaps.
 
 ### Do not claim these
 
-- An App Store listing or a Play Store listing. Android 0.1.0 (3) is a public apk, plus request access. It is not a store listing. Do not mention an iPhone app.
+- An App Store listing or a Play Store listing. Android 0.1.0 (3) is a public apk, plus request access. It is not a store listing. iPhone 0.1.0 (3) is a TestFlight invite request, not an App Store listing.
 - On-device mining. Apple's rules also forbid mining on the device. The hire is a remote rig.
 - A receipt printer.
 - Zaps, a public chat room, a group chat, reactions, or a Lightning address as a mailbox.

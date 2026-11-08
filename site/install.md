@@ -1,6 +1,6 @@
 # Install
 
-> Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi leaves Lightning off. A 64-bit Android phone can install its own copy.
+> Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi leaves Lightning off. A 64-bit Android phone can install its own copy. An iPhone can request a TestFlight invite.
 
 The page is [https://autarki.app/install](https://autarki.app/install).
 
@@ -29,5 +29,11 @@ Download [autarki-android.apk](https://github.com/RouteHash-com/autarki/releases
 This package does not include Lightning. The page still offers it, and it stays closed until a node is connected. A phone that only opens your computer's page holds no seed. That path is still there.
 
 This build was checked on an emulator. It has not been checked on a handset yet.
+
+## iPhone
+
+Version 0.1.0 (3) is the same program as the computer. It keeps its own wallet file. Restoring the 24 words onto the phone makes a second copy. This package does not include Lightning. The page still offers it, and it stays closed until a node is connected.
+
+This build is ready to test on TestFlight. It is not on the App Store. Enter your email on [the install page](https://autarki.app/install) and request an invite. The request goes to apple@autarki.app with the subject Apple Autarki Tester Request. Install TestFlight, then open the invite when it arrives.
 
 XBT Knots and Bitcoin Core do not run on the same computer. Mine, a Lightning payment, and a shipment need AMD or Intel.

@@ -2,7 +2,7 @@
 
 > The 24 words stay on your device. The camera scans a code. Location fills the shop. The page talks to relays and nodes.
 
-This policy covers the Autarki program and this site. It is dated 7 November 2026. This page is [https://autarki.app/privacy](https://autarki.app/privacy).
+This policy covers the Autarki program and this site. It is dated 8 November 2026. This page is [https://autarki.app/privacy](https://autarki.app/privacy).
 
 ## The 24 words
 
@@ -53,6 +53,8 @@ This site does not keep an account. Paper, Ink, and Console stay in this browser
 Cloudflare serves autarki.app and can see an ordinary request: the address, the page, and the time. There is no advertising and no tracking across other sites.
 
 A tester install is offered through Firebase. That sign-in is Google's. The phone app does not include the Firebase library.
+
+An iPhone tester request sends the email you type to apple@autarki.app. The subject is Apple Autarki Tester Request. This site does not keep that address.
 
 The page can ask to show a notice when something arrives. You can refuse. The notice is drawn on the device.
 

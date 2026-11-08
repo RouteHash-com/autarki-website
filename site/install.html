@@ -12,13 +12,13 @@
     } catch (e) {}
   </script>
   <title>Install. Autarki</title>
-  <meta name="description" content="Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi leaves Lightning off. A 64-bit Android phone can install its own copy.">
+  <meta name="description" content="Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi leaves Lightning off. A 64-bit Android phone can install its own copy. An iPhone can request a TestFlight invite.">
   <link rel="canonical" href="https://autarki.app/install">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta property="og:site_name" content="Autarki">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Install. Autarki">
-  <meta property="og:description" content="Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi leaves Lightning off. A 64-bit Android phone can install its own copy.">
+  <meta property="og:description" content="Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi leaves Lightning off. A 64-bit Android phone can install its own copy. An iPhone can request a TestFlight invite.">
   <meta property="og:url" content="https://autarki.app/install">
   <meta property="og:image" content="https://autarki.app/assets/og.png">
   <meta property="og:image:type" content="image/png">
@@ -27,7 +27,7 @@
   <meta property="og:image:alt" content="Autarki. No platform. Just the sale.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Install. Autarki">
-  <meta name="twitter:description" content="Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi leaves Lightning off. A 64-bit Android phone can install its own copy.">
+  <meta name="twitter:description" content="Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi leaves Lightning off. A 64-bit Android phone can install its own copy. An iPhone can request a TestFlight invite.">
   <meta name="twitter:image" content="https://autarki.app/assets/og.png">
   <meta name="twitter:image:alt" content="Autarki. No platform. Just the sale.">
   <link rel="alternate" type="text/markdown" href="https://autarki.app/install.md" title="Install">
@@ -71,7 +71,7 @@
         "@id": "https://autarki.app/install#webpage",
         "url": "https://autarki.app/install",
         "name": "Install. Autarki",
-        "description": "Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi leaves Lightning off. A 64-bit Android phone can install its own copy.",
+        "description": "Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi leaves Lightning off. A 64-bit Android phone can install its own copy. An iPhone can request a TestFlight invite.",
         "isPartOf": {
           "@id": "https://autarki.app/#website"
         },
@@ -207,6 +207,26 @@
       </div>
     </section>
 
+    <section class="band" id="iphone">
+      <div class="wrap prose">
+        <h2>iPhone</h2>
+        <p>Version 0.1.0 (3) is the same program as the computer. It keeps its own wallet file. Restoring the 24 words onto the phone makes a second copy. This package does not include Lightning. The page still offers it, and it stays closed until a node is connected.</p>
+        <p>This build is ready to test on TestFlight. It is not on the App Store. Enter your email and request an invite. Install TestFlight, then open the invite when it arrives.</p>
+        <form class="request-form" action="/api/iphone" method="post">
+          <label for="iphone-email">Email</label>
+          <div class="request-line">
+            <input id="iphone-email" name="email" type="email" autocomplete="email" required maxlength="254">
+            <button class="button" type="submit">Request an invite</button>
+          </div>
+          <p class="request-status" role="status"></p>
+          <p class="request-trap" aria-hidden="true">
+            <label for="iphone-company">Company</label>
+            <input id="iphone-company" name="company" type="text" tabindex="-1" autocomplete="off">
+          </p>
+        </form>
+      </div>
+    </section>
+
     <section class="band">
       <div class="wrap prose">
         <h2>StartOS</h2>
@@ -260,10 +280,11 @@
     <section class="band">
       <div class="wrap">
         <h2>Install Autarki.</h2>
-        <p class="lede">Download release 0.1.0 and check <code>SHA256SUMS</code>. The Android file is version 0.1.0 (3). A phone that already has 0.1.0 (1) uninstalls that copy first.</p>
+        <p class="lede">Download release 0.1.0 and check <code>SHA256SUMS</code>. The Android file is version 0.1.0 (3). A phone that already has 0.1.0 (1) uninstalls that copy first. An iPhone requests a TestFlight invite for version 0.1.0 (3).</p>
         <div class="actions">
           <a class="button" href="https://github.com/RouteHash-com/autarki/releases/tag/0.1.0">Install Autarki</a>
           <a class="button button-ghost" href="#android">Install on Android</a>
+          <a class="button button-ghost" href="#iphone">Request the iPhone invite</a>
           <a class="button button-ghost" href="/notice-board">Look through the notice board</a>
         </div>
       </div>
@@ -277,6 +298,7 @@
       <ul class="footer-links">
         <li><a href="https://github.com/RouteHash-com/autarki/releases/tag/0.1.0">Download 0.1.0</a></li>
         <li><a href="/install#android">Android 0.1.0</a></li>
+        <li><a href="/install#iphone">iPhone 0.1.0</a></li>
         <li><a href="https://github.com/RouteHash-com/umbrel-store">Umbrel community store</a></li>
         <li><a href="https://discord.gg/VBxvzQXvt">Discord #autarki</a></li>
         <li><a href="/support">Support</a></li>
