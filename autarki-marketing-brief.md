@@ -14,7 +14,7 @@ Store line already in use: **Your wallet and your shop. Lightning, Nostr, and on
 
 Autarki is a self-custodial wallet and a shop in one app. The same program receives and sends coins, lists a shop, takes a counter sale, posts a classified, hires a mining rig, and keeps a private note with another person. The person holds the 24 words. Autarki does not hold the keys, does not clear the sale, and does not take a fee from it. Shops and classifieds are public notes anyone can read. An order is a private note. The node that carries the order cannot read it. People can look through shops before they create a wallet. Sending an order, paying, and posting need the wallet open.
 
-Autarki is a beta. It runs on the person's own computer: StartOS, Umbrel, or Ubuntu. A 64-bit Android phone can install version 0.1.0 (3) of the same program from the public apk and keep its own wallet file. Request access is a separate Google sign-in. A phone that already has 0.1.0 (1) has to uninstall that copy first. An iPhone can request a TestFlight invite for version 0.1.0 (3). That request is an email to apple@autarki.app. It is not an App Store listing. A phone on the same network can still open the computer's page, and that phone holds no seed.
+Autarki is a beta. It runs on the person's own computer: StartOS, Umbrel, or Ubuntu. A 64-bit Android phone can install version 0.1.0 (5) of the same program from the public apk and keep its own wallet file. Request access is a separate Google sign-in. A phone that already has 0.1.0 (1) has to uninstall that copy first. An iPhone can request a TestFlight invite for version 0.1.0 (3). That request is an email to apple@autarki.app. It is not an App Store listing. A phone on the same network can still open the computer's page, and that phone holds no seed.
 
 ---
 
@@ -54,7 +54,7 @@ XBT Knots and Bitcoin Core do not run on the same computer.
 
 - One install is one wallet. The same program is the shop and the customer.
 - The backup is 24 English words, shown once. Write them on paper. The words restore the funds on another machine. They do not restore the shop book, the orders, the catalog, or a Lightning channel.
-- A new wallet can be made from 99 digits, each from 1 through 6. This computer does not add its own randomness.
+- A new wallet can be made from 99 digits, each from 1 through 6. This computer adds its own randomness. The same digits do not rebuild a wallet. The 24 words shown once are the only backup.
 - A password is optional and at least 12 characters when set. It encrypts only this copy of the wallet file. It is not part of the 24 words and it is not a BIP-39 passphrase. A blank password stores the words unencrypted on the device. A backup of that service is then the seed. Say that plainly. Do not claim a secure element, biometrics, or that a backed-up file is unreadable.
 - Closing the browser does not lock the page. Restarting Autarki does. There is no Lock button.
 - Receive, Send, and Balance. Amounts are whole sats. Prepare builds the payment. Sign is a separate press. Broadcast is a separate press. The browser never receives the signed transaction.
@@ -233,7 +233,7 @@ Four public signs. No stars, no thumbs, no review essays, and no zaps.
 
 ### Do not claim these
 
-- An App Store listing or a Play Store listing. Android 0.1.0 (3) is a public apk, plus request access. It is not a store listing. iPhone 0.1.0 (3) is a TestFlight invite request, not an App Store listing.
+- An App Store listing or a Play Store listing. Android 0.1.0 (5) is a public apk, plus request access. It is not a store listing. iPhone 0.1.0 (3) is a TestFlight invite request, not an App Store listing.
 - On-device mining. Apple's rules also forbid mining on the device. The hire is a remote rig.
 - A receipt printer.
 - Zaps, a public chat room, a group chat, reactions, or a Lightning address as a mailbox.

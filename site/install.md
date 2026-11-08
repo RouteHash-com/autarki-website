@@ -22,13 +22,11 @@ AMD and Intel include Lightning. A Raspberry Pi runs the wallet, the shop, Nostr
 
 ## Android
 
-Version 0.1.0 (3) is the same program as the computer. The phone needs a 64-bit processor and Android 8 or newer. It keeps its own wallet file. Restoring the 24 words onto the phone makes a second copy.
+Version 0.1.0 (5) is the same program as the computer. The page finishes opening. The phone needs a 64-bit processor and Android 8 or newer. It keeps its own wallet file. Restoring the 24 words onto the phone makes a second copy. The same 99 digits do not rebuild a wallet. The phone adds its own randomness. The 24 words shown once are the only backup.
 
-Download [autarki-android.apk](https://github.com/RouteHash-com/autarki/releases/download/0.1.0/autarki-android.apk) from release 0.1.0 and allow the phone to install it. Check that file against `SHA256SUMS` from the same release. A phone that already has 0.1.0 (1) has to uninstall that copy before this one will install. The StartOS and Umbrel packages on release 0.1.0 were left as they were. Or [request access](https://appdistribution.firebase.dev/i/2ae8a6c81ce866a4). Sign in with a Google account. Firebase emails the install.
+Download [autarki-android.apk](https://github.com/RouteHash-com/autarki/releases/download/0.1.0/autarki-android.apk) from release 0.1.0 and allow the phone to install it. Check that file against `SHA256SUMS` from the same release. This file installs over 0.1.0 (4) and 0.1.0 (3). A phone that already has 0.1.0 (1) has to uninstall that copy before this one will install. StartOS inside this release is 0.1.0:28. The Umbrel listing is 0.1.17. Or [request access](https://appdistribution.firebase.dev/i/2ae8a6c81ce866a4). Sign in with a Google account. Firebase emails the install.
 
 This package does not include Lightning. The page still offers it, and it stays closed until a node is connected. A phone that only opens your computer's page holds no seed. That path is still there.
-
-This build was checked on an emulator. It has not been checked on a handset yet.
 
 ## iPhone
 
