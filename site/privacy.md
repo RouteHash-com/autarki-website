@@ -2,7 +2,7 @@
 
 > The 24 words stay on your device. The camera scans a code. Location fills the shop. The page talks to relays and nodes.
 
-This policy covers the Autarki program and this site. It is dated 8 November 2026. This page is [https://autarki.app/privacy](https://autarki.app/privacy).
+This policy covers the Autarki program and this site. It is dated 10 November 2026. This page is [https://autarki.app/privacy](https://autarki.app/privacy).
 
 ## The 24 words
 
@@ -12,7 +12,7 @@ The phone keeps its wallet file in the app's private storage. That file is not i
 
 This site does not sign in. It does not ask for the 24 words, and it cannot recover them.
 
-The wallet's 24 words are not given to a Lightning node. The phone package does not include Lightning. The page still offers it, and it stays closed until a node is connected.
+The wallet's 24 words are not given to a Lightning node. The Android package includes Lightning for Blake2b XBT bitcoin and SHA-256 BTC bitcoin. The iPhone build does not start Lightning. On that build, Use other Autarki Lightning nodes stays on.
 
 ## The camera
 

@@ -14,7 +14,7 @@ Store line already in use: **Your wallet and your shop. Lightning, Nostr, and on
 
 Autarki is a self-custodial wallet and a shop in one app. The same program receives and sends coins, lists a shop, takes a counter sale, posts a classified, hires a mining rig, and keeps a private note with another person. The person holds the 24 words. Autarki does not hold the keys, does not clear the sale, and does not take a fee from it. Shops and classifieds are public notes anyone can read. An order is a private note. The node that carries the order cannot read it. People can look through shops before they create a wallet. Sending an order, paying, and posting need the wallet open.
 
-Autarki is a beta. It runs on the person's own computer: StartOS, Umbrel, or Ubuntu. A 64-bit Android phone can install version 0.1.0 (5) of the same program from the public apk and keep its own wallet file. Request access is a separate Google sign-in. A phone that already has 0.1.0 (1) has to uninstall that copy first. An iPhone can request a TestFlight invite for version 0.1.0 (3). That request is an email to apple@autarki.app. It is not an App Store listing. A phone on the same network can still open the computer's page, and that phone holds no seed.
+Autarki is a beta. It runs on the person's own computer: StartOS, Umbrel, or Ubuntu. The StartOS package for AMD or Intel on release 0.1.0 is 0.1.0:31. The Umbrel listing is 0.1.19. The Raspberry Pi StartOS package and the Umbrel arm64 image are still the previous page. A 64-bit Android phone can install version 0.1.0 (17) of the same program from the public apk. That package includes Lightning for Blake2b XBT bitcoin and SHA-256 BTC bitcoin. It installs over the previous signed 0.1.0 package. A phone that already has 0.1.0 (1) has to uninstall that copy first. An iPhone can request a TestFlight invite for version 0.1.0, build 4. That build does not start Lightning. The request is an email to apple@autarki.app. It is not an App Store listing. A phone on the same network can still open the computer's page, and that phone holds no seed.
 
 ---
 
@@ -54,7 +54,7 @@ XBT Knots and Bitcoin Core do not run on the same computer.
 
 - One install is one wallet. The same program is the shop and the customer.
 - The backup is 24 English words, shown once. Write them on paper. The words restore the funds on another machine. They do not restore the shop book, the orders, the catalog, or a Lightning channel.
-- A new wallet can be made from 99 digits, each from 1 through 6. This computer adds its own randomness. The same digits do not rebuild a wallet. The 24 words shown once are the only backup.
+- A new wallet can be made from 99 digits, each from 1 through 6. The same 99 digits do not rebuild a wallet. That device adds its own randomness.
 - A password is optional and at least 12 characters when set. It encrypts only this copy of the wallet file. It is not part of the 24 words and it is not a BIP-39 passphrase. A blank password stores the words unencrypted on the device. A backup of that service is then the seed. Say that plainly. Do not claim a secure element, biometrics, or that a backed-up file is unreadable.
 - Closing the browser does not lock the page. Restarting Autarki does. There is no Lock button.
 - Receive, Send, and Balance. Amounts are whole sats. Prepare builds the payment. Sign is a separate press. Broadcast is a separate press. The browser never receives the signed transaction.
@@ -69,7 +69,10 @@ XBT Knots and Bitcoin Core do not run on the same computer.
 - On an AMD or Intel computer, Autarki starts two Lightning nodes: one for Blake2b XBT and one for SHA-256 BTC. The person does not install a separate Lightning app and does not paste a node address, a macaroon, or a certificate.
 - The first start of each node takes about ten minutes. The page keeps checking. Later starts are quicker.
 - On-chain is the bank. Lightning is the money loaded before shopping in person. Savings stay on-chain. The first Lightning payment still needs a channel. After that channel has one confirmation, a later payment on it does not wait for a new confirmation.
-- A Raspberry Pi, and an Umbrel arm64 package, run the wallet, the shop, Nostr, and on-chain payment. Lightning stays off on those packages. A Lightning payment, a shipment, and Mine need the AMD or Intel package. Do not claim built-in Lightning on a Pi.
+- Android 0.1.0 (17) includes Lightning for Blake2b XBT bitcoin and SHA-256 BTC bitcoin.
+- A Raspberry Pi, and an Umbrel arm64 package, omit the Lightning programs. Lightning stays off on those packages. Those files are still the previous page. Do not claim built-in Lightning on a Pi.
+- Use other Autarki Lightning nodes is under Settings, then Coin Nodes. Leave it off on AMD and Intel. An iPhone and a Raspberry Pi keep it on, for another Autarki that stays running. An open channel keeps the built-in nodes running.
+- A shipment and Mine need the AMD or Intel package.
 - Blake2b Lightning and SHA-256 Lightning are different networks. A Bitcoin payment request is refused on the Blake2b rail.
 - Each Lightning node has its own backup, separate from the 24 words. The Blake2b node has its own 24 words. The Bitcoin Lightning node does not use a phrase. Those backups are shown once. Do not tell people to reuse the wallet words for Lightning.
 - When a purchase needs a channel, the app can open one. The person does not type a node name for that purchase. A channel that can already cover the amount pays without a new on-chain wait.
@@ -233,7 +236,7 @@ Four public signs. No stars, no thumbs, no review essays, and no zaps.
 
 ### Do not claim these
 
-- An App Store listing or a Play Store listing. Android 0.1.0 (5) is a public apk, plus request access. It is not a store listing. iPhone 0.1.0 (3) is a TestFlight invite request, not an App Store listing.
+- An App Store listing or a Play Store listing. Android 0.1.0 (17) is a public apk, plus request access. It is not a store listing. iPhone 0.1.0 build 4 is a TestFlight invite request, not an App Store listing.
 - On-device mining. Apple's rules also forbid mining on the device. The hire is a remote rig.
 - A receipt printer.
 - Zaps, a public chat room, a group chat, reactions, or a Lightning address as a mailbox.

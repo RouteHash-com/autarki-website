@@ -33,8 +33,10 @@ Pay with XBT or Pay with BTC. You choose the coin, and the payment stays in that
 ## Lightning, on AMD and Intel
 
 - AMD or Intel StartOS, Umbrel, and Ubuntu start Blake2b Lightning and SHA-256 Lightning.
-- A Raspberry Pi and Umbrel arm64 start the wallet and the shop. Lightning stays off.
-- A Lightning payment, a shipment, and Mine need AMD or Intel.
+- Android 0.1.0 (17) includes Lightning for Blake2b XBT bitcoin and SHA-256 BTC bitcoin.
+- A Raspberry Pi and Umbrel arm64 omit the Lightning programs. Lightning stays off there.
+- Use other Autarki Lightning nodes is under Settings, then Coin Nodes. Leave it off on AMD and Intel. An iPhone and a Raspberry Pi keep it on, for another Autarki that stays running.
+- A shipment and Mine need AMD or Intel.
 - There is no second Lightning app. Install does not open a channel.
 - On-chain needs no channel. A Lightning payment spends sats already locked in a channel between two nodes.
 - Until your own coin node is connected, Autarki's servers can see a normal address. They do not make a silent-payment code.

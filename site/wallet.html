@@ -162,7 +162,7 @@
         <ul class="brief">
           <li>24 English words, shown once. They restore the funds on another machine.</li>
           <li>They do not restore the shop book, the orders, the catalog, or a Lightning channel.</li>
-          <li>A new wallet can be 99 digits, each from 1 through 6. This computer adds its own randomness. The same digits do not rebuild a wallet. The 24 words shown once are the only backup.</li>
+          <li>A new wallet can be 99 digits, each from 1 through 6. The same 99 digits do not rebuild a wallet. That device adds its own randomness.</li>
           <li>A password is optional. At least 12 characters. It encrypts only your copy of the wallet file.</li>
           <li>It is not part of the 24 words. Blank leaves the words unencrypted on your computer. A backup of that service is then the seed.</li>
           <li>Closing the browser does not lock the page. Restarting Autarki does. There is no Lock button.</li>
@@ -215,8 +215,10 @@
             <h3>Where it runs.</h3>
             <ul class="brief">
               <li>AMD or Intel StartOS, Umbrel, and Ubuntu start Blake2b Lightning and SHA-256 Lightning.</li>
-              <li>A Raspberry Pi and Umbrel arm64 start the wallet and the shop. Lightning stays off.</li>
-              <li>A Lightning payment, a shipment, and Mine need AMD or Intel.</li>
+              <li>Android 0.1.0 (17) includes Lightning for Blake2b XBT bitcoin and SHA-256 BTC bitcoin.</li>
+              <li>A Raspberry Pi and Umbrel arm64 omit the Lightning programs. Lightning stays off there.</li>
+              <li>Use other Autarki Lightning nodes is under Settings, then Coin Nodes. Leave it off on AMD and Intel. An iPhone and a Raspberry Pi keep it on, for another Autarki that stays running.</li>
+              <li>A shipment and Mine need AMD or Intel.</li>
             </ul>
           </article>
           <article>

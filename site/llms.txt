@@ -19,8 +19,8 @@ Autarki is in beta. It runs on your computer. A 64-bit Android phone can install
 ## Optional
 
 - [Download 0.1.0](https://github.com/RouteHash-com/autarki/releases/tag/0.1.0): The public download. Check SHA256SUMS from that same release.
-- [Android 0.1.0](https://github.com/RouteHash-com/autarki/releases/download/0.1.0/autarki-android.apk): Version 0.1.0 (3). Download for a 64-bit Android phone. Allow the phone to install it. A phone that already has 0.1.0 (1) has to uninstall that copy first. The phone keeps its own wallet file. Request access at https://appdistribution.firebase.dev/i/2ae8a6c81ce866a4.
-- [iPhone 0.1.0](https://autarki.app/install#iphone): Version 0.1.0 (3) is ready to test on TestFlight. It is not on the App Store. Request an invite with your email. The request goes to apple@autarki.app with the subject Apple Autarki Tester Request.
+- [Android 0.1.0](https://github.com/RouteHash-com/autarki/releases/download/0.1.0/autarki-android.apk): Version 0.1.0 (17). Lightning for Blake2b XBT bitcoin and SHA-256 BTC bitcoin is in this package. Download for a 64-bit Android phone. Allow the phone to install it. This file installs over the previous signed 0.1.0 package. A phone that already has 0.1.0 (1) has to uninstall that copy first. Request access at https://appdistribution.firebase.dev/i/2ae8a6c81ce866a4.
+- [iPhone 0.1.0](https://autarki.app/install#iphone): Version 0.1.0, build 4. This build does not start Lightning. It is not on the App Store. Request an invite with your email. The request goes to apple@autarki.app with the subject Apple Autarki Tester Request.
 - [Source](https://github.com/RouteHash-com/autarki): The Autarki repository.
 - [Umbrel community store](https://github.com/RouteHash-com/umbrel-store): The RouteHash community store. It is not the official Umbrel App Store.
 - [Discord #autarki](https://discord.gg/VBxvzQXvt): Bug reports.
