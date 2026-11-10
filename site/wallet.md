@@ -59,6 +59,7 @@ The Autarki LSP is a Lightning node you open one channel to. In the wallet that 
 - The seller's node has to be on. It does not need its own confirmed sats. Zero inbound capacity does not block a buyer who will open a channel.
 - The LSP does not hold the sale and does not take a cut of the catalog price. Lightning still costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000. A buyer still needs a channel.
 - A mining payment does not use the LSP. Install does not open a channel. A Raspberry Pi and Umbrel arm64 leave Lightning off.
+- Sitting at your computer, Use Autarki's pool does the same open. The [channel page](https://autarki.app/channel) is the extra door for a node that is not the page in front of you. Fill Send does not open a channel.
 
 ## Fees, with a dollar hint
 
