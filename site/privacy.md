@@ -54,7 +54,7 @@ Cloudflare serves autarki.app and can see an ordinary request: the address, the 
 
 A tester install is offered through Firebase. That sign-in is Google's. The phone app does not include the Firebase library.
 
-An iPhone tester request sends the email you type to apple@autarki.app. The subject is Apple Autarki Tester Request. This site does not keep that address.
+An iPhone tester request is for apple@autarki.app. The subject is Apple Autarki Tester Request. This site does not keep that address. If the form does not send, write to that address with that subject.
 
 The page can ask to show a notice when something arrives. You can refuse. The notice is drawn on the device.
 

@@ -2,5 +2,4 @@ name = "autarki"
 pages_build_output_dir = "site"
 compatibility_date = "2026-11-05"
 
-[[send_email]]
-name = "EMAIL"
+# Pages rejects send_email here. Putting it back fails the production build.
