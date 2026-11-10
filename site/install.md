@@ -36,4 +36,4 @@ This build does not start Lightning. Use other Autarki Lightning nodes stays on,
 
 It is not on the App Store. Enter your email on [the install page](https://autarki.app/install) and request an invite. The request goes to apple@autarki.app with the subject Apple Autarki Tester Request. Install TestFlight, then open the invite when it arrives.
 
-XBT Knots and Bitcoin Core do not run on the same computer. Mine, a Lightning payment, and a shipment need AMD or Intel.
+XBT Knots and Bitcoin Core do not run on the same computer. A Lightning payment runs on AMD or Intel, and in Android 0.1.0 (17). Mine and a shipment need AMD or Intel.
