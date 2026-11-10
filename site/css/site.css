@@ -275,9 +275,27 @@ button.button:disabled {
   filter: brightness(1.08);
 }
 
+.prose a.button,
+.panel a.button,
+.example a.button {
+  color: var(--on-accent);
+}
+
 .button-ghost {
   background: transparent;
   color: var(--ink);
+}
+
+.prose a.button-ghost,
+.panel a.button-ghost,
+.example a.button-ghost {
+  color: var(--ink);
+}
+
+.prose a.button-ghost:hover,
+.panel a.button-ghost:hover,
+.example a.button-ghost:hover {
+  color: var(--accent);
 }
 
 .button-ghost:hover {
@@ -366,6 +384,7 @@ button.button:disabled {
 .panel a,
 .example a {
   color: var(--accent);
+  overflow-wrap: anywhere;
 }
 
 .more {

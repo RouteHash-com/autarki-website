@@ -14,7 +14,7 @@ Store line already in use: **Your wallet and your shop. Lightning, Nostr, and on
 
 Autarki is a self-custodial wallet and a shop in one app. The same program receives and sends coins, lists a shop, takes a counter sale, posts a classified, hires a mining rig, and keeps a private note with another person. The person holds the 24 words. Autarki does not hold the keys, does not clear the sale, and does not take a fee from it. Shops and classifieds are public notes anyone can read. An order is a private note. The node that carries the order cannot read it. People can look through shops before they create a wallet. Sending an order, paying, and posting need the wallet open.
 
-Autarki is a beta. It runs on the person's own computer: StartOS, Umbrel, or Ubuntu. The StartOS package for AMD or Intel on release 0.1.0 is 0.1.0:31. The Umbrel listing is 0.1.19. The Raspberry Pi StartOS package and the Umbrel arm64 image are still the previous page. A 64-bit Android phone can install version 0.1.0 (17) of the same program from the public apk. That package includes Lightning for Blake2b XBT bitcoin and SHA-256 BTC bitcoin. It installs over the previous signed 0.1.0 package. A phone that already has 0.1.0 (1) has to uninstall that copy first. An iPhone can request a TestFlight invite for version 0.1.0, build 4. That build does not start Lightning. The request is for apple@autarki.app. If the form does not send, the page says to write to that address with the subject Apple Autarki Tester Request. Pages rejects an email binding in wrangler.toml, so do not add send_email there. It is not an App Store listing. A phone on the same network can still open the computer's page, and that phone holds no seed.
+Autarki is a beta. It runs on the person's own computer: StartOS, Umbrel, or Ubuntu. The StartOS package for AMD or Intel on release 0.1.0 is 0.1.0:31. The Umbrel listing is 0.1.19. The Raspberry Pi StartOS package and the Umbrel arm64 image are still the previous page. A 64-bit Android phone can install version 0.1.0 (17) of the same program from the public apk. That package includes Lightning for Blake2b XBT bitcoin and SHA-256 BTC bitcoin. It installs over the previous signed 0.1.0 package. A phone that already has 0.1.0 (1) has to uninstall that copy first. An iPhone joins the public TestFlight test for version 0.1.0, build 4, at https://testflight.apple.com/join/2WMBzSpM. That build does not start Lightning. It is not an App Store listing. Do not add send_email to wrangler.toml. Pages rejects it and the production build fails. A phone on the same network can still open the computer's page, and that phone holds no seed.
 
 ---
 
@@ -241,7 +241,7 @@ Four public signs. No stars, no thumbs, no review essays, and no zaps.
 
 ### Do not claim these
 
-- An App Store listing or a Play Store listing. Android 0.1.0 (17) is a public apk, plus request access. It is not a store listing. iPhone 0.1.0 build 4 is a TestFlight invite request, not an App Store listing.
+- An App Store listing or a Play Store listing. Android 0.1.0 (17) is a public apk, plus request access. It is not a store listing. iPhone 0.1.0 build 4 is the public TestFlight test at https://testflight.apple.com/join/2WMBzSpM, not an App Store listing.
 - On-device mining. Apple's rules also forbid mining on the device. The hire is a remote rig.
 - A receipt printer.
 - Zaps, a public chat room, a group chat, reactions, or a Lightning address as a mailbox.

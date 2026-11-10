@@ -12,7 +12,7 @@ Autarki is in beta. It runs on your computer. A 64-bit Android phone can install
 - [Shop](https://autarki.app/shop.md): The shop runs on your computer. The stall is public. The order is private. Autarki does not take a cut of the catalog price. Lightning has a routing fee and a room fee.
 - [Classifieds](https://autarki.app/classifieds.md): Ship pays with Lightning. With a float, the coins sit on the seller's node until Mark received. The named referee decides and does not hold the coins.
 - [Mining](https://autarki.app/mining.md): Paste a RouteHash token, then click Mine XBT or Mine BTC. The next reward address is your wallet's. Nothing is spent until Mine.
-- [Install](https://autarki.app/install.md): Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi leaves Lightning off. A 64-bit Android phone can install its own copy. An iPhone can request a TestFlight invite.
+- [Install](https://autarki.app/install.md): Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi leaves Lightning off. A 64-bit Android phone can install its own copy. An iPhone can join the public TestFlight test.
 - [Privacy](https://autarki.app/privacy.md): The 24 words stay on your device. The camera scans a code. Location fills the shop. The page talks to relays and nodes.
 - [Support](https://autarki.app/support.md): Help with Autarki is in Discord #autarki. This site does not sign in and cannot recover the 24 words.
 - [Another node](https://autarki.app/channel.md): Incoming room for a Lightning node that is not the Autarki page in front of you. Blake2b XBT, then SHA-256 BTC. The price is sats. This page does not take the fee. A bare fee does not name the node.
@@ -21,7 +21,7 @@ Autarki is in beta. It runs on your computer. A 64-bit Android phone can install
 
 - [Download 0.1.0](https://github.com/RouteHash-com/autarki/releases/tag/0.1.0): The public download. Check SHA256SUMS from that same release.
 - [Android 0.1.0](https://github.com/RouteHash-com/autarki/releases/download/0.1.0/autarki-android.apk): Version 0.1.0 (17). Lightning for Blake2b XBT bitcoin and SHA-256 BTC bitcoin is in this package. Download for a 64-bit Android phone. Allow the phone to install it. This file installs over the previous signed 0.1.0 package. A phone that already has 0.1.0 (1) has to uninstall that copy first. Request access at https://appdistribution.firebase.dev/i/2ae8a6c81ce866a4.
-- [iPhone 0.1.0](https://autarki.app/install#iphone): Version 0.1.0, build 4. This build does not start Lightning. It is not on the App Store. Request an invite with your email. The request goes to apple@autarki.app with the subject Apple Autarki Tester Request.
+- [iPhone 0.1.0](https://testflight.apple.com/join/2WMBzSpM): Version 0.1.0, build 4. This build does not start Lightning. It is not on the App Store. Join the public TestFlight test.
 - [Source](https://github.com/RouteHash-com/autarki): The Autarki repository.
 - [Umbrel community store](https://github.com/RouteHash-com/umbrel-store): The RouteHash community store. It is not the official Umbrel App Store.
 - [Discord #autarki](https://discord.gg/VBxvzQXvt): Bug reports.
