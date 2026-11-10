@@ -36,6 +36,8 @@ The wallet talks to Nostr relays. A stall, a product, and a classified are publi
 
 Until a shop names its own relays, the wallet uses Autarki's relay. A shop can name other relays. This site's notice board asks Autarki's relay, shows what came back, and closes. It does not follow a shop onto another relay, and it stores nothing.
 
+The classifieds page publishes a note when a Nostr extension in this browser signs it. The key stays in that extension. This site does not ask for the key and does not keep the note. The note is public on the relay the notice board reads.
+
 A relay sees the connection from your device, including the network address, and the notes published there. Autarki does not take the order.
 
 ## Nodes

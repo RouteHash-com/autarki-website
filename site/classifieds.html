@@ -149,6 +149,7 @@
         <p class="more"><a href="/notice-board">See the classifieds that are published</a></p>
         <nav class="page-nav" aria-label="On this page">
           <a href="#post">What you can post</a>
+          <a href="#publish">Post an ad</a>
           <a href="#protection">The coins stay held</a>
           <a href="#dispute">Not received</a>
           <a href="#signs">Four public signs</a>
@@ -170,6 +171,98 @@
           <li>Pick up pays on-chain or with Lightning, in XBT or in BTC.</li>
           <li>Ship pays with Lightning only. No on-chain.</li>
         </ul>
+      </div>
+    </section>
+
+    <section class="band" id="publish">
+      <div class="wrap">
+        <h2>Post an ad.</h2>
+        <p class="lede">A signed note from any Nostr key shows on the wallet board. The poster does not need an Autarki wallet.</p>
+        <ul class="brief">
+          <li>A Nostr extension in this browser signs the note. This page does not ask for a secret key.</li>
+          <li>The note is published to the relay the notice board reads. A note sent only to some other relay never arrives.</li>
+          <li>Classifieds has to be turned on, and the wallet has to be unlocked, or that board stays hidden.</li>
+          <li>A title is one line, at most 80 characters. A missing title is dropped.</li>
+          <li>A listing id is 1 to 256 characters with no spaces. Leave it blank and this page chooses one. The same key and the same id replace the note.</li>
+          <li>The body is at most 4000 characters.</li>
+          <li>A price in whole sats of XBT or BTC can be paid when the note also carries that chain's silent-payment code. This page cannot make the code.</li>
+          <li>A dollar amount, a fraction, or any other currency is shown as text and cannot be paid.</li>
+          <li>Ship appears when the note names a public Lightning node for a chain that has a code.</li>
+          <li>Mark sold or Cancel this ad hides the note. A person a wallet has blocked or ignored is hidden on that wallet only.</li>
+          <li>This page checks the note before it is signed. A note this board does not carry is not sent.</li>
+        </ul>
+        <form class="request-form" id="classified-post" action="/classifieds#publish" method="post" onsubmit="return false" autocomplete="off">
+          <div class="post-field">
+            <label for="classified-title">Title</label>
+            <input id="classified-title" name="title" type="text" maxlength="80" autocomplete="off" spellcheck="true">
+          </div>
+          <div class="post-field">
+            <label for="classified-d">Listing id</label>
+            <input id="classified-d" name="d" type="text" maxlength="256" autocomplete="off" spellcheck="false" placeholder="Blank chooses one">
+          </div>
+          <div class="post-field">
+            <label for="classified-summary">Summary</label>
+            <input id="classified-summary" name="summary" type="text" maxlength="280" autocomplete="off">
+          </div>
+          <div class="post-field">
+            <label for="classified-body">The ad</label>
+            <textarea id="classified-body" name="body" maxlength="4000"></textarea>
+          </div>
+          <div class="post-field">
+            <label for="classified-category">Category</label>
+            <select id="classified-category" name="category">
+              <option value="">Choose one</option>
+              <option value="goods">Goods</option>
+              <option value="services">Services</option>
+              <option value="job">Job</option>
+              <option value="rental">Rental</option>
+              <option value="giveaway">Giveaway</option>
+              <option value="personal">Personal</option>
+            </select>
+          </div>
+          <fieldset class="chain-pick" id="classified-side" hidden>
+            <legend>This job</legend>
+            <label><input type="radio" name="side" value="offer" checked> Offer</label>
+            <label><input type="radio" name="side" value="hire"> Hire</label>
+          </fieldset>
+          <p id="classified-hire-note" hidden>A hire note carries no payment code. Ship stays off on a hire.</p>
+          <div class="post-field">
+            <label for="classified-city">City</label>
+            <input id="classified-city" name="city" type="text" maxlength="40" autocomplete="off">
+          </div>
+          <div class="post-field">
+            <label for="classified-price">Price in sats</label>
+            <input id="classified-price" name="price" type="text" inputmode="numeric" maxlength="15" autocomplete="off" spellcheck="false">
+          </div>
+          <fieldset class="chain-pick">
+            <legend>Price chain</legend>
+            <label><input type="radio" name="chain" value="xbt" checked> XBT</label>
+            <label><input type="radio" name="chain" value="btc"> BTC</label>
+          </fieldset>
+          <div class="post-field">
+            <label for="classified-pay-xbt">Silent-payment code, XBT</label>
+            <input id="classified-pay-xbt" name="pay-xbt" type="text" maxlength="116" autocomplete="off" spellcheck="false">
+          </div>
+          <div class="post-field">
+            <label for="classified-pay-btc">Silent-payment code, BTC</label>
+            <input id="classified-pay-btc" name="pay-btc" type="text" maxlength="116" autocomplete="off" spellcheck="false">
+          </div>
+          <div class="post-field">
+            <label for="classified-node-xbt">Public Lightning node, XBT</label>
+            <input id="classified-node-xbt" name="node-xbt" type="text" maxlength="400" autocomplete="off" spellcheck="false" placeholder="pubkey@host:port">
+          </div>
+          <div class="post-field">
+            <label for="classified-node-btc">Public Lightning node, BTC</label>
+            <input id="classified-node-btc" name="node-btc" type="text" maxlength="400" autocomplete="off" spellcheck="false" placeholder="pubkey@host:port">
+          </div>
+          <div class="actions">
+            <button class="button" type="submit" name="act" value="post">Post this ad</button>
+            <button class="button button-ghost" type="submit" name="act" value="sold">Mark sold</button>
+            <button class="button button-ghost" type="submit" name="act" value="canceled">Cancel this ad</button>
+          </div>
+          <p class="request-status" role="status"></p>
+        </form>
+        <p>Sold and canceled need the listing id this key already published. This site does not keep the key or the note.</p>
       </div>
     </section>
 
@@ -370,5 +463,6 @@
     </div>
   </footer>
   <script src="js/site.js"></script>
+  <script src="js/classified-post.js"></script>
 </body>
 </html>

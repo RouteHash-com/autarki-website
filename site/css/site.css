@@ -633,6 +633,7 @@ button.button:disabled {
 #android,
 #iphone,
 #post,
+#publish,
 #words,
 #chains,
 #balance,
@@ -802,6 +803,7 @@ code {
   #signs,
   #lightning,
   #post,
+  #publish,
   #words,
   #chains,
   #balance,
@@ -827,6 +829,30 @@ code {
 
 .request-form {
   margin-top: 1.25rem;
+}
+
+.post-field {
+  margin-top: 1rem;
+  max-width: 40rem;
+}
+
+.post-field input[type="text"],
+.post-field textarea,
+.post-field select {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.75rem;
+  font: inherit;
+  color: var(--ink);
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+}
+
+.post-field textarea {
+  min-height: 9rem;
+  resize: vertical;
 }
 
 .request-form label {
