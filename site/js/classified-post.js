@@ -8,6 +8,8 @@
   var SHIP_PROMISE = "A shipment is 1 to 4 days, and Domestic or Overseas.";
   var SHIP_ORIGIN = "A shipment names a postal code, a country code, and a weight.";
   var TERMS_NEED = "Accept the board terms before posting.";
+  var PREVIEW_NOTE = "This is how the note looks. It is not on the board yet. Edit the fields and preview again.";
+  var PREVIEW_STALE = "The fields changed. Preview this ad again before posting.";
   var REFUSED = [
     "childporn",
     "underagesex",
@@ -724,6 +726,10 @@
   var hireDInput = document.getElementById("classified-hire-d");
   var imagesInput = document.getElementById("classified-images");
   var mapInput = document.getElementById("classified-map");
+  var previewBlock = document.getElementById("classified-preview");
+  var previewCard = document.getElementById("classified-preview-card");
+  var previewNote = document.getElementById("classified-preview-note");
+  var previewButton = document.getElementById("classified-preview-open");
   var nodeXbtInput = document.getElementById("classified-node-xbt");
   var nodeBtcInput = document.getElementById("classified-node-btc");
   var locateButton = document.getElementById("classified-locate");
@@ -944,6 +950,7 @@
     provinceInput.value = place.province || "";
     cityInput.value = place.city || "";
     neighbourhoodInput.value = place.neighbourhood || "";
+    markPreviewStale();
   }
 
   if (locateButton) {
@@ -1107,6 +1114,199 @@
     if (!nostr || typeof nostr.signEvent !== "function" || typeof nostr.getPublicKey !== "function") return null;
     return nostr;
   }
+
+  function previewTag(tags, name) {
+    for (var i = 0; i < tags.length; i++) {
+      if (tags[i] && tags[i][0] === name && tags[i][1]) return tags[i];
+    }
+    return null;
+  }
+
+  function previewValue(tags, name) {
+    var tag = previewTag(tags, name);
+    return tag ? String(tag[1]) : "";
+  }
+
+  function previewSats(text) {
+    return String(text).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " sats";
+  }
+
+  function previewDay(unix) {
+    var date = new Date(Number(unix) * 1000);
+    if (Number.isNaN(date.getTime())) return "";
+    return date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+  }
+
+  function previewImage(parent, url, className) {
+    var img = document.createElement("img");
+    if (className) img.className = className;
+    img.alt = "";
+    img.referrerPolicy = "no-referrer";
+    img.decoding = "async";
+    img.onload = function () {
+      if (img.naturalWidth && !img.parentNode) parent.appendChild(img);
+    };
+    img.src = url;
+    if (img.complete && img.naturalWidth && !img.parentNode) parent.appendChild(img);
+  }
+
+  function previewFact(list, label, text, stack) {
+    if (!text) return;
+    var line = document.createElement("p");
+    line.className = stack ? "fact fact-stack" : "fact";
+    if (label) {
+      var term = document.createElement("span");
+      term.className = "fact-label";
+      term.textContent = stack ? label : label + ": ";
+      line.appendChild(term);
+    }
+    var value = document.createElement("span");
+    value.className = "fact-value";
+    value.textContent = text;
+    line.appendChild(value);
+    list.appendChild(line);
+  }
+
+  function clearPreview() {
+    if (previewCard) {
+      while (previewCard.firstChild) previewCard.removeChild(previewCard.firstChild);
+    }
+    if (previewNote) previewNote.textContent = PREVIEW_NOTE;
+    if (previewBlock) previewBlock.hidden = true;
+  }
+
+  function markPreviewStale() {
+    if (!previewBlock || previewBlock.hidden || !previewNote) return;
+    previewNote.textContent = PREVIEW_STALE;
+  }
+
+  function paintPreview(built) {
+    if (!previewCard) return;
+    var tags = built.tags;
+    var pictures = [];
+    var paid = false;
+    var i;
+    for (i = 0; i < tags.length; i++) {
+      if (tags[i][0] === "image" && pictures.length < 4) pictures.push(String(tags[i][1]));
+      if (tags[i][0] === "pay" && (tags[i][2] === "xbt" || tags[i][2] === "btc")) paid = true;
+    }
+    while (previewCard.firstChild) previewCard.removeChild(previewCard.firstChild);
+    var top = document.createElement("div");
+    top.className = "card-top";
+    if (pictures.length) previewImage(top, pictures[0], "ad-thumb");
+    var heading = document.createElement("div");
+    var title = document.createElement("h3");
+    title.textContent = previewValue(tags, "title");
+    heading.appendChild(title);
+    var price = previewTag(tags, "price");
+    if (price && (price[2] === "xbt" || price[2] === "btc")) {
+      var amount = document.createElement("p");
+      amount.className = "price";
+      amount.textContent = previewSats(price[1]) + " · " + String(price[2]).toUpperCase();
+      heading.appendChild(amount);
+      if (previewValue(tags, "side") !== "hire" && !paid) {
+        var unpaid = document.createElement("p");
+        unpaid.className = "price";
+        unpaid.textContent = "That listing cannot be paid yet. It has no payment code.";
+        heading.appendChild(unpaid);
+      }
+    }
+    var place = [previewValue(tags, "location"), previewValue(tags, "province"), previewValue(tags, "country"), previewValue(tags, "neighbourhood")].filter(Boolean).join(", ");
+    if (place) {
+      var where = document.createElement("p");
+      where.className = "place-line";
+      where.textContent = place;
+      heading.appendChild(where);
+    }
+    var summary = previewValue(tags, "summary");
+    if (summary) {
+      var summaryText = document.createElement("p");
+      summaryText.className = "summary";
+      summaryText.textContent = summary;
+      heading.appendChild(summaryText);
+    }
+    top.appendChild(heading);
+    previewCard.appendChild(top);
+    var body = document.createElement("div");
+    body.className = "card-body";
+    if (built.content) {
+      var text = document.createElement("p");
+      text.className = "ad-body";
+      text.textContent = built.content;
+      body.appendChild(text);
+    }
+    if (pictures.length) {
+      var pics = document.createElement("div");
+      pics.className = "ad-pictures";
+      for (i = 0; i < pictures.length; i++) previewImage(pics, pictures[i], "");
+      body.appendChild(pics);
+    }
+    var facts = document.createElement("div");
+    facts.className = "facts";
+    previewFact(facts, "Country", previewValue(tags, "country"), false);
+    previewFact(facts, "Province", previewValue(tags, "province"), false);
+    previewFact(facts, "City", previewValue(tags, "location"), false);
+    previewFact(facts, "Neighbourhood", previewValue(tags, "neighbourhood"), false);
+    previewFact(facts, "Categories", previewValue(tags, "t"), true);
+    var map = previewValue(tags, "map");
+    if (map) {
+      var mapLine = document.createElement("p");
+      mapLine.className = "fact";
+      var link = document.createElement("a");
+      link.href = map;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "Map";
+      mapLine.appendChild(link);
+      facts.appendChild(mapLine);
+    }
+    var days = previewValue(tags, "ship_days");
+    if (days === "1" || days === "2" || days === "3" || days === "4") {
+      previewFact(facts, "Ship by", days === "1" ? "1 day" : days + " days", false);
+      previewFact(facts, "Hold", previewValue(tags, "hold") === "overseas" ? "28 days overseas" : "14 days at home", false);
+      var origin = [previewValue(tags, "postal"), previewValue(tags, "cc")];
+      var kg = previewValue(tags, "kg");
+      if (kg) origin.push(kg + " kg");
+      previewFact(facts, "Origin", origin.filter(Boolean).join(", "), false);
+    }
+    previewFact(facts, "Published", previewDay(previewValue(tags, "published_at")), false);
+    body.appendChild(facts);
+    previewCard.appendChild(body);
+  }
+
+  function showPreview() {
+    var fields = fieldsFrom("post");
+    var typedId = fields.d;
+    if (!typedId) fields.d = "preview";
+    var built = buildPost(fields);
+    if (!built.ok) {
+      clearPreview();
+      say(built.message);
+      return;
+    }
+    if (built.usedImages && imagesInput) imagesInput.value = built.images.join("\n");
+    if (built.usedMap && mapInput) mapInput.value = built.map;
+    if (!typedId) dInput.value = "";
+    paintPreview(built);
+    if (previewNote) previewNote.textContent = PREVIEW_NOTE;
+    if (previewBlock) {
+      previewBlock.hidden = false;
+      var header = document.querySelector(".site-header");
+      var gap = header ? header.offsetHeight + 12 : 0;
+      var top = previewBlock.getBoundingClientRect().top + window.pageYOffset - gap;
+      window.scrollTo(0, top < 0 ? 0 : top);
+    }
+    say("");
+  }
+
+  if (previewButton) {
+    previewButton.addEventListener("click", function () {
+      if (busy) return;
+      showPreview();
+    });
+  }
+  form.addEventListener("input", markPreviewStale);
+  form.addEventListener("change", markPreviewStale);
 
   form.addEventListener("submit", function (event) {
     event.preventDefault();

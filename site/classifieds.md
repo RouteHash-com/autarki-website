@@ -37,6 +37,7 @@ A signed note from any Nostr key shows on the wallet board when the note is one 
 - Ship appears when the note names a public Lightning node for a chain that has a code.
 - Mark sold or Cancel this ad hides the note. A person a wallet has blocked or ignored is hidden on that wallet only.
 - This page checks the note before it is signed. A note this board does not carry is not sent. A report is sent to the Autarki relay. The ad stays on the board. The relay can still keep the original note.
+- Preview this ad shows the note on this page. It does not publish it.
 - Accept the board terms before the first note is saved.
 - This site does not keep the key or the note. Use the Autarki app for easy ad management.
 

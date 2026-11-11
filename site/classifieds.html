@@ -196,6 +196,7 @@
           <li>Ship appears when the note names a public Lightning node for a chain that has a code.</li>
           <li>Mark sold or Cancel this ad hides the note. A person a wallet has blocked or ignored is hidden on that wallet only.</li>
           <li>This page checks the note before it is signed. A note this board does not carry is not sent. A report is sent to the Autarki relay. The ad stays on the board. The relay can still keep the original note.</li>
+          <li>Preview this ad shows the note on this page. It does not publish it.</li>
           <li>Accept the board terms before the first note is saved.</li>
         </ul>
         <form class="request-form" id="classified-post" action="/classifieds#publish" method="post" onsubmit="return false" autocomplete="off">
@@ -362,7 +363,14 @@
               <button class="button button-ghost" type="button" id="classified-terms-later">Not now</button>
             </div>
           </div>
+          <div id="classified-preview" hidden role="region" aria-label="Ad preview">
+            <div class="board-list">
+              <p class="field-note" id="classified-preview-note">This is how the note looks. It is not on the board yet. Edit the fields and preview again.</p>
+              <article class="board-card" id="classified-preview-card"></article>
+            </div>
+          </div>
           <div class="actions">
+            <button class="button button-ghost" type="button" id="classified-preview-open">Preview this ad</button>
             <button class="button" type="submit" name="act" value="post">Post this ad</button>
             <button class="button button-ghost" type="submit" name="act" value="sold">Mark sold</button>
             <button class="button button-ghost" type="submit" name="act" value="canceled">Cancel this ad</button>
@@ -571,6 +579,6 @@
     </div>
   </footer>
   <script src="js/site.js"></script>
-  <script src="js/classified-post.js?v=20261111a"></script>
+  <script src="js/classified-post.js?v=20261111b"></script>
 </body>
 </html>
