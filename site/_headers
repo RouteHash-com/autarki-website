@@ -10,6 +10,12 @@
 /notice-board.html
   Permissions-Policy: camera=(self), microphone=(), geolocation=()
 
+/classifieds
+  Permissions-Policy: camera=(), microphone=(), geolocation=(self)
+
+/classifieds.html
+  Permissions-Policy: camera=(), microphone=(), geolocation=(self)
+
 /*.md
   Content-Type: text/markdown; charset=utf-8
 

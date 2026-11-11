@@ -855,6 +855,55 @@ code {
   resize: vertical;
 }
 
+#classified-body {
+  min-height: 14rem;
+}
+
+#classified-images {
+  min-height: 7rem;
+}
+
+.place-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 40rem;
+}
+
+.request-form .place-head label {
+  margin-bottom: 0;
+}
+
+.place-status {
+  min-height: 1.4em;
+  margin: 0.35rem 0;
+  color: var(--muted);
+}
+
+.field-note,
+.field-notes {
+  max-width: 40rem;
+  color: var(--muted);
+}
+
+.field-note {
+  margin: 0.35rem 0 0;
+}
+
+.field-notes {
+  margin: 0.35rem 0 1rem;
+}
+
+.field-notes p {
+  margin: 0.2rem 0 0;
+}
+
+.field-notes p:first-child {
+  margin-top: 0;
+}
+
 .request-form label {
   display: block;
   margin-bottom: 0.4rem;

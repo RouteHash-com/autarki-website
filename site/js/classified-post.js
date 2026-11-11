@@ -82,11 +82,12 @@
   }
 
   function refusedNote(parts) {
+    var full = (1 << parts.length) - 1;
     function walk(used, built) {
-      if (used === 15) return postingRefused(built);
-      for (var i = 0; i < 4; i++) {
+      if (used === full) return postingRefused(built);
+      for (var i = 0; i < parts.length; i++) {
         if (used & (1 << i)) continue;
-        if (walk(used | (1 << i), built + parts[i])) return true;
+        if (walk(used | (1 << i), built + (parts[i] || ""))) return true;
       }
       return false;
     }
@@ -215,6 +216,165 @@
     return /lndconnect:|macaroon|eclair-|https?:\/\/|api password/i.test(text);
   }
 
+  function cleanTyped(text, mode) {
+    var out = "";
+    var raw = String(text == null ? "" : text);
+    for (var i = 0; i < raw.length; i++) {
+      var ch = raw.charAt(i);
+      var code = raw.charCodeAt(i);
+      if ((mode === "break" || mode === "lines") && ch === "\n") {
+        out += ch;
+        continue;
+      }
+      if (mode === "digit") {
+        if (code >= 48 && code <= 57) out += ch;
+        continue;
+      }
+      if (code < 32 || code === 127 || code === 8232 || code === 8233) continue;
+      if ((mode === "url" || mode === "lines") && ch === " ") continue;
+      out += ch;
+    }
+    return out;
+  }
+
+  function placeClip(text) {
+    var clean = cleanTyped(text, "line").trim();
+    var out = "";
+    var count = 0;
+    for (var i = 0; i < clean.length && count < 40; i++) {
+      var code = clean.charCodeAt(i);
+      out += clean.charAt(i);
+      if (code >= 55296 && code <= 56319 && i + 1 < clean.length) {
+        i += 1;
+        out += clean.charAt(i);
+      }
+      count += 1;
+    }
+    return out;
+  }
+
+  function logoAddress(text) {
+    var url = String(text || "").trim();
+    if (!url) return "";
+    if (url.length > 8000) return null;
+    for (var i = 0; i < url.length; i++) {
+      var code = url.charCodeAt(i);
+      if (code < 33 || code === 127 || code === 8232 || code === 8233 || url.charAt(i) === "<" || url.charAt(i) === ">") return null;
+    }
+    if (url.slice(0, 11) === "data:image/") return null;
+    if (url.length > 2000 || url.slice(0, 8) !== "https://") return null;
+    if (url.indexOf("@") >= 0 || url.indexOf("\\") >= 0) return null;
+    var hostRest = url.slice(8);
+    var cut = hostRest.length;
+    var marks = ["/", "?", "#"];
+    for (var m = 0; m < marks.length; m++) {
+      var found = hostRest.indexOf(marks[m]);
+      if (found >= 0 && found < cut) cut = found;
+    }
+    var host = hostRest.slice(0, cut).toLowerCase();
+    if (!host || host.indexOf(":") >= 0 || host.indexOf("..") >= 0) return null;
+    if (host.charAt(0) === "." || host.charAt(0) === "-" || host.charAt(host.length - 1) === "." || host.charAt(host.length - 1) === "-") return null;
+    if (!/^[a-z0-9.-]+$/.test(host) || host.indexOf(".") < 0) return null;
+    return url;
+  }
+
+  function pictureAddress(text) {
+    var url = logoAddress(text);
+    if (url === null) return null;
+    if (url.slice(0, 5) === "data:") return null;
+    return url;
+  }
+
+  function imageLines(text) {
+    var lines = String(text == null ? "" : text).split("\n");
+    var out = [];
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i].trim();
+      if (!line) continue;
+      var url = pictureAddress(line);
+      if (url !== line) return null;
+      if (out.indexOf(url) >= 0) continue;
+      if (out.length >= 4) return null;
+      out.push(url);
+    }
+    return out;
+  }
+
+  function mapSource(text) {
+    var raw = String(text || "");
+    if (raw.indexOf("<") >= 0 || raw.indexOf(">") >= 0 || /\s/.test(raw)) {
+      var lower = raw.toLowerCase();
+      var at = lower.indexOf("src=");
+      if (at < 0) return null;
+      var rest = raw.slice(at + 4);
+      var quote = rest.charAt(0);
+      if (quote !== "\"" && quote !== "'") return null;
+      var end = rest.indexOf(quote, 1);
+      if (end < 1) return null;
+      return rest.slice(1, end).replace(/&amp;/g, "&").trim();
+    }
+    return raw.trim();
+  }
+
+  function mapPathOk(path) {
+    for (var i = 0; i < path.length; i++) {
+      if (!/[A-Za-z0-9\-._~:/?#!$&()*+,;=%]/.test(path.charAt(i))) return false;
+    }
+    return true;
+  }
+
+  function mapHostCut(rest) {
+    var cut = rest.length;
+    var marks = ["/", "?", "#"];
+    for (var m = 0; m < marks.length; m++) {
+      var found = rest.indexOf(marks[m]);
+      if (found >= 0 && found < cut) cut = found;
+    }
+    return cut;
+  }
+
+  function mapAddress(text) {
+    var url = mapSource(String(text == null ? "" : text).trim());
+    if (url === null) return null;
+    url = url.trim();
+    if (!url) return "";
+    if (url.length > 800 || url.slice(0, 8) !== "https://") return null;
+    if (url.indexOf("@") >= 0 || url.indexOf("\\") >= 0) return null;
+    for (var i = 0; i < url.length; i++) {
+      var code = url.charCodeAt(i);
+      if (code < 33 || code === 127 || code === 8232 || code === 8233) return null;
+    }
+    var rest = url.slice(8);
+    var cut = mapHostCut(rest);
+    var host = rest.slice(0, cut).toLowerCase();
+    var path = rest.slice(cut);
+    if (!host || host.indexOf(":") >= 0 || host.indexOf("..") >= 0) return null;
+    if (host.charAt(0) === "." || host.charAt(0) === "-" || host.charAt(host.length - 1) === "." || host.charAt(host.length - 1) === "-") return null;
+    if (!/^[a-z0-9.-]+$/.test(host) || host.indexOf(".") < 0) return null;
+    if (!mapPathOk(path)) return null;
+    if (host === "maps.app.goo.gl") {
+      if (path.charAt(0) !== "/") return null;
+      var token = path.slice(1);
+      if (!token || !/^[A-Za-z0-9_-]+$/.test(token)) return null;
+      return url;
+    }
+    if (host === "goo.gl") {
+      if (path.slice(0, 6) !== "/maps/" || path.length <= 6 || path.charAt(6) === "/") return null;
+      return url;
+    }
+    if (host === "google.com" || host === "www.google.com" || host === "maps.google.com") {
+      if (path.slice(0, 5) !== "/maps") return null;
+      var next = path.charAt(5);
+      if (next && next !== "/" && next !== "?" && next !== "#") return null;
+      return url;
+    }
+    if (host === "maps.apple.com" || host === "openstreetmap.org" || host === "www.openstreetmap.org") {
+      if (path && path.charAt(0) !== "/" && path.charAt(0) !== "?" && path.charAt(0) !== "#") return null;
+      return url;
+    }
+    return null;
+  }
+
   function tagValue(event, name) {
     var tags = event && event.tags;
     if (!Array.isArray(tags)) return "";
@@ -252,14 +412,23 @@
     var summary = oneLine(fields.summary, 280);
     if (summary === null) return fail("A summary is one line, at most 280 characters.");
     var body = bodyText(fields.body);
-    if (body.bad === "length") return fail("The body is at most 4000 characters.");
-    if (body.bad) return fail("The body has a character this note cannot carry.");
+    if (body.bad === "length") return fail("The description is at most 4000 characters.");
+    if (body.bad) return fail("The description has a character this note cannot carry.");
     if (!dOk(fields.d)) return fail("A listing id is 1 to 256 characters with no spaces.");
     var category = String(fields.category || "");
     if (CATEGORIES.indexOf(category) === -1) return fail("Choose goods, services, a job, a rental, a giveaway, or a personal.");
+    var country = oneLine(fields.country, 40);
+    var province = oneLine(fields.province, 40);
     var city = oneLine(fields.city, 40);
-    if (city === null) return fail("A city is one line, at most 40 characters.");
-    if (refusedNote([title, summary, body.text, city])) return fail(CARRY);
+    var neighbourhood = oneLine(fields.neighbourhood, 40);
+    if (country === null || province === null || city === null || neighbourhood === null) {
+      return fail("A place is one line of at most 40 characters.");
+    }
+    if (refusedNote([title, summary, body.text, country, province, city, neighbourhood])) return fail(CARRY);
+    var images = imageLines(fields.images);
+    if (!images) return fail("An image address is https. Four is the limit.");
+    var map = mapAddress(fields.map);
+    if (map === null) return fail("The map link could not be saved.");
     var hire = category === "job" && fields.side === "hire";
     var amount = wholeSats(fields.price);
     if (amount.bad) return fail(PRICE_TEXT);
@@ -284,14 +453,19 @@
     if (summary) tags.push(["summary", summary]);
     tags.push(["published_at", String(published)]);
     if (city) tags.push(["location", city]);
+    if (country) tags.push(["country", country]);
+    if (province) tags.push(["province", province]);
+    if (neighbourhood) tags.push(["neighbourhood", neighbourhood]);
     tags.push(["t", category]);
     if (amount.sats) tags.push(["price", amount.sats, chainName(fields.chain)]);
+    for (var i = 0; i < images.length; i++) tags.push(["image", images[i]]);
+    if (map) tags.push(["map", map]);
     if (payXbt) tags.push(["pay", payXbt, "xbt"]);
     if (payBtc) tags.push(["pay", payBtc, "btc"]);
     if (nodeXbt) tags.push(["node", nodeXbt, "xbt"]);
     if (nodeBtc) tags.push(["node", nodeBtc, "btc"]);
     if (category === "job") tags.push(["side", hire ? "hire" : "offer"]);
-    return { ok: true, content: body.text, tags: tags, d: String(fields.d) };
+    return { ok: true, content: body.text, tags: tags, d: String(fields.d), images: images, map: map };
   }
 
   function readNodes(fields, payXbt, payBtc) {
@@ -370,7 +544,9 @@
     silentCode: silentCode,
     publicName: publicName,
     dOk: dOk,
-    newId: newId
+    newId: newId,
+    imageLines: imageLines,
+    mapAddress: mapAddress
   };
 
   if (typeof module !== "undefined" && module.exports) module.exports = api;
@@ -386,12 +562,19 @@
   var categoryInput = document.getElementById("classified-category");
   var sideField = document.getElementById("classified-side");
   var hireNote = document.getElementById("classified-hire-note");
+  var countryInput = document.getElementById("classified-country");
+  var provinceInput = document.getElementById("classified-province");
   var cityInput = document.getElementById("classified-city");
+  var neighbourhoodInput = document.getElementById("classified-neighbourhood");
   var priceInput = document.getElementById("classified-price");
   var payXbtInput = document.getElementById("classified-pay-xbt");
   var payBtcInput = document.getElementById("classified-pay-btc");
+  var imagesInput = document.getElementById("classified-images");
+  var mapInput = document.getElementById("classified-map");
   var nodeXbtInput = document.getElementById("classified-node-xbt");
   var nodeBtcInput = document.getElementById("classified-node-btc");
+  var locateButton = document.getElementById("classified-locate");
+  var placeStatus = document.getElementById("classified-place-status");
   var buttons = form.querySelectorAll("button");
   var busy = false;
 
@@ -415,6 +598,156 @@
   sideField.addEventListener("change", showJob);
   showJob();
 
+  function guardInput(node, mode) {
+    if (!node) return;
+    node.addEventListener("input", function () {
+      var next = cleanTyped(node.value, mode);
+      if (next === node.value) return;
+      var at = node.selectionStart;
+      node.value = next;
+      if (node.setSelectionRange && typeof at === "number") {
+        var pos = at > next.length ? next.length : at;
+        node.setSelectionRange(pos, pos);
+      }
+    });
+  }
+
+  guardInput(titleInput, "line");
+  guardInput(dInput, "line");
+  guardInput(summaryInput, "line");
+  guardInput(bodyInput, "break");
+  guardInput(countryInput, "line");
+  guardInput(provinceInput, "line");
+  guardInput(cityInput, "line");
+  guardInput(neighbourhoodInput, "line");
+  guardInput(priceInput, "digit");
+  guardInput(payXbtInput, "url");
+  guardInput(payBtcInput, "url");
+  guardInput(imagesInput, "lines");
+  guardInput(mapInput, "url");
+  guardInput(nodeXbtInput, "line");
+  guardInput(nodeBtcInput, "line");
+
+  function placeNote(text) {
+    if (placeStatus) placeStatus.textContent = text || "";
+  }
+
+  function placeParts(address) {
+    var found = address || {};
+    return {
+      country: placeClip(found.country),
+      province: placeClip(found.state),
+      city: placeClip(found.city || found.town || found.village || found.municipality || found.hamlet),
+      neighbourhood: placeClip(found.suburb || found.neighbourhood || found.quarter || found.city_district)
+    };
+  }
+
+  function placeCity(place) {
+    if (!place) return "";
+    return place.city || place.neighbourhood || place.province || place.country || "";
+  }
+
+  function lookupPlace(latitude, longitude, done) {
+    var address = "https://nominatim.openstreetmap.org/reverse?format=jsonv2&addressdetails=1&lat=" +
+      encodeURIComponent(String(latitude)) + "&lon=" + encodeURIComponent(String(longitude));
+    fetch(address, { headers: { "Accept": "application/json" }, cache: "no-store" })
+      .then(function (response) {
+        if (!response.ok) throw new Error("lookup");
+        return response.json();
+      })
+      .then(function (payload) {
+        var parts = placeParts(payload && payload.address);
+        if (!placeCity(parts)) throw new Error("lookup");
+        done(null, parts, "");
+      })
+      .catch(function () {
+        done("The city could not be looked up.");
+      });
+  }
+
+  function networkCity(done, failure) {
+    fetch("https://get.geojs.io/v1/ip/geo.json", { headers: { "Accept": "application/json" }, cache: "no-store" })
+      .then(function (response) {
+        if (!response.ok) throw new Error("lookup");
+        return response.json();
+      })
+      .then(function (row) {
+        var parts = {
+          country: placeClip(row && row.country),
+          province: placeClip(row && row.region),
+          city: placeClip(row && row.city),
+          neighbourhood: ""
+        };
+        if (!placeCity(parts)) throw new Error("lookup");
+        done(null, parts, "network");
+      })
+      .catch(function () {
+        done(failure || "The city could not be looked up.");
+      });
+  }
+
+  function placeDenied(error, done) {
+    var code = error && error.code;
+    if (code === 1) {
+      if (!navigator.permissions || !navigator.permissions.query) {
+        done("This browser did not share a place.");
+        return;
+      }
+      navigator.permissions.query({ name: "geolocation" }).then(function (status) {
+        if (status && status.state === "granted") networkCity(done, "This browser allowed it, but no place came back.");
+        else done("This browser did not share a place.");
+      }).catch(function () {
+        done("This browser did not share a place.");
+      });
+      return;
+    }
+    var failure = code === 3 ? "The place lookup timed out." : "This browser allowed it, but no place came back.";
+    networkCity(done, failure);
+  }
+
+  function devicePlace(done) {
+    if (!navigator.geolocation) {
+      networkCity(done, "This browser has no location.");
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(function (position) {
+      var coords = position && position.coords;
+      if (!coords || typeof coords.latitude !== "number" || typeof coords.longitude !== "number") {
+        networkCity(done, "This browser allowed it, but no place came back.");
+        return;
+      }
+      lookupPlace(coords.latitude, coords.longitude, function (error, place) {
+        if (error || !place) done(error || "The city could not be looked up.");
+        else done(null, place, "");
+      });
+    }, function (error) {
+      placeDenied(error, done);
+    }, { enableHighAccuracy: false, timeout: 20000, maximumAge: 300000 });
+  }
+
+  function fillPlace(place) {
+    countryInput.value = place.country || "";
+    provinceInput.value = place.province || "";
+    cityInput.value = place.city || "";
+    neighbourhoodInput.value = place.neighbourhood || "";
+  }
+
+  if (locateButton) {
+    locateButton.addEventListener("click", function () {
+      placeNote("Looking up this place.");
+      locateButton.disabled = true;
+      devicePlace(function (error, place, source) {
+        locateButton.disabled = false;
+        if (error || !place) {
+          placeNote(error || "The city could not be looked up.");
+          return;
+        }
+        fillPlace(place);
+        placeNote(source === "network" ? "Filled from the network." : "Filled from this device.");
+      });
+    });
+  }
+
   function fieldsFrom(act) {
     return {
       title: titleInput.value,
@@ -423,11 +756,16 @@
       body: bodyInput.value,
       category: categoryInput.value,
       side: selected("side"),
+      country: countryInput.value,
+      province: provinceInput.value,
       city: cityInput.value,
+      neighbourhood: neighbourhoodInput.value,
       price: priceInput.value,
       chain: selected("chain"),
       payXbt: payXbtInput.value,
       payBtc: payBtcInput.value,
+      images: imagesInput.value,
+      map: mapInput.value,
       nodeXbt: nodeXbtInput.value,
       nodeBtc: nodeBtcInput.value,
       status: act,
@@ -562,6 +900,10 @@
     if (!built.ok) {
       say(built.message);
       return;
+    }
+    if (act === "post") {
+      imagesInput.value = built.images.join("\n");
+      mapInput.value = built.map;
     }
     var nostr = extension();
     if (!nostr) {

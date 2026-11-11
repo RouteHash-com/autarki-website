@@ -10,7 +10,7 @@ Autarki is in beta. It runs on your computer. A 64-bit Android phone can install
 - [Notice board](https://autarki.app/notice-board.md): A wallet publishes the stall. This page reads the relay, stores nothing, and does not take an order.
 - [Wallet](https://autarki.app/wallet.md): You hold the 24 words. Lightning is built in on AMD and Intel. The Autarki LSP is one channel that can pay later shops.
 - [Shop](https://autarki.app/shop.md): The shop runs on your computer. The stall is public. The order is private. Autarki does not take a cut of the catalog price. Lightning has a routing fee and a room fee.
-- [Classifieds](https://autarki.app/classifieds.md): Ship pays with Lightning. With a float, the coins sit on the seller's node until Mark received. The named referee decides and does not hold the coins. This page can publish a note a Nostr extension signs.
+- [Classifieds](https://autarki.app/classifieds.md): Ship pays with Lightning. With a float, the coins sit on the seller's node until Mark received. The named referee decides and does not hold the coins. This page can publish a note a Nostr extension signs. The form has the same place, image, and map fields as the app.
 - [Mining](https://autarki.app/mining.md): Paste a RouteHash token, then click Mine XBT or Mine BTC. The next reward address is your wallet's. Nothing is spent until Mine.
 - [Install](https://autarki.app/install.md): Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi leaves Lightning off. A 64-bit Android phone can install its own copy. An iPhone can join the public TestFlight test.
 - [Privacy](https://autarki.app/privacy.md): The 24 words stay on your device. The camera scans a code. Location fills the shop. The page talks to relays and nodes.

@@ -26,12 +26,15 @@ A signed note from any Nostr key shows on the wallet board. The poster does not 
 
 - A title is one line, at most 80 characters. A missing title is dropped.
 - A listing id is 1 to 256 characters with no spaces. The same key and the same id replace the note.
-- The body is at most 4000 characters.
-- A price in whole sats of XBT or BTC can be paid when the note also carries that chain's silent-payment code. This page cannot make the code.
+- The description is at most 4000 characters.
+- Country, province, city, and neighbourhood are each one line, at most 40 characters. Use my location asks the browser. The position is not saved and is not sent to Autarki. A refused prompt stops there.
+- A price in whole sats of XBT or BTC can be paid when the note also carries that chain's silent-payment code. This page cannot make the code. XBT and BTC each get a silent-payment code, so a buyer can pay either chain.
 - A dollar amount, a fraction, or any other currency is shown as text and cannot be paid.
+- An image is one https address on a line. Four is the limit.
+- A map link is the https address from OpenStreetMap, Google Maps, or Apple Maps. A city name is not a map link.
 - Ship appears when the note names a public Lightning node for a chain that has a code.
 - Mark sold or Cancel this ad hides the note. A person a wallet has blocked or ignored is hidden on that wallet only.
 - This page checks the note before it is signed. A note this board does not carry is not sent.
-- This site does not keep the key or the note.
+- This site does not keep the key or the note. Use the Autarki app for easy ad management.
 
 Published classifieds are on the [notice board](https://autarki.app/notice-board.md).
