@@ -17,6 +17,22 @@
     "wss://purplepag.es"
   ];
   var CHARSET = "qpzry9x8gf2tvdw0s3jn54khce6mua7l";
+  var REFUSED = [
+    "childporn",
+    "underagesex",
+    "csam",
+    "sexualminor",
+    "firearm",
+    "handgun",
+    "ammunition",
+    "cocaine",
+    "heroin",
+    "fentanyl",
+    "methamphetamine",
+    "escortservice",
+    "guaranteedreturn",
+    "guaranteedprofit"
+  ];
 
   function npubFromHex(hex) {
     if (!/^[0-9a-fA-F]{64}$/.test(hex)) return "";
@@ -148,7 +164,7 @@
     var ads = [];
     var groups = new Map();
     list.forEach(function (event) {
-      if (!event || event.kind === 5) return;
+      if (!event || event.kind === 5 || event.kind === 1984) return;
       var d = first(event, "d");
       if (!d || removed(event, d, dels)) return;
       var key = hex(event.pubkey) + ":" + event.kind + ":" + d;
@@ -181,6 +197,37 @@
     stalls.sort(function (a, b) { return a.name.localeCompare(b.name); });
     ads.sort(function (a, b) { return b.publishedAt - a.publishedAt || a.title.localeCompare(b.title); });
     return { stalls: stalls, classifieds: ads };
+  }
+
+  function flatNote(text) {
+    var lower = String(text || "").toLowerCase();
+    var out = "";
+    for (var i = 0; i < lower.length; i++) {
+      var code = lower.charCodeAt(i);
+      if ((code >= 48 && code <= 57) || (code >= 97 && code <= 122)) out += lower.charAt(i);
+    }
+    return out;
+  }
+
+  function postingRefused(text) {
+    var flat = flatNote(text);
+    for (var i = 0; i < REFUSED.length; i++) {
+      if (flat.indexOf(REFUSED[i]) !== -1) return true;
+    }
+    return false;
+  }
+
+  function noteRefused(parts) {
+    var full = (1 << parts.length) - 1;
+    function walk(used, built) {
+      if (used === full) return postingRefused(built);
+      for (var i = 0; i < parts.length; i++) {
+        if (used & (1 << i)) continue;
+        if (walk(used | (1 << i), built + (parts[i] || ""))) return true;
+      }
+      return false;
+    }
+    return walk(0, "");
   }
 
   function deletions(events) {
@@ -281,44 +328,116 @@
         }
       }
     }
-    if ((status === "active" || status === "held") && source === event) {
-      var content = String(event.content || "");
-      if ([...content].length > 4000) return null;
-      var title = line(first(event, "title"), 80);
-      if (!title) return null;
-    }
-    var titleNow = line(first(source, "title"), 80);
-    if ((status === "active" || status === "held") && !titleNow) return null;
     var body = status === "sold" && source !== event ? String(source.content || "") : String(event.content || "");
     if (source !== event && status === "sold") body = String(source.content || "");
+    if ((status === "active" || status === "held") && [...body].length > 4000) return null;
+    var titleNow = strictLine(rawTag(source, "title"), 80);
+    if (titleNow === null) return null;
+    if ((status === "active" || status === "held") && !titleNow) return null;
+    var summary = optionalTag(source, "summary", 280);
+    var country = optionalTag(source, "country", 40);
+    var province = optionalTag(source, "province", 40);
+    var city = optionalTag(source, "location", 40);
+    var neighbourhood = optionalTag(source, "neighbourhood", 40);
+    if (summary === null || country === null || province === null || city === null || neighbourhood === null) return null;
+    if (noteRefused([titleNow, summary, body, city, neighbourhood])) return null;
     if ([...body].length > 4000) body = "";
+    else body = plain(body);
     var price = priceOf(source.tags || []);
     var ship = shipOf(source.tags || []);
+    var categories = categoriesOf(source);
+    var side = jobSide(source.tags || [], categories);
+    var pays = payOf(source.tags || [], price.coin);
     return {
       pubkey: pubkey,
       npub: npubFromHex(pubkey),
       d: d,
       status: status,
       title: titleNow,
-      summary: line(first(source, "summary"), 280),
-      body: plain(body),
+      summary: summary,
+      body: body,
       pictures: pictures(source),
-      country: line(first(source, "country"), 40),
-      province: line(first(source, "province"), 40),
-      city: line(first(source, "location"), 40),
-      neighbourhood: line(first(source, "neighbourhood"), 40),
-      categories: categoriesOf(source),
+      country: country,
+      province: province,
+      city: city,
+      neighbourhood: neighbourhood,
+      categories: categories,
       price: price.sats,
       coin: price.coin,
       priceText: price.text,
+      unpaid: !!(price.sats && side !== "hire" && !pays.xbt && !pays.btc),
       map: mapUrl(first(source, "map")),
       shipDays: ship.days,
       hold: ship.hold,
       postal: ship.days ? line(first(source, "postal"), 16) : "",
       cc: ship.days ? countryCode(first(source, "cc")) : "",
       kg: ship.days ? line(first(source, "kg"), 12) : "",
-      publishedAt: count(first(source, "published_at"))
+      publishedAt: count(first(source, "published_at")),
+      createdAt: created(event)
     };
+  }
+
+  function rawTag(event, name) {
+    var tags = event && event.tags ? event.tags : [];
+    for (var i = 0; i < tags.length; i += 1) {
+      if (tags[i] && tags[i][0] === name && tags[i].length >= 2) return String(tags[i][1]);
+    }
+    return null;
+  }
+
+  function strictLine(value, max) {
+    if (value == null) return "";
+    var raw = String(value);
+    var chars = Array.from(raw);
+    for (var i = 0; i < chars.length; i += 1) {
+      var code = chars[i].codePointAt(0);
+      if (code <= 31 || (code >= 127 && code <= 159) || chars[i] === "\u2028" || chars[i] === "\u2029") return null;
+    }
+    var text = raw.trim();
+    if (Array.from(text).length > max) return null;
+    return text;
+  }
+
+  function optionalTag(event, name, max) {
+    var raw = rawTag(event, name);
+    if (raw === null) return "";
+    return strictLine(raw, max);
+  }
+
+  function silentPay(text) {
+    var raw = String(text || "");
+    if (raw.length !== 116 || raw.indexOf("sp1q") !== 0) return false;
+    for (var i = 3; i < raw.length; i += 1) {
+      if (CHARSET.indexOf(raw.charAt(i)) === -1) return false;
+    }
+    return true;
+  }
+
+  function payOf(tags, chain) {
+    var xbt = "";
+    var btc = "";
+    var bare = "";
+    for (var i = 0; i < tags.length; i += 1) {
+      var tag = tags[i];
+      if (!tag || tag[0] !== "pay" || tag.length < 2 || !silentPay(tag[1])) continue;
+      if (tag[2] === "xbt" && !xbt) xbt = tag[1];
+      else if (tag[2] === "btc" && !btc) btc = tag[1];
+      else if ((tag[2] == null || tag[2] === "") && !bare) bare = tag[1];
+    }
+    if (bare) {
+      if (chain === "btc" && !btc) btc = bare;
+      else if (!xbt) xbt = bare;
+    }
+    return { xbt: xbt, btc: btc };
+  }
+
+  function jobSide(tags, categories) {
+    var job = false;
+    for (var i = 0; i < categories.length; i += 1) {
+      if (categories[i] === "job") job = true;
+    }
+    if (!job) return "offer";
+    return firstTags(tags, "side") === "hire" ? "hire" : "offer";
   }
 
   function adStatus(value) {
@@ -623,6 +742,12 @@
       price.className = "price";
       price.textContent = sats(ad.price) + " · " + ad.coin.toUpperCase();
       heading.appendChild(price);
+      if (ad.unpaid) {
+        var unpaid = document.createElement("p");
+        unpaid.className = "price";
+        unpaid.textContent = "That listing cannot be paid yet. It has no payment code.";
+        heading.appendChild(unpaid);
+      }
     } else if (ad.priceText) {
       var raw = document.createElement("p");
       raw.className = "price";

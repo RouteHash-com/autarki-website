@@ -165,8 +165,8 @@
           <li>Goods, services, rentals, jobs, giveaways, and personals.</li>
           <li>Same key as the shop. No store required.</li>
           <li>A giveaway, a personal, or a job hire needs no coin node.</li>
-          <li>A priced good, service, rental, or job needs your own XBT node or Bitcoin node.</li>
-          <li>That ad publishes a silent-payment code. Autarki's servers do not make it.</li>
+          <li>Goods, a service, a rental, or a job offer stays closed in the app until that wallet's own XBT node or Bitcoin node is connected.</li>
+          <li>The wallet makes the silent-payment code. This page cannot make one. A priced ad with no code still appears.</li>
           <li>The buyer chooses Pick up or Ship. There is no default.</li>
           <li>Pick up pays on-chain or with Lightning, in XBT or in BTC.</li>
           <li>Ship pays with Lightning only. No on-chain.</li>
@@ -177,23 +177,26 @@
     <section class="band" id="publish">
       <div class="wrap">
         <h2>Post an ad.</h2>
-        <p class="lede">A signed note from any Nostr key shows on the wallet board. The poster does not need an Autarki wallet.</p>
+        <p class="lede">A signed note from any Nostr key shows on the wallet board when the note is one this board carries. The poster does not need an Autarki wallet. The rules are on the <a href="/board">board rules</a> page.</p>
         <ul class="brief">
           <li>A Nostr extension in this browser signs the note. This page does not ask for a secret key.</li>
           <li>The note is published to the relay the notice board reads. A note sent only to some other relay never arrives.</li>
           <li>Classifieds has to be turned on, and the wallet has to be unlocked, or that board stays hidden.</li>
-          <li>A title is one line, at most 80 characters. A missing title is dropped.</li>
+          <li>Choose one category first. Offer and Hire are shown only for a job. A hire carries no payment code.</li>
+          <li>The title is one line of at most 80 characters. A missing title is dropped.</li>
           <li>A listing id is 1 to 256 characters with no spaces. Leave it blank and this page chooses one. The same key and the same id replace the note.</li>
           <li>The description is at most 4000 characters.</li>
           <li>Country, province, city, and neighbourhood are each one line, at most 40 characters.</li>
           <li>Use my location asks this browser. The position is not saved and is not sent to Autarki. A refused prompt stops there.</li>
-          <li>A price in whole sats of XBT or BTC can be paid when the note also carries that chain's silent-payment code. This page cannot make the code.</li>
+          <li>The price is a whole number of sats on XBT or BTC. Empty or zero is not payable. A priced ad with no silent-payment code still appears, and the buyer is told it cannot be paid yet. This page cannot make the code.</li>
           <li>A dollar amount, a fraction, or any other currency is shown as text and cannot be paid.</li>
-          <li>An image is an https address. Four is the limit.</li>
-          <li>A map link is the https address from OpenStreetMap, Google Maps, or Apple Maps.</li>
+          <li>Goods, a service, or a rental with a price above zero names 1 to 4 days, and Domestic or Overseas. A job, a giveaway, a personal, a hire, and a zero price publish no ship tags.</li>
+          <li>An image is an https address. Four is the limit. Images are for goods, a service, a rental, or a giveaway.</li>
+          <li>A map link is the https address from OpenStreetMap, Google Maps, or Apple Maps. A map is for goods, a service, or a rental.</li>
           <li>Ship appears when the note names a public Lightning node for a chain that has a code.</li>
           <li>Mark sold or Cancel this ad hides the note. A person a wallet has blocked or ignored is hidden on that wallet only.</li>
-          <li>This page checks the note before it is signed. A note this board does not carry is not sent.</li>
+          <li>This page checks the note before it is signed. A note this board does not carry is not sent. A report is sent to the Autarki relay. The ad stays on the board. The relay can still keep the original note.</li>
+          <li>Accept the board terms before the first note is saved.</li>
         </ul>
         <form class="request-form" id="classified-post" action="/classifieds#publish" method="post" onsubmit="return false" autocomplete="off">
           <div class="post-field">
@@ -202,101 +205,162 @@
               <option value="">Choose one</option>
               <option value="goods">Goods</option>
               <option value="services">Services</option>
-              <option value="job">Job</option>
-              <option value="rental">Rental</option>
-              <option value="giveaway">Giveaway</option>
-              <option value="personal">Personal</option>
+              <option value="job">Jobs</option>
+              <option value="rental">Rentals</option>
+              <option value="giveaway">Giveaways</option>
+              <option value="personal">Personals</option>
             </select>
           </div>
-          <fieldset class="chain-pick" id="classified-side" hidden>
-            <legend>This job</legend>
-            <label><input type="radio" name="side" value="offer" checked> Offer</label>
-            <label><input type="radio" name="side" value="hire"> Hire</label>
-          </fieldset>
-          <p id="classified-hire-note" hidden>A hire note carries no payment code. Ship stays off on a hire.</p>
-          <div class="post-field">
-            <label for="classified-title">Title</label>
-            <input id="classified-title" name="title" type="text" maxlength="80" autocomplete="off" spellcheck="true">
-          </div>
-          <div class="post-field">
-            <label for="classified-summary">Summary</label>
-            <input id="classified-summary" name="summary" type="text" maxlength="280" autocomplete="off">
-          </div>
-          <div class="post-field">
-            <label for="classified-body">Description</label>
-            <textarea id="classified-body" name="body" maxlength="4000"></textarea>
-          </div>
-          <div class="post-field">
-            <div class="place-head">
-              <label for="classified-country">Country</label>
-              <button class="button button-ghost" type="button" id="classified-locate">Use my location</button>
+          <div id="classified-fields" hidden>
+            <fieldset class="chain-pick" id="classified-side" hidden>
+              <legend>This job</legend>
+              <label><input type="radio" name="side" value="offer" checked> Offer</label>
+              <label><input type="radio" name="side" value="hire"> Hire</label>
+            </fieldset>
+            <p id="classified-hire-note" hidden>A hire note carries no payment code. Ship stays off on a hire.</p>
+            <p id="classified-need" hidden>Category requires own coin node. It protects you with silent payment code that links to each order.</p>
+            <div class="post-field">
+              <label for="classified-title">Title</label>
+              <input id="classified-title" name="title" type="text" maxlength="80" autocomplete="off" spellcheck="true">
             </div>
-            <p class="place-status" id="classified-place-status" role="status"></p>
-            <input id="classified-country" name="country" type="text" maxlength="40" autocomplete="off">
-            <p class="field-note">The position is not saved. It is not sent to Autarki. A refused prompt stops there.</p>
-          </div>
-          <div class="post-field">
-            <label for="classified-province">Province</label>
-            <input id="classified-province" name="province" type="text" maxlength="40" autocomplete="off">
-          </div>
-          <div class="post-field">
-            <label for="classified-city">City</label>
-            <input id="classified-city" name="city" type="text" maxlength="40" autocomplete="off">
-          </div>
-          <div class="post-field">
-            <label for="classified-neighbourhood">Neighbourhood</label>
-            <input id="classified-neighbourhood" name="neighbourhood" type="text" maxlength="40" autocomplete="off">
-          </div>
-          <div class="post-field">
-            <label for="classified-price">Price in sats</label>
-            <input id="classified-price" name="price" type="text" inputmode="numeric" maxlength="15" autocomplete="off" spellcheck="false">
-          </div>
-          <fieldset class="chain-pick">
-            <legend>Price chain</legend>
-            <label><input type="radio" name="chain" value="xbt" checked> XBT</label>
-            <label><input type="radio" name="chain" value="btc"> BTC</label>
-          </fieldset>
-          <div class="field-notes">
-            <p>XBT and BTC each get a silent-payment code, so a buyer can pay either chain.</p>
-            <p>Connect your own node under Settings, then Coin Nodes. The wallet makes the code. Paste it here. This page cannot make one.</p>
-            <p>The code links each order. The buyer pays that code, changed by the order id. A coin with no order id is not put on the sale. Your own node is what sees that coin.</p>
-          </div>
-          <div class="post-field">
-            <label for="classified-pay-xbt">Silent-payment code, XBT</label>
-            <input id="classified-pay-xbt" name="pay-xbt" type="text" maxlength="116" autocomplete="off" spellcheck="false">
-          </div>
-          <div class="post-field">
-            <label for="classified-pay-btc">Silent-payment code, BTC</label>
-            <input id="classified-pay-btc" name="pay-btc" type="text" maxlength="116" autocomplete="off" spellcheck="false">
-          </div>
-          <div class="post-field">
-            <label for="classified-images">Image URL</label>
-            <textarea id="classified-images" name="images" maxlength="8003" autocomplete="off" spellcheck="false"></textarea>
-            <p class="field-note">One https address on each line. Four is the limit.</p>
-          </div>
-          <div class="post-field">
-            <label for="classified-map">Map</label>
-            <input id="classified-map" name="map" type="text" maxlength="800" autocomplete="off" spellcheck="false">
-            <p class="field-note">Open this place in OpenStreetMap, Google Maps, or Apple Maps. Copy the https address from the address bar and paste it into Map. A city name is not a map link.</p>
-          </div>
-          <div class="post-field">
-            <label for="classified-node-xbt">Public Lightning node, XBT</label>
-            <input id="classified-node-xbt" name="node-xbt" type="text" maxlength="400" autocomplete="off" spellcheck="false" placeholder="pubkey@host:port">
-          </div>
-          <div class="post-field">
-            <label for="classified-node-btc">Public Lightning node, BTC</label>
-            <input id="classified-node-btc" name="node-btc" type="text" maxlength="400" autocomplete="off" spellcheck="false" placeholder="pubkey@host:port">
-          </div>
-          <div class="field-notes">
-            <p>Use the Autarki wallet. Its built-in Lightning nodes have trampoline and splice.</p>
-            <p>Splice resizes one channel.</p>
-            <p>Trampoline lets a light wallet pay through one always-on pool.</p>
-            <p>Those nodes run on AMD or Intel, and in Android 0.1.0 (17).</p>
-            <p>Paste the public name, the line with @. Show this node's public name copies that line.</p>
+            <div class="post-field">
+              <label for="classified-summary">Summary</label>
+              <input id="classified-summary" name="summary" type="text" maxlength="280" autocomplete="off">
+            </div>
+            <div class="post-field">
+              <label for="classified-body">Description</label>
+              <textarea id="classified-body" name="body" maxlength="4000"></textarea>
+            </div>
+            <div class="post-field">
+              <div class="place-head">
+                <label for="classified-country">Country</label>
+                <button class="button button-ghost" type="button" id="classified-locate">Use my location</button>
+              </div>
+              <p class="place-status" id="classified-place-status" role="status"></p>
+              <input id="classified-country" name="country" type="text" maxlength="40" autocomplete="off">
+              <p class="field-note">The position is not saved. It is not sent to Autarki. A refused prompt stops there.</p>
+            </div>
+            <div class="post-field">
+              <label for="classified-province">Province</label>
+              <input id="classified-province" name="province" type="text" maxlength="40" autocomplete="off">
+            </div>
+            <div class="post-field">
+              <label for="classified-city">City</label>
+              <input id="classified-city" name="city" type="text" maxlength="40" autocomplete="off">
+            </div>
+            <div class="post-field">
+              <label for="classified-neighbourhood">Neighbourhood</label>
+              <input id="classified-neighbourhood" name="neighbourhood" type="text" maxlength="40" autocomplete="off">
+            </div>
+            <div id="classified-price-block">
+              <div class="post-field">
+                <label for="classified-price">Price in sats</label>
+                <input id="classified-price" name="price" type="text" inputmode="numeric" maxlength="16" autocomplete="off" spellcheck="false">
+              </div>
+              <fieldset class="chain-pick">
+                <legend>Price chain</legend>
+                <label><input type="radio" name="chain" value="xbt" checked> XBT</label>
+                <label><input type="radio" name="chain" value="btc"> BTC</label>
+              </fieldset>
+              <div id="classified-ship" hidden>
+                <p class="field-note">How many days do you have to ship after the buyer pays?</p>
+                <fieldset class="chain-pick">
+                  <legend>Ship days</legend>
+                  <label><input type="radio" name="ship-days" value="1"> 1 day</label>
+                  <label><input type="radio" name="ship-days" value="2"> 2 days</label>
+                  <label><input type="radio" name="ship-days" value="3"> 3 days</label>
+                  <label><input type="radio" name="ship-days" value="4"> 4 days</label>
+                </fieldset>
+                <p class="field-note">How long can the coins stay held?</p>
+                <fieldset class="chain-pick">
+                  <legend>Hold</legend>
+                  <label><input type="radio" name="hold" value="domestic"> Domestic</label>
+                  <label><input type="radio" name="hold" value="overseas"> Overseas</label>
+                </fieldset>
+                <div class="post-field">
+                  <label for="classified-postal">Postal code you ship from</label>
+                  <input id="classified-postal" name="postal" type="text" maxlength="12" autocomplete="off" spellcheck="false">
+                </div>
+                <div class="post-field">
+                  <label for="classified-cc">Country code</label>
+                  <input id="classified-cc" name="cc" type="text" maxlength="2" autocomplete="off" spellcheck="false">
+                </div>
+                <div class="post-field">
+                  <label for="classified-kg">Package weight in kilograms</label>
+                  <input id="classified-kg" name="kg" type="text" inputmode="decimal" maxlength="8" autocomplete="off" spellcheck="false">
+                </div>
+                <p class="field-note">A buyer uses these to ask FedEx. The price is not written on the ad. Leave them blank and the item price is the total.</p>
+              </div>
+            </div>
+            <div id="classified-pay">
+              <div class="field-notes">
+                <p>XBT and BTC each get a silent-payment code, so a buyer can pay either chain.</p>
+                <p>Connect your own node under Settings, then Coin Nodes. The wallet makes the code. Paste it here. This page cannot make one.</p>
+                <p>The code links each order. The buyer pays that code, changed by the order id. A coin with no order id is not put on the sale. Your own node is what sees that coin.</p>
+              </div>
+              <div class="post-field">
+                <label for="classified-pay-xbt">Silent-payment code, XBT</label>
+                <input id="classified-pay-xbt" name="pay-xbt" type="text" maxlength="116" autocomplete="off" spellcheck="false">
+              </div>
+              <div class="post-field">
+                <label for="classified-pay-btc">Silent-payment code, BTC</label>
+                <input id="classified-pay-btc" name="pay-btc" type="text" maxlength="116" autocomplete="off" spellcheck="false">
+              </div>
+            </div>
+            <div id="classified-hire-accept" hidden>
+              <p class="field-note">Leave these blank unless this offer accepts a job.</p>
+              <p class="field-note">The offer's price and chain must match the hire.</p>
+              <div class="post-field">
+                <label for="classified-hire-npub">Public name of the person who posted the job</label>
+                <input id="classified-hire-npub" name="hire-npub" type="text" maxlength="90" autocomplete="off" spellcheck="false">
+              </div>
+              <div class="post-field">
+                <label for="classified-hire-d">Job id</label>
+                <input id="classified-hire-d" name="hire-d" type="text" maxlength="256" autocomplete="off" spellcheck="false">
+              </div>
+            </div>
+            <div id="classified-pictures">
+              <div class="post-field">
+                <label for="classified-images">Image URL</label>
+                <textarea id="classified-images" name="images" maxlength="8003" autocomplete="off" spellcheck="false"></textarea>
+                <p class="field-note">One https address on each line. Four is the limit.</p>
+              </div>
+            </div>
+            <div id="classified-map-block">
+              <div class="post-field">
+                <label for="classified-map">Map</label>
+                <input id="classified-map" name="map" type="text" maxlength="800" autocomplete="off" spellcheck="false">
+                <p class="field-note">Open this place in OpenStreetMap, Google Maps, or Apple Maps. Copy the https address from the address bar and paste it into Map. A city name is not a map link.</p>
+              </div>
+            </div>
+            <div id="classified-nodes">
+              <div class="post-field">
+                <label for="classified-node-xbt">Public Lightning node, XBT</label>
+                <input id="classified-node-xbt" name="node-xbt" type="text" maxlength="400" autocomplete="off" spellcheck="false" placeholder="pubkey@host:port">
+              </div>
+              <div class="post-field">
+                <label for="classified-node-btc">Public Lightning node, BTC</label>
+                <input id="classified-node-btc" name="node-btc" type="text" maxlength="400" autocomplete="off" spellcheck="false" placeholder="pubkey@host:port">
+              </div>
+              <div class="field-notes">
+                <p>Use the Autarki wallet. Its built-in Lightning nodes have trampoline and splice.</p>
+                <p>Splice resizes one channel.</p>
+                <p>Trampoline lets a light wallet pay through one always-on pool.</p>
+                <p>Those nodes run on AMD or Intel, and in Android 0.1.0 (17).</p>
+                <p>Paste the public name, the line with @. Show this node's public name copies that line.</p>
+              </div>
+            </div>
           </div>
           <div class="post-field">
             <label for="classified-d">Listing id</label>
             <input id="classified-d" name="d" type="text" maxlength="256" autocomplete="off" spellcheck="false" placeholder="Blank chooses one">
+          </div>
+          <div id="classified-terms">
+            <p>A shop note and a classified are public. Accept this before the first one is saved. The note is for goods, a service in person, a rental, a job, a giveaway, or a personal notice. It does not carry sexual content, a threat, a weapon, an illegal drug, or a promise of profit. Child sexual content is forbidden. A report is sent to the Autarki relay. The ad stays on the board. Block and Ignore hide it on this device only. The same rules are at <a href="/board">https://autarki.app/board</a>.</p>
+            <div class="actions">
+              <button class="button" type="button" id="classified-terms-accept">Accept</button>
+              <button class="button button-ghost" type="button" id="classified-terms-later">Not now</button>
+            </div>
           </div>
           <div class="actions">
             <button class="button" type="submit" name="act" value="post">Post this ad</button>
@@ -501,6 +565,7 @@
         <li><a href="https://discord.gg/VBxvzQXvt">Discord #autarki</a></li>
         <li><a href="/channel">Another node</a></li>
         <li><a href="/support">Support</a></li>
+        <li><a href="/board">Board rules</a></li>
         <li><a href="/privacy">Privacy</a></li>
       </ul>
     </div>

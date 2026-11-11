@@ -3,9 +3,11 @@
   var BECH32 = "qpzry9x8gf2tvdw0s3jn54khce6mua7l";
   var CATEGORIES = ["goods", "services", "job", "rental", "giveaway", "personal"];
   var CARRY = "This note cannot be posted. It asks for something this board does not carry.";
-  var PRICE_TEXT = "A dollar amount, a fraction, or any other currency is shown as text and cannot be paid.";
-  var PRICE_CODE = "A price in whole sats can be paid when this note carries that chain's silent-payment code. This page cannot make the code.";
+  var PRICE = "The price is a whole number of sats on XBT or BTC.";
   var SHIP = "Ship appears when the note names a public Lightning node for a chain that has a code.";
+  var SHIP_PROMISE = "A shipment is 1 to 4 days, and Domestic or Overseas.";
+  var SHIP_ORIGIN = "A shipment names a postal code, a country code, and a weight.";
+  var TERMS_NEED = "Accept the board terms before posting.";
   var REFUSED = [
     "childporn",
     "underagesex",
@@ -97,10 +99,10 @@
   function wholeSats(text) {
     var raw = String(text == null ? "" : text).trim();
     if (!raw) return { empty: true };
-    if (!/^[1-9][0-9]*$/.test(raw)) return { bad: true };
-    if (raw.length > 15) return { bad: true };
+    if (!/^[0-9]+$/.test(raw) || raw.length > 16) return { bad: true };
     var n = Number(raw);
-    if (!Number.isSafeInteger(n) || n <= 0) return { bad: true };
+    if (!Number.isSafeInteger(n)) return { bad: true };
+    if (n === 0) return { empty: true };
     return { sats: String(n) };
   }
 
@@ -228,6 +230,11 @@
       }
       if (mode === "digit") {
         if (code >= 48 && code <= 57) out += ch;
+        continue;
+      }
+      if (mode === "weight") {
+        if (code >= 48 && code <= 57) out += ch;
+        else if (ch === "." && out && out.indexOf(".") === -1) out += ch;
         continue;
       }
       if (code < 32 || code === 127 || code === 8232 || code === 8233) continue;
@@ -375,6 +382,84 @@
     return null;
   }
 
+  function shipPostal(text) {
+    var raw = String(text || "").toUpperCase();
+    var out = "";
+    for (var i = 0; i < raw.length; i++) {
+      var ch = raw.charAt(i);
+      if (ch === " " || ch === "-") continue;
+      var code = raw.charCodeAt(i);
+      var digit = code >= 48 && code <= 57;
+      var letter = code >= 65 && code <= 90;
+      if (!digit && !letter) return "";
+      out += ch;
+    }
+    if (out.length < 3 || out.length > 10) return "";
+    return out;
+  }
+
+  function shipCountry(text) {
+    var raw = String(text || "").trim().toUpperCase();
+    if (raw.length !== 2) return "";
+    var first = raw.charCodeAt(0);
+    var second = raw.charCodeAt(1);
+    if (first < 65 || first > 90 || second < 65 || second > 90) return "";
+    return raw;
+  }
+
+  function shipWeight(text) {
+    text = String(text || "").trim();
+    if (!text || text.charAt(0) === "+" || text.charAt(0) === "-" || text.charAt(0) === ".") return "";
+    var dot = text.indexOf(".");
+    if (dot >= 0 && text.indexOf(".", dot + 1) >= 0) return "";
+    var whole = dot < 0 ? text : text.slice(0, dot);
+    var frac = dot < 0 ? "" : text.slice(dot + 1);
+    if (!whole || whole.length > 2 || frac.length > 3) return "";
+    if (whole.charAt(0) === "0" && whole.length > 1) return "";
+    var index;
+    for (index = 0; index < whole.length; index++) {
+      var wholeCode = whole.charCodeAt(index);
+      if (wholeCode < 48 || wholeCode > 57) return "";
+    }
+    for (index = 0; index < frac.length; index++) {
+      var fracCode = frac.charCodeAt(index);
+      if (fracCode < 48 || fracCode > 57) return "";
+    }
+    var milli = Number(whole) * 1000;
+    var padded = frac;
+    while (padded.length < 3) padded += "0";
+    if (frac) milli += Number(padded);
+    if (!Number.isSafeInteger(milli) || milli < 100 || milli > 68000) return "";
+    if (!frac || Number(padded) === 0) return String(Number(whole));
+    var shown = String(Number(padded));
+    while (shown.length < 3) shown = "0" + shown;
+    while (shown.charAt(shown.length - 1) === "0") shown = shown.slice(0, shown.length - 1);
+    return String(Number(whole)) + "." + shown;
+  }
+
+  function shipOrigin(postal, cc, kg) {
+    var postalRaw = String(postal == null ? "" : postal).trim();
+    var ccRaw = String(cc == null ? "" : cc).trim();
+    var kgRaw = String(kg == null ? "" : kg).trim();
+    if (!postalRaw && !ccRaw && !kgRaw) return { ok: true, postal: "", cc: "", kg: "" };
+    var cleanPostal = shipPostal(postalRaw);
+    var cleanCc = shipCountry(ccRaw);
+    var cleanKg = shipWeight(kgRaw);
+    if (!cleanPostal || !cleanCc || !cleanKg) return fail(SHIP_ORIGIN);
+    return { ok: true, postal: cleanPostal, cc: cleanCc, kg: cleanKg };
+  }
+
+  function hireAccept(npub, id) {
+    var name = String(npub == null ? "" : npub).trim();
+    var job = String(id == null ? "" : id).trim();
+    if (!name && !job) return { ok: true, npub: "", d: "" };
+    if (!/^npub1[023456789acdefghjklmnpqrstuvwxyz]{11,85}$/.test(name)) {
+      return fail("The public name could not be read.");
+    }
+    if (!dOk(job)) return fail("Name the job and the person who posted it.");
+    return { ok: true, npub: name, d: job };
+  }
+
   function tagValue(event, name) {
     var tags = event && event.tags;
     if (!Array.isArray(tags)) return "";
@@ -407,13 +492,11 @@
 
   function buildPost(fields) {
     var title = oneLine(fields.title, 80);
-    if (title === null) return fail("A title is one line, at most 80 characters.");
-    if (!title) return fail("A missing title is dropped.");
+    if (title === null || !title) return fail("The title is one line of at most 80 characters.");
     var summary = oneLine(fields.summary, 280);
-    if (summary === null) return fail("A summary is one line, at most 280 characters.");
+    if (summary === null) return fail("The summary is one line of at most 280 characters.");
     var body = bodyText(fields.body);
-    if (body.bad === "length") return fail("The description is at most 4000 characters.");
-    if (body.bad) return fail("The description has a character this note cannot carry.");
+    if (body.bad) return fail("The description is at most 4000 characters.");
     if (!dOk(fields.d)) return fail("A listing id is 1 to 256 characters with no spaces.");
     var category = String(fields.category || "");
     if (CATEGORIES.indexOf(category) === -1) return fail("Choose goods, services, a job, a rental, a giveaway, or a personal.");
@@ -424,28 +507,64 @@
     if (country === null || province === null || city === null || neighbourhood === null) {
       return fail("A place is one line of at most 40 characters.");
     }
-    if (refusedNote([title, summary, body.text, country, province, city, neighbourhood])) return fail(CARRY);
-    var images = imageLines(fields.images);
-    if (!images) return fail("An image address is https. Four is the limit.");
-    var map = mapAddress(fields.map);
-    if (map === null) return fail("The map link could not be saved.");
-    var hire = category === "job" && fields.side === "hire";
-    var amount = wholeSats(fields.price);
-    if (amount.bad) return fail(PRICE_TEXT);
+    if (refusedNote([title, summary, body.text, city, neighbourhood])) return fail(CARRY);
+    var job = category === "job";
+    var priced = job || category === "goods" || category === "services" || category === "rental";
+    var picture = category === "goods" || category === "services" || category === "rental" || category === "giveaway";
+    var allowMap = category === "goods" || category === "services" || category === "rental";
+    var hire = job && fields.side === "hire";
+    var images = [];
+    if (picture) {
+      images = imageLines(fields.images);
+      if (!images) return fail("An image address is https. Four is the limit.");
+    }
+    var map = "";
+    if (allowMap) {
+      map = mapAddress(fields.map);
+      if (map === null) return fail("The map link could not be saved.");
+    }
+    var amount = { empty: true };
+    if (priced) {
+      amount = wholeSats(fields.price);
+      if (amount.bad) return fail(PRICE);
+    }
     var payXbt = "";
     var payBtc = "";
     var nodeXbt = "";
     var nodeBtc = "";
-    if (!hire) {
+    if (priced && !hire) {
       payXbt = silentCode(fields.payXbt);
       payBtc = silentCode(fields.payBtc);
       if (payXbt === null) return fail("The XBT code is not a silent-payment code. This page cannot make one.");
       if (payBtc === null) return fail("The BTC code is not a silent-payment code. This page cannot make one.");
-      if (amount.sats && !payXbt && !payBtc) return fail(PRICE_CODE);
       var nodes = readNodes(fields, payXbt, payBtc);
       if (!nodes.ok) return nodes;
       nodeXbt = nodes.xbt;
       nodeBtc = nodes.btc;
+    }
+    var shipDays = "";
+    var hold = "";
+    var postal = "";
+    var cc = "";
+    var kg = "";
+    if ((category === "goods" || category === "services" || category === "rental") && amount.sats) {
+      var days = String(fields.shipDays == null ? "" : fields.shipDays).trim();
+      hold = fields.hold === "domestic" || fields.hold === "overseas" ? fields.hold : "";
+      if ((days !== "1" && days !== "2" && days !== "3" && days !== "4") || !hold) return fail(SHIP_PROMISE);
+      shipDays = days;
+      var origin = shipOrigin(fields.postal, fields.cc, fields.kg);
+      if (!origin.ok) return origin;
+      postal = origin.postal;
+      cc = origin.cc;
+      kg = origin.kg;
+    }
+    var hireNpub = "";
+    var hireD = "";
+    if (job && !hire) {
+      var accepted = hireAccept(fields.hireNpub, fields.hireD);
+      if (!accepted.ok) return accepted;
+      hireNpub = accepted.npub;
+      hireD = accepted.d;
     }
     var published = Number(fields.publishedAt);
     if (!Number.isSafeInteger(published) || published <= 0) return fail("The note could not be prepared.");
@@ -464,8 +583,27 @@
     if (payBtc) tags.push(["pay", payBtc, "btc"]);
     if (nodeXbt) tags.push(["node", nodeXbt, "xbt"]);
     if (nodeBtc) tags.push(["node", nodeBtc, "btc"]);
-    if (category === "job") tags.push(["side", hire ? "hire" : "offer"]);
-    return { ok: true, content: body.text, tags: tags, d: String(fields.d), images: images, map: map };
+    if (job) tags.push(["side", hire ? "hire" : "offer"]);
+    if (hireNpub && hireD) tags.push(["hire", hireNpub, hireD]);
+    if (shipDays) {
+      tags.push(["ship_days", shipDays]);
+      tags.push(["hold", hold]);
+      if (postal) {
+        tags.push(["postal", postal]);
+        tags.push(["cc", cc]);
+        tags.push(["kg", kg]);
+      }
+    }
+    return {
+      ok: true,
+      content: body.text,
+      tags: tags,
+      d: String(fields.d),
+      images: images,
+      map: map,
+      usedImages: picture,
+      usedMap: allowMap
+    };
   }
 
   function readNodes(fields, payXbt, payBtc) {
@@ -560,8 +698,18 @@
   var summaryInput = document.getElementById("classified-summary");
   var bodyInput = document.getElementById("classified-body");
   var categoryInput = document.getElementById("classified-category");
+  var fieldsBlock = document.getElementById("classified-fields");
   var sideField = document.getElementById("classified-side");
   var hireNote = document.getElementById("classified-hire-note");
+  var needNote = document.getElementById("classified-need");
+  var priceBlock = document.getElementById("classified-price-block");
+  var shipBlock = document.getElementById("classified-ship");
+  var payBlock = document.getElementById("classified-pay");
+  var hireAcceptBlock = document.getElementById("classified-hire-accept");
+  var pictureBlock = document.getElementById("classified-pictures");
+  var mapBlock = document.getElementById("classified-map-block");
+  var nodeBlock = document.getElementById("classified-nodes");
+  var termsBlock = document.getElementById("classified-terms");
   var countryInput = document.getElementById("classified-country");
   var provinceInput = document.getElementById("classified-province");
   var cityInput = document.getElementById("classified-city");
@@ -569,6 +717,11 @@
   var priceInput = document.getElementById("classified-price");
   var payXbtInput = document.getElementById("classified-pay-xbt");
   var payBtcInput = document.getElementById("classified-pay-btc");
+  var postalInput = document.getElementById("classified-postal");
+  var ccInput = document.getElementById("classified-cc");
+  var kgInput = document.getElementById("classified-kg");
+  var hireNpubInput = document.getElementById("classified-hire-npub");
+  var hireDInput = document.getElementById("classified-hire-d");
   var imagesInput = document.getElementById("classified-images");
   var mapInput = document.getElementById("classified-map");
   var nodeXbtInput = document.getElementById("classified-node-xbt");
@@ -583,20 +736,70 @@
   }
 
   function selected(name) {
-    var input = form.querySelector("input[name=" + name + "]:checked");
+    var input = form.querySelector("input[name='" + name + "']:checked");
     return input ? input.value : "";
   }
 
-  function showJob() {
-    var job = categoryInput.value === "job";
-    sideField.hidden = !job;
-    var hire = job && selected("side") === "hire";
-    hireNote.hidden = !hire;
+  function termsAccepted() {
+    try {
+      if (localStorage.getItem("autarki-board-terms") === "1") return true;
+    } catch (e) {}
+    return termsBlock && termsBlock.getAttribute("data-accepted") === "1";
   }
 
-  categoryInput.addEventListener("change", showJob);
-  sideField.addEventListener("change", showJob);
-  showJob();
+  function acceptTerms() {
+    if (termsBlock) termsBlock.setAttribute("data-accepted", "1");
+    try {
+      localStorage.setItem("autarki-board-terms", "1");
+    } catch (e) {}
+  }
+
+  function paintTerms() {
+    if (termsBlock) termsBlock.hidden = termsAccepted();
+  }
+
+  function showPlan() {
+    var category = categoryInput.value;
+    var known = CATEGORIES.indexOf(category) !== -1;
+    var job = category === "job";
+    var priced = job || category === "goods" || category === "services" || category === "rental";
+    var picture = category === "goods" || category === "services" || category === "rental" || category === "giveaway";
+    var allowMap = category === "goods" || category === "services" || category === "rental";
+    var hire = job && selected("side") === "hire";
+    var amount = wholeSats(priceInput.value);
+    var ship = (category === "goods" || category === "services" || category === "rental") && !!amount.sats;
+    var pay = priced && !hire;
+    if (fieldsBlock) fieldsBlock.hidden = !known;
+    if (sideField) sideField.hidden = !job;
+    if (hireNote) hireNote.hidden = !hire;
+    if (needNote) needNote.hidden = !(category === "goods" || category === "services" || category === "rental" || (job && !hire));
+    if (priceBlock) priceBlock.hidden = !priced;
+    if (shipBlock) shipBlock.hidden = !ship;
+    if (payBlock) payBlock.hidden = !pay;
+    if (hireAcceptBlock) hireAcceptBlock.hidden = !(job && !hire);
+    if (pictureBlock) pictureBlock.hidden = !picture;
+    if (mapBlock) mapBlock.hidden = !allowMap;
+    if (nodeBlock) nodeBlock.hidden = !pay;
+  }
+
+  categoryInput.addEventListener("change", showPlan);
+  sideField.addEventListener("change", showPlan);
+  showPlan();
+  paintTerms();
+  var termsAccept = document.getElementById("classified-terms-accept");
+  var termsLater = document.getElementById("classified-terms-later");
+  if (termsAccept) {
+    termsAccept.addEventListener("click", function () {
+      acceptTerms();
+      paintTerms();
+      say("");
+    });
+  }
+  if (termsLater) {
+    termsLater.addEventListener("click", function () {
+      say(TERMS_NEED);
+    });
+  }
 
   function guardInput(node, mode) {
     if (!node) return;
@@ -621,6 +824,10 @@
   guardInput(cityInput, "line");
   guardInput(neighbourhoodInput, "line");
   guardInput(priceInput, "digit");
+  priceInput.addEventListener("input", showPlan);
+  guardInput(kgInput, "weight");
+  guardInput(hireNpubInput, "url");
+  guardInput(hireDInput, "line");
   guardInput(payXbtInput, "url");
   guardInput(payBtcInput, "url");
   guardInput(imagesInput, "lines");
@@ -762,6 +969,13 @@
       neighbourhood: neighbourhoodInput.value,
       price: priceInput.value,
       chain: selected("chain"),
+      shipDays: selected("ship-days"),
+      hold: selected("hold"),
+      postal: postalInput ? postalInput.value : "",
+      cc: ccInput ? ccInput.value : "",
+      kg: kgInput ? kgInput.value : "",
+      hireNpub: hireNpubInput ? hireNpubInput.value : "",
+      hireD: hireDInput ? hireDInput.value : "",
       payXbt: payXbtInput.value,
       payBtc: payBtcInput.value,
       images: imagesInput.value,
@@ -890,6 +1104,11 @@
   form.addEventListener("submit", function (event) {
     event.preventDefault();
     if (busy) return;
+    if (!termsAccepted()) {
+      say(TERMS_NEED);
+      if (termsBlock) termsBlock.hidden = false;
+      return;
+    }
     var act = event.submitter && event.submitter.value ? event.submitter.value : "post";
     var draftFields = fieldsFrom(act);
     if (act === "post" && !draftFields.d) {
@@ -902,8 +1121,8 @@
       return;
     }
     if (act === "post") {
-      imagesInput.value = built.images.join("\n");
-      mapInput.value = built.map;
+      if (built.usedImages) imagesInput.value = built.images.join("\n");
+      if (built.usedMap) mapInput.value = built.map;
     }
     var nostr = extension();
     if (!nostr) {
