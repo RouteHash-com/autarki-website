@@ -10,6 +10,16 @@
   var TERMS_NEED = "Accept the board terms before posting.";
   var PREVIEW_NOTE = "This is how the note looks. It is not on the board yet. Edit the fields and preview again.";
   var PREVIEW_STALE = "The fields changed. Preview this ad again before posting.";
+  var SIGNPOST_RELAYS = [
+    "wss://nos.lol",
+    "wss://relay.damus.io",
+    "wss://relay.primal.net",
+    "wss://relay.nostr.band"
+  ];
+  var SIGNPOST_SHOWN = "Other markets can show this ad. The sale stays on Autarki.";
+  var SIGNPOST_HIDDEN = "Other markets were told to drop this ad. The ad stays on Autarki.";
+  var SIGNPOST_MISSED = "A node did not answer.";
+  var SIGNPOST_KEY = "autarki-classified-signposts";
   var REFUSED = [
     "childporn",
     "underagesex",
@@ -643,6 +653,181 @@
     };
   }
 
+  function tagText(tags, name) {
+    var i;
+    for (i = 0; i < tags.length; i++) {
+      if (tags[i] && tags[i][0] === name && tags[i][1]) return String(tags[i][1]);
+    }
+    return "";
+  }
+
+  function groupedSats(text) {
+    return String(text).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  function signpostLine(chain) {
+    if (chain === "xbt") return "Available only on Autarki; priced in XBT.";
+    if (chain === "btc") return "Available only on Autarki; priced in BTC.";
+    return "";
+  }
+
+  function signpostDraft(built, signD, publishedAt) {
+    if (!built || !built.ok) return fail("The note could not be prepared.");
+    var tagsIn = built.tags || [];
+    var price = null;
+    var images = [];
+    var category = "";
+    var hire = false;
+    var i;
+    for (i = 0; i < tagsIn.length; i++) {
+      var tag = tagsIn[i];
+      if (!tag) continue;
+      if (tag[0] === "price" && !price && (tag[2] === "xbt" || tag[2] === "btc")) price = tag;
+      if (tag[0] === "image" && images.length < 4) images.push(String(tag[1]));
+      if (tag[0] === "t" && !category) category = String(tag[1]);
+      if (tag[0] === "side" && tag[1] === "hire") hire = true;
+    }
+    if (hire || !price || !price[1]) return fail("This ad has no XBT or BTC amount.");
+    if (category !== "goods" && category !== "services" && category !== "job" && category !== "rental") {
+      return fail("This ad has no XBT or BTC amount.");
+    }
+    var at = Number(publishedAt);
+    if (!/^[0-9a-f]{16}$/.test(String(signD || "")) || signD === String(built.d) || !Number.isSafeInteger(at) || at <= 0) {
+      return fail("That listing cannot be changed that way.");
+    }
+    var title = tagText(tagsIn, "title");
+    if (!title) return fail("The title is one line of at most 80 characters.");
+    var line = signpostLine(String(price[2]));
+    if (!line) return fail("This ad has no XBT or BTC amount.");
+    var seller = built.content ? String(built.content) : "";
+    var content = line + "\n" + groupedSats(price[1]) + " sats.\nhttps://autarki.app";
+    if (seller) content += "\n\n" + seller;
+    var body = bodyText(content);
+    if (body.bad) return fail("The description is at most 4000 characters.");
+    var city = tagText(tagsIn, "location");
+    var country = tagText(tagsIn, "country");
+    var province = tagText(tagsIn, "province");
+    var neighbourhood = tagText(tagsIn, "neighbourhood");
+    if (refusedNote([body.text, line, title, city, neighbourhood, country, province])) return fail(CARRY);
+    var tags = [
+      ["d", String(signD)],
+      ["title", title],
+      ["summary", line],
+      ["published_at", String(at)]
+    ];
+    if (city) tags.push(["location", city]);
+    if (country) tags.push(["country", country]);
+    if (province) tags.push(["province", province]);
+    if (neighbourhood) tags.push(["neighbourhood", neighbourhood]);
+    tags.push(["t", category]);
+    for (i = 0; i < images.length; i++) tags.push(["image", images[i]]);
+    return { ok: true, content: body.text, tags: tags, d: String(signD), publishedAt: at };
+  }
+
+  function signpostCancel(signD, publishedAt) {
+    var at = Number(publishedAt);
+    if (!/^[0-9a-f]{16}$/.test(String(signD || "")) || !Number.isSafeInteger(at) || at <= 0) {
+      return fail("That listing cannot be changed that way.");
+    }
+    return {
+      ok: true,
+      content: "",
+      tags: [
+        ["d", String(signD)],
+        ["published_at", String(at)],
+        ["status", "canceled"]
+      ],
+      d: String(signD),
+      publishedAt: at
+    };
+  }
+
+  function bech32Polymod(values) {
+    var gen = [0x3b6a57b2, 0x26508e6d, 0x1ea119fa, 0x3d4233dd, 0x2a1462b3];
+    var chk = 1;
+    var i;
+    for (i = 0; i < values.length; i++) {
+      var top = chk >>> 25;
+      chk = ((chk & 0x1ffffff) << 5) ^ values[i];
+      var bit;
+      for (bit = 0; bit < 5; bit++) {
+        if ((top >>> bit) & 1) chk ^= gen[bit];
+      }
+    }
+    return chk >>> 0;
+  }
+
+  function bech32HrpExpand(hrp) {
+    var out = [];
+    var i;
+    for (i = 0; i < hrp.length; i++) out.push(hrp.charCodeAt(i) >> 5);
+    out.push(0);
+    for (i = 0; i < hrp.length; i++) out.push(hrp.charCodeAt(i) & 31);
+    return out;
+  }
+
+  function bech32Encode(hrp, data) {
+    var values = bech32HrpExpand(hrp);
+    var i;
+    for (i = 0; i < data.length; i++) values.push(data[i]);
+    for (i = 0; i < 6; i++) values.push(0);
+    var mod = bech32Polymod(values) ^ 1;
+    var out = hrp + "1";
+    for (i = 0; i < data.length; i++) out += BECH32.charAt(data[i]);
+    for (i = 0; i < 6; i++) out += BECH32.charAt((mod >>> (5 * (5 - i))) & 31);
+    return out;
+  }
+
+  function convertBits(data, from, to, pad) {
+    var acc = 0;
+    var bits = 0;
+    var out = [];
+    var maxv = (1 << to) - 1;
+    var i;
+    for (i = 0; i < data.length; i++) {
+      acc = (acc << from) | data[i];
+      bits += from;
+      while (bits >= to) {
+        bits -= to;
+        out.push((acc >>> bits) & maxv);
+      }
+    }
+    if (pad) {
+      if (bits) out.push((acc << (to - bits)) & maxv);
+    } else if (bits >= from || ((acc << (to - bits)) & maxv)) {
+      return null;
+    }
+    return out;
+  }
+
+  function naddrFor(pubkey, identifier) {
+    if (!/^[0-9a-fA-F]{64}$/.test(String(pubkey || ""))) return "";
+    if (typeof identifier !== "string" || !identifier || identifier.length > 255) return "";
+    var author = [];
+    var ident = [];
+    var tlv = [];
+    var i;
+    for (i = 0; i < 64; i += 2) author.push(parseInt(String(pubkey).substr(i, 2), 16));
+    for (i = 0; i < identifier.length; i++) ident.push(identifier.charCodeAt(i) & 255);
+    function push(type, bytes) {
+      tlv.push(type);
+      tlv.push(bytes.length);
+      for (var n = 0; n < bytes.length; n++) tlv.push(bytes[n]);
+    }
+    push(0, ident);
+    for (i = 0; i < SIGNPOST_RELAYS.length; i++) {
+      var relay = [];
+      var c;
+      for (c = 0; c < SIGNPOST_RELAYS[i].length; c++) relay.push(SIGNPOST_RELAYS[i].charCodeAt(c));
+      push(1, relay);
+    }
+    push(2, author);
+    push(3, [0, 0, 0x76, 0xc2]);
+    var five = convertBits(tlv, 8, 5, true);
+    if (!five) return "";
+    return bech32Encode("naddr", five);
+  }
+
   function signedOk(draft, signed) {
     if (!signed || signed.kind !== 30402 || signed.content !== draft.content) return false;
     if (!/^[0-9a-fA-F]{64}$/.test(String(signed.pubkey || ""))) return false;
@@ -686,7 +871,11 @@
     dOk: dOk,
     newId: newId,
     imageLines: imageLines,
-    mapAddress: mapAddress
+    mapAddress: mapAddress,
+    signpostDraft: signpostDraft,
+    signpostCancel: signpostCancel,
+    naddrFor: naddrFor,
+    signpostRelays: SIGNPOST_RELAYS
   };
 
   if (typeof module !== "undefined" && module.exports) module.exports = api;
@@ -730,12 +919,17 @@
   var previewCard = document.getElementById("classified-preview-card");
   var previewNote = document.getElementById("classified-preview-note");
   var previewButton = document.getElementById("classified-preview-open");
+  var signpostLineEl = document.getElementById("classified-signpost-line");
+  var signpostInput = document.getElementById("classified-signpost");
+  var signpostLinks = document.getElementById("classified-signpost-links");
   var nodeXbtInput = document.getElementById("classified-node-xbt");
   var nodeBtcInput = document.getElementById("classified-node-btc");
   var locateButton = document.getElementById("classified-locate");
   var placeStatus = document.getElementById("classified-place-status");
   var buttons = form.querySelectorAll("button");
   var busy = false;
+  var signerPubkey = "";
+  var signpostCache = null;
 
   function say(text) {
     status.textContent = text;
@@ -791,6 +985,25 @@
     if (pictureBlock) pictureBlock.hidden = !picture;
     if (mapBlock) mapBlock.hidden = !allowMap;
     if (nodeBlock) nodeBlock.hidden = !pay;
+    if (signpostLineEl) signpostLineEl.hidden = !signpostOffer();
+    paintSignpostLinks();
+  }
+
+  function signpostOffer() {
+    var category = categoryInput ? categoryInput.value : "";
+    var job = category === "job";
+    var hire = job && selected("side") === "hire";
+    var priced = category === "goods" || category === "services" || category === "rental" || (job && !hire);
+    if (!priced) return false;
+    var amount = wholeSats(priceInput ? priceInput.value : "");
+    if (!amount.sats) return false;
+    var chain = selected("chain");
+    return chain === "xbt" || chain === "btc";
+  }
+
+  function signpostBoxOn() {
+    if (!signpostOffer()) return false;
+    return !!(signpostInput && signpostInput.checked);
   }
 
   var termsAccept = document.getElementById("classified-terms-accept");
@@ -1004,6 +1217,7 @@
   function lock(on) {
     busy = on;
     for (var i = 0; i < buttons.length; i++) buttons[i].disabled = on;
+    if (signpostInput) signpostInput.disabled = on;
   }
 
   function once(socket, fn) {
@@ -1306,7 +1520,259 @@
     });
   }
   form.addEventListener("input", markPreviewStale);
-  form.addEventListener("change", markPreviewStale);
+  form.addEventListener("change", function (event) {
+    var target = event && event.target;
+    if (target && target.id === "classified-signpost") return;
+    markPreviewStale();
+  });
+
+  function signpostCacheGet() {
+    if (signpostCache) return signpostCache;
+    signpostCache = {};
+    try {
+      var raw = localStorage.getItem(SIGNPOST_KEY);
+      var parsed = raw ? JSON.parse(raw) : {};
+      if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) signpostCache = parsed;
+    } catch (e) {}
+    return signpostCache;
+  }
+
+  function signpostCacheSave() {
+    try {
+      localStorage.setItem(SIGNPOST_KEY, JSON.stringify(signpostCacheGet()));
+    } catch (e) {}
+  }
+
+  function signpostRecall(pubkey, ad) {
+    if (!/^[0-9a-fA-F]{64}$/.test(String(pubkey || "")) || !ad) return null;
+    var bucket = signpostCacheGet()[String(pubkey).toLowerCase()];
+    if (!bucket || typeof bucket !== "object" || Array.isArray(bucket)) return null;
+    var row = bucket[ad];
+    if (!row || typeof row !== "object") return null;
+    if (!/^[0-9a-f]{16}$/.test(String(row.d || "")) || row.d === ad) return null;
+    var at = Number(row.published_at);
+    if (!Number.isSafeInteger(at) || at <= 0) return null;
+    return { d: String(row.d), published_at: at, shown: row.shown === true };
+  }
+
+  function signpostRemember(pubkey, ad, row) {
+    var key = String(pubkey).toLowerCase();
+    var cache = signpostCacheGet();
+    if (!cache[key] || typeof cache[key] !== "object" || Array.isArray(cache[key])) cache[key] = {};
+    cache[key][ad] = { d: row.d, published_at: row.published_at, shown: row.shown === true };
+    signpostCacheSave();
+  }
+
+  function signpostFind(ad) {
+    if (!ad) return null;
+    if (signerPubkey) {
+      var mine = signpostRecall(signerPubkey, ad);
+      return mine ? { pubkey: signerPubkey, row: mine } : null;
+    }
+    var cache = signpostCacheGet();
+    var found = null;
+    var pubkey;
+    for (pubkey in cache) {
+      if (!Object.prototype.hasOwnProperty.call(cache, pubkey)) continue;
+      if (!/^[0-9a-fA-F]{64}$/.test(pubkey)) continue;
+      var row = signpostRecall(pubkey, ad);
+      if (!row) continue;
+      if (found) return null;
+      found = { pubkey: pubkey.toLowerCase(), row: row };
+    }
+    return found;
+  }
+
+  function signpostFresh(ad) {
+    var used = {};
+    used[String(ad)] = true;
+    var cache = signpostCacheGet();
+    var pubkey;
+    var id;
+    for (pubkey in cache) {
+      if (!Object.prototype.hasOwnProperty.call(cache, pubkey)) continue;
+      var ads = cache[pubkey];
+      if (!ads || typeof ads !== "object") continue;
+      for (id in ads) {
+        if (!Object.prototype.hasOwnProperty.call(ads, id)) continue;
+        used[id] = true;
+        if (ads[id] && ads[id].d) used[String(ads[id].d)] = true;
+      }
+    }
+    var n;
+    for (n = 0; n < 4; n++) {
+      var minted = newId();
+      if (!used[minted]) return minted;
+    }
+    return "";
+  }
+
+  function paintSignpostLinks() {
+    if (!signpostLinks) return;
+    while (signpostLinks.firstChild) signpostLinks.removeChild(signpostLinks.firstChild);
+    signpostLinks.hidden = true;
+    if (!signpostBoxOn()) return;
+    var ad = dInput ? dInput.value.trim() : "";
+    var found = signpostFind(ad);
+    if (!found || !found.row.shown) return;
+    var naddr = naddrFor(found.pubkey, found.row.d);
+    if (!naddr) return;
+    var pages = [
+      ["Shopstr", "https://shopstr.store/listing/" + naddr],
+      ["njump", "https://njump.me/" + naddr],
+      ["nostr.band", "https://nostr.band/" + naddr],
+      ["Coracle", "https://coracle.social/" + naddr]
+    ];
+    var line = document.createElement("p");
+    line.className = "field-note";
+    var i;
+    for (i = 0; i < pages.length; i++) {
+      if (i) line.appendChild(document.createTextNode(" · "));
+      var link = document.createElement("a");
+      link.href = pages[i][1];
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.textContent = pages[i][0];
+      line.appendChild(link);
+    }
+    signpostLinks.appendChild(line);
+    signpostLinks.hidden = false;
+  }
+
+  function sendRelay(relay, event) {
+    return new Promise(function (resolve) {
+      var ws;
+      var finish = function () {};
+      var timer = setTimeout(function () { finish(false); }, 15000);
+      try {
+        ws = new WebSocket(relay);
+      } catch (e) {
+        clearTimeout(timer);
+        resolve(false);
+        return;
+      }
+      finish = once(ws, function (ok) {
+        clearTimeout(timer);
+        resolve(ok === true);
+      });
+      ws.onopen = function () {
+        try {
+          ws.send(JSON.stringify(["EVENT", event]));
+        } catch (err) {
+          finish(false);
+        }
+      };
+      ws.onmessage = function (message) {
+        var frame;
+        try {
+          frame = JSON.parse(message.data);
+        } catch (e) {
+          return;
+        }
+        if (!Array.isArray(frame) || frame[0] === "AUTH") return;
+        if (frame[0] === "OK" && String(frame[1] || "").toLowerCase() === String(event.id).toLowerCase()) {
+          finish(frame[2] === true);
+        }
+      };
+      ws.onerror = function () { finish(false); };
+      ws.onclose = function () { finish(false); };
+    });
+  }
+
+  function sendSignpost(event) {
+    var accepted = 0;
+    var chain = Promise.resolve();
+    var i;
+    for (i = 0; i < SIGNPOST_RELAYS.length; i++) {
+      (function (relay) {
+        chain = chain.then(function () {
+          return sendRelay(relay, event).then(function (ok) {
+            if (ok) accepted += 1;
+          });
+        });
+      })(SIGNPOST_RELAYS[i]);
+    }
+    return chain.then(function () { return accepted; });
+  }
+
+  function signSecond(nostr, pubkey, draft) {
+    return nostr.signEvent({
+      pubkey: pubkey,
+      created_at: Math.floor(Date.now() / 1000),
+      kind: 30402,
+      tags: draft.tags,
+      content: draft.content
+    }).then(function (signed) {
+      if (!signedOk({ content: draft.content, tags: draft.tags }, signed)) throw new Error("sign");
+      return sendSignpost(signed);
+    });
+  }
+
+  function postedLine(d) {
+    return "The note is on the relay. Listing id " + d + ". The same key replaces it. A wallet shows it when Classifieds is on and that wallet is unlocked.";
+  }
+
+  function showLine(accepted) {
+    if (accepted < 1) return SIGNPOST_MISSED;
+    if (accepted < SIGNPOST_RELAYS.length) return SIGNPOST_SHOWN + " " + SIGNPOST_MISSED;
+    return SIGNPOST_SHOWN;
+  }
+
+  function hideLine(accepted) {
+    if (accepted === SIGNPOST_RELAYS.length) return SIGNPOST_HIDDEN;
+    if (accepted > 0) return SIGNPOST_HIDDEN + " " + SIGNPOST_MISSED;
+    return SIGNPOST_MISSED;
+  }
+
+  function finishSignpost(nostr, pubkey, built, share) {
+    var posted = postedLine(built.d);
+    var row = signpostRecall(pubkey, built.d);
+    if (share) {
+      var signD = row ? row.d : signpostFresh(built.d);
+      var publishedAt = row ? row.published_at : Math.floor(Date.now() / 1000);
+      if (!signD) {
+        say(posted + " That listing cannot be changed that way.");
+        return Promise.resolve();
+      }
+      var draft = signpostDraft(built, signD, publishedAt);
+      if (!draft.ok) {
+        say(posted + " " + draft.message);
+        return Promise.resolve();
+      }
+      if (!row) signpostRemember(pubkey, built.d, { d: draft.d, published_at: draft.publishedAt, shown: false });
+      say("Sending this ad to the other markets.");
+      return signSecond(nostr, pubkey, draft).then(function (accepted) {
+        if (accepted > 0) signpostRemember(pubkey, built.d, { d: draft.d, published_at: draft.publishedAt, shown: true });
+        say(posted + " " + showLine(accepted));
+        paintSignpostLinks();
+      }).catch(function () {
+        say(posted + " The extension did not sign. This page does not ask for a secret key.");
+      });
+    }
+    if (row && row.shown) {
+      var cancel = signpostCancel(row.d, row.published_at);
+      if (!cancel.ok) {
+        say(posted + " " + cancel.message);
+        return Promise.resolve();
+      }
+      say("Telling the other markets to drop this ad.");
+      return signSecond(nostr, pubkey, cancel).then(function (accepted) {
+        if (accepted === SIGNPOST_RELAYS.length) {
+          signpostRemember(pubkey, built.d, { d: row.d, published_at: row.published_at, shown: false });
+        }
+        say(posted + " " + hideLine(accepted));
+        paintSignpostLinks();
+      }).catch(function () {
+        say(posted + " The extension did not sign. This page does not ask for a secret key.");
+      });
+    }
+    say(posted);
+    paintSignpostLinks();
+    return Promise.resolve();
+  }
+
+  if (signpostInput) signpostInput.addEventListener("change", paintSignpostLinks);
+  if (dInput) dInput.addEventListener("input", paintSignpostLinks);
 
   form.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -1336,20 +1802,24 @@
       say("A Nostr extension in this browser signs the note. This page does not ask for a secret key.");
       return;
     }
+    var share = act === "post" && signpostBoxOn();
+    var signer = "";
     lock(true);
     say("Waiting for the extension to sign.");
     Promise.resolve()
       .then(function () { return nostr.getPublicKey(); })
       .then(function (pubkey) {
         if (!/^[0-9a-fA-F]{64}$/.test(String(pubkey || ""))) throw new Error("sign");
-        return askPublishedAt(String(pubkey).toLowerCase(), built.d).then(function (prior) {
+        signer = String(pubkey).toLowerCase();
+        signerPubkey = signer;
+        return askPublishedAt(signer, built.d).then(function (prior) {
           if (prior) {
             for (var i = 0; i < built.tags.length; i++) {
               if (built.tags[i][0] === "published_at") built.tags[i][1] = String(prior);
             }
           }
           var draft = {
-            pubkey: String(pubkey).toLowerCase(),
+            pubkey: signer,
             created_at: Math.floor(Date.now() / 1000),
             kind: 30402,
             tags: built.tags,
@@ -1364,9 +1834,15 @@
         return sendEvent(signed);
       })
       .then(function () {
-        if (act === "sold") say("The note is marked sold. A wallet hides it. Listing id " + built.d + ".");
-        else if (act === "canceled") say("The note is marked canceled. A wallet hides it. Listing id " + built.d + ".");
-        else say("The note is on the relay. Listing id " + built.d + ". The same key replaces it. A wallet shows it when Classifieds is on and that wallet is unlocked.");
+        if (act === "sold") {
+          say("The note is marked sold. A wallet hides it. Listing id " + built.d + ".");
+          return;
+        }
+        if (act === "canceled") {
+          say("The note is marked canceled. A wallet hides it. Listing id " + built.d + ".");
+          return;
+        }
+        return finishSignpost(nostr, signer, built, share);
       })
       .catch(function (err) {
         var reason = err && err.message;

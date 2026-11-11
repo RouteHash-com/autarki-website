@@ -12,6 +12,7 @@ A person publishes a stall or a classified from their own wallet. This page read
 - A store shows Lightning on XBT or Lightning on BTC when its published stall includes incoming room. A classified from that seller shows the same line. This page does not see the node.
 - This page asks one relay, shows what came back, and closes. Nothing is stored on this site.
 - A note this board does not carry is left off. A report does not remove the ad. Block and Ignore hide it on that device only. The rules are on the [board rules](https://autarki.app/board.md) page. The relay can still keep the original note.
+- A description that starts with Available only on Autarki; is left off, so that note does not sit beside the sale.
 - Search a shop, a product, a place, or a public name. Search and the chips run on this page. Nothing is ranked by payment.
 - Autarki does not approve a stall and does not take the order.
 - The order is a private note. The relay cannot read it.

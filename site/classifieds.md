@@ -38,6 +38,7 @@ A signed note from any Nostr key shows on the wallet board when the note is one 
 - Mark sold or Cancel this ad hides the note. A person a wallet has blocked or ignored is hidden on that wallet only.
 - This page checks the note before it is signed. A note this board does not carry is not sent. A report is sent to the Autarki relay. The ad stays on the board. The relay can still keep the original note.
 - Preview this ad shows the note on this page. It does not publish it.
+- Show this ad on other markets posts a second note. That note has no price. The sale stays on the relay this board reads. Turning it off and posting drops that second note. Mark sold and Cancel this ad leave it alone.
 - Accept the board terms before the first note is saved.
 - This site does not keep the key or the note. Use the Autarki app for easy ad management.
 

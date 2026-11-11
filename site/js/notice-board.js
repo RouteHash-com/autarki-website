@@ -314,6 +314,7 @@
 
   function adFrom(versions) {
     var event = versions[versions.length - 1];
+    if (String(event.content || "").indexOf("Available only on Autarki;") === 0) return null;
     var d = first(event, "d");
     var pubkey = hex(event.pubkey);
     if (!pubkey || !dOk(d)) return null;
