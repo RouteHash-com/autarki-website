@@ -985,16 +985,24 @@
     if (pictureBlock) pictureBlock.hidden = !picture;
     if (mapBlock) mapBlock.hidden = !allowMap;
     if (nodeBlock) nodeBlock.hidden = !pay;
-    if (signpostLineEl) signpostLineEl.hidden = !signpostOffer();
+    if (signpostLineEl) {
+      var showSign = signpostCategory();
+      signpostLineEl.hidden = !showSign;
+      // A later display rule must not keep this box on screen after it is hidden.
+      signpostLineEl.style.display = showSign ? "" : "none";
+    }
     paintSignpostLinks();
   }
 
-  function signpostOffer() {
+  function signpostCategory() {
     var category = categoryInput ? categoryInput.value : "";
     var job = category === "job";
     var hire = job && selected("side") === "hire";
-    var priced = category === "goods" || category === "services" || category === "rental" || (job && !hire);
-    if (!priced) return false;
+    return category === "goods" || category === "services" || category === "rental" || (job && !hire);
+  }
+
+  function signpostOffer() {
+    if (!signpostCategory()) return false;
     var amount = wholeSats(priceInput ? priceInput.value : "");
     if (!amount.sats) return false;
     var chain = selected("chain");
@@ -1023,6 +1031,8 @@
   }
   if (categoryInput) categoryInput.addEventListener("change", showPlan);
   if (sideField) sideField.addEventListener("change", showPlan);
+  var chainField = document.getElementById("classified-chain");
+  if (chainField) chainField.addEventListener("change", showPlan);
   showPlan();
   paintTerms();
   window.addEventListener("pageshow", showPlan);

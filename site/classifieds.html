@@ -259,11 +259,16 @@
                 <label for="classified-price">Price in sats</label>
                 <input id="classified-price" name="price" type="text" inputmode="numeric" maxlength="16" autocomplete="off" spellcheck="false">
               </div>
-              <fieldset class="chain-pick">
+              <fieldset class="chain-pick" id="classified-chain">
                 <legend>Price chain</legend>
                 <label><input type="radio" name="chain" value="xbt" checked> XBT</label>
                 <label><input type="radio" name="chain" value="btc"> BTC</label>
               </fieldset>
+              <div class="post-field" id="classified-signpost-line" hidden>
+                <label for="classified-signpost"><input id="classified-signpost" name="signpost" type="checkbox"> Show this ad on other markets</label>
+                <p class="field-note">Post this ad sends a second note when this box is on and this ad names an XBT or BTC amount. The title, the place, the category, and the images stay. The note names the sat amount and https://autarki.app. It has no payment code, no node, and no shipment. The sale stays on Autarki. Turning this off and posting tells those boards to drop that second note. The ad on Autarki stays up.</p>
+                <div id="classified-signpost-links" hidden></div>
+              </div>
               <div id="classified-ship" hidden>
                 <p class="field-note">How many days do you have to ship after the buyer pays?</p>
                 <fieldset class="chain-pick">
@@ -369,11 +374,6 @@
               <p class="field-note" id="classified-preview-note">This is how the note looks. It is not on the board yet. Edit the fields and preview again.</p>
               <article class="board-card" id="classified-preview-card"></article>
             </div>
-          </div>
-          <div class="post-field" id="classified-signpost-line" hidden>
-            <label for="classified-signpost"><input id="classified-signpost" name="signpost" type="checkbox"> Show this ad on other markets</label>
-            <p class="field-note">Post this ad sends a second note when this box is on and this ad names an XBT or BTC amount. The title, the place, the category, and the images stay. The note names the sat amount and https://autarki.app. It has no payment code, no node, and no shipment. The sale stays on Autarki. Turning this off and posting tells those boards to drop that second note. The ad on Autarki stays up.</p>
-            <div id="classified-signpost-links" hidden></div>
           </div>
           <div class="actions">
             <button class="button button-ghost" type="button" id="classified-preview-open">Preview this ad</button>
@@ -585,6 +585,6 @@
     </div>
   </footer>
   <script src="js/site.js"></script>
-  <script src="js/classified-post.js?v=20261111c"></script>
+  <script src="js/classified-post.js?v=20261111d"></script>
 </body>
 </html>
