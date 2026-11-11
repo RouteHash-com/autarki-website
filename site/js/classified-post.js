@@ -759,6 +759,7 @@
   }
 
   function showPlan() {
+    if (!categoryInput) return;
     var category = categoryInput.value;
     var known = CATEGORIES.indexOf(category) !== -1;
     var job = category === "job";
@@ -766,11 +767,15 @@
     var picture = category === "goods" || category === "services" || category === "rental" || category === "giveaway";
     var allowMap = category === "goods" || category === "services" || category === "rental";
     var hire = job && selected("side") === "hire";
-    var amount = wholeSats(priceInput.value);
+    var amount = wholeSats(priceInput ? priceInput.value : "");
     var ship = (category === "goods" || category === "services" || category === "rental") && !!amount.sats;
     var pay = priced && !hire;
     if (fieldsBlock) fieldsBlock.hidden = !known;
-    if (sideField) sideField.hidden = !job;
+    if (sideField) {
+      sideField.hidden = !job;
+      // .chain-pick sets display:flex, which overrides the hidden attribute.
+      sideField.style.display = job ? "" : "none";
+    }
     if (hireNote) hireNote.hidden = !hire;
     if (needNote) needNote.hidden = !(category === "goods" || category === "services" || category === "rental" || (job && !hire));
     if (priceBlock) priceBlock.hidden = !priced;
@@ -782,16 +787,13 @@
     if (nodeBlock) nodeBlock.hidden = !pay;
   }
 
-  categoryInput.addEventListener("change", showPlan);
-  sideField.addEventListener("change", showPlan);
-  showPlan();
-  paintTerms();
   var termsAccept = document.getElementById("classified-terms-accept");
   var termsLater = document.getElementById("classified-terms-later");
   if (termsAccept) {
     termsAccept.addEventListener("click", function () {
       acceptTerms();
       paintTerms();
+      showPlan();
       say("");
     });
   }
@@ -800,6 +802,11 @@
       say(TERMS_NEED);
     });
   }
+  if (categoryInput) categoryInput.addEventListener("change", showPlan);
+  if (sideField) sideField.addEventListener("change", showPlan);
+  showPlan();
+  paintTerms();
+  window.addEventListener("pageshow", showPlan);
 
   function guardInput(node, mode) {
     if (!node) return;
@@ -824,7 +831,7 @@
   guardInput(cityInput, "line");
   guardInput(neighbourhoodInput, "line");
   guardInput(priceInput, "digit");
-  priceInput.addEventListener("input", showPlan);
+  if (priceInput) priceInput.addEventListener("input", showPlan);
   guardInput(kgInput, "weight");
   guardInput(hireNpubInput, "url");
   guardInput(hireDInput, "line");
