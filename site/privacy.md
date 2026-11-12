@@ -2,7 +2,7 @@
 
 > The 24 words stay on your device. The camera scans a code. Location fills the shop. The page talks to relays and nodes.
 
-This policy covers the Autarki program and this site. It is dated 10 November 2026. This page is [https://autarki.app/privacy](https://autarki.app/privacy).
+This policy covers the Autarki program and this site. It is dated 11 November 2026. This page is [https://autarki.app/privacy](https://autarki.app/privacy).
 
 ## The 24 words
 
@@ -36,6 +36,8 @@ The wallet talks to Nostr relays. A stall, a product, and a classified are publi
 
 Until a shop names its own relays, the wallet uses Autarki's relay. A shop can name other relays. This site's notice board asks Autarki's relay, shows what came back, and closes. It does not follow a shop onto another relay, and it stores nothing.
 
+Autarki's classifieds node is wss://165.245.235.36:51911. A new wallet uses that address until you save another list. You can add your own wss node, up to eight, and you can remove this one from the list you publish to. The list is Settings, then Nostr, then Nostr Nodes, then Classifieds. Removing it does not delete the notes already there. The wallet still reads that address for the board. A node you add does not receive the ads until you publish them again. This site reads and publishes classifieds at wss://165.245.235.36:8444.
+
 The classifieds page publishes a note when a Nostr extension in this browser signs it. The key stays in that extension. This site does not ask for the key and does not keep the note. The note is public on the relay the notice board reads.
 
 A relay sees the connection from your device, including the network address, and the notes published there. Autarki does not take the order.
@@ -65,6 +67,8 @@ The page can ask to show a notice when something arrives. You can refuse. The no
 Autarki is not directed at children.
 
 ## Removing it
+
+The ads are public. Orders, drafts, and the shop book stay on your computer. The 24 words do not bring that book back. Save a copy before you replace the computer or wipe the app data. Bring a copy back, then publish, to send those notes to the nodes you have saved. Save a copy is under Settings, then Other, then Backup.
 
 Delete the wallet file on that device to remove the keys from it. Uninstalling the phone app removes the copy in that app's private storage. A note already accepted by a relay can remain there. Autarki cannot pull a public note off a relay you do not run. This site has no account to delete.
 

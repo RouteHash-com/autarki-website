@@ -10,6 +10,7 @@ Autarki does not hold them, and there is no account that can reset them. The sam
 
 - 24 English words, shown once. They restore the funds on another machine.
 - They do not restore the shop book, the orders, the catalog, or a Lightning channel.
+- Save a copy before you replace the computer or wipe the app data. Bring a copy back, then publish. That file is under Settings, then Other, then Backup. The [privacy page](https://autarki.app/privacy.md) names the classifieds node.
 - A password is optional. It is not part of the 24 words.
 
 ## XBT and BTC
