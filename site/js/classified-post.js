@@ -928,6 +928,7 @@
   var placeStatus = document.getElementById("classified-place-status");
   var buttons = form.querySelectorAll("button");
   var busy = false;
+  var spotQuotes = null;
   var signerPubkey = "";
   var signpostCache = null;
 
@@ -992,6 +993,20 @@
       signpostLineEl.style.display = showSign ? "" : "none";
     }
     paintSignpostLinks();
+    paintPriceHint();
+  }
+
+  function paintPriceHint() {
+    var node = document.getElementById("classified-price-hint");
+    if (!node) return;
+    var amount = wholeSats(priceInput ? priceInput.value : "");
+    var chain = selected("chain");
+    var country = countryInput ? countryInput.value : "";
+    var text = "";
+    if (amount.sats && (chain === "xbt" || chain === "btc") && typeof AutarkiHint !== "undefined" && spotQuotes) {
+      text = AutarkiHint.hint(Number(amount.sats), chain, country, spotQuotes);
+    }
+    node.textContent = text ? " · " + text : "";
   }
 
   function signpostCategory() {
@@ -1061,6 +1076,17 @@
   guardInput(neighbourhoodInput, "line");
   guardInput(priceInput, "digit");
   if (priceInput) priceInput.addEventListener("input", showPlan);
+  if (countryInput) countryInput.addEventListener("input", paintPriceHint);
+  if (typeof fetch === "function") {
+    fetch("/api/spot", { headers: { accept: "application/json" } })
+      .then(function (res) { return res.ok ? res.json() : null; })
+      .then(function (body) {
+        if (!body || body.ok !== true) return;
+        spotQuotes = body;
+        paintPriceHint();
+      })
+      .catch(function () {});
+  }
   guardInput(kgInput, "weight");
   guardInput(hireNpubInput, "url");
   guardInput(hireDInput, "line");
@@ -1426,7 +1452,17 @@
     if (price && (price[2] === "xbt" || price[2] === "btc")) {
       var amount = document.createElement("p");
       amount.className = "price";
-      amount.textContent = previewSats(price[1]) + " · " + String(price[2]).toUpperCase();
+      amount.appendChild(document.createTextNode(previewSats(price[1]) + " · " + String(price[2]).toUpperCase()));
+      if (typeof AutarkiHint !== "undefined" && spotQuotes) {
+        var hint = AutarkiHint.hint(Number(price[1]), price[2], previewValue(tags, "country"), spotQuotes);
+        if (hint) {
+          amount.appendChild(document.createTextNode(" · "));
+          var hintSpan = document.createElement("span");
+          hintSpan.className = "price-hint";
+          hintSpan.textContent = hint;
+          amount.appendChild(hintSpan);
+        }
+      }
       heading.appendChild(amount);
       if (previewValue(tags, "side") !== "hire" && !paid) {
         var unpaid = document.createElement("p");

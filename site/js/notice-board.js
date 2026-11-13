@@ -10,6 +10,7 @@
   }
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   var RELAY = "wss://165.245.235.36:8444";
+  var quotes = null;
   var PROFILE_RELAYS = [
     "wss://nos.lol",
     "wss://relay.damus.io",
@@ -539,6 +540,16 @@
     var state = { stalls: [], classifieds: [] };
     var filters = { query: "", stall: "", ad: "" };
     status.textContent = "Reading the relay.";
+    if (typeof fetch === "function") {
+      fetch("/api/spot", { headers: { accept: "application/json" } })
+        .then(function (res) { return res.ok ? res.json() : null; })
+        .then(function (body) {
+          if (!body || body.ok !== true) return;
+          quotes = body;
+          if (!tools.hidden) paint();
+        })
+        .catch(function () {});
+    }
     readRelay().then(function (events) {
       var shown = events;
       // The sections stay hidden until the relay answers, and show runs again when names arrive.
@@ -693,14 +704,14 @@
     body.appendChild(facts(stallFacts(stall)));
     var grid = document.createElement("div");
     grid.className = "products";
-    products.forEach(function (product) { grid.appendChild(productCard(product)); });
+    products.forEach(function (product) { grid.appendChild(productCard(product, stall.country)); });
     body.appendChild(grid);
     body.appendChild(orderBlock(stall.name, stall));
     card.appendChild(body);
     return card;
   }
 
-  function productCard(product) {
+  function productCard(product, country) {
     var card = document.createElement("article");
     card.className = "product";
     addImage(card, product.picture, "");
@@ -708,10 +719,7 @@
     var title = document.createElement("h3");
     title.textContent = product.name;
     body.appendChild(title);
-    var price = document.createElement("p");
-    price.className = "price";
-    price.textContent = sats(product.price);
-    body.appendChild(price);
+    priceLine(body, sats(product.price), product.price, "xbt", country);
     if (product.about) {
       var about = document.createElement("p");
       about.className = "summary";
@@ -747,10 +755,7 @@
       mark.textContent = ad.status === "sold" ? "Sold." : "Held.";
       heading.appendChild(mark);
     } else if (ad.price) {
-      var price = document.createElement("p");
-      price.className = "price";
-      price.textContent = sats(ad.price) + " · " + ad.coin.toUpperCase();
-      heading.appendChild(price);
+      priceLine(heading, sats(ad.price) + " · " + ad.coin.toUpperCase(), ad.price, ad.coin, ad.country);
       if (ad.unpaid) {
         var unpaid = document.createElement("p");
         unpaid.className = "price";
@@ -1031,6 +1036,26 @@
 
   function sats(n) {
     return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " sats";
+  }
+
+  function priceLine(parent, text, amount, coin, country) {
+    var price = document.createElement("p");
+    price.className = "price";
+    price.appendChild(document.createTextNode(text));
+    var hint = fiatHint(amount, coin, country);
+    if (hint) {
+      price.appendChild(document.createTextNode(" · "));
+      var span = document.createElement("span");
+      span.className = "price-hint";
+      span.textContent = hint;
+      price.appendChild(span);
+    }
+    parent.appendChild(price);
+  }
+
+  function fiatHint(amount, coin, country) {
+    if (!quotes || typeof AutarkiHint === "undefined") return "";
+    return AutarkiHint.hint(amount, coin, country, quotes);
   }
 
   function day(unix) {

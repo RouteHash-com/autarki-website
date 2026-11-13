@@ -35,7 +35,7 @@ A signed note from any Nostr key shows on the wallet board when the note is one 
 - A listing id is 1 to 256 characters with no spaces. The same key and the same id replace the note.
 - The description is at most 4000 characters.
 - Country, province, city, and neighbourhood are each one line, at most 40 characters. Use my location asks the browser. The position is not saved and is not sent to Autarki. A refused prompt stops there.
-- The price is a whole number of sats on XBT or BTC. Empty or zero is not payable. A priced ad with no silent-payment code still appears, and the buyer is told it cannot be paid yet. This page cannot make the code. XBT and BTC each get a silent-payment code, so a buyer can pay either chain.
+- The price is a whole number of sats on XBT or BTC. Empty or zero is not payable. A priced ad with no silent-payment code still appears, and the buyer is told it cannot be paid yet. This page cannot make the code. XBT and BTC each get a silent-payment code, so a buyer can pay either chain. Beside the sats, this page can show an approximate figure in USD or CAD. A place in Canada shows CAD. Any other place shows USD. That figure does not change the sats.
 - A dollar amount, a fraction, or any other currency is shown as text and cannot be paid.
 - Goods, a service, or a rental with a price above zero names 1 to 4 days, and Domestic or Overseas. A job, a giveaway, a personal, a hire, and a zero price publish no ship tags.
 - An image is one https address on a line. Four is the limit. Images are for goods, a service, a rental, or a giveaway.
