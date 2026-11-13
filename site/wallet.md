@@ -69,9 +69,19 @@ Sats are the price. One XBT sat and one BTC sat are not the same dollar. The wal
 - Routing through the LSP, at most 1,000 sats: about $0.0028 on XBT, about $0.75 on BTC.
 - Inbound room of 20,000 sats costs 1,200 sats: about $0.0034 on XBT, about $0.90 on BTC. That room is about $0.06 of XBT, or about $15 of BTC. The figure is the capacity.
 - Inbound room of 100,000 sats costs 2,000 sats: about $0.0056 on XBT, about $1.50 on BTC. That room is about $0.28 of XBT, or about $75 of BTC.
-- On XBT those three fees are each under one cent. On BTC the routing cap is about 75 cents.
-- A card takes a percent of every sale. A common online rate is 2.9% plus $0.30, about $3.20 on a $100 sale. In person, 2.6% plus $0.15 is about $2.75 on $100.
-- Autarki does not charge the card and does not take that percent. On a $100 BTC sale the routing cap is about $0.75. On a sale near $5, the online card fee is about $0.45, and the BTC cap can cost more.
+
+## A $100 sale
+
+Take one order of $100. Online, 2.9% of $100 is $2.90. Add $0.30 and the card fee is $3.20. In person, 2.6% of $100 is $2.60. Add $0.15 and the card fee is $2.75. Routing is charged on this sale. Room is paid once.
+
+| Fee | XBT | BTC | Card |
+| --- | --- | --- | --- |
+| Routing on this sale | At most 1,000 sats. About $0.0028. | At most 1,000 sats. About $0.75. | $3.20 online. $2.75 in person. |
+| Room of 20,000 sats, once | 1,200 sats. About $0.0034. | 1,200 sats. About $0.90. | No room fee. |
+| Room of 100,000 sats, once | 2,000 sats. About $0.0056. | 2,000 sats. About $1.50. | No room fee. |
+
+- On this $100 sale, the three XBT fees are each under one cent. On BTC the routing cap is about 75 cents.
+- Autarki does not charge the card and does not take that percent. Lightning still costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000. On a sale near $5, the online card fee is about $0.45. The BTC routing cap is about $0.75. That cap can cost more than the card fee.
 - Room is paid once. Opening a channel also pays a miner fee. That amount is whatever the chain asks that day.
 - A node publishes a fee to forward toward each peer, and each peer publishes a fee to forward back. Those are the fees in both directions. The routing cap is what you pay through the LSP. Inbound capacity is the room a shop buys.
 

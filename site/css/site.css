@@ -1299,6 +1299,51 @@ code {
   }
 }
 
+@media (max-width: 640px) {
+  table.sale-fees {
+    min-width: 0;
+  }
+
+  table.sale-fees thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  table.sale-fees,
+  table.sale-fees tbody,
+  table.sale-fees tr,
+  table.sale-fees th,
+  table.sale-fees td {
+    display: block;
+    width: auto;
+  }
+
+  table.sale-fees tr {
+    padding: 0.85rem 0.9rem 0.15rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  table.sale-fees tr:last-child {
+    border-bottom: 0;
+  }
+
+  table.sale-fees th,
+  table.sale-fees td {
+    padding: 0 0 0.7rem;
+    border-bottom: 0;
+  }
+
+  table.sale-fees td::before {
+    content: attr(data-col);
+    display: block;
+    margin-bottom: 0.15rem;
+    font-weight: 600;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     scroll-behavior: auto !important;

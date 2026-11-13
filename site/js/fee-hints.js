@@ -46,14 +46,16 @@
       if (xbtAmounts[i] > largest) largest = xbtAmounts[i];
     }
     var xbtLine = under
-      ? "On XBT those three fees are each under one cent."
-      : "On XBT the largest of those three fees is about " + money(largest) + ".";
+      ? "On this $100 sale, the three XBT fees are each under one cent."
+      : "On this $100 sale, the largest XBT fee is about " + money(largest) + ".";
     var btcLine = routeBtc >= 1
       ? "On BTC the routing cap is about " + money(routeBtc) + "."
       : "On BTC the routing cap is about " + Math.round(routeBtc * 100) + (Math.round(routeBtc * 100) === 1 ? " cent." : " cents.");
-    var compare = "and the BTC cap is about the same.";
-    if (routeBtc > 0.45) compare = "and the BTC cap can cost more.";
-    else if (routeBtc < 0.45) compare = "and the BTC cap can cost less.";
+    var gap = routeBtc - 0.45;
+    var small = "On a sale near $5, the online card fee is about $0.45. The BTC routing cap is about " + money(routeBtc) + ".";
+    if (gap > 0.005) small += " That cap can cost more than the card fee.";
+    else if (gap < -0.005) small += " That cap can cost less than the card fee.";
+    else small += " That cap is about the same as the card fee.";
     return {
       lede: "Sats are the price. One XBT sat and one BTC sat are not the same dollar. These hints follow the NeoEX USDC quote: about " + money(xbt) + " for one XBT, and about " + money(btc) + " for one BTC. They move. A dollar hint does not change the sats.",
       cells: {
@@ -66,7 +68,7 @@
       },
       scale: xbtLine + " " + btcLine,
       capacity: "20,000 sats of inbound capacity is about " + money(dollars(20000, xbt)) + " of XBT, or about " + money(dollars(20000, btc)) + " of BTC. 100,000 sats is about " + money(dollars(100000, xbt)) + " of XBT, or about " + money(dollars(100000, btc)) + " of BTC. That figure is the capacity.",
-      card: "Autarki does not charge the card and does not take that percent. On a $100 BTC sale the routing cap is about " + money(routeBtc) + ". On a sale near $5, the online card fee is about $0.45, " + compare
+      card: "Autarki does not charge the card and does not take that percent. Lightning still costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000. " + small
     };
   }
 

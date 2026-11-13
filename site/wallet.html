@@ -34,7 +34,7 @@
   <link rel="describedby" href="https://autarki.app/llms.txt" type="text/plain">
   <meta name="theme-color" content="#f7f4ef">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/site.css?v=20261112a">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -353,11 +353,44 @@
             </tbody>
           </table>
         </div>
+        <h3 class="subhead">A $100 sale.</h3>
+        <p>Take one order of $100. Online, 2.9% of $100 is $2.90. Add $0.30 and the card fee is $3.20. In person, 2.6% of $100 is $2.60. Add $0.15 and the card fee is $2.75. Routing is charged on this sale. Room is paid once.</p>
+        <div class="table-wrap">
+          <table class="sale-fees">
+            <thead>
+              <tr>
+                <th scope="col">Fee</th>
+                <th scope="col">XBT</th>
+                <th scope="col">BTC</th>
+                <th scope="col">Card</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Routing on this sale</th>
+                <td data-col="XBT">At most 1,000 sats. <span data-fee="1000-xbt">About $0.0028</span>.</td>
+                <td data-col="BTC">At most 1,000 sats. <span data-fee="1000-btc">About $0.75</span>.</td>
+                <td data-col="Card">$3.20 online. $2.75 in person.</td>
+              </tr>
+              <tr>
+                <th scope="row">Room of 20,000 sats, once</th>
+                <td data-col="XBT">1,200 sats. <span data-fee="1200-xbt">About $0.0034</span>.</td>
+                <td data-col="BTC">1,200 sats. <span data-fee="1200-btc">About $0.90</span>.</td>
+                <td data-col="Card">No room fee.</td>
+              </tr>
+              <tr>
+                <th scope="row">Room of 100,000 sats, once</th>
+                <td data-col="XBT">2,000 sats. <span data-fee="2000-xbt">About $0.0056</span>.</td>
+                <td data-col="BTC">2,000 sats. <span data-fee="2000-btc">About $1.50</span>.</td>
+                <td data-col="Card">No room fee.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <ul class="brief">
-          <li id="fee-scale">On XBT those three fees are each under one cent. On BTC the routing cap is about 75 cents.</li>
+          <li id="fee-scale">On this $100 sale, the three XBT fees are each under one cent. On BTC the routing cap is about 75 cents.</li>
           <li id="fee-capacity">20,000 sats of inbound capacity is about $0.06 of XBT, or about $15 of BTC. 100,000 sats is about $0.28 of XBT, or about $75 of BTC. That figure is the capacity.</li>
-          <li>A card takes a percent of every sale. A common online rate is 2.9% plus $0.30, about $3.20 on a $100 sale. In person, 2.6% plus $0.15 is about $2.75 on $100.</li>
-          <li id="fee-card">Autarki does not charge the card and does not take that percent. On a $100 BTC sale the routing cap is about $0.75. On a sale near $5, the online card fee is about $0.45, and the BTC cap can cost more.</li>
+          <li id="fee-card">Autarki does not charge the card and does not take that percent. Lightning still costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000. On a sale near $5, the online card fee is about $0.45. The BTC routing cap is about $0.75. That cap can cost more than the card fee.</li>
           <li>Room is paid once. Opening a channel also pays a miner fee. That amount is whatever the chain asks that day.</li>
           <li>A node publishes a fee to forward toward each peer, and each peer publishes a fee to forward back. Those are the fees in both directions. The routing cap is what you pay through the LSP. Inbound capacity is the room a shop buys.</li>
         </ul>
@@ -470,6 +503,6 @@
     </div>
   </footer>
   <script src="js/site.js"></script>
-  <script src="js/fee-hints.js?v=20261107d"></script>
+  <script src="js/fee-hints.js?v=20261112a"></script>
 </body>
 </html>
