@@ -1,5 +1,5 @@
 (function () {
-  var RELAY = "wss://165.245.235.36:8444";
+  var RELAY = "wss://nostr.autarki.app";
   var BECH32 = "qpzry9x8gf2tvdw0s3jn54khce6mua7l";
   var CATEGORIES = ["goods", "services", "job", "rental", "giveaway", "personal"];
   var CARRY = "This note cannot be posted. It asks for something this board does not carry.";

@@ -9,7 +9,7 @@
     if (board) api.mount(board);
   }
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
-  var RELAY = "wss://165.245.235.36:8444";
+  var RELAY = "wss://nostr.autarki.app";
   var quotes = null;
   var PROFILE_RELAYS = [
     "wss://nos.lol",

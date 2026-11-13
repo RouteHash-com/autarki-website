@@ -36,7 +36,7 @@ The wallet talks to Nostr relays. A stall, a product, and a classified are publi
 
 Until a shop names its own relays, the wallet uses Autarki's relay. A shop can name other relays. This site's notice board asks Autarki's relay, shows what came back, and closes. It does not follow a shop onto another relay, and it stores nothing.
 
-Autarki's classifieds node is wss://165.245.235.36:51911. A new wallet uses that address until you save another list. You can add your own wss node, up to eight, and you can remove this one from the list you publish to. The list is Settings, then Nostr, then Nostr Nodes, then Classifieds. Removing it does not delete the notes already there. The wallet still reads that address for the board. A node you add does not receive the ads until you publish them again. This site reads and publishes classifieds at wss://165.245.235.36:8444.
+Autarki's classifieds node is wss://165.245.235.36:51911. A new wallet uses that address until you save another list. You can add your own wss node, up to eight, and you can remove this one from the list you publish to. The list is Settings, then Nostr, then Nostr Nodes, then Classifieds. Removing it does not delete the notes already there. The wallet still reads that address for the board. A node you add does not receive the ads until you publish them again. This site reads and publishes classifieds at wss://nostr.autarki.app.
 
 The classifieds page publishes a note when a Nostr extension in this browser signs it. The key stays in that extension. This site does not ask for the key and does not keep the note. The note is public on the relay the notice board reads.
 

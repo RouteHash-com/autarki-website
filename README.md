@@ -18,7 +18,7 @@ That server does not run the Pages Functions, so the wallet page keeps the last 
 
 Paper is the default contrast. Ink and Console stay in this browser.
 
-The notice board (`site/notice-board.html`) reads public stalls and classifieds in the browser from `wss://165.245.235.36:8444`, then closes the connection. This site does not store those notes and does not take an order.
+The notice board (`site/notice-board.html`) reads public stalls and classifieds in the browser from `wss://nostr.autarki.app`, then closes the connection. This site does not store those notes and does not take an order.
 
 ## Cloudflare Pages
 
