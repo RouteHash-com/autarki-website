@@ -6,7 +6,7 @@ The page is [https://autarki.app/notice-board](https://autarki.app/notice-board)
 
 ## Look through what is published.
 
-A person publishes a stall or a classified from their own wallet. This page reads the relay. It keeps no copy and takes no order.
+A person publishes a [Store](https://autarki.app/notice-board#stores) or a [Classified](https://autarki.app/notice-board#classifieds) from their own wallet. This page reads the relay. It keeps no copy and takes no order.
 
 - The stall and the classified are public notes. The wallet publishes them.
 - A store shows Lightning on XBT or Lightning on BTC when its published stall includes incoming room. A classified from that seller shows the same line. This page does not see the node.
@@ -20,4 +20,4 @@ A person publishes a stall or a classified from their own wallet. This page read
 - You can look before you make a wallet. Sending an order needs the wallet on your computer.
 - Looking is possible here. An order needs the wallet on your computer, or on a [64-bit Android phone](https://autarki.app/install.md).
 
-The stores section and the classifieds section are filled in the browser from what the relay returns. This file does not list those shops.
+The stores section and the classifieds section are filled in the browser from what the relay returns. This file does not list those shops. The Classifieds heading links to [Post an ad](https://autarki.app/classifieds#publish).

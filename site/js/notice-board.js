@@ -541,10 +541,18 @@
     status.textContent = "Reading the relay.";
     readRelay().then(function (events) {
       var shown = events;
+      // The sections stay hidden until the relay answers, and show runs again when names arrive.
+      var jumped = false;
       function show(next) {
         state = parseBoard(next);
         tools.hidden = false;
         paint();
+        if (!jumped) {
+          jumped = true;
+          var id = location.hash.replace(/^#/, "");
+          var target = id && document.getElementById(id);
+          if (target && tools.contains(target)) target.scrollIntoView();
+        }
       }
       show(shown);
       var total = state.stalls.length + state.classifieds.length;

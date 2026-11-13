@@ -634,6 +634,8 @@ button.button:disabled {
 #iphone,
 #post,
 #publish,
+#stores,
+#classifieds,
 #words,
 #chains,
 #balance,
@@ -804,6 +806,8 @@ code {
   #lightning,
   #post,
   #publish,
+  #stores,
+  #classifieds,
   #words,
   #chains,
   #balance,
@@ -1068,6 +1072,35 @@ code {
 
 .board-section h2 {
   font-size: clamp(1.8rem, 4vw, 2.4rem);
+}
+
+.board-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.section-write {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: 0 0 auto;
+  border: 1px solid var(--line);
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.section-write svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.section-write:hover {
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .chips {
