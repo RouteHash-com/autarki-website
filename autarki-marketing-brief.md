@@ -14,7 +14,7 @@ Store line already in use: **Your wallet and your shop. Lightning, Nostr, and on
 
 Autarki is a self-custodial wallet and a shop in one app. The same program receives and sends coins, lists a shop, takes a counter sale, posts a classified, hires a mining rig, and keeps a private note with another person. The person holds the 24 words. Autarki does not hold the keys, does not clear the sale, and does not take a fee from it. Shops and classifieds are public notes anyone can read. An order is a private note. The node that carries the order cannot read it. People can look through shops before they create a wallet. Sending an order, paying, and posting need the wallet open.
 
-Autarki is a beta. It runs on the person's own computer: StartOS, Umbrel, or Ubuntu. The StartOS package for AMD or Intel on release 0.1.0 is 0.1.0:31. The Umbrel listing is 0.1.19. The Raspberry Pi StartOS package and the Umbrel arm64 image are still the previous page. A 64-bit Android phone can install version 0.1.0 (17) of the same program from the public apk. That package includes Lightning for Blake2b XBT bitcoin and SHA-256 BTC bitcoin. It installs over the previous signed 0.1.0 package. A phone that already has 0.1.0 (1) has to uninstall that copy first. An iPhone joins the public TestFlight test for version 0.1.0, build 4, at https://testflight.apple.com/join/2WMBzSpM. That build does not start Lightning. It is not an App Store listing. Do not add send_email to wrangler.toml. Pages rejects it and the production build fails. A phone on the same network can still open the computer's page, and that phone holds no seed.
+Autarki is a beta. It runs on the person's own computer: StartOS, Umbrel, or Ubuntu. Where it runs, 13 November 2026. The AMD and Intel StartOS package on release 0.1.0 is 0.1.0:41. The Ubuntu image and the Umbrel amd64 image file on that release are the same page, and Lightning is in both. The Umbrel community store listing is 0.1.24. That listing, Raspberry Pi, and Umbrel arm64 leave the Lightning programs out. On-chain still works on those packages. A 64-bit Android phone can install version 0.1.0 (29) of the same program from the public apk. That package includes Lightning for Blake2b XBT bitcoin and SHA-256 BTC bitcoin. It installs over the previous signed 0.1.0 package. A phone that already has 0.1.0 (1) has to uninstall that copy first. There is no Play Store listing to announce. An iPhone joins the public TestFlight test for version 0.1.0, build 8, at https://testflight.apple.com/join/2WMBzSpM. That build does not start Lightning. It is not an App Store listing. Do not add send_email to wrangler.toml. Pages rejects it and the production build fails. A phone on the same network can still open the computer's page, and that phone holds no seed.
 
 ---
 
@@ -38,7 +38,7 @@ Promote XBT first and BTC second. Do not name XBTC. Do not say "two chains" or "
 - **Blake2b XBT bitcoin.** Buttons say **XBT** or **Pay with XBT**. Its own node is Bitcoin Knots. Its Lightning is **Blake2b Lightning**.
 - **SHA-256 BTC bitcoin.** Buttons say **BTC** or **Pay with BTC**. Settings headings say SHA-256d BTC and SHA-256 Lightning. Its own node is Bitcoin Core. Its Lightning is **SHA-256 Lightning**. Check Outs on-chain labels say **XBT** and **Bitcoin**.
 
-XBT and SHA-256d BTC share history only up to the fork. A payment is signed for one chain. Coins from the wrong chain do not pay the sale.
+XBT and SHA-256d BTC share history only up to the fork. A payment is signed for one chain. On-chain, coins from the wrong chain do not pay the sale. Pay with XBT still spends XBT. Pay with BTC still spends BTC.
 
 Prices are whole satoshis. A dollar figure beside a price is a hint, in US dollars or Canadian dollars. The amount due stays in sats. The hint does not change the sats, the tax, or the spreadsheet.
 
@@ -66,14 +66,13 @@ XBT Knots and Bitcoin Core do not run on the same computer.
 
 ### Lightning
 
-- On an AMD or Intel computer, Autarki starts two Lightning nodes: one for Blake2b XBT and one for SHA-256 BTC. The person does not install a separate Lightning app and does not paste a node address, a macaroon, or a certificate.
+- Lightning for XBT and for BTC is in the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android 0.1.0 (29). The person does not install a separate Lightning app and does not paste a node address, a macaroon, or a certificate.
 - The first start of each node takes about ten minutes. The page keeps checking. Later starts are quicker.
 - On-chain is the bank. Lightning is the money loaded before shopping in person. Savings stay on-chain. The first Lightning payment still needs a channel. After that channel has one confirmation, a later payment on it does not wait for a new confirmation.
-- Android 0.1.0 (17) includes Lightning for Blake2b XBT bitcoin and SHA-256 BTC bitcoin.
-- A Raspberry Pi, and an Umbrel arm64 package, omit the Lightning programs. Lightning stays off on those packages. Those files are still the previous page. Do not claim built-in Lightning on a Pi.
-- Use other Autarki Lightning nodes is under Settings, then Coin Nodes. Leave it off on AMD and Intel. An iPhone and a Raspberry Pi keep it on, for another Autarki that stays running. An open channel keeps the built-in nodes running.
-- A shipment and Mine need the AMD or Intel package.
-- Blake2b Lightning and SHA-256 Lightning are different networks. A Bitcoin payment request is refused on the Blake2b rail.
+- The Umbrel community store (listing 0.1.24), Raspberry Pi, and Umbrel arm64 leave the Lightning programs out, so Lightning stays off there. On-chain still works on those packages. Do not claim built-in Lightning on a Pi, on Umbrel arm64, or on the community-store listing.
+- Use other Autarki Lightning nodes is under Settings, then Coin Nodes. Leave it off where Lightning programs start. The Umbrel community store, an iPhone, a Raspberry Pi, and Umbrel arm64 keep it on, for another Autarki that stays running. An open channel keeps the built-in nodes running.
+- A shipment runs where Lightning starts. Mine needs AMD or Intel. It stays off on a Raspberry Pi and on Umbrel arm64.
+- On a package that starts Lightning, a Lightning invoice in the other coin spends the coin this wallet already holds. Pay with XBT still spends XBT. Pay with BTC still spends BTC. The shop is paid in the coin it asked for. The fee is 1.5%, plus the normal network fees. Routing through the LSP is at most 1,000 sats. The amount on the confirm screen already includes the fee. Nothing is sent until a channel from this wallet can pay. If that payment cannot finish, it is not sent. The button says Pay with the other coin. Each install asks for its own code. There is nothing to paste. This is not a screen that turns the coins already in the wallet into the other coin. The Umbrel community store, Raspberry Pi, Umbrel arm64, and the iPhone build do not start Lightning, so they do not pay across coins. The coins arrive on Lightning. They are not added to Balance. Do not say XBTC, exchange, invest, returns, staking, yield, guaranteed, or a security audit. Do not print a code, an onion, or a macaroon.
 - Each Lightning node has its own backup, separate from the 24 words. The Blake2b node has its own 24 words. The Bitcoin Lightning node does not use a phrase. Those backups are shown once. Do not tell people to reuse the wallet words for Lightning.
 - When a purchase needs a channel, the app can open one. The person does not type a node name for that purchase. A channel that can already cover the amount pays without a new on-chain wait.
 - The channel page, https://autarki.app/channel, is the extra door for a node that is not the Autarki page in front of the person. Sitting at the computer, Use Autarki's pool does the same open. Fill Send does not open a channel. Do not present that page as a required wallet step.
@@ -114,20 +113,22 @@ XBT Knots and Bitcoin Core do not run on the same computer.
 - Goods, services, rentals, jobs, giveaways, and personals. Offer and Hire are shown only for a job. A hire, a giveaway, and a personal do not wait for a coin node. Goods, a service, a rental, or a job offer stays closed in the app until that wallet's own XBT or Bitcoin coin node is connected. The website shows that line and cannot make the payment code.
 - The buyer chooses Pick up or Ship. There is no default.
 - Pick up can pay on-chain or with Lightning, in XBT or in BTC. Ship pays with Lightning only. On-chain is not offered for a shipment.
-- The seller names how many days they have to hand the parcel to the carrier, from one to four, and whether the hold is 14 days at home or 28 days overseas. The ad shows both dates.
+- The seller names how many days they have to hand the parcel to the carrier, from one to four, and whether the hold is 14 days or 28 days overseas. The usual hold is 14 days. An overseas ad can say 28 days. The ad shows which one it is.
 - The seller can add a postal code, a country, and a weight. The buyer then chooses a shipping price. Canada Post is offered from a Canadian origin. FedEx can be offered too. Pickup and a counter sale do not ask. The published item price stays the item price. The shipping price is added before payment.
 - Ignore an ad, or block a seller on this device. My Ads shows the ads saved on this computer. Only the person who posted an ad sees Edit.
 - Set location searches by a city. Use my location asks the browser. The position is not saved and is not sent to Autarki. If the browser shares no coordinates, the city can come from the network. A refused prompt does not ask the network.
 
 ### A shipment holds the coins
 
-- The buyer pays with Lightning. The coins sit on the seller's node. The seller can send the parcel knowing the money is there. The buyer marks it received, and the seller is paid.
+- The buyer pays with Lightning. The coins sit on the seller's node. They are not in Autarki's hands. The seller can hand the parcel to the carrier knowing the money is already there. The buyer marks it received, and the seller is paid.
+- Ship pays with Lightning only. Pick up can still pay on-chain. On-chain has no hold, and a referee cannot move those coins. A shipment runs where Lightning starts. A phone that only opens the page does not hold the coins.
 - Before it is marked shipped, Cancel is still open and the coins go back to the buyer.
 - After it is marked shipped, Cancel is closed. The buyer sees the carrier, the tracking number, and a link to the shipper's page. Mark received pays the seller.
-- Not received stops both automatic moves. The coins stay held until the buyer marks it received, the chosen referee decides, or the Lightning window ends and the coins come back.
-- If the seller does not mark it shipped, with a carrier and a tracking number, by the ship-by day, the coins go back. If they did ship it and the buyer does nothing, the seller is paid when the hold ends, when the seller's wallet is on.
-- The seller's wallet and Lightning node need to stay on through the window. If the wallet never acts, the window still sends the coins back to the buyer.
-- A referee is optional. Each side can name one public name before payment. The referee does not hold the coins. After Not received, the referee sees the carrier, the tracking, the saved scan, and each side's note, then gives one decision. A decision for the seller pays the seller. A decision for the buyer sends the coins back. The shipment is recorded as returned, not cancelled. If no decision arrives, the window still sends the coins back.
+- Not received stops both automatic moves. The coins stay where they are. They do not pay the seller yet, and they do not go back yet.
+- If the seller does not mark it shipped, with a carrier and a tracking number, by the ship-by day, the coins go back. If they did ship it and the buyer does nothing, the seller is paid when the hold ends, when the seller's wallet is on. If that wallet stays off through the window, the coins go back.
+- The seller's wallet and Lightning node need to stay on through the window.
+- A referee is optional. Each side can name one public name before payment. Payment waits until both sides name the same person, or both name nobody. That person is told when the names match. The referee does not hold the coins. There is no refund button. A return is this hold sending the coins back. After Not received, the referee sees the carrier, the tracking number, the saved scan, and each side's note, then gives one decision. A decision for the seller pays the seller. A decision for the buyer sends the coins back. The order stays on the books as returned, not cancelled. If no decision arrives, the window still sends the coins back. If the seller's wallet stays off until the window ends, a decision to pay the seller does not finish, and the coins return on their own. Mark received closes once a decision is stored.
+- Nora buys a shipped order from Eli. She pays with Lightning. The coins sit on Eli's node. Eli marks it shipped before the ship-by day and enters the carrier and the tracking number. Nora presses Mark received. Eli is paid. Nora can press Not received and leave a short note. Eli can leave one too.
 - Check the carrier saves the latest scan as words. Canada Post, UPS, FedEx, and DHL are the names it can look up. The person does not create a carrier account. The scan does not pay anyone and does not send the coins back.
 - Say what the buyer sees. Do not explain how a node could finish the payment outside the app.
 
@@ -227,7 +228,7 @@ Four public signs. No stars, no thumbs, no review essays, and no zaps.
 - Notices for orders, shipments, and referee notes.
 - A private note to one person, in the current source: Message beside a name, a thread on the contact card, and a bell row that does not contain the message. Older installed packages do not show it yet.
 - Mining hire from a RouteHash account, paid in XBT or BTC, with rewards back to this wallet.
-- Built-in Blake2b Lightning and SHA-256 Lightning on AMD and Intel packages.
+- Built-in Blake2b Lightning and SHA-256 Lightning on the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android. Paying the other coin on those packages spends the coin the wallet already holds, for a fee of 1.5% plus the normal network fees. The Umbrel community store, Raspberry Pi, Umbrel arm64, and the iPhone build leave Lightning off.
 - Shipment holds, ship-by of one to four days, a 14-day home hold, cancel before ship, mark received, Not received, and one referee decision.
 - Silent-payment codes after the person's own node is connected. Ordinary addresses on Autarki's servers before that.
 - English, Spanish, Portuguese, French, and German as a browser language choice.
@@ -242,7 +243,7 @@ Four public signs. No stars, no thumbs, no review essays, and no zaps.
 
 ### Do not claim these
 
-- An App Store listing or a Play Store listing. Android 0.1.0 (17) is a public apk, plus request access. It is not a store listing. iPhone 0.1.0 build 4 is the public TestFlight test at https://testflight.apple.com/join/2WMBzSpM, not an App Store listing.
+- An App Store listing or a Play Store listing. Android 0.1.0 (29) is a public apk, plus request access. It is not a store listing. There is no Play Store listing to announce. iPhone 0.1.0 build 8 is the public TestFlight test at https://testflight.apple.com/join/2WMBzSpM, not an App Store listing. That build does not start Lightning.
 - On-device mining. Apple's rules also forbid mining on the device. The hire is a remote rig.
 - A receipt printer.
 - Zaps, a public chat room, a group chat, reactions, or a Lightning address as a mailbox.
@@ -255,7 +256,7 @@ Four public signs. No stars, no thumbs, no review essays, and no zaps.
 - "Online store" as the product word. Prefer **shop**.
 - Emoji.
 - That the shop is unhosted, or that the person's own node always counts the coins.
-- Built-in Lightning on Raspberry Pi or Umbrel arm64.
+- Built-in Lightning on Raspberry Pi, Umbrel arm64, the Umbrel community store listing, or the iPhone build.
 - That a blank password is a form of security.
 - Mainland China as a store region, if a store listing is ever written. There is no store listing now.
 

@@ -12,13 +12,13 @@
     } catch (e) {}
   </script>
   <title>Wallet. Autarki</title>
-  <meta name="description" content="You hold the 24 words. Lightning is built in on AMD and Intel. The Autarki LSP is one channel that can pay later shops.">
+  <meta name="description" content="You hold the 24 words. On a package that starts Lightning, paying the other coin spends the coin this wallet already holds. The fee is 1.5%, plus the normal network fees.">
   <link rel="canonical" href="https://autarki.app/wallet">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta property="og:site_name" content="Autarki">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Wallet. Autarki">
-  <meta property="og:description" content="You hold the 24 words. Lightning is built in on AMD and Intel. The Autarki LSP is one channel that can pay later shops.">
+  <meta property="og:description" content="You hold the 24 words. On a package that starts Lightning, paying the other coin spends the coin this wallet already holds. The fee is 1.5%, plus the normal network fees.">
   <meta property="og:url" content="https://autarki.app/wallet">
   <meta property="og:image" content="https://autarki.app/assets/og.png">
   <meta property="og:image:type" content="image/png">
@@ -27,7 +27,7 @@
   <meta property="og:image:alt" content="Autarki. No platform. Just the sale.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Wallet. Autarki">
-  <meta name="twitter:description" content="You hold the 24 words. Lightning is built in on AMD and Intel. The Autarki LSP is one channel that can pay later shops.">
+  <meta name="twitter:description" content="You hold the 24 words. On a package that starts Lightning, paying the other coin spends the coin this wallet already holds. The fee is 1.5%, plus the normal network fees.">
   <meta name="twitter:image" content="https://autarki.app/assets/og.png">
   <meta name="twitter:image:alt" content="Autarki. No platform. Just the sale.">
   <link rel="alternate" type="text/markdown" href="https://autarki.app/wallet.md" title="Wallet">
@@ -71,7 +71,7 @@
         "@id": "https://autarki.app/wallet#webpage",
         "url": "https://autarki.app/wallet",
         "name": "Wallet. Autarki",
-        "description": "You hold the 24 words. Lightning is built in on AMD and Intel. The Autarki LSP is one channel that can pay later shops.",
+        "description": "You hold the 24 words. On a package that starts Lightning, paying the other coin spends the coin this wallet already holds. The fee is 1.5%, plus the normal network fees.",
         "isPartOf": {
           "@id": "https://autarki.app/#website"
         },
@@ -145,12 +145,14 @@
       <div class="wrap">
         <p class="kicker">Wallet</p>
         <h1>You hold the 24 words.</h1>
-        <p class="lede">Autarki does not hold them, and there is no account that can reset them. The same install is the shop and the customer.</p>
+        <p class="lede">Autarki is your wallet and your shop. You hold the 24 words. You pay the person. Autarki does not hold the coins, clear the sale, or take a cut of the catalog price. Lightning still costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000.</p>
+        <p>There is no account that can reset the 24 words. The same install is the shop and the customer.</p>
         <nav class="page-nav" aria-label="On this page">
           <a href="#words">The 24 words</a>
           <a href="#chains">XBT and BTC</a>
           <a href="#balance">Balance</a>
           <a href="#lightning">Lightning</a>
+          <a href="#other-coin">Paying the other coin</a>
           <a href="#lsp">The Autarki LSP</a>
           <a href="#node">Your node</a>
         </nav>
@@ -175,7 +177,7 @@
     <section class="band" id="chains">
       <div class="wrap">
         <h2>XBT and BTC.</h2>
-        <p class="lede">Pay with XBT or Pay with BTC. You choose the coin, and the payment stays in that coin.</p>
+        <p class="lede">Pay with XBT or Pay with BTC. Pay with XBT still spends XBT. Pay with BTC still spends BTC.</p>
         <div class="benefits pair">
           <article>
             <h3>Blake2b XBT</h3>
@@ -188,7 +190,7 @@
         </div>
         <ul class="brief">
           <li>XBT and SHA-256 BTC share history only up to the fork. A payment is signed for one chain.</li>
-          <li>Coins from the wrong chain do not pay the sale.</li>
+          <li>On-chain, coins from the wrong chain do not pay the sale.</li>
           <li>Prices are whole sats. A dollar hint, in US dollars or Canadian dollars, does not change the sats.</li>
         </ul>
       </div>
@@ -211,16 +213,15 @@
 
     <section class="band" id="lightning">
       <div class="wrap">
-        <h2>Lightning, on AMD and Intel.</h2>
+        <h2>Lightning.</h2>
         <div class="benefits">
           <article>
             <h3>Where it runs.</h3>
             <ul class="brief">
-              <li>AMD or Intel StartOS, Umbrel, and Ubuntu start Blake2b Lightning and SHA-256 Lightning.</li>
-              <li>Android 0.1.0 (17) includes Lightning for Blake2b XBT bitcoin and SHA-256 BTC bitcoin.</li>
-              <li>A Raspberry Pi and Umbrel arm64 omit the Lightning programs. Lightning stays off there.</li>
-              <li>Use other Autarki Lightning nodes is under Settings, then Coin Nodes. Leave it off on AMD and Intel. An iPhone and a Raspberry Pi keep it on, for another Autarki that stays running.</li>
-              <li>A shipment and Mine need AMD or Intel.</li>
+              <li>Lightning for XBT and for BTC is in the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android 0.1.0 (29). You do not install a second Lightning app.</li>
+              <li>The Umbrel community store (listing 0.1.24), Raspberry Pi, and Umbrel arm64 leave the Lightning programs out, so Lightning stays off there. On-chain still works on those packages.</li>
+              <li>Use other Autarki Lightning nodes is under Settings, then Coin Nodes. Leave it off where Lightning programs start. The Umbrel community store, an iPhone, a Raspberry Pi, and Umbrel arm64 keep it on, for another Autarki that stays running.</li>
+              <li>A shipment runs where Lightning starts. Mine needs AMD or Intel. It stays off on a Raspberry Pi and on Umbrel arm64.</li>
             </ul>
           </article>
           <article>
@@ -244,7 +245,7 @@
         <ul class="brief">
           <li>Before a node can take coins, its backup is shown once. You confirm you wrote it down. It is not shown again.</li>
           <li>Blake2b: that node's own 24 words. Bitcoin: a one-time paper copy of its two seed files.</li>
-          <li>Do not reuse the wallet words. A Bitcoin payment request is refused on Blake2b.</li>
+          <li>Do not reuse the wallet words.</li>
         </ul>
         <blockquote class="pull">
           <p>On-chain is your bank. Keep savings there. Lightning is the money you spend. Load it before you go shopping in person.</p>
@@ -267,6 +268,15 @@
           <li>Lightning sats are not Balance, and not the shop's accounted sats.</li>
           <li>A Lightning sale is on the sales spreadsheet and absent from the coin journal.</li>
         </ul>
+        <h3 class="subhead" id="other-coin">Paying the other coin.</h3>
+        <p>On a package that starts Lightning, a Lightning invoice in the other coin spends the coin this wallet already holds. Pay with XBT still spends XBT. Pay with BTC still spends BTC. The shop is paid in the coin it asked for. The fee is 1.5%, plus the normal network fees. Routing through the LSP is at most 1,000 sats. The amount on the confirm screen already includes the fee. Nothing is sent until a channel from this wallet can pay. If that payment cannot finish, it is not sent. The button says Pay with the other coin.</p>
+        <p>Each install asks for its own code. There is nothing to paste. This is not a screen that turns the coins already in the wallet into the other coin.</p>
+        <p>Lightning for this is in the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android. The Umbrel community store, Raspberry Pi, Umbrel arm64, and the iPhone build do not start Lightning, so they do not pay across coins.</p>
+        <h3 class="subhead">A shop that asks for Bitcoin.</h3>
+        <p>Mara holds XBT. Jon's shop asks for Bitcoin Lightning. Mara pays that invoice from the XBT she already holds. Jon is paid in Bitcoin Lightning. The XBT leave Mara's wallet. She confirms the amount first. If a channel from her wallet cannot pay it, nothing is sent and Jon is not paid.</p>
+        <h3 class="subhead">A shop that asks for XBT.</h3>
+        <p>The same path runs the other way. Jon holds BTC. Mara's shop asks for XBT Lightning. Jon pays from the BTC he already holds. Mara is paid in XBT Lightning. His BTC are what leave his wallet. Nothing is sent until a channel from his wallet can pay.</p>
+        <p>The coins arrive on Lightning. They are not added to Balance. Balance stays the confirmed on-chain coins.</p>
         <h3 class="subhead" id="lsp">Why a Lightning channel is necessary.</h3>
         <p class="lede">On-chain needs no channel. A Lightning payment spends sats already locked in a channel between two nodes.</p>
         <ul class="brief">

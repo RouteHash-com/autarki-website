@@ -12,11 +12,17 @@ Ship pays with Lightning. With a float, the coins sit on the seller's node until
 - Goods, services, rentals, jobs, giveaways, and personals. Same key as the shop. No store required.
 - The buyer chooses Pick up or Ship. There is no default.
 - Pick up pays on-chain or with Lightning, in XBT or in BTC. Pick up does not wait.
-- Ship pays with Lightning only. No on-chain. AMD or Intel only. Off on a Raspberry Pi and on Umbrel arm64.
+- Ship pays with Lightning only. Pick up can still pay on-chain. On-chain has no hold, and a referee cannot move those coins.
+- Lightning for a shipment is in the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android. The Umbrel community store, Raspberry Pi, Umbrel arm64, and the iPhone build do not start Lightning, so they do not pay a shipment.
+- The coins sit on the seller's Lightning node. They are not in Autarki's hands. The seller's wallet has to stay on through the window. A phone that only opens the page does not hold the coins.
 - A shipped order is not held until a float is set aside. Provide a float records the choice. It does not send coins.
-- Before payment, each side names one public name, or nobody. After Not received, that person gives one decision: pay the seller, or send the coins back.
-- The referee does not hold the coins. They stay on the seller's node.
-- 14 days at home, or 28 days overseas. If the buyer does nothing, the seller is paid when the hold ends, only while that wallet is on.
+- A referee is optional. Payment waits until both sides name the same person, or both name nobody. That person is told when the names match. The referee does not hold the coins. There is no refund button. A return is this hold sending the coins back.
+- The ad names two dates. The seller has one to four days to mark it shipped, with a carrier and a tracking number. The usual hold after that is 14 days. An overseas ad can say 28 days. The ad shows which one it is.
+- Before it is shipped, Cancel is still open and the coins go back. After it is shipped, Cancel is closed. Mark received pays the seller. If the buyer does nothing, the seller is paid when the hold ends, only while that wallet is on. If the wallet stays off through the window, the coins go back.
+- Nora buys a shipped order from Eli. She pays with Lightning. The coins sit on Eli's node. Eli marks it shipped before the ship-by day. Nora presses Mark received. Eli is paid.
+- Nora presses Not received. She can leave a short note. Eli can leave one too. Not received stops both automatic moves. The coins stay where they are.
+- A decision for Eli pays Eli. A decision for Nora sends the coins back. The order stays on the books as returned, not cancelled. If no decision arrives, the window still sends the coins back to Nora. If Eli's wallet stays off until the window ends, a decision to pay him does not finish, and the coins return on their own. Mark received closes once a decision is stored.
+- Check the carrier saves the latest scan as words. Canada Post, UPS, FedEx, and DHL are the names it can look up. The person does not create a carrier account. The scan does not pay anyone, and it does not send the coins back.
 - Four public signs. None is required to buy or sell. Nobody types a count. No star.
 - A 64-bit Android phone can install its own copy. A phone on the same network can still open your computer's page.
 

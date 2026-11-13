@@ -12,13 +12,13 @@
     } catch (e) {}
   </script>
   <title>Install. Autarki</title>
-  <meta name="description" content="Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi leaves Lightning off. A 64-bit Android phone can install its own copy. An iPhone can join the public TestFlight test.">
+  <meta name="description" content="Lightning for XBT and for BTC is in the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android. The Umbrel community store, a Raspberry Pi, and Umbrel arm64 leave Lightning off.">
   <link rel="canonical" href="https://autarki.app/install">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta property="og:site_name" content="Autarki">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Install. Autarki">
-  <meta property="og:description" content="Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi leaves Lightning off. A 64-bit Android phone can install its own copy. An iPhone can join the public TestFlight test.">
+  <meta property="og:description" content="Lightning for XBT and for BTC is in the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android. The Umbrel community store, a Raspberry Pi, and Umbrel arm64 leave Lightning off.">
   <meta property="og:url" content="https://autarki.app/install">
   <meta property="og:image" content="https://autarki.app/assets/og.png">
   <meta property="og:image:type" content="image/png">
@@ -27,7 +27,7 @@
   <meta property="og:image:alt" content="Autarki. No platform. Just the sale.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Install. Autarki">
-  <meta name="twitter:description" content="Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi leaves Lightning off. A 64-bit Android phone can install its own copy. An iPhone can join the public TestFlight test.">
+  <meta name="twitter:description" content="Lightning for XBT and for BTC is in the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android. The Umbrel community store, a Raspberry Pi, and Umbrel arm64 leave Lightning off.">
   <meta name="twitter:image" content="https://autarki.app/assets/og.png">
   <meta name="twitter:image:alt" content="Autarki. No platform. Just the sale.">
   <link rel="alternate" type="text/markdown" href="https://autarki.app/install.md" title="Install">
@@ -71,7 +71,7 @@
         "@id": "https://autarki.app/install#webpage",
         "url": "https://autarki.app/install",
         "name": "Install. Autarki",
-        "description": "Install Autarki on your computer. AMD and Intel include Lightning. A Raspberry Pi leaves Lightning off. A 64-bit Android phone can install its own copy. An iPhone can join the public TestFlight test.",
+        "description": "Lightning for XBT and for BTC is in the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android. The Umbrel community store, a Raspberry Pi, and Umbrel arm64 leave Lightning off.",
         "isPartOf": {
           "@id": "https://autarki.app/#website"
         },
@@ -145,7 +145,7 @@
       <div class="wrap">
         <p class="kicker">Install</p>
         <h1>Install it on your computer.</h1>
-        <p class="lede">AMD and Intel include Lightning. A Raspberry Pi runs the wallet, the shop, Nostr, and on-chain payment, and leaves Lightning off. A 64-bit Android phone can install the same program and keep its own wallet.</p>
+        <p class="lede">13 November 2026. Lightning for XBT and for BTC is in the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android. The Umbrel community store, a Raspberry Pi, and Umbrel arm64 leave Lightning off. On-chain still works there.</p>
       </div>
     </header>
 
@@ -164,23 +164,28 @@
             <tbody>
               <tr>
                 <td>StartOS</td>
-                <td>AMD or Intel. File <code>autarki_x86_64.s9pk</code>. This release is 0.1.0:31.</td>
+                <td>AMD or Intel. File <code>autarki_x86_64.s9pk</code>. This release is 0.1.0:41.</td>
                 <td>Included. Blake2b Lightning and SHA-256 Lightning.</td>
               </tr>
               <tr>
                 <td>StartOS</td>
-                <td>Raspberry Pi. File <code>autarki_aarch64.s9pk</code>. This file is still the previous page.</td>
+                <td>Raspberry Pi. File <code>autarki_aarch64.s9pk</code>.</td>
                 <td>Off. The wallet, the shop, and on-chain payment still run.</td>
               </tr>
               <tr>
                 <td>Umbrel</td>
-                <td>The AMD or Intel image from the RouteHash community store. The listing is 0.1.19.</td>
+                <td>The amd64 image file on release 0.1.0. The same page as the Ubuntu image.</td>
                 <td>Included.</td>
               </tr>
               <tr>
                 <td>Umbrel</td>
-                <td>arm64, including a Raspberry Pi. This image is still the previous page.</td>
-                <td>Off.</td>
+                <td>The community store. The listing is 0.1.24.</td>
+                <td>Off. On-chain still works.</td>
+              </tr>
+              <tr>
+                <td>Umbrel</td>
+                <td>arm64, including a Raspberry Pi.</td>
+                <td>Off. On-chain still works.</td>
               </tr>
               <tr>
                 <td>Ubuntu</td>
@@ -197,8 +202,8 @@
     <section class="band" id="android">
       <div class="wrap prose">
         <h2>Android</h2>
-        <p>Version 0.1.0 (17) is the same program as the computer. The phone needs a 64-bit processor and Android 8 or newer. It keeps its own wallet file. Restoring the 24 words onto the phone makes a second copy. The same 99 digits do not rebuild a wallet. This phone adds its own randomness. The 24 words shown once are the only backup.</p>
-        <p>Download <code>autarki-android.apk</code> from release 0.1.0 and allow the phone to install it. Check that file against <code>SHA256SUMS</code> from the same release. This file installs over the previous signed 0.1.0 package. A phone that already has 0.1.0 (1) has to uninstall that copy before this one will install. Or <a href="https://appdistribution.firebase.dev/i/2ae8a6c81ce866a4">request access</a>. Sign in with a Google account. Firebase emails the install.</p>
+        <p>Version 0.1.0 (29) is the same program as the computer. The phone needs a 64-bit processor and Android 8 or newer. It keeps its own wallet file. Restoring the 24 words onto the phone makes a second copy. The same 99 digits do not rebuild a wallet. This phone adds its own randomness. The 24 words shown once are the only backup.</p>
+        <p>Download <code>autarki-android.apk</code> from release 0.1.0 and allow the phone to install it. Check that file against <code>SHA256SUMS</code> from the same release. This file installs over the previous signed 0.1.0 package. A phone that already has 0.1.0 (1) has to uninstall that copy before this one will install. There is no Play Store listing to announce. Or <a href="https://appdistribution.firebase.dev/i/2ae8a6c81ce866a4">request access</a>. Sign in with a Google account. Firebase emails the install.</p>
         <p>Lightning for Blake2b XBT bitcoin and SHA-256 BTC bitcoin is in this package. A phone that only opens your computer's page holds no seed. That path is still there.</p>
         <div class="actions">
           <a class="button" href="https://github.com/RouteHash-com/autarki/releases/download/0.1.0/autarki-android.apk">Install on Android</a>
@@ -210,9 +215,9 @@
     <section class="band" id="iphone">
       <div class="wrap prose">
         <h2>iPhone</h2>
-        <p>Version 0.1.0, build 4, is the same wallet and shop. It keeps its own wallet file. Restoring the 24 words onto the phone makes a second copy.</p>
+        <p>Version 0.1.0, build 8, is the same wallet and shop. It keeps its own wallet file. Restoring the 24 words onto the phone makes a second copy.</p>
         <p>This build does not start Lightning. Use other Autarki Lightning nodes stays on, for another Autarki that stays running.</p>
-        <p>It is not on the App Store. Join the public TestFlight test. Install TestFlight, then open <a href="https://testflight.apple.com/join/2WMBzSpM">https://testflight.apple.com/join/2WMBzSpM</a>.</p>
+        <p>It is not an App Store listing. Join the public TestFlight test from this page. Install TestFlight, then open <a href="https://testflight.apple.com/join/2WMBzSpM">https://testflight.apple.com/join/2WMBzSpM</a>.</p>
         <div class="actions">
           <a class="button" href="https://testflight.apple.com/join/2WMBzSpM">Join the iPhone test</a>
         </div>
@@ -235,7 +240,7 @@
     <section class="band">
       <div class="wrap prose">
         <h2>Umbrel</h2>
-        <p>This site does not give you an Umbrel file. Add the RouteHash community store, then install Autarki. That store is not the official Umbrel App Store. Load the image that matches the machine.</p>
+        <p>Release 0.1.0 includes the Umbrel amd64 image file. That file is the same page as the Ubuntu image, and Lightning is in it. The community store is a separate listing, 0.1.24. That listing leaves the Lightning programs out. On-chain still works. The store is not the official Umbrel App Store.</p>
         <ol class="steps">
           <li>In Umbrel, open Settings, then App stores, then Add a community app store.</li>
           <li>Paste <code>https://github.com/RouteHash-com/umbrel-store</code>.</li>
@@ -272,7 +277,7 @@
     <section class="band">
       <div class="wrap">
         <h2>Install Autarki.</h2>
-        <p class="lede">Download release 0.1.0 and check <code>SHA256SUMS</code>. The Android file is version 0.1.0 (17). A phone that already has 0.1.0 (1) uninstalls that copy first. An iPhone joins the public TestFlight test for build 4.</p>
+        <p class="lede">Download release 0.1.0 and check <code>SHA256SUMS</code>. The Android file is version 0.1.0 (29). A phone that already has 0.1.0 (1) uninstalls that copy first. An iPhone joins the public TestFlight test for build 8.</p>
         <div class="actions">
           <a class="button" href="https://github.com/RouteHash-com/autarki/releases/tag/0.1.0">Install Autarki</a>
           <a class="button button-ghost" href="#android">Install on Android</a>

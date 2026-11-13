@@ -151,7 +151,7 @@
           <a href="#post">What you can post</a>
           <a href="#publish">Post an ad</a>
           <a href="#protection">The coins stay held</a>
-          <a href="#dispute">Not received</a>
+          <a href="#dispute">When it was not received</a>
           <a href="#signs">Four public signs</a>
         </nav>
       </div>
@@ -353,7 +353,7 @@
                 <p>Use the Autarki wallet. Its built-in Lightning nodes have trampoline and splice.</p>
                 <p>Splice resizes one channel.</p>
                 <p>Trampoline lets a light wallet pay through one always-on pool.</p>
-                <p>Those nodes run on AMD or Intel, and in Android 0.1.0 (17).</p>
+                <p>Those nodes run where Lightning starts: the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android 0.1.0 (29).</p>
                 <p>Paste the public name, the line with @. Show this node's public name copies that line.</p>
               </div>
             </div>
@@ -405,43 +405,46 @@
           <li>
             <h3>Name a referee, or nobody.</h3>
             <ul class="brief">
-              <li>Before payment, each side names one public name, or nobody.</li>
-              <li>That choice stops when the payment is accepted.</li>
-              <li>After Not received, that person gives one decision: pay the seller, or send the coins back.</li>
-              <li>The referee does not hold the coins. They stay on the seller's node.</li>
+              <li>A referee is optional. Each side can name one public name before payment.</li>
+              <li>Payment waits until both sides name the same person, or both name nobody.</li>
+              <li>That person is told when the names match.</li>
+              <li>The referee does not hold the coins. There is no refund button. A return is this hold sending the coins back.</li>
             </ul>
           </li>
           <li>
             <h3>The buyer pays with Lightning.</h3>
             <ul class="brief">
-              <li>The coins sit on the seller's node. The clock starts when the payment is accepted.</li>
-              <li>Ship is Lightning only. No on-chain.</li>
-              <li>AMD or Intel only. Off on a Raspberry Pi and on Umbrel arm64.</li>
+              <li>Ship pays with Lightning only. Pick up can still pay on-chain.</li>
+              <li>The coins sit on the seller's Lightning node. They are not in Autarki's hands. The seller can hand the parcel to the carrier knowing the money is already there.</li>
+              <li>The seller's wallet has to stay on through the window. A phone that only opens the page does not hold the coins.</li>
+              <li>Lightning for this is in the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android. The Umbrel community store, Raspberry Pi, Umbrel arm64, and the iPhone build do not start Lightning, so they do not pay a shipment.</li>
             </ul>
           </li>
           <li>
             <h3>Cancel stays open.</h3>
             <ul class="brief">
-              <li>Until Mark shipped: a carrier and a tracking number, within one to four days.</li>
-              <li>Cancel before that mark sends the coins back.</li>
-              <li>Miss the ship-by day and the coins go back.</li>
+              <li>The ad names two dates. The seller has one to four days to mark it shipped, with a carrier and a tracking number.</li>
+              <li>Before it is shipped, Cancel is still open. The coins go back to the buyer.</li>
+              <li>If the seller does not mark it shipped by the ship-by day, the coins go back.</li>
             </ul>
           </li>
           <li>
             <h3>Mark shipped closes Cancel.</h3>
             <ul class="brief">
-              <li>The buyer sees the carrier, the tracking number, and the shipper's page.</li>
-              <li>Check the carrier saves the latest scan as words. Canada Post, UPS, FedEx, or DHL.</li>
-              <li>No carrier account. The scan does not pay anyone and does not send the coins back.</li>
+              <li>After it is shipped, Cancel is closed.</li>
+              <li>The buyer sees the carrier, the tracking number, and a link to the shipper's page.</li>
+              <li>Check the carrier saves the latest scan as words. Canada Post, UPS, FedEx, and DHL are the names it can look up.</li>
+              <li>The person does not create a carrier account. The scan does not pay anyone, and it does not send the coins back.</li>
               <li>Check the carrier is not on an order already marked received.</li>
             </ul>
           </li>
           <li>
             <h3>Mark received pays the seller.</h3>
             <ul class="brief">
-              <li>14 days at home, or 28 days overseas. The ad shows both. Home is usual.</li>
-              <li>If the buyer does nothing, the seller is paid when the hold ends, only while that wallet is on.</li>
-              <li>If the wallet never acts, the coins come back. The wallet and Lightning node stay on through the window.</li>
+              <li>The usual hold after that is 14 days. An overseas ad can say 28 days. The ad shows which one it is.</li>
+              <li>Nora buys a shipped order from Eli. She pays with Lightning. The coins sit on Eli's node. Eli marks it shipped before the ship-by day and enters the carrier and the tracking number. Nora presses Mark received. Eli is paid.</li>
+              <li>If Eli did ship it and Nora does not press Mark received and does not press Not received, Eli is paid when the hold ends. His wallet has to be on for that.</li>
+              <li>If his wallet stays off through the window, the coins go back to Nora.</li>
             </ul>
           </li>
         </ol>
@@ -452,7 +455,7 @@
           </article>
           <article>
             <h3>On-chain has no hold.</h3>
-            <p>It finishes when it confirms. It is not offered for a shipment.</p>
+            <p>Pick up can still pay on-chain. On-chain has no hold, and a referee cannot move those coins. It is not offered for a shipment.</p>
           </article>
           <article>
             <h3>A float comes first.</h3>
@@ -470,28 +473,28 @@
 
     <section class="band" id="dispute">
       <div class="wrap">
-        <h2>Not received.</h2>
-        <p class="lede">Not received stops both automatic moves. The named person gives one decision. That press does not return the coins by itself, and the referee does not hold them.</p>
+        <h2>When it was not received.</h2>
+        <p class="lede">Nora presses Not received. She can leave a short note. Eli can leave one too. Not received stops both automatic moves. The coins stay where they are. They do not pay the seller yet, and they do not go back yet.</p>
         <div class="benefits">
           <article>
             <h3>The coins stay put.</h3>
-            <p>Until Mark received, the referee's one decision, or the window ends and the coins come back.</p>
+            <p>The referee sees the carrier, the tracking number, the saved scan, and those two notes, then gives one decision. The referee does not hold the coins. There is no refund button.</p>
           </article>
           <article>
             <h3>Each side writes one note.</h3>
             <ul class="brief">
-              <li>The referee sees the carrier, the tracking, the saved scan, and those notes.</li>
               <li>The bell shows the other person's note. Opening it does not move the coins.</li>
-              <li>The referee does not hold the coins.</li>
+              <li>The referee does not hold the coins. A return is this hold sending the coins back.</li>
             </ul>
           </article>
           <article>
             <h3>One decision.</h3>
             <ul class="brief">
-              <li>For the seller: the seller is paid.</li>
-              <li>For the buyer: the coins come back. The shipment is recorded as returned. Mark received closes.</li>
-              <li>Seller's wallet off when the window ends: a decision to pay the seller loses.</li>
-              <li>Nobody decides: the coins come back.</li>
+              <li>A decision for Eli pays Eli.</li>
+              <li>A decision for Nora sends the coins back. The order stays on the books as returned, not cancelled.</li>
+              <li>If no decision arrives, the window still sends the coins back to Nora.</li>
+              <li>If Eli's wallet stays off until the window ends, a decision to pay him does not finish, and the coins return on their own.</li>
+              <li>Mark received closes once a decision is stored.</li>
             </ul>
           </article>
         </div>

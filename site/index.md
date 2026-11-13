@@ -14,7 +14,7 @@ The buyer pays you, and you keep the keys.
 - The Autarki LSP does not hold the sale. A shipped order stays on the seller's node until Mark received, and only after a float.
 - Lightning starts with the wallet. You do not install a second app.
 - The stall is public. The order is private. You pay the person, not a platform.
-- Pay with XBT or Pay with BTC. You choose the coin, and the payment stays in that coin.
+- Pay with XBT still spends XBT. Pay with BTC still spends BTC. On a package that starts Lightning, a Lightning invoice in the other coin spends the coin this wallet already holds. The fee is 1.5%, plus the normal network fees.
 - It runs on your computer. A 64-bit Android phone can install its own copy. An iPhone can join the public TestFlight test. A phone on the same network can still open your computer's page.
 
 ## Pages
