@@ -46,6 +46,124 @@
     return isFinite(n) && n >= 0.5 && n <= 2.5;
   }
 
+  function positiveInt(value) {
+    if (typeof value === "number") {
+      if (!Number.isSafeInteger(value) || value <= 0) return 0;
+      return value;
+    }
+    var text = String(value == null ? "" : value).trim();
+    if (!text || text.charAt(0) === "+" || !/^[0-9]+$/.test(text)) return 0;
+    var n = Number(text);
+    if (!Number.isSafeInteger(n) || n <= 0) return 0;
+    return n;
+  }
+
+  function hasOwn(body, key) {
+    return !!body && Object.prototype.hasOwnProperty.call(body, key) && body[key] !== undefined;
+  }
+
+  function centsOf(text) {
+    var raw = String(text == null ? "" : text).trim();
+    if (!/^\d+(\.\d{0,2})?$/.test(raw) && !/^\.\d{1,2}$/.test(raw)) return null;
+    var parts = raw.split(".");
+    var whole = parts[0] === "" ? "0" : parts[0].replace(/^0+/, "");
+    if (!whole) whole = "0";
+    var frac = parts.length === 2 ? parts[1] : "";
+    while (frac.length < 2) frac += "0";
+    var digits = (whole + frac).replace(/^0+/, "");
+    if (!digits || digits.length > 15) return null;
+    var cents = Number(digits);
+    if (!Number.isSafeInteger(cents) || cents < 1) return null;
+    return cents;
+  }
+
+  function locked(cents, currency) {
+    var n = positiveInt(cents);
+    var code = String(currency || "").trim().toLowerCase();
+    if (!n || (code !== "usd" && code !== "cad")) return "";
+    var frac = n % 100;
+    var fracText = frac < 10 ? "0" + frac : String(frac);
+    return "$" + grouped(Math.floor(n / 100)) + "." + fracText + " " + (code === "cad" ? "CAD" : "USD");
+  }
+
+  function shownDollars(cents, currency, sats, coin) {
+    var primary = locked(cents, currency);
+    if (!primary) return null;
+    var n = positiveInt(sats);
+    var market = String(coin || "").toLowerCase();
+    var note = "The dollar price stays and the coin amount is set when you pay.";
+    if (n && (market === "xbt" || market === "btc")) note = grouped(n) + " sats · " + market.toUpperCase();
+    return { primary: primary, note: note };
+  }
+
+  function productMoney(body) {
+    if (!body) return null;
+    var currency = String(body.currency || "").trim().toLowerCase();
+    var priceSet = hasOwn(body, "price");
+    var centsSet = hasOwn(body, "cents");
+    if (priceSet && centsSet) return null;
+    if (currency === "sats") {
+      if (centsSet) return null;
+      var sats = positiveInt(body.price);
+      if (!sats) return null;
+      return { kind: "sats", sats: sats };
+    }
+    if (currency !== "usd" && currency !== "cad") return null;
+    if (priceSet) return null;
+    var cents = positiveInt(body.cents);
+    if (!cents) return null;
+    return { kind: "dollars", cents: cents, currency: currency, sats: 0, coin: "" };
+  }
+
+  function firstTag(tags, name) {
+    var i;
+    if (!tags) return null;
+    for (i = 0; i < tags.length; i++) {
+      if (tags[i] && tags[i][0] === name) return tags[i];
+    }
+    return null;
+  }
+
+  function listingMoney(tags) {
+    var price = firstTag(tags, "price");
+    var centsTag = firstTag(tags, "cents");
+    var hintTag = firstTag(tags, "hint");
+    var sats = 0;
+    var coin = "";
+    var text = "";
+    var payable = false;
+    var cents = 0;
+    var currency = "";
+    var hinted = 0;
+    if (price && price.length >= 2) {
+      sats = positiveInt(price[1]);
+      coin = price[2] === "xbt" || price[2] === "btc" ? price[2] : "";
+      if (price.length === 3 && sats && coin) payable = true;
+      else {
+        sats = 0;
+        coin = "";
+        text = price.slice(1).join(" ").trim();
+      }
+    }
+    if (centsTag && centsTag.length === 3) {
+      cents = positiveInt(centsTag[1]);
+      currency = String(centsTag[2] || "").trim().toLowerCase();
+      if (currency !== "usd" && currency !== "cad") cents = 0;
+    }
+    if (hintTag && hintTag.length === 2) hinted = positiveInt(hintTag[1]);
+    if (cents) {
+      if (!(payable && hinted === 0)) {
+        if (payable && hinted > 0 && coin) {
+          return { kind: "dollars", cents: cents, currency: currency, sats: sats, coin: coin };
+        }
+        return { kind: "dollars", cents: cents, currency: currency, sats: 0, coin: "" };
+      }
+    }
+    if (payable) return { kind: "sats", sats: sats, coin: coin };
+    if (text) return { kind: "text", text: text };
+    return { kind: "none" };
+  }
+
   function hint(sats, coin, country, quotes) {
     if (typeof BigInt !== "function" || !quotes) return "";
     var n = Number(sats);
@@ -78,7 +196,15 @@
     return "Approx: $" + amount + " " + code;
   }
 
-  var api = { codeFor: codeFor, hint: hint };
+  var api = {
+    codeFor: codeFor,
+    hint: hint,
+    centsOf: centsOf,
+    locked: locked,
+    shownDollars: shownDollars,
+    productMoney: productMoney,
+    listingMoney: listingMoney
+  };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   if (root) root.AutarkiHint = api;
 })(typeof globalThis !== "undefined" ? globalThis : this);

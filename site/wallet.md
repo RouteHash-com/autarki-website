@@ -22,7 +22,7 @@ Pay with XBT or Pay with BTC. Pay with XBT still spends XBT. Pay with BTC still 
 - Blake2b XBT. Buttons say XBT or Pay with XBT. The node is Bitcoin Knots. Lightning is Blake2b Lightning.
 - SHA-256 BTC. Buttons say BTC or Pay with BTC. The node is Bitcoin Core. Lightning is SHA-256 Lightning.
 - XBT and SHA-256 BTC share history only up to the fork. A payment is signed for one chain. On-chain, coins from the wrong chain do not pay the sale.
-- Prices are whole sats. A dollar hint, in US dollars or Canadian dollars, does not change the sats.
+- A price in sats is whole sats. A dollar figure beside it, in US dollars or Canadian dollars, can say About. That hint does not change the sats. One product, or one classified, can keep its price in those dollars. The dollar price stays and the coin amount is set when you pay.
 - XBT Knots and Bitcoin Core do not run on the same computer.
 
 ## Receive, Send, and Balance

@@ -1289,6 +1289,14 @@ code {
   white-space: nowrap;
 }
 
+.price-note {
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin: 0.2rem 0 0;
+}
+
 .sold {
   color: var(--accent);
   font-family: var(--serif);

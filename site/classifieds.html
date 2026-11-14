@@ -34,7 +34,7 @@
   <link rel="describedby" href="https://autarki.app/llms.txt" type="text/plain">
   <meta name="theme-color" content="#f7f4ef">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/site.css?v=20261113b">
+  <link rel="stylesheet" href="css/site.css?v=20261113d">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -188,8 +188,10 @@
           <li>The description is at most 4000 characters.</li>
           <li>Country, province, city, and neighbourhood are each one line, at most 40 characters.</li>
           <li>Use my location asks this browser. The position is not saved and is not sent to Autarki. A refused prompt stops there.</li>
-          <li>The price is a whole number of sats on XBT or BTC. Empty or zero is not payable. A priced ad with no silent-payment code still appears, and the buyer is told it cannot be paid yet. This page cannot make the code. Beside the sats, this page can show an approximate figure in USD or CAD. A place in Canada shows CAD. Any other place shows USD. That figure does not change the sats.</li>
-          <li>A dollar amount, a fraction, or any other currency is shown as text and cannot be paid.</li>
+          <li>The price of this ad can be a whole number of sats on XBT or BTC, or a price in US dollars or Canadian dollars. Empty or zero is not payable. A priced ad with no silent-payment code still appears, and the buyer is told it cannot be paid yet. This page cannot make the code.</li>
+          <li>A price in sats stays in sats. Beside it, this page can show an approximate figure in USD or CAD. A place in Canada shows CAD. Any other place shows USD. That figure can say About. It is not the bill, and it does not change the sats.</li>
+          <li>A price in dollars stays on this ad. The dollar price stays and the coin amount is set when you pay. Another ad priced in sats stays in sats.</li>
+          <li>A fraction, or a currency this page did not write as that dollar price, is shown as text and cannot be paid.</li>
           <li>Goods, a service, or a rental with a price above zero names 1 to 4 days, and Domestic or Overseas. A job, a giveaway, a personal, a hire, and a zero price publish no ship tags.</li>
           <li>An image is an https address. Four is the limit. Images are for goods, a service, a rental, or a giveaway.</li>
           <li>A map link is the https address from OpenStreetMap, Google Maps, or Apple Maps. A map is for goods, a service, or a rental.</li>
@@ -255,8 +257,15 @@
               <input id="classified-neighbourhood" name="neighbourhood" type="text" maxlength="40" autocomplete="off">
             </div>
             <div id="classified-price-block">
+              <fieldset class="chain-pick" id="classified-unit">
+                <legend>Price unit</legend>
+                <label><input type="radio" name="unit" value="sats" checked> Sats</label>
+                <label><input type="radio" name="unit" value="usd"> US dollars</label>
+                <label><input type="radio" name="unit" value="cad"> Canadian dollars</label>
+              </fieldset>
+              <p class="field-note" id="classified-unit-note" hidden>The dollar price stays and the coin amount is set when you pay.</p>
               <div class="post-field">
-                <label for="classified-price">Price in sats <span id="classified-price-hint" class="price-hint"></span></label>
+                <label for="classified-price"><span id="classified-price-name">Price in sats</span> <span id="classified-price-hint" class="price-hint"></span></label>
                 <input id="classified-price" name="price" type="text" inputmode="numeric" maxlength="16" autocomplete="off" spellcheck="false">
               </div>
               <fieldset class="chain-pick" id="classified-chain">
@@ -266,7 +275,7 @@
               </fieldset>
               <div class="post-field" id="classified-signpost-line" hidden>
                 <label for="classified-signpost"><input id="classified-signpost" name="signpost" type="checkbox"> Show this ad on other markets</label>
-                <p class="field-note">Post this ad sends a second note when this box is on and this ad names an XBT or BTC amount. The title, the place, the category, and the images stay. The note names the sat amount and https://autarki.app. It has no payment code, no node, and no shipment. The sale stays on Autarki. Turning this off and posting tells those boards to drop that second note. The ad on Autarki stays up.</p>
+                <p class="field-note">Post this ad sends a second note when this box is on and this ad names an XBT or BTC amount. The title, the place, the category, and the images stay. The note names the sat amount and https://autarki.app. It has no payment code, no node, and no shipment. The sale stays on Autarki. A price in dollars is not sent. Turning this off and posting tells those boards to drop that second note. The ad on Autarki stays up.</p>
                 <div id="classified-signpost-links" hidden></div>
               </div>
               <div id="classified-ship" hidden>
@@ -316,7 +325,7 @@
             </div>
             <div id="classified-hire-accept" hidden>
               <p class="field-note">Leave these blank unless this offer accepts a job.</p>
-              <p class="field-note">The offer's price and chain must match the hire.</p>
+              <p class="field-note">The offer's price must match the hire. A price in sats also matches the chain. A price in dollars matches those dollars.</p>
               <div class="post-field">
                 <label for="classified-hire-npub">Public name of the person who posted the job</label>
                 <input id="classified-hire-npub" name="hire-npub" type="text" maxlength="90" autocomplete="off" spellcheck="false">
@@ -588,7 +597,7 @@
     </div>
   </footer>
   <script src="js/site.js"></script>
-  <script src="js/price-hint.js?v=20261113a"></script>
-  <script src="js/classified-post.js?v=20261113c"></script>
+  <script src="js/price-hint.js?v=20261113d"></script>
+  <script src="js/classified-post.js?v=20261113d"></script>
 </body>
 </html>

@@ -4,6 +4,7 @@
   var CATEGORIES = ["goods", "services", "job", "rental", "giveaway", "personal"];
   var CARRY = "This note cannot be posted. It asks for something this board does not carry.";
   var PRICE = "The price is a whole number of sats on XBT or BTC.";
+  var DOLLARS = "The price is dollars and cents, such as 1.50.";
   var SHIP = "Ship appears when the note names a public Lightning node for a chain that has a code.";
   var SHIP_PROMISE = "A shipment is 1 to 4 days, and Domestic or Overseas.";
   var SHIP_ORIGIN = "A shipment names a postal code, a country code, and a weight.";
@@ -116,6 +117,18 @@
     if (!Number.isSafeInteger(n)) return { bad: true };
     if (n === 0) return { empty: true };
     return { sats: String(n) };
+  }
+
+  function dollarCents(text) {
+    var raw = String(text == null ? "" : text).trim();
+    if (!raw) return { empty: true };
+    if (typeof AutarkiHint === "undefined" || typeof AutarkiHint.centsOf !== "function") return { bad: true };
+    var cents = AutarkiHint.centsOf(raw);
+    if (cents === null) {
+      if (/^0+(\.0{0,2})?$/.test(raw)) return { empty: true };
+      return { bad: true };
+    }
+    return { cents: cents };
   }
 
   function silentCode(text) {
@@ -242,6 +255,14 @@
       }
       if (mode === "digit") {
         if (code >= 48 && code <= 57) out += ch;
+        continue;
+      }
+      if (mode === "money") {
+        if (ch === "." && out.indexOf(".") < 0) out += ch;
+        else if (code >= 48 && code <= 57) {
+          var dotAt = out.indexOf(".");
+          if (dotAt < 0 || out.length - dotAt <= 2) out += ch;
+        }
         continue;
       }
       if (mode === "weight") {
@@ -536,7 +557,13 @@
       if (map === null) return fail("The map link could not be saved.");
     }
     var amount = { empty: true };
-    if (priced) {
+    var cents = 0;
+    var unit = fields.unit === "usd" || fields.unit === "cad" ? fields.unit : "sats";
+    if (priced && unit !== "sats") {
+      var dollars = dollarCents(fields.price);
+      if (dollars.bad) return fail(DOLLARS);
+      if (dollars.cents) cents = dollars.cents;
+    } else if (priced) {
       amount = wholeSats(fields.price);
       if (amount.bad) return fail(PRICE);
     }
@@ -559,7 +586,7 @@
     var postal = "";
     var cc = "";
     var kg = "";
-    if ((category === "goods" || category === "services" || category === "rental") && amount.sats) {
+    if ((category === "goods" || category === "services" || category === "rental") && (amount.sats || cents)) {
       var days = String(fields.shipDays == null ? "" : fields.shipDays).trim();
       hold = fields.hold === "domestic" || fields.hold === "overseas" ? fields.hold : "";
       if ((days !== "1" && days !== "2" && days !== "3" && days !== "4") || !hold) return fail(SHIP_PROMISE);
@@ -589,6 +616,7 @@
     if (neighbourhood) tags.push(["neighbourhood", neighbourhood]);
     tags.push(["t", category]);
     if (amount.sats) tags.push(["price", amount.sats, chainName(fields.chain)]);
+    else if (cents) tags.push(["cents", String(cents), unit]);
     for (var i = 0; i < images.length; i++) tags.push(["image", images[i]]);
     if (map) tags.push(["map", map]);
     if (payXbt) tags.push(["pay", payXbt, "xbt"]);
@@ -941,6 +969,12 @@
     return input ? input.value : "";
   }
 
+  function priceUnit() {
+    var unit = selected("unit");
+    if (unit === "usd" || unit === "cad") return unit;
+    return "sats";
+  }
+
   function termsAccepted() {
     try {
       if (localStorage.getItem("autarki-board-terms") === "1") return true;
@@ -968,8 +1002,10 @@
     var picture = category === "goods" || category === "services" || category === "rental" || category === "giveaway";
     var allowMap = category === "goods" || category === "services" || category === "rental";
     var hire = job && selected("side") === "hire";
-    var amount = wholeSats(priceInput ? priceInput.value : "");
-    var ship = (category === "goods" || category === "services" || category === "rental") && !!amount.sats;
+    var unit = priceUnit();
+    var amount = unit === "sats" ? wholeSats(priceInput ? priceInput.value : "") : { empty: true };
+    var dollars = unit === "sats" ? { empty: true } : dollarCents(priceInput ? priceInput.value : "");
+    var ship = (category === "goods" || category === "services" || category === "rental") && !!(amount.sats || dollars.cents);
     var pay = priced && !hire;
     if (fieldsBlock) fieldsBlock.hidden = !known;
     if (sideField) {
@@ -980,6 +1016,11 @@
     if (hireNote) hireNote.hidden = !hire;
     if (needNote) needNote.hidden = !(category === "goods" || category === "services" || category === "rental" || (job && !hire));
     if (priceBlock) priceBlock.hidden = !priced;
+    if (chainField) {
+      var showChain = priced && unit === "sats";
+      chainField.hidden = !showChain;
+      chainField.style.display = showChain ? "" : "none";
+    }
     if (shipBlock) shipBlock.hidden = !ship;
     if (payBlock) payBlock.hidden = !pay;
     if (hireAcceptBlock) hireAcceptBlock.hidden = !(job && !hire);
@@ -998,7 +1039,15 @@
 
   function paintPriceHint() {
     var node = document.getElementById("classified-price-hint");
+    var unit = priceUnit();
+    if (priceName) priceName.textContent = unit === "sats" ? "Price in sats" : "Price in dollars";
+    if (priceInput) priceInput.inputMode = unit === "sats" ? "numeric" : "decimal";
+    if (unitNote) unitNote.hidden = unit === "sats";
     if (!node) return;
+    if (unit !== "sats") {
+      node.textContent = "";
+      return;
+    }
     var amount = wholeSats(priceInput ? priceInput.value : "");
     var chain = selected("chain");
     var country = countryInput ? countryInput.value : "";
@@ -1018,6 +1067,7 @@
 
   function signpostOffer() {
     if (!signpostCategory()) return false;
+    if (priceUnit() !== "sats") return false;
     var amount = wholeSats(priceInput ? priceInput.value : "");
     if (!amount.sats) return false;
     var chain = selected("chain");
@@ -1047,7 +1097,16 @@
   if (categoryInput) categoryInput.addEventListener("change", showPlan);
   if (sideField) sideField.addEventListener("change", showPlan);
   var chainField = document.getElementById("classified-chain");
+  var unitField = document.getElementById("classified-unit");
+  var unitNote = document.getElementById("classified-unit-note");
+  var priceName = document.getElementById("classified-price-name");
   if (chainField) chainField.addEventListener("change", showPlan);
+  if (unitField) {
+    unitField.addEventListener("change", function () {
+      if (priceUnit() === "sats") stripPriceFraction();
+      showPlan();
+    });
+  }
   showPlan();
   paintTerms();
   window.addEventListener("pageshow", showPlan);
@@ -1074,8 +1133,36 @@
   guardInput(provinceInput, "line");
   guardInput(cityInput, "line");
   guardInput(neighbourhoodInput, "line");
-  guardInput(priceInput, "digit");
-  if (priceInput) priceInput.addEventListener("input", showPlan);
+  function stripPriceFraction() {
+    if (!priceInput) return;
+    var text = String(priceInput.value || "");
+    var dot = text.indexOf(".");
+    if (dot < 0) return;
+    var whole = "";
+    var i;
+    for (i = 0; i < dot; i++) {
+      var ch = text.charAt(i);
+      if (ch >= "0" && ch <= "9") whole += ch;
+    }
+    priceInput.value = whole;
+  }
+
+  function onPriceInput() {
+    if (!priceInput) return;
+    var mode = priceUnit() === "sats" ? "digit" : "money";
+    var next = cleanTyped(priceInput.value, mode);
+    if (next !== priceInput.value) {
+      var at = priceInput.selectionStart;
+      priceInput.value = next;
+      if (priceInput.setSelectionRange && typeof at === "number") {
+        var pos = at > next.length ? next.length : at;
+        priceInput.setSelectionRange(pos, pos);
+      }
+    }
+    showPlan();
+  }
+
+  if (priceInput) priceInput.addEventListener("input", onPriceInput);
   if (countryInput) countryInput.addEventListener("input", paintPriceHint);
   if (typeof fetch === "function") {
     fetch("/api/spot", { headers: { accept: "application/json" } })
@@ -1231,6 +1318,7 @@
       city: cityInput.value,
       neighbourhood: neighbourhoodInput.value,
       price: priceInput.value,
+      unit: priceUnit(),
       chain: selected("chain"),
       shipDays: selected("ship-days"),
       hold: selected("hold"),
@@ -1430,6 +1518,64 @@
     previewNote.textContent = PREVIEW_STALE;
   }
 
+  function appendPreviewPrice(heading, tags, paid) {
+    var money = typeof AutarkiHint !== "undefined" && AutarkiHint.listingMoney ? AutarkiHint.listingMoney(tags) : null;
+    if (!money) {
+      var fallback = previewTag(tags, "price");
+      if (fallback && (fallback[2] === "xbt" || fallback[2] === "btc")) money = { kind: "sats", sats: Number(fallback[1]), coin: fallback[2] };
+    }
+    if (!money || money.kind === "none") return;
+    if (money.kind === "text") {
+      var raw = document.createElement("p");
+      raw.className = "price";
+      raw.textContent = money.text;
+      heading.appendChild(raw);
+      return;
+    }
+    if (money.kind === "dollars" && AutarkiHint.shownDollars) {
+      var lines = AutarkiHint.shownDollars(money.cents, money.currency, money.sats, money.coin);
+      if (!lines) return;
+      var lockedPrice = document.createElement("p");
+      lockedPrice.className = "price";
+      lockedPrice.textContent = lines.primary;
+      heading.appendChild(lockedPrice);
+      if (lines.note) {
+        var note = document.createElement("p");
+        note.className = "price-note";
+        note.textContent = lines.note;
+        heading.appendChild(note);
+      }
+      if (previewValue(tags, "side") !== "hire" && !paid) {
+        var unpaidDollars = document.createElement("p");
+        unpaidDollars.className = "price";
+        unpaidDollars.textContent = "That listing cannot be paid yet. It has no payment code.";
+        heading.appendChild(unpaidDollars);
+      }
+      return;
+    }
+    if (money.kind !== "sats") return;
+    var amount = document.createElement("p");
+    amount.className = "price";
+    amount.appendChild(document.createTextNode(previewSats(money.sats) + " · " + String(money.coin).toUpperCase()));
+    if (typeof AutarkiHint !== "undefined" && spotQuotes) {
+      var hint = AutarkiHint.hint(Number(money.sats), money.coin, previewValue(tags, "country"), spotQuotes);
+      if (hint) {
+        amount.appendChild(document.createTextNode(" · "));
+        var hintSpan = document.createElement("span");
+        hintSpan.className = "price-hint";
+        hintSpan.textContent = hint;
+        amount.appendChild(hintSpan);
+      }
+    }
+    heading.appendChild(amount);
+    if (previewValue(tags, "side") !== "hire" && !paid) {
+      var unpaid = document.createElement("p");
+      unpaid.className = "price";
+      unpaid.textContent = "That listing cannot be paid yet. It has no payment code.";
+      heading.appendChild(unpaid);
+    }
+  }
+
   function paintPreview(built) {
     if (!previewCard) return;
     var tags = built.tags;
@@ -1448,29 +1594,7 @@
     var title = document.createElement("h3");
     title.textContent = previewValue(tags, "title");
     heading.appendChild(title);
-    var price = previewTag(tags, "price");
-    if (price && (price[2] === "xbt" || price[2] === "btc")) {
-      var amount = document.createElement("p");
-      amount.className = "price";
-      amount.appendChild(document.createTextNode(previewSats(price[1]) + " · " + String(price[2]).toUpperCase()));
-      if (typeof AutarkiHint !== "undefined" && spotQuotes) {
-        var hint = AutarkiHint.hint(Number(price[1]), price[2], previewValue(tags, "country"), spotQuotes);
-        if (hint) {
-          amount.appendChild(document.createTextNode(" · "));
-          var hintSpan = document.createElement("span");
-          hintSpan.className = "price-hint";
-          hintSpan.textContent = hint;
-          amount.appendChild(hintSpan);
-        }
-      }
-      heading.appendChild(amount);
-      if (previewValue(tags, "side") !== "hire" && !paid) {
-        var unpaid = document.createElement("p");
-        unpaid.className = "price";
-        unpaid.textContent = "That listing cannot be paid yet. It has no payment code.";
-        heading.appendChild(unpaid);
-      }
-    }
+    appendPreviewPrice(heading, tags, paid);
     var place = [previewValue(tags, "location"), previewValue(tags, "province"), previewValue(tags, "country"), previewValue(tags, "neighbourhood")].filter(Boolean).join(", ");
     if (place) {
       var where = document.createElement("p");

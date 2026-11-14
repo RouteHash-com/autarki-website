@@ -298,19 +298,37 @@
     var body = jsonBody(event);
     var d = first(event, "d");
     var pubkey = hex(event.pubkey);
-    if (!body || !pubkey || body.currency !== "sats" || body.stall_id !== "shop") return null;
+    if (!body || !pubkey || body.stall_id !== "shop") return null;
     if (!productId(d) || body.id !== d) return null;
     var name = cleanName(body.name);
-    var price = whole(body.price);
-    if (!name || !price) return null;
+    var money = readProductMoney(body);
+    if (!name || !money) return null;
     var images = Array.isArray(body.images) ? body.images : [];
     return {
       pubkey: pubkey,
       name: name,
-      price: price,
+      price: money.kind === "sats" ? money.sats : 0,
+      cents: money.kind === "dollars" ? money.cents : 0,
+      currency: money.kind === "dollars" ? money.currency : "",
       about: about(body.description),
       picture: httpsUrl(images[0])
     };
+  }
+
+  function readProductMoney(body) {
+    if (typeof AutarkiHint !== "undefined" && AutarkiHint.productMoney) return AutarkiHint.productMoney(body);
+    if (!body || body.currency !== "sats") return null;
+    var price = whole(body.price);
+    if (!price) return null;
+    return { kind: "sats", sats: price };
+  }
+
+  function readListingMoney(tags) {
+    if (typeof AutarkiHint !== "undefined" && AutarkiHint.listingMoney) return AutarkiHint.listingMoney(tags);
+    var price = priceOf(tags);
+    if (price.sats) return { kind: "sats", sats: price.sats, coin: price.coin };
+    if (price.text) return { kind: "text", text: price.text };
+    return { kind: "none" };
   }
 
   function adFrom(versions) {
@@ -345,11 +363,12 @@
     if (noteRefused([titleNow, summary, body, city, neighbourhood])) return null;
     if ([...body].length > 4000) body = "";
     else body = plain(body);
-    var price = priceOf(source.tags || []);
+    var money = readListingMoney(source.tags || []);
     var ship = shipOf(source.tags || []);
     var categories = categoriesOf(source);
     var side = jobSide(source.tags || [], categories);
-    var pays = payOf(source.tags || [], price.coin);
+    var payable = money.kind === "sats" || money.kind === "dollars";
+    var pays = payOf(source.tags || [], money.coin || "");
     return {
       pubkey: pubkey,
       npub: npubFromHex(pubkey),
@@ -364,10 +383,12 @@
       city: city,
       neighbourhood: neighbourhood,
       categories: categories,
-      price: price.sats,
-      coin: price.coin,
-      priceText: price.text,
-      unpaid: !!(price.sats && side !== "hire" && !pays.xbt && !pays.btc),
+      price: money.kind === "sats" ? money.sats : (money.kind === "dollars" ? money.sats : 0),
+      coin: money.coin || "",
+      cents: money.kind === "dollars" ? money.cents : 0,
+      currency: money.kind === "dollars" ? money.currency : "",
+      priceText: money.kind === "text" ? money.text : "",
+      unpaid: !!(payable && side !== "hire" && !pays.xbt && !pays.btc),
       map: mapUrl(first(source, "map")),
       shipDays: ship.days,
       hold: ship.hold,
@@ -719,7 +740,8 @@
     var title = document.createElement("h3");
     title.textContent = product.name;
     body.appendChild(title);
-    priceLine(body, sats(product.price), product.price, "xbt", country);
+    if (product.cents) dollarBlock(body, product);
+    else priceLine(body, sats(product.price), product.price, "xbt", country);
     if (product.about) {
       var about = document.createElement("p");
       about.className = "summary";
@@ -754,6 +776,14 @@
       mark.className = "sold";
       mark.textContent = ad.status === "sold" ? "Sold." : "Held.";
       heading.appendChild(mark);
+    } else if (ad.cents) {
+      dollarBlock(heading, ad);
+      if (ad.unpaid) {
+        var unpaidDollars = document.createElement("p");
+        unpaidDollars.className = "price";
+        unpaidDollars.textContent = "That listing cannot be paid yet. It has no payment code.";
+        heading.appendChild(unpaidDollars);
+      }
     } else if (ad.price) {
       priceLine(heading, sats(ad.price) + " · " + ad.coin.toUpperCase(), ad.price, ad.coin, ad.country);
       if (ad.unpaid) {
@@ -1036,6 +1066,22 @@
 
   function sats(n) {
     return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " sats";
+  }
+
+  function dollarBlock(parent, item) {
+    if (typeof AutarkiHint === "undefined" || !AutarkiHint.shownDollars) return;
+    var lines = AutarkiHint.shownDollars(item.cents, item.currency, item.price, item.coin);
+    if (!lines) return;
+    var price = document.createElement("p");
+    price.className = "price";
+    price.textContent = lines.primary;
+    parent.appendChild(price);
+    if (lines.note) {
+      var note = document.createElement("p");
+      note.className = "price-note";
+      note.textContent = lines.note;
+      parent.appendChild(note);
+    }
   }
 
   function priceLine(parent, text, amount, coin, country) {
