@@ -12,13 +12,13 @@
     } catch (e) {}
   </script>
   <title>Wallet. Autarki</title>
-  <meta name="description" content="You hold the 24 words. On a package that starts Lightning, paying the other coin spends the coin this wallet already holds. The fee is 1.5%, plus the normal network fees.">
+  <meta name="description" content="You hold the 24 words. On a package that starts Lightning, a Lightning invoice in the other coin spends the coin this wallet already holds. The fee is 1.5%, plus the normal network fees. One XBT sat is not one Bitcoin sat. If that direction cannot pay, the other coin stays off the screen.">
   <link rel="canonical" href="https://autarki.app/wallet">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta property="og:site_name" content="Autarki">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Wallet. Autarki">
-  <meta property="og:description" content="You hold the 24 words. On a package that starts Lightning, paying the other coin spends the coin this wallet already holds. The fee is 1.5%, plus the normal network fees.">
+  <meta property="og:description" content="You hold the 24 words. On a package that starts Lightning, a Lightning invoice in the other coin spends the coin this wallet already holds. The fee is 1.5%, plus the normal network fees. One XBT sat is not one Bitcoin sat. If that direction cannot pay, the other coin stays off the screen.">
   <meta property="og:url" content="https://autarki.app/wallet">
   <meta property="og:image" content="https://autarki.app/assets/og.png">
   <meta property="og:image:type" content="image/png">
@@ -27,7 +27,7 @@
   <meta property="og:image:alt" content="Autarki. No platform. Just the sale.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Wallet. Autarki">
-  <meta name="twitter:description" content="You hold the 24 words. On a package that starts Lightning, paying the other coin spends the coin this wallet already holds. The fee is 1.5%, plus the normal network fees.">
+  <meta name="twitter:description" content="You hold the 24 words. On a package that starts Lightning, a Lightning invoice in the other coin spends the coin this wallet already holds. The fee is 1.5%, plus the normal network fees. One XBT sat is not one Bitcoin sat. If that direction cannot pay, the other coin stays off the screen.">
   <meta name="twitter:image" content="https://autarki.app/assets/og.png">
   <meta name="twitter:image:alt" content="Autarki. No platform. Just the sale.">
   <link rel="alternate" type="text/markdown" href="https://autarki.app/wallet.md" title="Wallet">
@@ -71,7 +71,7 @@
         "@id": "https://autarki.app/wallet#webpage",
         "url": "https://autarki.app/wallet",
         "name": "Wallet. Autarki",
-        "description": "You hold the 24 words. On a package that starts Lightning, paying the other coin spends the coin this wallet already holds. The fee is 1.5%, plus the normal network fees.",
+        "description": "You hold the 24 words. On a package that starts Lightning, a Lightning invoice in the other coin spends the coin this wallet already holds. The fee is 1.5%, plus the normal network fees. One XBT sat is not one Bitcoin sat. If that direction cannot pay, the other coin stays off the screen.",
         "isPartOf": {
           "@id": "https://autarki.app/#website"
         },
@@ -269,14 +269,13 @@
           <li>A Lightning sale is on the sales spreadsheet and absent from the coin journal.</li>
         </ul>
         <h3 class="subhead" id="other-coin">Paying the other coin.</h3>
-        <p>On a package that starts Lightning, a Lightning invoice in the other coin spends the coin this wallet already holds. Pay with XBT still spends XBT. Pay with BTC still spends BTC. The shop is paid in the coin it asked for. The fee is 1.5%, plus the normal network fees. Routing through the LSP is at most 1,000 sats. The amount on the confirm screen already includes the fee. Nothing is sent until a channel from this wallet can pay. If that payment cannot finish, it is not sent. The button says Pay with the other coin.</p>
-        <p>Each install asks for its own code. There is nothing to paste. This is not a screen that turns the coins already in the wallet into the other coin.</p>
+        <p>On a package that starts Lightning, a Lightning invoice in the other coin spends the coin this wallet already holds. Pay with XBT still spends XBT. Pay with BTC still spends BTC. The person you pay is paid in the coin they asked for. The fee is 1.5%, plus the normal network fees. Routing through the LSP is at most 1,000 sats. One XBT sat is not one Bitcoin sat. The amount on the confirm screen is in the coin you spend, and the fee is already in that amount. Nothing is sent until a channel from this wallet can pay. If that payment cannot finish, it is not sent. The button says Pay with the other coin. If that direction cannot pay, the other coin stays off the screen.</p>
+        <p>Each install asks for its own code. There is nothing to paste. This is not a screen that turns the coins already in the wallet into the other coin. The coins arrive on Lightning. They are not added to Balance.</p>
         <p>Lightning for this is in the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android. The Umbrel community store, Raspberry Pi, Umbrel arm64, and the iPhone build do not start Lightning, so they do not pay across coins.</p>
         <h3 class="subhead">A shop that asks for Bitcoin.</h3>
-        <p>Mara holds XBT. Jon's shop asks for Bitcoin Lightning. Mara pays that invoice from the XBT she already holds. Jon is paid in Bitcoin Lightning. The XBT leave Mara's wallet. She confirms the amount first. If a channel from her wallet cannot pay it, nothing is sent and Jon is not paid.</p>
+        <p>Mara holds XBT. Jon's shop asks for Bitcoin Lightning. Mara pays that invoice from the XBT already in her Lightning node. Jon is paid in Bitcoin Lightning. The XBT leave Mara's wallet. She confirms the amount first. If a channel from her wallet cannot pay it, nothing is sent and Jon is not paid.</p>
         <h3 class="subhead">A shop that asks for XBT.</h3>
-        <p>The same path runs the other way. Jon holds BTC. Mara's shop asks for XBT Lightning. Jon pays from the BTC he already holds. Mara is paid in XBT Lightning. His BTC are what leave his wallet. Nothing is sent until a channel from his wallet can pay.</p>
-        <p>The coins arrive on Lightning. They are not added to Balance. Balance stays the confirmed on-chain coins.</p>
+        <p>Jon holds Bitcoin. Mara's shop asks for XBT Lightning. Jon pays from the Bitcoin already in his Lightning node. Mara is paid in XBT Lightning. His Bitcoin is what leaves. He confirms the amount first. If a channel from his wallet cannot pay it, nothing is sent and Mara is not paid.</p>
         <h3 class="subhead" id="lsp">Why a Lightning channel is necessary.</h3>
         <p class="lede">On-chain needs no channel. A Lightning payment spends sats already locked in a channel between two nodes.</p>
         <ul class="brief">
