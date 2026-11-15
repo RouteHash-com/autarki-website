@@ -59,8 +59,8 @@ Pay with XBT or Pay with BTC. Pay with XBT still spends XBT. Pay with BTC still 
 
 Lightning for XBT and for Bitcoin comes with your wallet. You do not install a second app. To use Lightning you already run on another Autarki, open Settings, then Coin Nodes, and turn on Use other Autarki Lightning nodes.
 
-- It is included on the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android 0.1.0 (29).
-- The Umbrel community store (listing 0.1.24), Raspberry Pi, and Umbrel arm64 leave Lightning out. On-chain still works on those packages.
+- It is included on the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android 0.1.0 (31).
+- The Umbrel community store (listing 0.1.25), Raspberry Pi, and Umbrel arm64 leave Lightning out. On-chain still works on those packages.
 - Leave Use other Autarki Lightning nodes off where Lightning already starts. A Raspberry Pi, Umbrel arm64, the Umbrel community store, and the iPhone build keep it on, because those builds do not start Lightning themselves.
 - A shipment runs where Lightning starts. Mine needs AMD or Intel. It stays off on a Raspberry Pi and on Umbrel arm64.
 - There is no second Lightning app. Install does not open a channel.
