@@ -34,7 +34,7 @@
   <link rel="describedby" href="https://autarki.app/llms.txt" type="text/plain">
   <meta name="theme-color" content="#f7f4ef">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/site.css?v=20261112a">
+  <link rel="stylesheet" href="css/site.css?v=20261114a">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -148,16 +148,69 @@
         <p class="lede">Autarki is your wallet and your shop. You hold the 24 words. You pay the person. Autarki does not hold the coins, clear the sale, or take a cut of the catalog price. Lightning still costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000.</p>
         <p>There is no account that can reset the 24 words. The same install is the shop and the customer.</p>
         <nav class="page-nav" aria-label="On this page">
+          <a href="#other-coin">Paying the other coin</a>
           <a href="#words">The 24 words</a>
           <a href="#chains">XBT and BTC</a>
           <a href="#balance">Balance</a>
           <a href="#lightning">Lightning</a>
-          <a href="#other-coin">Paying the other coin</a>
           <a href="#lsp">The Autarki LSP</a>
           <a href="#node">Your node</a>
         </nav>
       </div>
     </header>
+
+    <section class="band" id="other-coin">
+      <div class="wrap">
+        <h2>Paying the other coin.</h2>
+        <p class="lede">On a package that starts Lightning, a Lightning invoice in the other coin spends the coin this wallet already holds.</p>
+        <figure class="coin-paths">
+          <div class="coin-path">
+            <div class="coin-end">
+              <span>Spends</span>
+              <strong>Mara holds XBT</strong>
+              <em>Already in her Lightning node</em>
+            </div>
+            <div class="coin-arrow">
+              <span>Lightning invoice</span>
+              <svg class="arrow-h" viewBox="0 0 64 16" aria-hidden="true"><path d="M0 8h52M46 2l8 6-8 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              <svg class="arrow-v" viewBox="0 0 16 40" aria-hidden="true"><path d="M8 0v30M2 24l6 10 6-10" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              <em>XBT leaves</em>
+            </div>
+            <div class="coin-end">
+              <span>Shop is paid</span>
+              <strong>Bitcoin Lightning</strong>
+              <em>Jon asked for Bitcoin</em>
+            </div>
+          </div>
+          <div class="coin-path">
+            <div class="coin-end">
+              <span>Spends</span>
+              <strong>Jon holds Bitcoin</strong>
+              <em>Already in his Lightning node</em>
+            </div>
+            <div class="coin-arrow">
+              <span>Lightning invoice</span>
+              <svg class="arrow-h" viewBox="0 0 64 16" aria-hidden="true"><path d="M0 8h52M46 2l8 6-8 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              <svg class="arrow-v" viewBox="0 0 16 40" aria-hidden="true"><path d="M8 0v30M2 24l6 10 6-10" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              <em>Bitcoin leaves</em>
+            </div>
+            <div class="coin-end">
+              <span>Shop is paid</span>
+              <strong>XBT Lightning</strong>
+              <em>Mara asked for XBT</em>
+            </div>
+          </div>
+          <figcaption>One XBT sat is not one Bitcoin sat. The fee is already in the amount each person confirms. Nothing is sent until a channel from this wallet can pay. If that direction cannot pay, the other coin stays off the screen.</figcaption>
+        </figure>
+        <p>Pay with XBT still spends XBT. Pay with BTC still spends BTC. The person you pay is paid in the coin they asked for. The fee is 1.5%, plus the normal network fees. Routing through the LSP is at most 1,000 sats. One XBT sat is not one Bitcoin sat. The amount on the confirm screen is in the coin you spend, and the fee is already in that amount. Nothing is sent until a channel from this wallet can pay. If that payment cannot finish, it is not sent. The button says Pay with the other coin. If that direction cannot pay, the other coin stays off the screen.</p>
+        <p>Each install asks for its own code. There is nothing to paste. This is not a screen that turns the coins already in the wallet into the other coin. The coins arrive on Lightning. They are not added to Balance.</p>
+        <p>Lightning for this is in the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android. The Umbrel community store, Raspberry Pi, Umbrel arm64, and the iPhone build do not start Lightning, so they do not pay across coins.</p>
+        <h3 class="subhead">A shop that asks for Bitcoin.</h3>
+        <p>Mara holds XBT. Jon's shop asks for Bitcoin Lightning. Mara pays that invoice from the XBT already in her Lightning node. Jon is paid in Bitcoin Lightning. The XBT leave Mara's wallet. She confirms the amount first. If a channel from her wallet cannot pay it, nothing is sent and Jon is not paid.</p>
+        <h3 class="subhead">A shop that asks for XBT.</h3>
+        <p>Jon holds Bitcoin. Mara's shop asks for XBT Lightning. Jon pays from the Bitcoin already in his Lightning node. Mara is paid in XBT Lightning. His Bitcoin is what leaves. He confirms the amount first. If a channel from his wallet cannot pay it, nothing is sent and Mara is not paid.</p>
+      </div>
+    </section>
 
     <section class="band" id="words">
       <div class="wrap">
@@ -268,14 +321,6 @@
           <li>Lightning sats are not Balance, and not the shop's accounted sats.</li>
           <li>A Lightning sale is on the sales spreadsheet and absent from the coin journal.</li>
         </ul>
-        <h3 class="subhead" id="other-coin">Paying the other coin.</h3>
-        <p>On a package that starts Lightning, a Lightning invoice in the other coin spends the coin this wallet already holds. Pay with XBT still spends XBT. Pay with BTC still spends BTC. The person you pay is paid in the coin they asked for. The fee is 1.5%, plus the normal network fees. Routing through the LSP is at most 1,000 sats. One XBT sat is not one Bitcoin sat. The amount on the confirm screen is in the coin you spend, and the fee is already in that amount. Nothing is sent until a channel from this wallet can pay. If that payment cannot finish, it is not sent. The button says Pay with the other coin. If that direction cannot pay, the other coin stays off the screen.</p>
-        <p>Each install asks for its own code. There is nothing to paste. This is not a screen that turns the coins already in the wallet into the other coin. The coins arrive on Lightning. They are not added to Balance.</p>
-        <p>Lightning for this is in the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android. The Umbrel community store, Raspberry Pi, Umbrel arm64, and the iPhone build do not start Lightning, so they do not pay across coins.</p>
-        <h3 class="subhead">A shop that asks for Bitcoin.</h3>
-        <p>Mara holds XBT. Jon's shop asks for Bitcoin Lightning. Mara pays that invoice from the XBT already in her Lightning node. Jon is paid in Bitcoin Lightning. The XBT leave Mara's wallet. She confirms the amount first. If a channel from her wallet cannot pay it, nothing is sent and Jon is not paid.</p>
-        <h3 class="subhead">A shop that asks for XBT.</h3>
-        <p>Jon holds Bitcoin. Mara's shop asks for XBT Lightning. Jon pays from the Bitcoin already in his Lightning node. Mara is paid in XBT Lightning. His Bitcoin is what leaves. He confirms the amount first. If a channel from his wallet cannot pay it, nothing is sent and Mara is not paid.</p>
         <h3 class="subhead" id="lsp">Why a Lightning channel is necessary.</h3>
         <p class="lede">On-chain needs no channel. A Lightning payment spends sats already locked in a channel between two nodes.</p>
         <ul class="brief">

@@ -15,6 +15,30 @@ There is no account that can reset the 24 words. The same install is the shop an
 - Save a copy before you replace the computer or wipe the app data. Bring a copy back, then publish. That file is under Settings, then Other, then Backup. The [privacy page](https://autarki.app/privacy.md) names the classifieds node.
 - A password is optional. It is not part of the 24 words.
 
+## Paying the other coin
+
+On a package that starts Lightning, a Lightning invoice in the other coin spends the coin this wallet already holds.
+
+Mara holds XBT, already in her Lightning node. She pays a Lightning invoice. XBT leaves. Jon's shop is paid in Bitcoin Lightning.
+
+Jon holds Bitcoin, already in his Lightning node. He pays a Lightning invoice. Bitcoin leaves. Mara's shop is paid in XBT Lightning.
+
+One XBT sat is not one Bitcoin sat. The fee is already in the amount each person confirms. Nothing is sent until a channel from this wallet can pay. If that direction cannot pay, the other coin stays off the screen.
+
+Pay with XBT still spends XBT. Pay with BTC still spends BTC. The person you pay is paid in the coin they asked for. The fee is 1.5%, plus the normal network fees. Routing through the LSP is at most 1,000 sats. One XBT sat is not one Bitcoin sat. The amount on the confirm screen is in the coin you spend, and the fee is already in that amount. Nothing is sent until a channel from this wallet can pay. If that payment cannot finish, it is not sent. The button says Pay with the other coin. If that direction cannot pay, the other coin stays off the screen.
+
+Each install asks for its own code. There is nothing to paste. This is not a screen that turns the coins already in the wallet into the other coin. The coins arrive on Lightning. They are not added to Balance.
+
+Lightning for this is in the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android. The Umbrel community store, Raspberry Pi, Umbrel arm64, and the iPhone build do not start Lightning, so they do not pay across coins.
+
+### A shop that asks for Bitcoin
+
+Mara holds XBT. Jon's shop asks for Bitcoin Lightning. Mara pays that invoice from the XBT already in her Lightning node. Jon is paid in Bitcoin Lightning. The XBT leave Mara's wallet. She confirms the amount first. If a channel from her wallet cannot pay it, nothing is sent and Jon is not paid.
+
+### A shop that asks for XBT
+
+Jon holds Bitcoin. Mara's shop asks for XBT Lightning. Jon pays from the Bitcoin already in his Lightning node. Mara is paid in XBT Lightning. His Bitcoin is what leaves. He confirms the amount first. If a channel from his wallet cannot pay it, nothing is sent and Mara is not paid.
+
 ## XBT and BTC
 
 Pay with XBT or Pay with BTC. Pay with XBT still spends XBT. Pay with BTC still spends BTC. XBT is named first.
@@ -42,22 +66,6 @@ Pay with XBT or Pay with BTC. Pay with XBT still spends XBT. Pay with BTC still 
 - There is no second Lightning app. Install does not open a channel.
 - On-chain needs no channel. A Lightning payment spends sats already locked in a channel between two nodes.
 - Until your own coin node is connected, Autarki's servers can see a normal address. They do not make a silent-payment code.
-
-## Paying the other coin
-
-On a package that starts Lightning, a Lightning invoice in the other coin spends the coin this wallet already holds. Pay with XBT still spends XBT. Pay with BTC still spends BTC. The person you pay is paid in the coin they asked for. The fee is 1.5%, plus the normal network fees. Routing through the LSP is at most 1,000 sats. One XBT sat is not one Bitcoin sat. The amount on the confirm screen is in the coin you spend, and the fee is already in that amount. Nothing is sent until a channel from this wallet can pay. If that payment cannot finish, it is not sent. The button says Pay with the other coin. If that direction cannot pay, the other coin stays off the screen.
-
-Each install asks for its own code. There is nothing to paste. This is not a screen that turns the coins already in the wallet into the other coin. The coins arrive on Lightning. They are not added to Balance.
-
-Lightning for this is in the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android. The Umbrel community store, Raspberry Pi, Umbrel arm64, and the iPhone build do not start Lightning, so they do not pay across coins.
-
-### A shop that asks for Bitcoin
-
-Mara holds XBT. Jon's shop asks for Bitcoin Lightning. Mara pays that invoice from the XBT already in her Lightning node. Jon is paid in Bitcoin Lightning. The XBT leave Mara's wallet. She confirms the amount first. If a channel from her wallet cannot pay it, nothing is sent and Jon is not paid.
-
-### A shop that asks for XBT
-
-Jon holds Bitcoin. Mara's shop asks for XBT Lightning. Jon pays from the Bitcoin already in his Lightning node. Mara is paid in XBT Lightning. His Bitcoin is what leaves. He confirms the amount first. If a channel from his wallet cannot pay it, nothing is sent and Mara is not paid.
 
 ## Why a Lightning channel is necessary
 

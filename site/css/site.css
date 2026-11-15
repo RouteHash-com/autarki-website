@@ -611,6 +611,87 @@ button.button:disabled {
   color: var(--muted);
 }
 
+.coin-paths {
+  display: grid;
+  gap: 1rem;
+  margin: 1.6rem 0 0;
+}
+
+.coin-path {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: stretch;
+}
+
+.coin-end {
+  min-width: 0;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--accent);
+  padding: 1rem 1.05rem 1.15rem;
+}
+
+.coin-end span,
+.coin-arrow span {
+  display: block;
+  color: var(--accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.coin-end strong {
+  display: block;
+  margin-top: 0.35rem;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(1.35rem, 2.4vw, 1.7rem);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.coin-end em,
+.coin-arrow em {
+  display: block;
+  margin-top: 0.4rem;
+  color: var(--muted);
+  font-style: normal;
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
+.coin-arrow {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 0.35rem;
+  width: 8.5rem;
+  color: var(--accent);
+  text-align: center;
+}
+
+.coin-arrow svg {
+  width: 4rem;
+  height: 1rem;
+}
+
+.coin-arrow .arrow-v {
+  display: none;
+  width: 1rem;
+  height: 2.25rem;
+}
+
+.coin-arrow em {
+  margin-top: 0;
+}
+
+.coin-paths figcaption {
+  max-width: 42rem;
+  margin: 0.15rem 0 0;
+  color: var(--muted);
+}
+
 .pull p {
   margin: 0;
   font-family: var(--serif);
@@ -636,6 +717,7 @@ button.button:disabled {
 #publish,
 #stores,
 #classifieds,
+#other-coin,
 #words,
 #chains,
 #balance,
@@ -767,6 +849,23 @@ code {
 
   .flow-arrow svg {
     transform: rotate(90deg);
+  }
+
+  .coin-path {
+    grid-template-columns: 1fr;
+  }
+
+  .coin-arrow {
+    width: auto;
+    padding-block: 0.15rem;
+  }
+
+  .coin-arrow .arrow-h {
+    display: none;
+  }
+
+  .coin-arrow .arrow-v {
+    display: block;
   }
 
   .hero-lockup {
