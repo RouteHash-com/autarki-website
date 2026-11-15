@@ -12,7 +12,7 @@ The phone keeps its wallet file in the app's private storage. That file is not i
 
 This site does not sign in. It does not ask for the 24 words, and it cannot recover them.
 
-The wallet's 24 words are not given to a Lightning node. The Android package includes Lightning for Blake2b XBT bitcoin and SHA-256 BTC bitcoin. The iPhone build does not start Lightning. On that build, Use other Autarki Lightning nodes stays on.
+The wallet's 24 words are not given to Lightning. Android includes Lightning for XBT and for Bitcoin. The iPhone build does not start Lightning. On that build, Use other Autarki Lightning nodes stays on, so the phone can use Lightning on another Autarki that you keep running.
 
 ## The camera
 
@@ -46,7 +46,7 @@ A relay sees the connection from your device, including the network address, and
 
 A payment is signed on your device for XBT or for BTC. The node you use, and the node that is paid, see that payment. A silent payment code is made on your device. Autarki does not make that code and does not see a coin paid to it.
 
-Lightning on a computer can open a channel to the Autarki LSP or to one shop's node. That peer sees the channel. The LSP does not hold the sale and does not take a cut of the catalog price.
+Lightning on a computer can open a channel to Autarki's pool or to one shop. That other side sees the channel. The pool does not hold the sale and does not take a cut of the catalog price.
 
 Mining talks to [RouteHash](https://routehash.com) after you paste a token and confirm Mine XBT or Mine BTC. Nothing is spent until that confirmation. The next reward address is your wallet's.
 

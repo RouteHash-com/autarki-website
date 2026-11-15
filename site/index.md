@@ -11,10 +11,10 @@ The buyer pays you, and you keep the keys.
 - You keep the 24 words.
 - Autarki does not hold the coins, clear the sale, or take a cut of the catalog price.
 - Lightning still costs: routing at most 1,000 sats. Room is 1,200 sats for 20,000, or 2,000 sats for 100,000.
-- The Autarki LSP does not hold the sale. A shipped order stays on the seller's node until Mark received, and only after a float.
-- Lightning starts with the wallet. You do not install a second app.
+- Autarki's pool does not hold the sale. With a float, a shipped order stays in the seller's wallet until Mark received.
+- Lightning for XBT and for Bitcoin comes with the wallet. You do not install a second app. You can also use Lightning on another Autarki that you keep running.
 - The stall is public. The order is private. You pay the person, not a platform.
-- Pay with XBT still spends XBT. Pay with BTC still spends BTC. On a package that starts Lightning, a Lightning invoice in the other coin spends the coin this wallet already holds. XBT can pay a Bitcoin Lightning invoice. Bitcoin can pay an XBT Lightning invoice. The shop is paid in the coin it asked for. The fee is 1.5%, plus the normal network fees. One XBT sat is not one Bitcoin sat. The confirm screen shows the amount that leaves, with the fee already in it. Nothing is sent until a channel from this wallet can pay.
+- Pay with XBT still spends XBT. Pay with BTC still spends BTC. Lightning comes with your wallet, so you can pay a shop that asks for the other coin. You spend the coin you already hold. The shop is paid in the coin it asked for. The fee is 1.5%, plus the normal network fees. If that direction cannot pay, the other coin stays off the screen.
 - It runs on your computer. A 64-bit Android phone can install its own copy. An iPhone can join the public TestFlight test. A phone on the same network can still open your computer's page.
 
 ## Pages

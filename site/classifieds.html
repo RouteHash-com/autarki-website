@@ -195,7 +195,7 @@
           <li>Goods, a service, or a rental with a price above zero names 1 to 4 days, and Domestic or Overseas. A job, a giveaway, a personal, a hire, and a zero price publish no ship tags.</li>
           <li>An image is an https address. Four is the limit. Images are for goods, a service, a rental, or a giveaway.</li>
           <li>A map link is the https address from OpenStreetMap, Google Maps, or Apple Maps. A map is for goods, a service, or a rental.</li>
-          <li>Ship appears when the note names a public Lightning node for a chain that has a code.</li>
+          <li>Ship appears when the note names the public Lightning name for XBT or Bitcoin, and that coin already has a payment code.</li>
           <li>Mark sold or Cancel this ad hides the note. A person a wallet has blocked or ignored is hidden on that wallet only.</li>
           <li>This page checks the note before it is signed. A note this board does not carry is not sent. A report is sent to the Autarki relay. The ad stays on the board. The relay can still keep the original note.</li>
           <li>Preview this ad shows the note on this page. It does not publish it.</li>
@@ -351,18 +351,16 @@
             </div>
             <div id="classified-nodes">
               <div class="post-field">
-                <label for="classified-node-xbt">Public Lightning node, XBT</label>
+                <label for="classified-node-xbt">Public Lightning name, XBT</label>
                 <input id="classified-node-xbt" name="node-xbt" type="text" maxlength="400" autocomplete="off" spellcheck="false" placeholder="pubkey@host:port">
               </div>
               <div class="post-field">
-                <label for="classified-node-btc">Public Lightning node, BTC</label>
+                <label for="classified-node-btc">Public Lightning name, BTC</label>
                 <input id="classified-node-btc" name="node-btc" type="text" maxlength="400" autocomplete="off" spellcheck="false" placeholder="pubkey@host:port">
               </div>
               <div class="field-notes">
-                <p>Use the Autarki wallet. Its built-in Lightning nodes have trampoline and splice.</p>
-                <p>Splice resizes one channel.</p>
-                <p>Trampoline lets a light wallet pay through one always-on pool.</p>
-                <p>Those nodes run where Lightning starts: the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android 0.1.0 (29).</p>
+                <p>Use the Autarki wallet. Lightning for XBT and for Bitcoin comes with it. You can also use Lightning on another Autarki that you keep running.</p>
+                <p>That Lightning is in the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android 0.1.0 (29).</p>
                 <p>Paste the public name, the line with @. Show this node's public name copies that line.</p>
               </div>
             </div>
@@ -424,7 +422,7 @@
             <h3>The buyer pays with Lightning.</h3>
             <ul class="brief">
               <li>Ship pays with Lightning only. Pick up can still pay on-chain.</li>
-              <li>The coins sit on the seller's Lightning node. They are not in Autarki's hands. The seller can hand the parcel to the carrier knowing the money is already there.</li>
+              <li>The coins sit on Lightning in the seller's wallet. They are not in Autarki's hands. The seller can hand the parcel to the carrier knowing the money is already there.</li>
               <li>The seller's wallet has to stay on through the window. A phone that only opens the page does not hold the coins.</li>
               <li>Lightning for this is in the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android. The Umbrel community store, Raspberry Pi, Umbrel arm64, and the iPhone build do not start Lightning, so they do not pay a shipment.</li>
             </ul>

@@ -1,14 +1,14 @@
 # Wallet
 
-> You hold the 24 words. On a package that starts Lightning, a Lightning invoice in the other coin spends the coin this wallet already holds. The fee is 1.5%, plus the normal network fees. One XBT sat is not one Bitcoin sat. If that direction cannot pay, the other coin stays off the screen.
+> You hold the 24 words. Lightning for XBT and for Bitcoin comes with your wallet. You can also use Lightning on another Autarki that you keep running.
 
 The page is [https://autarki.app/wallet](https://autarki.app/wallet).
 
 ## You hold the 24 words
 
-Autarki is your wallet and your shop. You hold the 24 words. You pay the person. Autarki does not hold the coins, clear the sale, or take a cut of the catalog price. Lightning still costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000.
+Autarki is your wallet and your shop. You hold the 24 words. You pay the person. Lightning for XBT and for Bitcoin comes with the wallet.
 
-There is no account that can reset the 24 words. The same install is the shop and the customer.
+You do not install a second Lightning app. You can also use Lightning on another Autarki that you keep running. Autarki does not hold the coins or take a cut of the price. There is no account that can reset the 24 words. The same install is the shop and the customer.
 
 - 24 English words, shown once. They restore the funds on another machine.
 - They do not restore the shop book, the orders, the catalog, or a Lightning channel.
@@ -17,27 +17,25 @@ There is no account that can reset the 24 words. The same install is the shop an
 
 ## Paying the other coin
 
-On a package that starts Lightning, a Lightning invoice in the other coin spends the coin this wallet already holds.
+Lightning comes with your wallet. A shop can ask for the other coin. You spend the coin you already hold. The shop is paid in the coin it asked for.
 
-Mara holds XBT, already in her Lightning node. She pays a Lightning invoice. XBT leaves. Jon's shop is paid in Bitcoin Lightning.
+Mara holds XBT. Lightning comes with her wallet. She pays a Lightning invoice. XBT leaves. Jon's shop is paid in Bitcoin Lightning.
 
-Jon holds Bitcoin, already in his Lightning node. He pays a Lightning invoice. Bitcoin leaves. Mara's shop is paid in XBT Lightning.
+Jon holds Bitcoin. Lightning comes with his wallet. He pays a Lightning invoice. Bitcoin leaves. Mara's shop is paid in XBT Lightning.
 
-One XBT sat is not one Bitcoin sat. The fee is already in the amount each person confirms. Nothing is sent until a channel from this wallet can pay. If that direction cannot pay, the other coin stays off the screen.
+You confirm the amount first. The fee is 1.5%, plus the normal network fees, and it is already in that amount. One XBT sat is not one Bitcoin sat. If your wallet cannot pay, nothing is sent. If that direction cannot pay, the other coin stays off the screen.
 
-Pay with XBT still spends XBT. Pay with BTC still spends BTC. The person you pay is paid in the coin they asked for. The fee is 1.5%, plus the normal network fees. Routing through the LSP is at most 1,000 sats. One XBT sat is not one Bitcoin sat. The amount on the confirm screen is in the coin you spend, and the fee is already in that amount. Nothing is sent until a channel from this wallet can pay. If that payment cannot finish, it is not sent. The button says Pay with the other coin. If that direction cannot pay, the other coin stays off the screen.
+The button says Pay with the other coin. Pay with XBT still spends XBT. Pay with BTC still spends BTC. This does not turn the coins already in your wallet into the other coin. Coins that arrive on Lightning are not added to Balance. Routing through Autarki's pool is at most 1,000 sats.
 
-Each install asks for its own code. There is nothing to paste. This is not a screen that turns the coins already in the wallet into the other coin. The coins arrive on Lightning. They are not added to Balance.
-
-Lightning for this is in the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android. The Umbrel community store, Raspberry Pi, Umbrel arm64, and the iPhone build do not start Lightning, so they do not pay across coins.
+Lightning comes with the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android. A Raspberry Pi, Umbrel arm64, the Umbrel community store, and the iPhone build do not start Lightning. On those, use Lightning on another Autarki that you keep running. That choice is under Settings, then Coin Nodes.
 
 ### A shop that asks for Bitcoin
 
-Mara holds XBT. Jon's shop asks for Bitcoin Lightning. Mara pays that invoice from the XBT already in her Lightning node. Jon is paid in Bitcoin Lightning. The XBT leave Mara's wallet. She confirms the amount first. If a channel from her wallet cannot pay it, nothing is sent and Jon is not paid.
+Mara holds XBT. Lightning came with her wallet. Jon's shop asks for Bitcoin. She pays that invoice from the XBT already on Lightning. Jon is paid in Bitcoin. The XBT leave her wallet. She confirms the amount first. If her wallet cannot pay, nothing is sent and Jon is not paid.
 
 ### A shop that asks for XBT
 
-Jon holds Bitcoin. Mara's shop asks for XBT Lightning. Jon pays from the Bitcoin already in his Lightning node. Mara is paid in XBT Lightning. His Bitcoin is what leaves. He confirms the amount first. If a channel from his wallet cannot pay it, nothing is sent and Mara is not paid.
+Jon holds Bitcoin. Lightning came with his wallet. Mara's shop asks for XBT. He pays that invoice from the Bitcoin already on Lightning. Mara is paid in XBT. His Bitcoin is what leaves. He confirms the amount first. If his wallet cannot pay, nothing is sent and Mara is not paid.
 
 ## XBT and BTC
 
@@ -59,9 +57,11 @@ Pay with XBT or Pay with BTC. Pay with XBT still spends XBT. Pay with BTC still 
 
 ## Lightning
 
-- Lightning for XBT and for BTC is in the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android 0.1.0 (29). You do not install a second Lightning app.
-- The Umbrel community store (listing 0.1.24), Raspberry Pi, and Umbrel arm64 leave the Lightning programs out, so Lightning stays off there. On-chain still works on those packages.
-- Use other Autarki Lightning nodes is under Settings, then Coin Nodes. Leave it off where Lightning programs start. The Umbrel community store, an iPhone, a Raspberry Pi, and Umbrel arm64 keep it on, for another Autarki that stays running.
+Lightning for XBT and for Bitcoin comes with your wallet. You do not install a second app. To use Lightning you already run on another Autarki, open Settings, then Coin Nodes, and turn on Use other Autarki Lightning nodes.
+
+- It is included on the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android 0.1.0 (29).
+- The Umbrel community store (listing 0.1.24), Raspberry Pi, and Umbrel arm64 leave Lightning out. On-chain still works on those packages.
+- Leave Use other Autarki Lightning nodes off where Lightning already starts. A Raspberry Pi, Umbrel arm64, the Umbrel community store, and the iPhone build keep it on, because those builds do not start Lightning themselves.
 - A shipment runs where Lightning starts. Mine needs AMD or Intel. It stays off on a Raspberry Pi and on Umbrel arm64.
 - There is no second Lightning app. Install does not open a channel.
 - On-chain needs no channel. A Lightning payment spends sats already locked in a channel between two nodes.
@@ -73,9 +73,9 @@ On-chain is the bank. Each payment waits for a confirmation and pays a miner fee
 
 Capacity is the sats locked in the channel. Outbound capacity is what your node can send. Those coins sit on your side. Inbound capacity is what your node can receive. Those coins sit on the other node's side. You can pay only up to your outbound capacity. A shop can receive only up to its inbound capacity. A channel you just funded has almost no inbound capacity, so a customer cannot pay you on it yet.
 
-## The Autarki LSP
+## Autarki's pool
 
-The Autarki LSP is a Lightning node you open one channel to. In the wallet that button says Use Autarki's pool. There is one LSP for Blake2b Lightning, on XBT, and one for SHA-256 Lightning, on BTC.
+Autarki's pool is one channel you can open. The page calls that pool the LSP. The button says Use Autarki's pool. There is one pool for XBT Lightning and one for Bitcoin Lightning.
 
 - One channel can pay this shop, or this seller, and later shops that already have inbound capacity with the LSP.
 - Your own channel has no LSP fee and pays only that one node. The wallet already knows the node. You never type the shop's public key.
