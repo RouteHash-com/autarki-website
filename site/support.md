@@ -14,6 +14,6 @@ Write what you saw, the page you were on, and the kind of computer or phone. Do 
 
 This site does not sign in. Autarki cannot reset a wallet and cannot recover the 24 words. They stay on your device.
 
-Install steps are on the [install page](https://autarki.app/install.md). The privacy policy is on the [privacy page](https://autarki.app/privacy.md).
+Install steps are on the [install page](https://autarki.app/install.md). The [user guide](https://autarki.app/guide.md) is the 29 procedures. The privacy policy is on the [privacy page](https://autarki.app/privacy.md).
 
 The program is in beta.

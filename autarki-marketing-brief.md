@@ -195,7 +195,7 @@ Four public signs. No stars, no thumbs, no review essays, and no zaps.
 - A computer with no wallet yet opens on Shop. After a wallet exists, the page opens on Receive.
 - Three contrasts: **Paper**, **Ink**, and **Console**. Paper is the default. Ink is light text on black. Console is green on black. The choice stays in this browser.
 - Language, in this browser: English, Español, Português, Français, and Deutsch. The 24 words stay the English list. Amounts stay in sats. The dollar hint stays US dollars or Canadian dollars.
-- The in-app guide is a manual at `/guide` on that wallet. It is not a public website.
+- The wallet has its own manual at `/guide` on that install. The public procedures are at https://autarki.app/guide. Do not paste a seed, a secret key, a payment request, an address, or an order number into a note.
 - First run is six steps: the password, the servers, XBT, Bitcoin, the shop, and Lightning. It can be skipped and opened again from Settings, then Keychains.
 
 ---

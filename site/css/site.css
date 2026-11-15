@@ -1502,4 +1502,250 @@ code {
   * {
     scroll-behavior: auto !important;
   }
+
+  .guide-blade-slot,
+  .guide-blade,
+  .guide-tab {
+    transition: none;
+  }
+}
+
+.guide-tools {
+  padding-top: 1.25rem;
+}
+
+.guide-search label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.guide-search input[type="search"] {
+  display: block;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.75rem;
+  font: inherit;
+  color: var(--ink);
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+}
+
+.guide-search input[type="search"]::placeholder {
+  color: var(--muted);
+}
+
+.guide-search .field-note {
+  min-height: 1.4em;
+}
+
+.guide-shell {
+  display: flex;
+  align-items: flex-start;
+  padding-bottom: 2.5rem;
+}
+
+.guide-blade-slot {
+  flex: 0 0 18rem;
+  width: 18rem;
+  overflow: hidden;
+  position: sticky;
+  top: 5.5rem;
+  align-self: flex-start;
+  max-height: calc(100vh - 6.5rem);
+  transition: flex-basis 0.24s ease, width 0.24s ease;
+}
+
+html[data-guide-blade="closed"] .guide-blade-slot {
+  flex-basis: 0;
+  width: 0;
+}
+
+.guide-blade {
+  width: 18rem;
+  max-height: calc(100vh - 6.5rem);
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 0.25rem 0.9rem 1.5rem 0;
+  border-right: 1px solid var(--line);
+  transform: translateX(0);
+  transition: transform 0.24s ease;
+}
+
+html[data-guide-blade="closed"] .guide-blade {
+  transform: translateX(-100%);
+}
+
+.guide-group {
+  margin: 1.1rem 0 0.2rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.guide-group a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.guide-blade a {
+  display: block;
+  padding: 0.28rem 0 0.28rem 0.45rem;
+  color: var(--ink);
+  text-decoration: none;
+  line-height: 1.35;
+}
+
+.guide-blade a:hover,
+.guide-blade a[aria-current="true"] {
+  color: var(--accent);
+}
+
+.guide-blade a[aria-current="true"] {
+  box-shadow: inset 2px 0 0 var(--accent);
+  font-weight: 600;
+}
+
+.guide-blade .guide-group a {
+  padding-left: 0;
+  color: var(--muted);
+  font-weight: 600;
+  box-shadow: none;
+}
+
+.guide-blade a[hidden],
+.guide-group[hidden],
+.procedure[hidden],
+.guide .band[hidden] {
+  display: none;
+}
+
+.guide-tab {
+  position: sticky;
+  top: 8rem;
+  align-self: flex-start;
+  flex: 0 0 auto;
+  width: 2.15rem;
+  min-height: 6.75rem;
+  margin-top: 0.75rem;
+  padding: 0.7rem 0.1rem;
+  font: inherit;
+  color: var(--ink);
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-left: 0;
+  cursor: pointer;
+  writing-mode: vertical-rl;
+}
+
+.guide-tab:hover {
+  color: var(--accent);
+}
+
+html[data-guide-blade="closed"] .guide-tab {
+  border-left: 1px solid var(--line);
+}
+
+.guide-shade {
+  display: none;
+}
+
+.guide-body {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-left: 1.15rem;
+}
+
+.guide .band h2 {
+  max-width: 24ch;
+}
+
+.guide h3 {
+  font-size: clamp(1.45rem, 2.5vw, 1.85rem);
+  line-height: 1.15;
+  margin: 0 0 0.75rem;
+}
+
+.guide .procedure {
+  scroll-margin-top: 5.5rem;
+}
+
+.guide .procedure + .procedure {
+  margin-top: 2.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.guide-role {
+  margin: 1.15rem 0 0;
+  font-weight: 600;
+}
+
+.guide .steps ul {
+  margin: 0.35rem 0 0;
+}
+
+@media (max-width: 800px) {
+  .guide .procedure {
+    scroll-margin-top: 1rem;
+  }
+
+  .guide-body {
+    padding-left: 0.85rem;
+  }
+
+  .guide-blade-slot,
+  html[data-guide-blade="closed"] .guide-blade-slot {
+    position: fixed;
+    z-index: 4;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    flex: none;
+    width: min(19rem, 86vw);
+    max-height: none;
+    background: var(--bg);
+    transition: transform 0.24s ease;
+    transform: translateX(0);
+  }
+
+  html[data-guide-blade="closed"] .guide-blade-slot {
+    transform: translateX(-100%);
+  }
+
+  .guide-blade,
+  html[data-guide-blade="closed"] .guide-blade {
+    width: 100%;
+    max-height: 100%;
+    padding: 1rem 1rem 2rem;
+    background: var(--bg);
+    transform: none;
+  }
+
+  .guide-tab {
+    position: sticky;
+    top: 0.75rem;
+    left: auto;
+    z-index: 2;
+    margin-top: 0.75rem;
+  }
+
+  html:not([data-guide-blade="closed"]) .guide-tab {
+    position: fixed;
+    z-index: 5;
+    top: 6.5rem;
+    left: min(19rem, 86vw);
+    margin-top: 0;
+  }
+
+  .guide-shade:not([hidden]) {
+    display: block;
+    position: fixed;
+    z-index: 3;
+    inset: 0;
+    padding: 0;
+    border: 0;
+    background: color-mix(in srgb, var(--ink) 28%, transparent);
+    cursor: pointer;
+  }
 }
