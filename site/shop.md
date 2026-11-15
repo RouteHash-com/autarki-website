@@ -14,7 +14,7 @@ The shop runs on your computer. People can look before they make a wallet. An or
 - The stall, each product, and the place are public. The key and the books stay on your computer.
 - Pay Counter records cash, debit, credit, a coupon, store credit, bitcoin, or a mix. A dollar price records those dollars. The page does not charge the card, does not write a coin, and does not talk to a card terminal. The clerk uses the card machine.
 - On Sales, a dollar row shows the locked dollars and the sats collected beside them. Download sales keeps the currency, the dollar total, and the prices used for that sale.
-- Pay with XBT or Pay with BTC. Lightning for XBT and for Bitcoin comes with the wallet. It sits under the coin you pressed.
+- Pay with XBT or Pay with BTC. Lightning for XBT and for BTC comes with the wallet. It sits under the coin you pressed.
 - The shelf count stays on your computer. It is not published. Clerks are staff names on your computer. They are not published.
 - Shop books can be saved and brought back. Save a copy before you replace the computer or wipe the app data. Bring a copy back, then publish. That file leaves out the 24 words, the wallet file, secret keys, and Lightning channel state.
 - A paid sale cannot be cancelled. There is no refund button. A refund is a later order.

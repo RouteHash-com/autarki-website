@@ -14,10 +14,10 @@ This page is not a step the wallet still needs. If Autarki is open in front of y
 
 ## This door is for a node outside that page
 
-Blake2b has no public place to buy incoming room. Magma cannot open a Blake2b channel. SHA-256 BTC already has Magma, so this page, for Bitcoin, is for someone who wants a channel to Autarki's pool at Autarki's price.
+Blake2b has no public place to buy incoming room. Magma cannot open a Blake2b channel. SHA-256 BTC already has Magma, so this page, for BTC, is for someone who wants a channel to Autarki's pool at Autarki's price.
 
 - Blake2b XBT. Paste one line with @ in it from that Blake2b node. The pool opens toward that node after the payment is tied to it.
-- SHA-256 BTC. Paste one line with @ in it from that SHA-256 node. The Blake2b name does not open a Bitcoin channel.
+- SHA-256 BTC. Paste one line with @ in it from that SHA-256 node. The Blake2b name does not open a BTC channel.
 - No stablecoin. No monthly fee. The price is sats. A dollar figure is not the size.
 - The bought channel does not hold a shipment. A shipment still sits on the seller's own node until Mark received, and only after a float.
 - An Autarki user can still use this page. The channel can land on an Autarki node.

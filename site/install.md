@@ -27,7 +27,7 @@ Version 0.1.0 (31) is the same program as the computer. The phone needs a 64-bit
 
 Download [autarki-android.apk](https://github.com/RouteHash-com/autarki/releases/download/0.1.0/autarki-android.apk) from release 0.1.0 and allow the phone to install it. Check that file against `SHA256SUMS` from the same release. This file installs over the previous signed 0.1.0 package. A phone that already has 0.1.0 (1) has to uninstall that copy before this one will install. There is no Play Store listing to announce. Or [request access](https://appdistribution.firebase.dev/i/2ae8a6c81ce866a4). Sign in with a Google account. Firebase emails the install.
 
-Lightning for XBT and for Bitcoin comes with this package. A phone that only opens your computer's page holds no seed. That path is still there.
+Lightning for XBT and for BTC comes with this package. A phone that only opens your computer's page holds no seed. That path is still there.
 
 ## iPhone
 

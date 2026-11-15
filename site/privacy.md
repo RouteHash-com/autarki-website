@@ -12,7 +12,7 @@ The phone keeps its wallet file in the app's private storage. That file is not i
 
 This site does not sign in. It does not ask for the 24 words, and it cannot recover them.
 
-The wallet's 24 words are not given to Lightning. Android includes Lightning for XBT and for Bitcoin. The iPhone build does not start Lightning. On that build, Use other Autarki Lightning nodes stays on, so the phone can use Lightning on another Autarki that you keep running.
+The wallet's 24 words are not given to Lightning. Android includes Lightning for XBT and for BTC. The iPhone build does not start Lightning. On that build, Use other Autarki Lightning nodes stays on, so the phone can use Lightning on another Autarki that you keep running.
 
 ## The camera
 

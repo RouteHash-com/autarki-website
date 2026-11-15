@@ -355,7 +355,7 @@ The buyer opens it. The seller does not fund it.
 
 ### 25. Pay the other coin
 
-A Lightning invoice in the other coin spends the coin this wallet already holds. XBT can pay a Bitcoin Lightning invoice. Bitcoin paying an XBT invoice stays hidden while that side cannot send.
+A Lightning invoice in the other coin spends the coin this wallet already holds. XBT can pay a BTC Lightning invoice. BTC paying an XBT invoice stays hidden while that side cannot send.
 
 1. Open Send.
 2. Press the chain this wallet will spend.

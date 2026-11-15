@@ -42,7 +42,7 @@ A signed note from any Nostr key shows on the wallet board when the note is one 
 - Goods, a service, or a rental with a price above zero names 1 to 4 days, and Domestic or Overseas. A job, a giveaway, a personal, a hire, and a zero price publish no ship tags.
 - An image is one https address on a line. Four is the limit. Images are for goods, a service, a rental, or a giveaway.
 - A map link is the https address from OpenStreetMap, Google Maps, or Apple Maps. A city name is not a map link. A map is for goods, a service, or a rental.
-- Ship appears when the note names the public Lightning name for XBT or Bitcoin, and that coin already has a payment code.
+- Ship appears when the note names the public Lightning name for XBT or BTC, and that coin already has a payment code.
 - Mark sold or Cancel this ad hides the note. A person a wallet has blocked or ignored is hidden on that wallet only.
 - This page checks the note before it is signed. A note this board does not carry is not sent. A report is sent to the Autarki relay. The ad stays on the board. The relay can still keep the original note.
 - Preview this ad shows the note on this page. It does not publish it.
