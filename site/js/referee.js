@@ -293,10 +293,17 @@
     return text;
   }
 
+  function foldSpaces(text) {
+    return String(text || "").replace(/\s+/g, "");
+  }
+
   function personMatches(person, query) {
-    if (person.discord.indexOf(query) !== -1) return true;
+    var folded = foldSpaces(query);
+    var discord = String(person.discord || "");
+    if (folded && discord.indexOf(folded) !== -1) return true;
     var label = String(person.label || "").toLowerCase().replace(/^@+/, "");
     if (label && label.indexOf(query) !== -1) return true;
+    if (label && folded && foldSpaces(label).indexOf(folded) !== -1) return true;
     if (person.npub && person.npub === query) return true;
     if (person.pubkey === query) return true;
     if (query.length >= 8 && person.npub && person.npub.indexOf(query) === 0) return true;
@@ -532,7 +539,7 @@
       }
       var found = matchPeople(people, query);
       if (!found.length) {
-        status.textContent = "No one with that name asked to be found.";
+        status.textContent = "No one with that name is listed.";
         return;
       }
       status.textContent = "";

@@ -12,10 +12,11 @@ Both sides of a classified shipment name the same person before payment, or both
 
 Either side can decline until both sides name the same person. Decline does not move coins.
 
-The field is "A Discord name or a public name."
+The field is "A Discord name, a nostr public key (npub), or nostr nickname."
 
 - The list stays empty until you type.
-- A person appears after they ask to be found. Linking a Discord name does not by itself list them.
+- Linking a Discord name does not by itself list them. Wallet 0.1.0 cannot ask to be found.
+- The card shows the small Discord name. A space in the name you type is ignored. A different display name finds them only when it is their nostr nickname.
 - A result shows the Discord username, the published name, Copy public name, and Open the Discord message.
 - A member of that server can open the message. Autarki does not check it.
 - Received shipments and Known by stay on the stall and the ad. They are not listed here.

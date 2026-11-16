@@ -403,7 +403,7 @@ The published name is what a shop sees on an order. A contact is a public key yo
 
 ### 28. Discord link
 
-This wallet does not join Discord. Publishing replaces the previous link. The username then shows beside the public name.
+This wallet does not join Discord. Publishing replaces the previous link. The username then shows beside the public name. Publish Discord link does not list you on [Find a referee](https://autarki.app/referee). Wallet 0.1.0 cannot ask to be found.
 
 1. Finish step 3 of [procedure 27](https://autarki.app/guide#profile) so this wallet has shown its public key. Copy the sentence stays hidden until then.
 2. Open Settings, then Nostr, then Discord.
