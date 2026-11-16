@@ -1757,6 +1757,10 @@ html[data-guide-blade="closed"] .guide-tab {
   overflow-wrap: anywhere;
 }
 
+#referee-retry[hidden] {
+  display: none;
+}
+
 .referee-actions {
   display: flex;
   flex-wrap: wrap;

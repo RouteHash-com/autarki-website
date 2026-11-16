@@ -324,7 +324,7 @@
 
   function matchPeople(people, raw) {
     var query = normalizeQuery(raw);
-    if (query.length < 2) return [];
+    if (!query) return [];
     var found = [];
     var list = people || [];
     for (var i = 0; i < list.length; i += 1) {
@@ -550,20 +550,12 @@
         return;
       }
       if (state === "loading") {
-        status.textContent = query ? "Looking." : "";
+        status.textContent = "Looking.";
         return;
       }
-      if (!query) {
-        status.textContent = "";
-        return;
-      }
-      if (query.length < 2) {
-        status.textContent = "Type a little more of the name.";
-        return;
-      }
-      var found = matchPeople(people, query);
+      var found = query ? matchPeople(people, query) : people;
       if (!found.length) {
-        status.textContent = "No one with that name is listed.";
+        status.textContent = query ? "No one with that name is listed." : "No one has asked to be found.";
         return;
       }
       status.textContent = "";

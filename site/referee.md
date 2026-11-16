@@ -14,7 +14,7 @@ Either side can decline until both sides name the same person. Decline does not 
 
 The field is "A Discord name, a nostr public key (npub), or nostr nickname."
 
-- The list stays empty until you type.
+- The names are shown. The field narrows them.
 - Linking a Discord name does not by itself list them. A nostr name can be listed with no Discord name. Wallet 0.1.0 cannot ask to be found.
 - The card shows the nostr nickname. It shows the small Discord name when they linked one. A space in that Discord name is ignored.
 - A result shows the nostr nickname and Copy public name. A Discord name adds the small username and Open the Discord message.
