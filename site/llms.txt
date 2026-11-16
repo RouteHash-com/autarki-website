@@ -6,7 +6,7 @@ Autarki is in beta. It runs on your computer. A 64-bit Android phone can install
 
 ## Pages
 
-- [Home](https://autarki.app/index.md): No platform. Just the sale. The buyer pays you, and you keep the keys.
+- [Home](https://autarki.app/index.md): No platform. Just the sale. The buyer pays you, and you keep the keys. You hold the 24 words. The stall is public and the order is a private note. Pay with XBT still spends XBT. Pay with BTC still spends BTC. With a float, a shipped classified stays on the seller's node until Mark received.
 - [Notice board](https://autarki.app/notice-board.md): A wallet publishes the stall. This page reads the relay, stores nothing, and does not take an order. A description that starts with Available only on Autarki; is left off.
 - [Wallet](https://autarki.app/wallet.md): You hold the 24 words. Lightning for XBT and for BTC comes with your wallet. You can also use Lightning on another Autarki that you keep running. Watch only keeps the account public key and cannot sign. Restore this Lightning backup brings coins still in that Lightning node's wallet back after the scan. Open channels do not return. Paying the other coin spends the coin you already hold. The fee is 1.5%, plus the normal network fees. One XBT sat is not one BTC sat. If that direction cannot pay, the other coin stays off the screen.
 - [Shop](https://autarki.app/shop.md): The shop runs on your computer. The stall is public. The order is private. Autarki does not take a cut of the catalog price. One product can keep a US dollar or Canadian dollar price. The dollar price stays and the coin amount is set when you pay. Lightning has a routing fee and a room fee. A shop sale does not name a referee. A store stall does not name one.

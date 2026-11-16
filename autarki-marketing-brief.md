@@ -2,7 +2,9 @@
 
 Use this file when writing the public site. It describes what a person can do with Autarki. It is not install documentation and it is not a security audit.
 
-The line under the name is **No platform. Just the sale.**
+The line under the name is **No platform. Just the sale.** The line under that, on the home page, stays **The buyer pays you, and you keep the keys.**
+
+The home page leads with what the person gains: the 24 words, Lightning for XBT then BTC, and a public stall with a private order. Do not say bridge, swap, conversion, or that the wallet spends both coins as one. Do not say Lightning is free, that the coins are locked, or that Autarki holds a shipped order. With a float, the coins stay on the seller's node until Mark received. Without that float, the shipment is not held. The routing cap and the room prices stay on the wallet page and in the guide. The home page does not name Desktop, and it does not call the iPhone test an App Store listing. XBT is named before BTC.
 
 One sentence: **Autarki is your wallet and your shop. You hold the keys, you pay over Lightning or on-chain, and you buy and sell without a platform in the middle.**
 
