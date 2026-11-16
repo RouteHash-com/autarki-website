@@ -23,5 +23,6 @@ The buyer pays you, and you keep the keys.
 - [Wallet](https://autarki.app/wallet.md)
 - [Shop](https://autarki.app/shop.md)
 - [Classifieds](https://autarki.app/classifieds.md)
+- [Find a referee](https://autarki.app/referee.md)
 - [Mining](https://autarki.app/mining.md)
 - [Install](https://autarki.app/install.md)

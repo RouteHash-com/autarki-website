@@ -1749,3 +1749,16 @@ html[data-guide-blade="closed"] .guide-tab {
     cursor: pointer;
   }
 }
+
+.referee-card h2 {
+  font-size: 1.55rem;
+  max-width: none;
+  margin-bottom: 0.35rem;
+}
+
+.referee-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}

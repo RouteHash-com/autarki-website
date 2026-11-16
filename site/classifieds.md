@@ -17,6 +17,7 @@ Ship pays with Lightning. With a float, the coins sit on the seller's node until
 - The coins sit on Lightning in the seller's wallet. They are not in Autarki's hands. The seller's wallet has to stay on through the window. A phone that only opens the page does not hold the coins.
 - A shipped order is not held until a float is set aside. Provide a float records the choice. It does not send coins.
 - A referee is optional. Payment waits until both sides name the same person, or both name nobody. That person is told when the names match. The referee does not hold the coins. There is no refund button. A return is this hold sending the coins back.
+- Copy a public name from [Find a referee](https://autarki.app/referee). A shop sale does not name a referee. A store stall does not name one.
 - The ad names two dates. The seller has one to four days to mark it shipped, with a carrier and a tracking number. The usual hold after that is 14 days. An overseas ad can say 28 days. The ad shows which one it is.
 - Before it is shipped, Cancel is still open and the coins go back. After it is shipped, Cancel is closed. Mark received pays the seller. If the buyer does nothing, the seller is paid when the hold ends, only while that wallet is on. If the wallet stays off through the window, the coins go back.
 - Nora buys a shipped order from Eli. She pays with Lightning. The coins sit on Eli's node. Eli marks it shipped before the ship-by day. Nora presses Mark received. Eli is paid.

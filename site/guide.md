@@ -216,7 +216,7 @@ One of three endings. The first two pay the seller. The third stops both.
 
 ### 14. Name a referee
 
-Before pay. Each side names the same person, or both name nobody. Payment waits until those names match.
+Before pay. Each side names the same person, or both name nobody. Payment waits until those names match. Copy a public name for a classified shipment from [Find a referee](https://autarki.app/referee). A shop sale does not use that page. A store stall does not use that page.
 
 1. On the checkout, open Dispute Referee?.
 2. The hint says a referee is optional, and that payment waits until both sides name the same person or both name nobody.
@@ -264,7 +264,7 @@ Tax and a tip are not added.
 3. Ship asks for a destination. Type Postal / Zip Code and Country code, or press Use my location.
 4. Press FedEx or Canada Post. That price is added before pay. Pickup adds none.
 5. If the ad left postal code, country, and weight blank, Ship pays the item price only.
-6. Open Dispute Referee? and finish [procedure 14](https://autarki.app/guide#referee), or both sides name nobody.
+6. Open Dispute Referee? and finish [procedure 14](https://autarki.app/guide#referee), or both sides name nobody. Copy a public name from [Find a referee](https://autarki.app/referee).
 7. Press XBT Lightning or BTC Lightning.
 8. **Spend:** The payment request is not the payment. A channel has to be able to pay before anything is sent. The Lightning send is the spend.
 9. After you pay, the seller marks it shipped. Then Mark received is available.
