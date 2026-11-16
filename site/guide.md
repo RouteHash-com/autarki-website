@@ -415,7 +415,7 @@ This wallet does not join Discord. Publishing replaces the previous link. The us
 8. On a stall, an ad, or a name row, the username shows beside the public name as “Discord” plus that username. A person in that server can open the message. A person outside that server still sees the ad and cannot open the message.
 9. Publishing again replaces the previous link. A tag for another site already on that note is kept. The shop and the classified stay public.
 10. Press Remove to drop the link. That does not move coins. Remove also drops a Find a referee listing.
-11. To be listed, open Settings, then Nostr, then Profile. Turn on List me on Find a referee. The checkbox stays unused until the current note has been read.
+11. To be listed, open Settings, then Nostr, then Profile. Turn on List me on Find a referee. The checkbox stays unused until the current note has been read. A failed read publishes nothing.
 12. A Discord username is optional. One Discord link shows that username on the website. Otherwise the website shows the nostr name, or a shortened public name.
 13. Turning the checkbox off drops the listing. A Discord link can stay on the shop and the ad.
 

@@ -12,6 +12,8 @@ You do not install a second Lightning app. You can also use Lightning on another
 
 - 24 English words, shown once. They restore the funds on another machine.
 - They do not restore the shop book, the orders, the catalog, or a Lightning channel.
+- Watch only pastes the account public key from the other wallet. The words stay there. Your computer keeps the public key and cannot sign. A public key with no path is refused. That copy needs a password of at least 12 characters.
+- After a restore that leaves the Lightning seeds blank, each chain still offers Restore this Lightning backup while the new seed is on screen. Open channels do not return. Coins still in that Lightning node's wallet come back after the scan.
 - Save a copy before you replace the computer or wipe the app data. Bring a copy back, then publish. That file is under Settings, then Other, then Backup. The [privacy page](https://autarki.app/privacy.md) names the classifieds node.
 - A password is optional. It is not part of the 24 words.
 
@@ -59,8 +61,8 @@ Pay with XBT or Pay with BTC. Pay with XBT still spends XBT. Pay with BTC still 
 
 Lightning for XBT and for BTC comes with your wallet. You do not install a second app. To use Lightning you already run on another Autarki, open Settings, then Coin Nodes, and turn on Use other Autarki Lightning nodes.
 
-- It is included on the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android 0.1.0 (32).
-- The Umbrel community store (listing 0.1.26), Raspberry Pi, and Umbrel arm64 leave Lightning out. On-chain still works on those packages.
+- It is included on the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android 0.1.0 (35).
+- The Umbrel community store (listing 0.1.28), Raspberry Pi, and Umbrel arm64 leave Lightning out. On-chain still works on those packages.
 - Leave Use other Autarki Lightning nodes off where Lightning already starts. A Raspberry Pi, Umbrel arm64, the Umbrel community store, and the iPhone build keep it on, because those builds do not start Lightning themselves.
 - A shipment runs where Lightning starts. Mine needs AMD or Intel. It stays off on a Raspberry Pi and on Umbrel arm64.
 - There is no second Lightning app. Install does not open a channel.

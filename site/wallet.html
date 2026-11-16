@@ -218,6 +218,8 @@
         <ul class="brief">
           <li>24 English words, shown once. They restore the funds on another machine.</li>
           <li>They do not restore the shop book, the orders, the catalog, or a Lightning channel.</li>
+          <li>Watch only pastes the account public key from the other wallet. The words stay there. Your computer keeps the public key and cannot sign. A public key with no path is refused. That copy needs a password of at least 12 characters.</li>
+          <li>After a restore that leaves the Lightning seeds blank, each chain still offers Restore this Lightning backup while the new seed is on screen. Open channels do not return. Coins still in that Lightning node's wallet come back after the scan.</li>
           <li>Save a copy before you replace the computer or wipe the app data. Bring a copy back, then publish. That file is under Settings, then Other, then Backup. The <a href="/privacy#removing">privacy page</a> names the classifieds node.</li>
           <li>A new wallet can be 99 digits, each from 1 through 6. The same 99 digits do not rebuild a wallet. That device adds its own randomness.</li>
           <li>A password is optional. At least 12 characters. It encrypts only your copy of the wallet file.</li>
@@ -272,8 +274,8 @@
           <article>
             <h3>Where it runs.</h3>
             <ul class="brief">
-              <li>It is included on the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android 0.1.0 (32).</li>
-              <li>The Umbrel community store (listing 0.1.26), Raspberry Pi, and Umbrel arm64 leave Lightning out. On-chain still works on those packages.</li>
+              <li>It is included on the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android 0.1.0 (35).</li>
+              <li>The Umbrel community store (listing 0.1.28), Raspberry Pi, and Umbrel arm64 leave Lightning out. On-chain still works on those packages.</li>
               <li>Leave Use other Autarki Lightning nodes off where Lightning already starts. A Raspberry Pi, Umbrel arm64, the Umbrel community store, and the iPhone build keep it on, because those builds do not start Lightning themselves.</li>
               <li>A shipment runs where Lightning starts. Mine needs AMD or Intel. It stays off on a Raspberry Pi and on Umbrel arm64.</li>
             </ul>
