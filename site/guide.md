@@ -4,9 +4,8 @@ The page is [https://autarki.app/guide](https://autarki.app/guide).
 
 ## The 29 procedures.
 
-A step marked Spend is the click that moves coins. Prepare payment fills Send and does not spend. A Lightning payment request is not a payment.
-
-Do not paste a seed, a secret key, a payment request, an address, or an order number into a note.
+- A step marked Spend is the click that moves coins. Prepare payment fills Send and does not spend. A Lightning payment request is not a payment.
+- Do not paste a seed, a secret key, a payment request, an address, or an order number into a note.
 
 ## Shop, customer side
 
@@ -100,7 +99,6 @@ The shop is already published as Online. Ship and Pick up are on that checkout. 
 7. Press Sign on this computer. Nothing is sent.
 8. **Spend:** Press Broadcast this payment. That is the spend.
 9. Cancel this payment drops the prepared payment and does not spend. An open wallet broadcasts without asking again, so do not press Broadcast unless this payment is intended.
-10. For a film, stop when the code and the amount still due are on screen. Do not press Prepare payment.
 
 The shop records the sale when the coin arrives. Paying on-chain needs no Lightning channel.
 
@@ -277,7 +275,6 @@ Tax and a tip are not added.
 5. Press Publish. That saves the shipping promise. A buyer uses those three to ask FedEx or Canada Post. The price is not written on the ad. Leave them blank and the item price is the total.
 6. Each order is its own card with the order number.
 7. The board card can show a waiting count, as “N new orders.”
-8. On the three wallets that are already open, “No new orders.” can still sit above Publish. That placement is fixed in the source and shows after the next startup. Do not restart them for this procedure.
 
 ### 19. Referee notice
 

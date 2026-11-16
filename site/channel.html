@@ -146,7 +146,7 @@
       <div class="wrap">
         <p class="kicker">Another node</p>
         <h1>Incoming room for a node that is not this wallet.</h1>
-        <p class="lede">This page is not a step the wallet still needs. If Autarki is open in front of you, stay there. Use Autarki's pool when a payment needs a channel.</p>
+        <p class="lede">This page is for a node that is not the Autarki wallet in front of you. A home node you open from a phone, or another Blake2b or SHA-256 node, can buy incoming room from Autarki's pool. If Autarki is already open in front of you, stay there. Press Use Autarki's pool when a payment needs a channel.</p>
         <nav class="page-nav" aria-label="On this page">
           <a href="#stay">Stay in the wallet</a>
           <a href="#outside">Another node</a>
@@ -200,10 +200,10 @@
     <section class="band" id="price">
       <div class="wrap">
         <h2>The price is sats.</h2>
+        <p class="lede">The price is 1,000 sats plus 1 percent of the room.</p>
         <ul class="brief">
           <li>Room stays between 20,000 and 1,000,000 sats, in steps of 100.</li>
-          <li>The price is 1,000 sats plus 1 percent of the room.</li>
-          <li>20,000 sats of room costs 1,200 sats. 100,000 sats of room costs 2,000 sats.</li>
+          <li>20,000 sats of room costs 1,200 sats. 100,000 sats of room costs 2,000 sats. 1,000,000 sats of room costs 11,000 sats.</li>
           <li>A size is for sale only when that pool can open it. This page does not see the pool's open room, so it shows the price and does not take the fee.</li>
           <li>A bare fee does not name the node. The amount names the room size. The pool opens toward a node only after the payment is tied to that public name.</li>
           <li>Autarki does not take a cut of the catalog price. Lightning still costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000.</li>
@@ -214,8 +214,16 @@
     <section class="band" id="paste">
       <div class="wrap prose">
         <h2>Paste only the public name.</h2>
-        <p>Open Autarki, then Settings, then Coin Nodes, then Lightning. Press Show this node's public name and copy the line for the chain you want. Paste the Blake2b line on Blake2b XBT. Paste the SHA-256 line on SHA-256 BTC.</p>
-        <p>It is the line with @ in it. The Blake2b lndconnect link and the SHA-256 API address are logins for another Autarki. They do not open a channel. Do not paste them here, and do not paste the API password. 127.0.0.1 and &lt;your public IP&gt; from those logins are not the public name.</p>
+        <ol class="steps">
+          <li>Open Autarki, then Settings, then Coin Nodes, then Lightning. Press Show this node's public name.</li>
+          <li>Copy the line with @ in it for the chain you want. Paste the Blake2b line on Blake2b XBT. Paste the SHA-256 line on SHA-256 BTC.</li>
+        </ol>
+        <p class="kicker">Do not paste a login.</p>
+        <ul class="brief">
+          <li>The public name is the one line with @ in it.</li>
+          <li>The Blake2b lndconnect link and the SHA-256 API address are logins for another Autarki. They do not open a channel. Do not paste them here, and do not paste the API password.</li>
+          <li>127.0.0.1 and &lt;your public IP&gt; from those logins are not the public name.</li>
+        </ul>
         <p>Incoming room shows on that node, and a purchase from that wallet can use it. An iPhone, or another Autarki with Use other Autarki Lightning nodes on, uses that room only while it is pointed at that same home node. The phone does not receive the channel itself.</p>
         <p>The home node has to stay on until the channel confirms, and afterward while a payment uses it.</p>
         <form class="request-form" id="channel-check" action="/channel" method="post">
