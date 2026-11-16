@@ -210,24 +210,35 @@
     Object.keys(best).forEach(function (pubkey) {
       var event = best[pubkey];
       if (removed(event, dels)) return;
+      if (!asked(event.tags || [])) return;
       var claim = discordClaim(event.tags || []);
-      if (!claim || !asked(event.tags || [])) return;
       people.push({
         pubkey: pubkey,
         npub: npubFromHex(pubkey),
-        discord: claim.name,
-        url: claim.url,
+        discord: claim ? claim.name : "",
+        url: claim ? claim.url : "",
         label: ""
       });
     });
-    people.sort(function (a, b) {
-      if (a.discord < b.discord) return -1;
-      if (a.discord > b.discord) return 1;
-      if (a.pubkey < b.pubkey) return -1;
-      if (a.pubkey > b.pubkey) return 1;
-      return 0;
-    });
+    people.sort(comparePeople);
     return people;
+  }
+
+  function sortKey(person) {
+    if (person.discord) return person.discord;
+    return String(person.label || "").toLowerCase().replace(/^@+/, "");
+  }
+
+  function comparePeople(a, b) {
+    var an = sortKey(a);
+    var bn = sortKey(b);
+    if (an && !bn) return -1;
+    if (!an && bn) return 1;
+    if (an < bn) return -1;
+    if (an > bn) return 1;
+    if (a.pubkey < b.pubkey) return -1;
+    if (a.pubkey > b.pubkey) return 1;
+    return 0;
   }
 
   function hasControl(text) {
@@ -283,7 +294,7 @@
         label: labels[person.pubkey] ? labels[person.pubkey].label : ""
       };
       return next;
-    });
+    }).sort(comparePeople);
   }
 
   function normalizeQuery(raw) {
@@ -461,17 +472,28 @@
     });
   }
 
+  function shortNpub(npub) {
+    var text = String(npub || "");
+    if (text.length < 20) return text;
+    return text.slice(0, 12) + "..." + text.slice(-6);
+  }
+
   function card(person) {
     var article = document.createElement("article");
     article.className = "board-card referee-card";
     var kicker = document.createElement("p");
     kicker.className = "kicker";
-    kicker.textContent = "Discord";
     var heading = document.createElement("h2");
-    heading.textContent = person.discord;
+    if (person.discord) {
+      kicker.textContent = "Discord";
+      heading.textContent = person.discord;
+    } else {
+      kicker.textContent = "Nostr";
+      heading.textContent = person.label || shortNpub(person.npub);
+    }
     article.appendChild(kicker);
     article.appendChild(heading);
-    if (person.label) {
+    if (person.discord && person.label) {
       var published = document.createElement("p");
       published.textContent = person.label;
       article.appendChild(published);
@@ -489,7 +511,7 @@
       });
     });
     actions.appendChild(button);
-    var proof = discordProof(person.url);
+    var proof = person.discord ? discordProof(person.url) : "";
     if (proof) {
       var link = document.createElement("a");
       link.className = "button button-ghost";
@@ -500,10 +522,12 @@
       actions.appendChild(link);
     }
     article.appendChild(actions);
-    var note = document.createElement("p");
-    note.className = "field-note";
-    note.textContent = "A member of that server can open the message.";
-    article.appendChild(note);
+    if (proof) {
+      var note = document.createElement("p");
+      note.className = "field-note";
+      note.textContent = "A member of that server can open the message.";
+      article.appendChild(note);
+    }
     return article;
   }
 
@@ -581,6 +605,7 @@
     applyProfiles: applyProfiles,
     normalizeQuery: normalizeQuery,
     matchPeople: matchPeople,
+    card: card,
     mount: mount
   };
 });

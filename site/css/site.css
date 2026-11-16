@@ -1754,6 +1754,7 @@ html[data-guide-blade="closed"] .guide-tab {
   font-size: 1.55rem;
   max-width: none;
   margin-bottom: 0.35rem;
+  overflow-wrap: anywhere;
 }
 
 .referee-actions {
