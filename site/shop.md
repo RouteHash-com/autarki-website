@@ -10,7 +10,7 @@ The shop runs on your computer. People can look before they make a wallet. An or
 
 - Autarki does not take a cut of the catalog price. Lightning still costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000.
 - One product can keep a price in US dollars or Canadian dollars. The dollar price stays and the coin amount is set when you pay. A product still priced in sats stays in sats. A cart can hold both.
-- Autarki's pool does not hold the sale. With a float, a shipped order stays in the seller's wallet until Mark received.
+- Autarki's pool does not hold the sale. With a float, a shipped order stays in the seller's wallet until Mark received. A shop sale does not name a referee. A store stall does not name one.
 - The stall, each product, and the place are public. The key and the books stay on your computer.
 - Pay Counter records cash, debit, credit, a coupon, store credit, bitcoin, or a mix. A dollar price records those dollars. The page does not charge the card, does not write a coin, and does not talk to a card terminal. The clerk uses the card machine.
 - On Sales, a dollar row shows the locked dollars and the sats collected beside them. Download sales keeps the currency, the dollar total, and the prices used for that sale.

@@ -102,6 +102,7 @@ XBT Knots and Bitcoin Core do not run on the same computer.
 - Ledger, with the store on, has Sell, Buy, Check Outs, Open POs, Sales, a coin journal, and a till. Sales can be downloaded as a spreadsheet. A dollar row shows the locked dollars and the sats collected beside them. Download sales keeps the currency, the dollar total, and the prices used for that sale. The coin journal can be downloaded as CSV. Today, Week, and Month.
 - A Lightning sale and a counter payment are on the sales spreadsheet. They do not write a coin, so they are absent from the coin journal, from Accounted, from the till, and from Balance.
 - An unpaid checkout with nothing settled is cancelled after 24 hours. A paid sale cannot be cancelled. There is no refund button. A refund is a later order.
+- A shop sale does not name a referee. A store stall does not name one. A referee is named on a classified shipment.
 - The till is a separate float on this computer. Arming it does not open a channel. A large withdrawal is signed with the 24 words on another computer.
 - There is no receipt printer in the app yet. Do not promise a printed Autarki slip.
 

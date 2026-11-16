@@ -24,7 +24,7 @@ Ship pays with Lightning. With a float, the coins sit on the seller's node until
 - Nora presses Not received. She can leave a short note. Eli can leave one too. Not received stops both automatic moves. The coins stay where they are.
 - A decision for Eli pays Eli. A decision for Nora sends the coins back. The order stays on the books as returned, not cancelled. If no decision arrives, the window still sends the coins back to Nora. If Eli's wallet stays off until the window ends, a decision to pay him does not finish, and the coins return on their own. Mark received closes once a decision is stored.
 - Check the carrier saves the latest scan as words. Canada Post, UPS, FedEx, and DHL are the names it can look up. The person does not create a carrier account. The scan does not pay anyone, and it does not send the coins back.
-- Four public signs. None is required to buy or sell. Nobody types a count. No star.
+- Four public signs. None is required to buy or sell. Nobody types a count. No star. A Discord name on a stall is not a referee. A referee is named on a classified shipment. [Find a referee](https://autarki.app/referee). A shop sale does not name one. A store stall does not name one.
 - A 64-bit Android phone can install its own copy. A phone on the same network can still open your computer's page.
 
 ## Post an ad

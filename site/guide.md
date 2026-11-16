@@ -185,7 +185,7 @@ Shop. This is the clerk screen. It does not record the payment by itself.
 
 ### 12. Ship a shop order
 
-The shop is published as Online. Ship is Lightning only. The customer has to choose Ship or Pick up before pay.
+The shop is published as Online. Ship is Lightning only. The customer has to choose Ship or Pick up before pay. A shop sale does not name a referee. A store stall does not name one.
 
 Customer, before pay
 
@@ -193,8 +193,7 @@ Customer, before pay
 2. Type the postal code and the country code this shipment goes to.
 3. Press FedEx or Canada Post. Canada Post is offered from a Canadian origin.
 4. The shipping price is added before pay. If neither carrier returns a price, the line says the shipping price is not available and pay stays closed.
-5. Name a referee, or both sides name nobody, before pay. [Procedure 14](https://autarki.app/guide#referee). Payment waits until those names match.
-6. Pay with XBT Lightning or BTC Lightning. [Procedure 6](https://autarki.app/guide#pickup-lightning). Pickup adds no shipping price.
+5. Pay with XBT Lightning or BTC Lightning. [Procedure 6](https://autarki.app/guide#pickup-lightning). Pickup adds no shipping price.
 
 Shop, after the payment is recorded
 
@@ -212,11 +211,11 @@ One of three endings. The first two pay the seller. The third stops both.
 1. **Spend:** Buyer presses Mark received. That pays the seller.
 2. **Spend:** Or the hold ends and the seller is paid. Domestic and Overseas set that hold on a classified. The shop order uses the shipment clock the page already shows. No extra button.
 3. Or the buyer presses Not received. Read “Not received stops the automatic payment. It does not return the coins by itself.”
-4. Coins stay where they are until the referee decides. [Procedure 20](https://autarki.app/guide#dispute). There is no button named Dispute.
+4. A shop shipment does not name a referee. On a classified shipment, the coins stay where they are until the referee decides. [Procedure 20](https://autarki.app/guide#dispute). There is no button named Dispute.
 
 ### 14. Name a referee
 
-Before pay. Each side names the same person, or both name nobody. Payment waits until those names match. Copy a public name for a classified shipment from [Find a referee](https://autarki.app/referee). A shop sale does not use that page. A store stall does not use that page.
+Classified shipment. Before pay. Each side names the same person, or both name nobody. Payment waits until those names match. Copy a public name from [Find a referee](https://autarki.app/referee). A shop sale does not name a referee. A store stall does not name one.
 
 1. On the checkout, open Dispute Referee?.
 2. The hint says a referee is optional, and that payment waits until both sides name the same person or both name nobody.
