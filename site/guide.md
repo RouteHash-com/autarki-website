@@ -403,7 +403,7 @@ The published name is what a shop sees on an order. A contact is a public key yo
 
 ### 28. Discord link
 
-This wallet does not join Discord. Publishing replaces the previous link. The username then shows beside the public name. Publish Discord link does not list you on [Find a referee](https://autarki.app/referee). Wallet 0.1.0 cannot ask to be found.
+This wallet does not join Discord. Publishing replaces the previous link. The username then shows beside the public name. Find a referee is separate. Open Settings, then Nostr, then Profile, and turn on List me on Find a referee. A Discord username is optional. One Discord link shows that username. Otherwise the site shows the nostr name, or a shortened public name. Turning that off drops the listing and can leave a Discord link on the shop and the ad. Remove drops the link and the listing.
 
 1. Finish step 3 of [procedure 27](https://autarki.app/guide#profile) so this wallet has shown its public key. Copy the sentence stays hidden until then.
 2. Open Settings, then Nostr, then Discord.
@@ -414,7 +414,10 @@ This wallet does not join Discord. Publishing replaces the previous link. The us
 7. Press Publish Discord link.
 8. On a stall, an ad, or a name row, the username shows beside the public name as “Discord” plus that username. A person in that server can open the message. A person outside that server still sees the ad and cannot open the message.
 9. Publishing again replaces the previous link. A tag for another site already on that note is kept. The shop and the classified stay public.
-10. Press Remove to drop the link. That does not move coins.
+10. Press Remove to drop the link. That does not move coins. Remove also drops a Find a referee listing.
+11. To be listed, open Settings, then Nostr, then Profile. Turn on List me on Find a referee. The checkbox stays unused until the current note has been read.
+12. A Discord username is optional. One Discord link shows that username on the website. Otherwise the website shows the nostr name, or a shortened public name.
+13. Turning the checkbox off drops the listing. A Discord link can stay on the shop and the ad.
 
 ### 29. Backup and the page
 

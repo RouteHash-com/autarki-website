@@ -15,7 +15,7 @@ Either side can decline until both sides name the same person. Decline does not 
 The field is "A Discord name, a nostr public key (npub), or nostr nickname."
 
 - The names are shown. The field narrows them.
-- Linking a Discord name does not by itself list them. A nostr name can be listed with no Discord name. Wallet 0.1.0 cannot ask to be found.
+- Linking a Discord name does not by itself list them. A nostr name can be listed with no Discord name. The ask is Settings, then Nostr, then Profile, then List me on Find a referee. A Discord username is optional. One Discord link shows that username. Otherwise the site shows the nostr name, or a shortened public name.
 - The card shows the nostr nickname. It shows the small Discord name when they linked one. A space in that Discord name is ignored.
 - A result shows the nostr nickname and Copy public name. A Discord name adds the small username and Open the Discord message.
 - A card with a Discord name has Open the Discord message. A member of that server can open it. Autarki does not check it.
