@@ -12,13 +12,13 @@
     } catch (e) {}
   </script>
   <title>Classifieds. Autarki</title>
-  <meta name="description" content="Ship pays with Lightning. With a float, the coins sit on the seller's node until Mark received. The named referee decides and does not hold the coins.">
+  <meta name="description" content="Ship pays with Lightning. When the seller holds a float, the coins sit on the seller's node until Mark received. Without that float, the shipment is not held. The named referee decides and does not hold the coins.">
   <link rel="canonical" href="https://autarki.app/classifieds">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta property="og:site_name" content="Autarki">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Classifieds. Autarki">
-  <meta property="og:description" content="Ship pays with Lightning. With a float, the coins sit on the seller's node until Mark received. The named referee decides and does not hold the coins.">
+  <meta property="og:description" content="Ship pays with Lightning. When the seller holds a float, the coins sit on the seller's node until Mark received. Without that float, the shipment is not held. The named referee decides and does not hold the coins.">
   <meta property="og:url" content="https://autarki.app/classifieds">
   <meta property="og:image" content="https://autarki.app/assets/og.png">
   <meta property="og:image:type" content="image/png">
@@ -27,7 +27,7 @@
   <meta property="og:image:alt" content="Autarki. No platform. Just the sale.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Classifieds. Autarki">
-  <meta name="twitter:description" content="Ship pays with Lightning. With a float, the coins sit on the seller's node until Mark received. The named referee decides and does not hold the coins.">
+  <meta name="twitter:description" content="Ship pays with Lightning. When the seller holds a float, the coins sit on the seller's node until Mark received. Without that float, the shipment is not held. The named referee decides and does not hold the coins.">
   <meta name="twitter:image" content="https://autarki.app/assets/og.png">
   <meta name="twitter:image:alt" content="Autarki. No platform. Just the sale.">
   <link rel="alternate" type="text/markdown" href="https://autarki.app/classifieds.md" title="Classifieds">
@@ -71,7 +71,7 @@
         "@id": "https://autarki.app/classifieds#webpage",
         "url": "https://autarki.app/classifieds",
         "name": "Classifieds. Autarki",
-        "description": "Ship pays with Lightning. With a float, the coins sit on the seller's node until Mark received. The named referee decides and does not hold the coins.",
+        "description": "Ship pays with Lightning. When the seller holds a float, the coins sit on the seller's node until Mark received. Without that float, the shipment is not held. The named referee decides and does not hold the coins.",
         "isPartOf": {
           "@id": "https://autarki.app/#website"
         },
@@ -146,7 +146,7 @@
       <div class="wrap">
         <p class="kicker">Classifieds</p>
         <h1>Ship it. The coins wait.</h1>
-        <p class="lede">Ship pays with Lightning. With a float, the coins sit on the seller's node until Mark received. Autarki does not hold them.</p>
+        <p class="lede">Ship pays with Lightning. When the seller holds a float, the coins sit on the seller's node until Mark received. Without that float, the shipment is not held. Autarki does not hold them.</p>
         <p class="more"><a href="/notice-board">See the classifieds that are published</a></p>
         <nav class="page-nav" aria-label="On this page">
           <a href="#post">What you can post</a>
@@ -398,16 +398,16 @@
     <section class="band" id="protection">
       <div class="wrap">
         <h2>The coins stay held.</h2>
-        <p class="lede">Pay with Lightning. The coins sit on the seller's node until Mark received.</p>
+        <p class="lede">Pay with Lightning. When the seller holds a float, the coins sit on the seller's node until Mark received. Without that float, the shipment is not held.</p>
         <figure class="flow">
           <ol>
-            <li><span>Buyer</span><strong>Pays</strong><em>Lightning</em></li>
+            <li><span>Buyer</span> <strong>Pays</strong> <em>Lightning</em></li>
             <li class="flow-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></li>
-            <li><span>Seller's node</span><strong>Coins wait</strong><em>Not on Autarki</em></li>
+            <li><span>Seller's node</span> <strong>Coins wait</strong> <em>Not on Autarki</em></li>
             <li class="flow-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></li>
-            <li><span>Mark received</span><strong>Seller is paid</strong><em>Or the hold ends</em></li>
+            <li><span>Mark received</span> <strong>Seller is paid</strong> <em>Or the hold ends</em></li>
           </ol>
-          <figcaption>Not received asks the person both sides named. That person decides. The coins stay on the seller's node.</figcaption>
+          <figcaption>Not received asks the person both sides named. That person decides. When the seller holds a float, the coins stay on the seller's node.</figcaption>
         </figure>
         <ol class="path">
           <li>
@@ -459,14 +459,6 @@
         </ol>
         <div class="benefits limits">
           <article>
-            <h3>Pick up does not wait.</h3>
-            <p>Pick up skips this hold. It can pay on-chain or with Lightning. There is still no default.</p>
-          </article>
-          <article>
-            <h3>On-chain has no hold.</h3>
-            <p>Pick up can still pay on-chain. On-chain has no hold, and a referee cannot move those coins. It is not offered for a shipment.</p>
-          </article>
-          <article>
             <h3>A float comes first.</h3>
             <ul class="brief">
               <li>The seller's own coins, so Lightning can arrive immediately.</li>
@@ -475,6 +467,14 @@
               <li>Customer payments replace it. Unspent comes back when the seller stops.</li>
               <li>A shipped order is not held until a float is set aside.</li>
             </ul>
+          </article>
+          <article>
+            <h3>Pick up does not wait.</h3>
+            <p>Pick up skips this hold. It can pay on-chain or with Lightning. There is still no default.</p>
+          </article>
+          <article>
+            <h3>On-chain has no hold.</h3>
+            <p>Pick up can still pay on-chain. On-chain has no hold, and a referee cannot move those coins. It is not offered for a shipment.</p>
           </article>
         </div>
       </div>
@@ -574,7 +574,7 @@
         <p class="lede">It runs on your computer. A 64-bit Android phone can install its own copy. A phone on the same network can still open your computer's page.</p>
         <div class="actions">
           <a class="button" href="/install">Install Autarki</a>
-          <a class="button button-ghost" href="/notice-board">Look through the notice board</a>
+          <a class="button button-ghost" href="/notice-board">Browse the notice board</a>
         </div>
       </div>
     </section>

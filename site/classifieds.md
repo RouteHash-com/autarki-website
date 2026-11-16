@@ -1,12 +1,12 @@
 # Classifieds
 
-> Ship pays with Lightning. With a float, the coins sit on the seller's node until Mark received. The named referee decides and does not hold the coins.
+> Ship pays with Lightning. When the seller holds a float, the coins sit on the seller's node until Mark received. Without that float, the shipment is not held. The named referee decides and does not hold the coins.
 
 The page is [https://autarki.app/classifieds](https://autarki.app/classifieds).
 
 ## Ship it. The coins wait.
 
-Ship pays with Lightning. With a float, the coins sit on the seller's node until Mark received. Autarki does not hold them.
+Ship pays with Lightning. When the seller holds a float, the coins sit on the seller's node until Mark received. Without that float, the shipment is not held. Autarki does not hold them.
 
 - A separate public board from the shop catalog. Off until Enable Classifieds under Settings. A new wallet leaves them off.
 - Goods, services, rentals, jobs, giveaways, and personals. Same key as the shop. No store required.

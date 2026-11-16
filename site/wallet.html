@@ -203,12 +203,8 @@
           </div>
           <figcaption>You confirm the amount first. The fee is 1.5%, plus the normal network fees, and it is already in that amount. One XBT sat is not one BTC sat. If your wallet cannot pay, nothing is sent. If that direction cannot pay, the other coin stays off the screen.</figcaption>
         </figure>
-        <p>The button says Pay with the other coin. Pay with XBT still spends XBT. Pay with BTC still spends BTC. This does not turn the coins already in your wallet into the other coin. Coins that arrive on Lightning are not added to Balance. Routing through Autarki's pool is at most 1,000 sats.</p>
+        <p>The button says Pay with the other coin. Pay with XBT still spends XBT. Pay with BTC still spends BTC. This does not turn the coins already in your wallet into the other coin. Coins that arrive on Lightning are not added to Balance. Balance is the confirmed coins still held on-chain. Lightning is a separate jar. Routing through Autarki's pool is at most 1,000 sats.</p>
         <p>Lightning comes with the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android. A Raspberry Pi, Umbrel arm64, the Umbrel community store, and the iPhone build do not start Lightning. On those, use Lightning on another Autarki that you keep running. That choice is under Settings, then Coin Nodes.</p>
-        <h3 class="subhead">A shop that asks for BTC.</h3>
-        <p>Mara holds XBT. Lightning came with her wallet. Jon's shop asks for BTC. She pays that invoice from the XBT already on Lightning. Jon is paid in BTC. The XBT leave her wallet. She confirms the amount first. If her wallet cannot pay, nothing is sent and Jon is not paid.</p>
-        <h3 class="subhead">A shop that asks for XBT.</h3>
-        <p>Jon holds BTC. Lightning came with his wallet. Mara's shop asks for XBT. He pays that invoice from the BTC already on Lightning. Mara is paid in XBT. His BTC is what leaves. He confirms the amount first. If his wallet cannot pay, nothing is sent and Mara is not paid.</p>
       </div>
     </section>
 
@@ -254,12 +250,12 @@
     <section class="band" id="balance">
       <div class="wrap">
         <h2>Receive, Send, and Balance.</h2>
+        <p class="lede">Balance is the confirmed coins still held on-chain. Lightning is a separate jar. It is not added to Balance.</p>
         <ul class="brief">
           <li>Whole sats. Prepare builds it. Sign is separate. Broadcast is separate.</li>
           <li>The browser never receives the signed transaction.</li>
           <li>No confirmation: not spendable. An ordinary coin spends after one.</li>
           <li>A mining reward waits longer. On XBT the wait depends on the block. On BTC it is 100 confirmations.</li>
-          <li>Balance is confirmed coins still held. Lightning is a separate jar, not added to Balance.</li>
           <li>Moving coins into Lightning sends them out of Balance. They confirm before a channel can open.</li>
           <li>A chain can be hidden in your browser. The saved connection stays on your computer.</li>
         </ul>
@@ -536,7 +532,7 @@
         <p class="lede">It runs on your computer. A 64-bit Android phone can install its own copy. A phone on the same network can still open your computer's page.</p>
         <div class="actions">
           <a class="button" href="/install">Install Autarki</a>
-          <a class="button button-ghost" href="/notice-board">Look through the notice board</a>
+          <a class="button button-ghost" href="/notice-board">Browse the notice board</a>
         </div>
       </div>
     </section>

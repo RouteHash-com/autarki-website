@@ -27,17 +27,9 @@ Jon holds BTC. Lightning comes with his wallet. He pays a Lightning invoice. BTC
 
 You confirm the amount first. The fee is 1.5%, plus the normal network fees, and it is already in that amount. One XBT sat is not one BTC sat. If your wallet cannot pay, nothing is sent. If that direction cannot pay, the other coin stays off the screen.
 
-The button says Pay with the other coin. Pay with XBT still spends XBT. Pay with BTC still spends BTC. This does not turn the coins already in your wallet into the other coin. Coins that arrive on Lightning are not added to Balance. Routing through Autarki's pool is at most 1,000 sats.
+The button says Pay with the other coin. Pay with XBT still spends XBT. Pay with BTC still spends BTC. This does not turn the coins already in your wallet into the other coin. Coins that arrive on Lightning are not added to Balance. Balance is the confirmed coins still held on-chain. Lightning is a separate jar. Routing through Autarki's pool is at most 1,000 sats.
 
 Lightning comes with the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android. A Raspberry Pi, Umbrel arm64, the Umbrel community store, and the iPhone build do not start Lightning. On those, use Lightning on another Autarki that you keep running. That choice is under Settings, then Coin Nodes.
-
-### A shop that asks for BTC
-
-Mara holds XBT. Lightning came with her wallet. Jon's shop asks for BTC. She pays that invoice from the XBT already on Lightning. Jon is paid in BTC. The XBT leave her wallet. She confirms the amount first. If her wallet cannot pay, nothing is sent and Jon is not paid.
-
-### A shop that asks for XBT
-
-Jon holds BTC. Lightning came with his wallet. Mara's shop asks for XBT. He pays that invoice from the BTC already on Lightning. Mara is paid in XBT. His BTC is what leaves. He confirms the amount first. If his wallet cannot pay, nothing is sent and Mara is not paid.
 
 ## XBT and BTC
 
@@ -51,11 +43,12 @@ Pay with XBT or Pay with BTC. Pay with XBT still spends XBT. Pay with BTC still 
 
 ## Receive, Send, and Balance
 
+Balance is the confirmed coins still held on-chain. Lightning is a separate jar. It is not added to Balance.
+
 - Whole sats. Prepare builds it. Sign is separate. Broadcast is separate.
 - The browser never receives the signed transaction.
 - No confirmation: not spendable. An ordinary coin spends after one.
 - A mining reward waits longer. On XBT the wait depends on the block. On BTC it is 100 confirmations.
-- Balance is confirmed coins still held. Lightning is a separate jar, not added to Balance.
 
 ## Lightning
 
