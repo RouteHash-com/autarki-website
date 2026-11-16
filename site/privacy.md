@@ -48,11 +48,11 @@ A payment is signed on your device for XBT or for BTC. The node you use, and the
 
 Lightning on a computer can open a channel to Autarki's pool or to one shop. That other side sees the channel. The pool does not hold the sale and does not take a cut of the catalog price.
 
-Mining talks to [RouteHash](https://routehash.com) after you paste a token and confirm Mine XBT or Mine BTC. Nothing is spent until that confirmation. The next reward address is your wallet's.
+Mining talks to [RouteHash](https://routehash.com) after you paste a token and press Mine XBT or Mine BTC. Mine itself does not spend. The next reward address is your wallet's.
 
 ## This site
 
-This site does not keep an account. Paper, Ink, and Console stay in this browser. The wallet page on this site reads a public exchange quote for the dollar hint. That request carries no wallet data.
+This site does not keep an account. Paper, Ink, and Console stay in this browser. The wallet page on this site reads the NeoEX USDC quote for the dollar hint. That request carries no wallet data.
 
 Cloudflare serves autarki.app and can see an ordinary request: the address, the page, and the time. There is no advertising and no tracking across other sites.
 

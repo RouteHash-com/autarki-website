@@ -82,7 +82,7 @@ XBT Knots and Bitcoin Core do not run on the same computer.
 - The channel page, https://autarki.app/channel, is the extra door for a node that is not the Autarki page in front of the person. Sitting at the computer, Use Autarki's pool does the same open. Fill Send does not open a channel. Do not present that page as a required wallet step.
 - The page names Blake2b XBT first and SHA-256 BTC second. Room is 20,000 to 1,000,000 sats, in steps of 100. The price is 1,000 sats plus 1 percent of the room. 20,000 costs 1,200. 100,000 costs 2,000. No stablecoin, no monthly fee, and no dollar size on that page.
 - The buyer pastes the public name, the one line with @, from Show this node's public name. The Blake2b line goes on Blake2b. The SHA-256 line goes on SHA-256. Do not tell anyone to paste an lndconnect link, an API address, an API password, 127.0.0.1, or the login's public-IP placeholder. Do not print a fee address. A bare fee does not name the node. The page does not see how much room the pool can open, so it shows the price and does not take the fee.
-- The bought channel does not hold a shipment. An iPhone, or another Autarki with Use other Autarki Lightning nodes on, uses that room only while it points at the same home node. The phone does not receive the channel. The home node stays on until the channel confirms, and afterward while a payment uses it.
+- The bought channel does not hold a shipment. When the seller holds a float, the coins sit on the seller's own node until Mark received. Without that float, the shipment is not held. An iPhone, or another Autarki with Use other Autarki Lightning nodes on, uses that room only while it points at the same home node. The phone does not receive the channel. The home node stays on until the channel confirms, and afterward while a payment uses it.
 - Magma can be named once. It cannot open a Blake2b channel. On SHA-256 BTC the page is for a channel to Autarki's pool at Autarki's price.
 - A shared pool, so one channel can pay many shops, is the direction of the product. Do not say that pool already pays every sale, or that a buyer never needs a channel. Do not describe splice, trampoline, or a "Lightning fork" by those names. Say Blake2b Lightning and SHA-256 Lightning.
 - Incoming room is what customers can pay into. A channel the shop just funded has the coins on the shop's side, so customers cannot pay into it until room exists on the other side. Zero room does not block a buyer whose own node can open toward the shop.
@@ -141,14 +141,15 @@ XBT Knots and Bitcoin Core do not run on the same computer.
 ### Mining
 
 - Mining is a tab once the wallet is open. It hires a listed rig from RouteHash. It does not mine on this computer. The phone must not hash.
-- Open a RouteHash account at routehash.com and paste that account's API token. The same connection is under Settings, then Other.
+- Open a RouteHash account at routehash.com, paste that account's API token, and press Connect RouteHash. The same connection is under Settings, then Other.
+- Mine needs AMD or Intel. It stays off on a Raspberry Pi and on Umbrel arm64. Do not name those chips on the home page.
 - Two cards: **Mine XBT** hires a listed Blake2b rig and pays in Blake2b XBT. **Mine BTC** hires a listed SHA-256 rig and pays in SHA-256 BTC.
 - The payout address is the next address from this wallet. Rewards come back to this wallet.
-- Click Mine. Nothing is spent until Mine, or until the person confirms the hours. Do not call mining one click that spends. Do not call a hire free.
+- Press Mine. Mine itself does not spend. Pay to start and Pay to keep spend Lightning from this wallet. Hours from balance spends only after those hours are confirmed. Do not call mining one click that spends. Do not call a hire free. Do not say nothing is spent until Mine.
 - A rig can be hired by the hour from a RouteHash balance. That path does not spend this wallet's Lightning balance. A short account says to deposit on RouteHash.
 - A meter invoice is paid from this wallet's Lightning node for that chain, when a channel can cover it.
-- Before RouteHash is connected, Balance says to hire a rig and that the rewards come back to this wallet. After it is connected, Balance lists Open Mining Invoices.
-- Spendable coins from a reward stay on Balance after the confirmation wait for that chain. On XBT the wait is longer and depends on the block. On BTC it is 100 confirmations. The Mining card is not a second balance.
+- Before RouteHash is connected, Balance says to hire a rig and that the rewards come back to this wallet. After it is connected, Balance lists Open Mining Invoices for the hires still open.
+- Spendable coins from a reward stay on Balance after the confirmation wait for that chain. On XBT the wait is longer and depends on the block. On BTC it is 100 confirmations. Do not publish 4320 as the XBT wait. The Mining card is not a second balance.
 - routehash.com is the mining site. It does not describe the wallet. The wallet page is where the hire happens.
 
 ### Names, contacts, and a private note
@@ -319,7 +320,7 @@ Four public signs. No stars, no thumbs, no review essays, and no zaps.
 3. **Pay the person.** Lightning or on-chain. Cash and cards are recorded at the counter. This page does not charge the card.
 4. **The stall is public. The order is private.**
 5. **Ship it.** The coins wait until the parcel is received.
-6. **Hire a rig.** Rewards come back to this wallet. Nothing is spent until you click Mine.
+6. **Hire a rig.** Rewards come back to this wallet. Mine itself does not spend.
 7. **A name, not a raw key.** And a private note to that person, which does not move coins.
 8. **Install it on your computer.** AMD and Intel include Lightning. A Pi runs the wallet and the shop, and leaves Lightning off.
 
@@ -328,7 +329,7 @@ Four public signs. No stars, no thumbs, no review essays, and no zaps.
 - A buyer searches a shop, adds a product, and pays with Lightning. The shop sees the order. The relay does not.
 - A seller posts a classified, the buyer chooses Ship, and the coins stay held until Mark received. Not received asks the named referee. The referee does not hold the coins.
 - A clerk marks a sale paid with cash. The card machine is the clerk's. Autarki records the sale.
-- Someone pastes a RouteHash token, clicks Mine XBT, and the next reward address is already this wallet's.
+- Someone pastes a RouteHash token, presses Mine XBT, and the next reward address is already this wallet's. Mine itself does not spend.
 - Someone taps Message beside a shop name, writes one note, and sends it. The order on the screen does not change.
 
 ---

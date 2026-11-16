@@ -19,7 +19,7 @@ Blake2b has no public place to buy incoming room. Magma cannot open a Blake2b ch
 - Blake2b XBT. Paste one line with @ in it from that Blake2b node. The pool opens toward that node after the payment is tied to it.
 - SHA-256 BTC. Paste one line with @ in it from that SHA-256 node. The Blake2b name does not open a BTC channel.
 - No stablecoin. No monthly fee. The price is sats. A dollar figure is not the size.
-- The bought channel does not hold a shipment. A shipment still sits on the seller's own node until Mark received, and only after a float.
+- The bought channel does not hold a shipment. When the seller holds a float, the coins sit on the seller's own node until Mark received. Without that float, the shipment is not held.
 - An Autarki user can still use this page. The channel can land on an Autarki node.
 
 ## The price is sats

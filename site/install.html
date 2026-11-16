@@ -158,38 +158,45 @@
             <thead>
               <tr>
                 <th scope="col">Install on</th>
+                <th scope="col">Processor</th>
                 <th scope="col">Machine</th>
                 <th scope="col">Lightning</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>StartOS</td>
+                <td><strong>StartOS</strong></td>
+                <td>x86_64</td>
                 <td>AMD or Intel. File <code>autarki_x86_64.s9pk</code>. This release is 0.1.0:45.</td>
                 <td>Included. Blake2b Lightning and SHA-256 Lightning.</td>
               </tr>
               <tr>
-                <td>StartOS</td>
+                <td><strong>StartOS</strong></td>
+                <td>aarch64</td>
                 <td>Raspberry Pi. File <code>autarki_aarch64.s9pk</code>. This release is 0.1.0:45.</td>
                 <td>Off. The wallet, the shop, and on-chain payment still run.</td>
               </tr>
               <tr>
-                <td>Umbrel</td>
+                <td><strong>Umbrel</strong></td>
+                <td>amd64</td>
                 <td>The amd64 image file on release 0.1.0. The same page as the Ubuntu image.</td>
                 <td>Included.</td>
               </tr>
               <tr>
-                <td>Umbrel</td>
+                <td><strong>Umbrel</strong></td>
+                <td>Store listing</td>
                 <td>The community store. The listing is 0.1.28. A wallet from 0.1.27 stays.</td>
                 <td>Off. On-chain still works.</td>
               </tr>
               <tr>
-                <td>Umbrel</td>
-                <td>arm64, including a Raspberry Pi.</td>
+                <td><strong>Umbrel</strong></td>
+                <td>arm64</td>
+                <td>Including a Raspberry Pi.</td>
                 <td>Off. On-chain still works.</td>
               </tr>
               <tr>
-                <td>Ubuntu</td>
+                <td><strong>Ubuntu</strong></td>
+                <td>amd64</td>
                 <td>The image in the repository, <code>autarki_ubuntu_amd64.tar</code>.</td>
                 <td>Included. It is the AMD or Intel build.</td>
               </tr>
@@ -200,13 +207,23 @@
       </div>
     </section>
 
+    <section class="band" id="phone">
+      <div class="wrap prose">
+        <h2>On a phone</h2>
+        <ul class="brief">
+          <li>A phone on the same network can open your computer's page. That phone holds no seed.</li>
+          <li>Installing the Android app, or the iPhone app, makes its own wallet file. Restoring the 24 words onto the phone makes a second copy. The 24 words are shown once. They are the only backup.</li>
+        </ul>
+      </div>
+    </section>
+
     <section class="band" id="android">
       <div class="wrap prose">
         <h2>Android</h2>
-        <p>Version 0.1.0 (35) is the same program as the computer. The phone needs a 64-bit processor and Android 8 or newer. It keeps its own wallet file. Restoring the 24 words onto the phone makes a second copy. The same 99 digits do not rebuild a wallet. This phone adds its own randomness. The 24 words shown once are the only backup.</p>
+        <p>Version 0.1.0 (35) is the same program as the computer. The phone needs a 64-bit processor and Android 8 or newer. The same 99 digits do not rebuild a wallet. This phone adds its own randomness.</p>
         <p>Google Play offers open testing. Join from the Play Store at <a href="https://play.google.com/store/apps/details?id=app.autarki">https://play.google.com/store/apps/details?id=app.autarki</a>, or from the web at <a href="https://play.google.com/apps/testing/app.autarki">https://play.google.com/apps/testing/app.autarki</a>.</p>
         <p>Or download <code>autarki-android.apk</code> from release 0.1.0 and allow the phone to install it. Check that file against <code>SHA256SUMS</code> from the same release. This file installs over the previous signed 0.1.0 package. A phone that already has 0.1.0 (1) has to uninstall that copy before this one will install. Or <a href="https://appdistribution.firebase.dev/i/2ae8a6c81ce866a4">request access</a>. Sign in with a Google account. Firebase emails the install.</p>
-        <p>Lightning for XBT and for BTC comes with this package. A phone that only opens your computer's page holds no seed. That path is still there.</p>
+        <p>Lightning for XBT and for BTC comes with this package.</p>
         <div class="actions">
           <a class="button" href="https://play.google.com/store/apps/details?id=app.autarki">Open testing on Play</a>
           <a class="button button-ghost" href="https://play.google.com/apps/testing/app.autarki">Open testing on the web</a>
@@ -219,7 +236,7 @@
     <section class="band" id="iphone">
       <div class="wrap prose">
         <h2>iPhone</h2>
-        <p>Version 0.1.0, build 12, is the same wallet and shop. It keeps its own wallet file. Restoring the 24 words onto the phone makes a second copy.</p>
+        <p>Version 0.1.0, build 12, is the same wallet and shop.</p>
         <p>This build does not start Lightning. It uses Lightning on another Autarki that you keep running. Use other Autarki Lightning nodes stays on.</p>
         <p>It is not an App Store listing. Join the public TestFlight test from this page. Install TestFlight, then open <a href="https://testflight.apple.com/join/2WMBzSpM">https://testflight.apple.com/join/2WMBzSpM</a>.</p>
         <div class="actions">
@@ -244,7 +261,7 @@
     <section class="band">
       <div class="wrap prose">
         <h2>Umbrel</h2>
-        <p>Release 0.1.0 includes the Umbrel amd64 image file. That file is the same page as the Ubuntu image, and Lightning is in it. The community store is a separate listing, 0.1.28. A wallet from 0.1.27 stays. That listing leaves the Lightning programs out. On-chain still works. The store is not the official Umbrel App Store.</p>
+        <p>The amd64 image file on release 0.1.0 includes Lightning. The community store is a separate listing, and it is not the official Umbrel App Store.</p>
         <ol class="steps">
           <li>In Umbrel, open Settings, then App stores, then Add a community app store.</li>
           <li>Paste <code>https://github.com/RouteHash-com/umbrel-store</code>.</li>
@@ -281,7 +298,7 @@
     <section class="band">
       <div class="wrap">
         <h2>Install Autarki.</h2>
-        <p class="lede">Download release 0.1.0 and check <code>SHA256SUMS</code>. Android is version 0.1.0 (35). Google Play offers open testing. A phone that already has 0.1.0 (1) uninstalls that copy first. An iPhone joins the public TestFlight test for build 12.</p>
+        <p class="lede">Download release 0.1.0 and check <code>SHA256SUMS</code>. Android is version 0.1.0 (35). Google Play offers open testing. An iPhone joins the public TestFlight test for build 12.</p>
         <div class="actions">
           <a class="button" href="https://github.com/RouteHash-com/autarki/releases/tag/0.1.0">Install Autarki</a>
           <a class="button button-ghost" href="#android">Install on Android</a>

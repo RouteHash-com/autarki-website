@@ -18,7 +18,7 @@ The buyer pays you, and you keep the keys.
 - Ship a classified. When the seller holds a [float](https://autarki.app/classifieds#protection), the coins stay on the seller's node until Mark received. Without that float, the shipment is not held. Not received asks the named referee. The referee does not hold the coins. A shop sale does not name one. A store stall does not name one. [How a shipment is protected](https://autarki.app/classifieds#protection)
 - Pay with the coin you hold. Pay with XBT still spends XBT. Pay with BTC still spends BTC. The 1.5% fee applies when you pay the other coin, plus the normal network fees. It does not apply when you pay the coin asked for. If that direction cannot pay, the other coin stays off the screen. [Paying the other coin](https://autarki.app/wallet#other-coin)
 - You hold the 24 words. Write them on paper. They restore the funds, not the shop book or a Lightning channel. [The wallet](https://autarki.app/wallet#words)
-- Hire a rig. The next reward address is your wallet's. Nothing is spent until you press Mine XBT or Mine BTC, or until the hours are confirmed. [Mining](https://autarki.app/mining)
+- Hire a rig. The next reward address is your wallet's. Mine itself does not spend. Lightning leaves when you press Pay to start. A RouteHash balance leaves when you confirm the hours. [Mining](https://autarki.app/mining)
 - Send a private note. One private note can go beside a shop name. It does not change the order. [The shop](https://autarki.app/shop)
 
 ## Four sales, as they happen.

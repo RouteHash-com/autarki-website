@@ -12,13 +12,13 @@
     } catch (e) {}
   </script>
   <title>Mining. Autarki</title>
-  <meta name="description" content="Paste a RouteHash token, then click Mine XBT or Mine BTC. The next reward address is your wallet's. Nothing is spent until Mine.">
+  <meta name="description" content="Paste a RouteHash token, then press Mine XBT or Mine BTC. The next reward address is your wallet's. Mine itself does not spend.">
   <link rel="canonical" href="https://autarki.app/mining">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta property="og:site_name" content="Autarki">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Mining. Autarki">
-  <meta property="og:description" content="Paste a RouteHash token, then click Mine XBT or Mine BTC. The next reward address is your wallet's. Nothing is spent until Mine.">
+  <meta property="og:description" content="Paste a RouteHash token, then press Mine XBT or Mine BTC. The next reward address is your wallet's. Mine itself does not spend.">
   <meta property="og:url" content="https://autarki.app/mining">
   <meta property="og:image" content="https://autarki.app/assets/og.png">
   <meta property="og:image:type" content="image/png">
@@ -27,7 +27,7 @@
   <meta property="og:image:alt" content="Autarki. No platform. Just the sale.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Mining. Autarki">
-  <meta name="twitter:description" content="Paste a RouteHash token, then click Mine XBT or Mine BTC. The next reward address is your wallet's. Nothing is spent until Mine.">
+  <meta name="twitter:description" content="Paste a RouteHash token, then press Mine XBT or Mine BTC. The next reward address is your wallet's. Mine itself does not spend.">
   <meta name="twitter:image" content="https://autarki.app/assets/og.png">
   <meta name="twitter:image:alt" content="Autarki. No platform. Just the sale.">
   <link rel="alternate" type="text/markdown" href="https://autarki.app/mining.md" title="Mining">
@@ -71,7 +71,7 @@
         "@id": "https://autarki.app/mining#webpage",
         "url": "https://autarki.app/mining",
         "name": "Mining. Autarki",
-        "description": "Paste a RouteHash token, then click Mine XBT or Mine BTC. The next reward address is your wallet's. Nothing is spent until Mine.",
+        "description": "Paste a RouteHash token, then press Mine XBT or Mine BTC. The next reward address is your wallet's. Mine itself does not spend.",
         "isPartOf": {
           "@id": "https://autarki.app/#website"
         },
@@ -146,7 +146,7 @@
       <div class="wrap">
         <p class="kicker">Mining</p>
         <h1>Hire a rig. Rewards come back to your wallet.</h1>
-        <p class="lede">The hire happens in your wallet. routehash.com is where the rig is listed. Your computer does not mine.</p>
+        <p class="lede">The hire happens in your wallet. routehash.com is where the rig is listed. Your computer does not mine. Mine needs AMD or Intel. It stays off on a Raspberry Pi and on Umbrel arm64.</p>
       </div>
     </header>
 
@@ -155,9 +155,9 @@
         <h2>The hire, in order.</h2>
         <ol class="steps">
           <li>Open a RouteHash account at <a href="https://routehash.com">routehash.com</a>.</li>
-          <li>Paste that account's API token. The same connection is under Settings, then Other.</li>
-          <li>Mine XBT hires a listed Blake2b rig and pays in Blake2b XBT. Mine BTC hires a listed SHA-256 rig and pays in SHA-256 BTC.</li>
-          <li>The next reward address is already your wallet's. Nothing is spent until Mine, or until the hours are confirmed.</li>
+          <li>Paste that account's API token and press Connect RouteHash. The same connection is under Settings, then Other.</li>
+          <li>Press Mine XBT for a listed Blake2b rig. That hire pays in Blake2b XBT. Press Mine BTC for a listed SHA-256 rig. That hire pays in SHA-256 BTC.</li>
+          <li>The next reward address is already your wallet's. Mine itself does not spend.</li>
         </ol>
       </div>
     </section>
@@ -166,11 +166,9 @@
       <div class="wrap prose">
         <h2>What leaves your wallet.</h2>
         <ul class="brief">
-          <li>A rig can be hired by the hour from a RouteHash balance. That path does not spend your wallet's Lightning.</li>
-          <li>A short account says to deposit on RouteHash.</li>
-          <li>The meter is paid from Lightning in your wallet, for the coin you are mining, when your wallet can cover it.</li>
+          <li>Hire by the hour from a RouteHash balance. That path does not spend your wallet's Lightning. Nothing is spent until you confirm those hours. A short account says to deposit on RouteHash.</li>
+          <li>Or pay the meter from Lightning in your wallet, for the coin you are mining, when your wallet can cover it. Press Pay to start, or Pay to keep.</li>
           <li>A mining payment does not use Autarki's pool.</li>
-          <li>Mine needs AMD or Intel. It stays off on a Raspberry Pi and on Umbrel arm64.</li>
           <li>Rewards come back to your wallet.</li>
         </ul>
       </div>
@@ -181,7 +179,7 @@
         <h2>Where the coins show.</h2>
         <ul class="brief">
           <li>Before RouteHash is connected, Balance says to hire a rig and that rewards come back to your wallet.</li>
-          <li>After it is connected, Balance lists Open Mining Invoices.</li>
+          <li>After it is connected, Balance lists Open Mining Invoices for the hires still open.</li>
           <li>A reward becomes spendable on Balance after that chain's wait. On XBT the wait is longer and depends on the block. On BTC it is 100 confirmations.</li>
           <li>The Mining card is not a second balance.</li>
         </ul>

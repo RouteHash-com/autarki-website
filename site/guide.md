@@ -377,7 +377,7 @@ A Lightning invoice in the other coin spends the coin this wallet already holds.
 4. Press Mine XBT or Mine BTC. Nothing is spent. The card writes a Lightning invoice for accepted shares and waits.
 5. **Spend:** Read the invoice. Press Pay to start. That pays the invoice from this wallet. Pay to keep extends a hire the same way.
 6. **Spend:** Hours from balance uses the confirmed balance for the rig’s minimum time. Nothing is spent until you confirm those hours.
-7. Rewards come back to the next address in this wallet. Spendable coins stay on Balance after 100 confirmations on BTC, or 4320 on XBT. The mining card is not a second balance.
+7. Rewards come back to the next address in this wallet. Spendable coins stay on Balance after that chain's wait. On XBT the wait depends on the block. On BTC it is 100 confirmations. The mining card is not a second balance.
 8. If the invoice expires, the payment was not sent. Press Mine again for a new invoice.
 
 Procedures 27 through 29 do not create an order and do not move coins. Do not paste a public name, the Discord sentence, or a message into a note.
