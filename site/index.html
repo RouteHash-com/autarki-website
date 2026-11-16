@@ -162,17 +162,17 @@
         <div class="benefits">
           <article>
             <h3>Sell at the counter.</h3>
-            <p>A clerk marks a sale paid with cash or a card. The card machine is the clerk's. Autarki records the sale and does not charge the card.</p>
+            <p>Cash or a card can pay at the counter. The card machine is the clerk's. Autarki records the sale and does not charge the card.</p>
             <p class="more"><a href="/shop">The shop</a></p>
           </article>
           <article>
             <h3>Ship a classified.</h3>
-            <p>The buyer presses Ship. With a float, the coins stay on the seller's node until Mark received. Without that float, the shipment is not held. Not received asks the named referee. The referee does not hold the coins. A shop sale does not name one. A store stall does not name one.</p>
+            <p>When the seller holds a <a href="/classifieds#protection">float</a>, the coins stay on the seller's node until Mark received. Without that float, the shipment is not held. Not received asks the named referee. The referee does not hold the coins. A shop sale does not name one. A store stall does not name one.</p>
             <p class="more"><a href="/classifieds#protection">How a shipment is protected</a></p>
           </article>
           <article>
             <h3>Pay with the coin you hold.</h3>
-            <p>Pay with XBT still spends XBT. Pay with BTC still spends BTC. The fee is 1.5%, plus the normal network fees. If that direction cannot pay, the other coin stays off the screen.</p>
+            <p>Pay with XBT still spends XBT. Pay with BTC still spends BTC. The 1.5% fee applies when you pay the other coin, plus the normal network fees. It does not apply when you pay the coin asked for. If that direction cannot pay, the other coin stays off the screen.</p>
             <p class="more"><a href="/wallet#other-coin">Paying the other coin</a></p>
           </article>
           <article>
@@ -182,12 +182,12 @@
           </article>
           <article>
             <h3>Hire a rig.</h3>
-            <p>Paste a RouteHash token, then press Mine XBT or Mine BTC. The next reward address is your wallet's. Nothing is spent until that press, or until the hours are confirmed.</p>
+            <p>The next reward address is your wallet's. Nothing is spent until you press Mine XBT or Mine BTC, or until the hours are confirmed.</p>
             <p class="more"><a href="/mining">Mining</a></p>
           </article>
           <article>
             <h3>Send a private note.</h3>
-            <p>Someone taps Message beside a shop name. The note does not change the order.</p>
+            <p>One private note can go beside a shop name. It does not change the order.</p>
             <p class="more"><a href="/shop">The shop</a></p>
           </article>
         </div>
@@ -200,20 +200,35 @@
         <div class="examples">
           <article class="example">
             <h3>At the counter</h3>
-            <p>A clerk marks a sale paid with cash. The card machine is the clerk's. Autarki records the sale.</p>
+            <ol class="steps">
+              <li>The buyer presses Check-Out, then Pay Counter.</li>
+              <li>The clerk opens the ticket and presses Cash, or a card.</li>
+              <li>The clerk presses Mark this sale paid.</li>
+            </ol>
           </article>
           <article class="example">
             <h3>A shipped classified</h3>
-            <p>The buyer presses Ship. With a float, the coins stay on the seller's node until Mark received. Not received asks the named referee. The referee does not hold the coins.</p>
+            <ol class="steps">
+              <li>The buyer presses Ship and pays with Lightning.</li>
+              <li>The seller marks it shipped and enters the carrier and the tracking number.</li>
+              <li>The buyer presses Mark received. When the seller holds a float, the seller is paid.</li>
+            </ol>
+            <p>Without that float, the shipment is not held.</p>
             <p class="more"><a href="/classifieds#protection">How the coins wait</a></p>
           </article>
           <article class="example">
             <h3>A private note</h3>
-            <p>Someone taps Message beside a shop name, writes one note, and sends it. The order on the screen does not change.</p>
+            <ol class="steps">
+              <li>Press Message beside a shop name.</li>
+              <li>Write one note and press Send.</li>
+            </ol>
           </article>
           <article class="example">
             <h3>A listed rig</h3>
-            <p>Someone pastes a RouteHash token and presses Mine XBT. The next reward address is already your wallet's. Nothing is spent until that press, or until the hours are confirmed.</p>
+            <ol class="steps">
+              <li>Paste a RouteHash token and press Connect RouteHash.</li>
+              <li>Press Mine XBT.</li>
+            </ol>
           </article>
         </div>
       </div>
