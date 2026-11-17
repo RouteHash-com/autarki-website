@@ -195,8 +195,34 @@ html[data-theme="console"] .brand-name {
   color: var(--accent);
 }
 
+@media (min-width: 1120px) {
+  .header-bar {
+    flex-wrap: nowrap;
+    gap: 0.75rem 1.15rem;
+  }
+
+  .site-nav ul,
+  .themes {
+    flex-wrap: nowrap;
+  }
+
+  .site-nav ul {
+    gap: 0.15rem 0.72rem;
+  }
+
+  .site-nav a,
+  .themes button {
+    font-size: 0.95rem;
+  }
+
+  .themes button {
+    min-height: 2.4rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
+
 .hero {
-  padding-block: clamp(2.5rem, 7vw, 5.5rem) clamp(2rem, 5vw, 3.5rem);
+  padding-block: clamp(3rem, 8vw, 6.25rem) clamp(2.75rem, 6vw, 4.25rem);
 }
 
 .hero-lockup {
@@ -736,6 +762,67 @@ button.button:disabled {
   margin-top: 1.5rem;
 }
 
+.home-list,
+.home-sales,
+.home-install {
+  padding-block: clamp(3rem, 7vw, 5rem);
+}
+
+.home-list h2,
+.home-sales h2,
+.home-install h2 {
+  max-width: 20em;
+}
+
+.feature-rows {
+  max-width: 42rem;
+  margin-top: 0.35rem;
+}
+
+.feature-rows article {
+  padding-block: 1.65rem;
+}
+
+.feature-rows article + article {
+  border-top: 1px solid var(--line);
+}
+
+.feature-rows h3 {
+  font-size: clamp(1.45rem, 2.4vw, 1.85rem);
+  margin-bottom: 0.5rem;
+}
+
+.feature-rows p {
+  margin: 0.65rem 0 0;
+}
+
+.feature-rows .more {
+  margin-top: 0.75rem;
+}
+
+.sale-rows {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.75rem 3.5rem;
+  margin-top: 2rem;
+}
+
+.sale-rows h3 {
+  font-size: clamp(1.35rem, 2vw, 1.7rem);
+}
+
+.sale-rows p {
+  margin: 0.85rem 0 0;
+}
+
+.sale-rows .more {
+  margin-top: 0.85rem;
+}
+
+.home-install .more {
+  margin-top: 1.15rem;
+}
+
 .kicker {
   margin: 0 0 0.75rem;
   color: var(--accent);
@@ -836,6 +923,7 @@ code {
 
   .benefits,
   .examples,
+  .sale-rows,
   .choices,
   .signs,
   .flow ol,
@@ -889,6 +977,10 @@ code {
   .choices,
   .signs {
     gap: 1.75rem;
+  }
+
+  .sale-rows {
+    gap: 2.25rem;
   }
 
   .benefits {

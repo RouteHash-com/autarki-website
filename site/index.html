@@ -34,7 +34,7 @@
   <link rel="describedby" href="https://autarki.app/llms.txt" type="text/plain">
   <meta name="theme-color" content="#f7f4ef">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/site.css?v=20261116a">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -140,26 +140,23 @@
       </div>
     </section>
 
-    <section class="wrap benefits" aria-label="Three benefits">
-      <article>
-        <h2>You hold the keys.</h2>
-        <p>You keep the 24 words. Autarki does not hold the coins, clear the sale, or take a cut of the catalog price. Lightning still has a routing fee and a room fee.</p>
-        <p class="more"><a href="/wallet#fee-spot">Those amounts</a></p>
-      </article>
-      <article>
-        <h2>Lightning is in the app.</h2>
-        <p>Lightning for XBT and for BTC comes with the wallet. You do not install a second app. You can also use Lightning on another Autarki that you keep running. A shop can ask for the other coin. You spend the coin you already hold. The shop is paid in the coin it asked for.</p>
-      </article>
-      <article>
-        <h2>The stall is public.</h2>
-        <p>The order is a private note. The relay that carries it cannot read it. You pay the person, not a platform.</p>
-      </article>
-    </section>
-
-    <section class="band">
+    <section class="band home-list">
       <div class="wrap">
         <h2>What you can do.</h2>
-        <div class="benefits">
+        <div class="feature-rows">
+          <article>
+            <h3>You hold the keys.</h3>
+            <p>You keep the 24 words. Autarki does not hold the coins, clear the sale, or take a cut of the catalog price. Lightning still has a routing fee and a room fee.</p>
+            <p class="more"><a href="/wallet#fee-spot">Those amounts</a></p>
+          </article>
+          <article>
+            <h3>Lightning is in the app.</h3>
+            <p>Lightning for XBT and for BTC comes with the wallet. You do not install a second app. You can also use Lightning on another Autarki that you keep running. A shop can ask for the other coin. You spend the coin you already hold. The shop is paid in the coin it asked for.</p>
+          </article>
+          <article>
+            <h3>The stall is public.</h3>
+            <p>The order is a private note. The relay that carries it cannot read it. You pay the person, not a platform.</p>
+          </article>
           <article>
             <h3>Sell at the counter.</h3>
             <p>Cash or a card can pay at the counter. The card machine is the clerk's. Autarki records the sale and does not charge the card.</p>
@@ -194,11 +191,11 @@
       </div>
     </section>
 
-    <section class="band">
+    <section class="band home-sales">
       <div class="wrap">
         <h2>Four sales, as they happen.</h2>
-        <div class="examples">
-          <article class="example">
+        <div class="sale-rows">
+          <article>
             <h3>At the counter</h3>
             <ol class="steps">
               <li>The buyer presses Check-Out, then Pay Counter.</li>
@@ -206,7 +203,7 @@
               <li>The clerk presses Mark this sale paid.</li>
             </ol>
           </article>
-          <article class="example">
+          <article>
             <h3>A shipped classified</h3>
             <ol class="steps">
               <li>The buyer presses Ship and pays with Lightning.</li>
@@ -216,14 +213,14 @@
             <p>Without that float, the shipment is not held.</p>
             <p class="more"><a href="/classifieds#protection">How the coins wait</a></p>
           </article>
-          <article class="example">
+          <article>
             <h3>A private note</h3>
             <ol class="steps">
               <li>Press Message beside a shop name.</li>
               <li>Write one note and press Send.</li>
             </ol>
           </article>
-          <article class="example">
+          <article>
             <h3>A listed rig</h3>
             <ol class="steps">
               <li>Paste a RouteHash token and press Connect RouteHash.</li>
@@ -234,16 +231,18 @@
       </div>
     </section>
 
-    <section class="band">
+    <section class="band home-install">
       <div class="wrap">
         <h2>Install Autarki.</h2>
         <p class="lede">It runs on your computer. A 64-bit Android phone can join Google Play open testing, or install the file. An iPhone can join the public TestFlight test. A phone on the same network can still open your computer's page.</p>
         <div class="actions">
           <a class="button" href="/install">Install Autarki</a>
-          <a class="button button-ghost" href="/install#android">Install on Android</a>
-          <a class="button button-ghost" href="/install#iphone">Join the iPhone test</a>
-          <a class="button button-ghost" href="/notice-board">Browse the notice board</a>
         </div>
+        <p class="more">
+          <a href="/install#android">Install on Android</a>
+          <a href="/install#iphone">Join the iPhone test</a>
+          <a href="/notice-board">Browse the notice board</a>
+        </p>
       </div>
     </section>
   </main>
