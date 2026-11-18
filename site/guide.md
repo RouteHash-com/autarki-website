@@ -243,7 +243,7 @@ Shop ledger. Lightning payments and counter payments stay off the coin journal.
 
 ### 16. Post an ad
 
-1. Settings, then Nostr. Turn on Enable Classifieds. A giveaway, a personal, or a job you are hiring for needs no coin node. Goods, a service, a rental, or a priced job needs the Blake2b XBT node or the SHA-256 BTC node. One is enough.
+1. Classifieds stays on unless Enable Classifieds is turned off under Settings, then Nostr, then Nostr Nodes. A giveaway, a personal, or a job you are hiring for needs no coin node. Goods, a service, a rental, or a priced job needs the Blake2b XBT node or the SHA-256 BTC node. One is enough.
 2. Open Classifieds. Press Post.
 3. Press Goods, Services, Jobs, Rentals, Giveaways, or Personals.
 4. Type the title, the description, and the place. Use my location can fill the place.

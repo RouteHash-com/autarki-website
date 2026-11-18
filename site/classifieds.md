@@ -8,7 +8,7 @@ The page is [https://autarki.app/classifieds](https://autarki.app/classifieds).
 
 Ship pays with Lightning. When the seller holds a float, the coins sit on the seller's node until Mark received. Without that float, the shipment is not held. Autarki does not hold them.
 
-- A separate public board from the shop catalog. Off until Enable Classifieds under Settings. A new wallet leaves them off.
+- A separate public board from the shop catalog. Classifieds stays on unless Enable Classifieds is turned off under Settings.
 - Goods, services, rentals, jobs, giveaways, and personals. Same key as the shop. No store required.
 - The buyer chooses Pick up or Ship. There is no default.
 - Pick up pays on-chain or with Lightning, in XBT or in BTC. Pick up does not wait.
