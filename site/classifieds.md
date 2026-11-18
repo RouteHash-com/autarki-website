@@ -1,12 +1,12 @@
 # Classifieds
 
-> Ship pays with Lightning. When the seller holds a float, the coins sit on the seller's node until Mark received. Without that float, the shipment is not held. The named referee decides and does not hold the coins.
+> Ship pays with Lightning. When the seller holds a float, the coins sit on the seller's node until Mark received. Autarki cannot move them. Without that float, the shipment is not held. The named referee decides, does not hold the coins, and cannot spend them.
 
 The page is [https://autarki.app/classifieds](https://autarki.app/classifieds).
 
 ## Ship it. The coins wait.
 
-Ship pays with Lightning. When the seller holds a float, the coins sit on the seller's node until Mark received. Without that float, the shipment is not held. Autarki does not hold them.
+Ship pays with Lightning. When the seller holds a float, the coins sit on the seller's node until Mark received. Autarki cannot move them. Without that float, the shipment is not held. Autarki does not hold them.
 
 - A separate public board from the shop catalog. Classifieds stays on unless Enable Classifieds is turned off under Settings.
 - Goods, services, rentals, jobs, giveaways, and personals. Same key as the shop. No store required.
@@ -14,9 +14,9 @@ Ship pays with Lightning. When the seller holds a float, the coins sit on the se
 - Pick up pays on-chain or with Lightning, in XBT or in BTC. Pick up does not wait.
 - Ship pays with Lightning only. Pick up can still pay on-chain. On-chain has no hold, and a referee cannot move those coins.
 - Lightning for a shipment is in the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android. The Umbrel community store, Raspberry Pi, Umbrel arm64, and the iPhone build do not start Lightning, so they do not pay a shipment.
-- The coins sit on Lightning in the seller's wallet. They are not in Autarki's hands. The seller's wallet has to stay on through the window. A phone that only opens the page does not hold the coins.
+- The coins sit on Lightning in the seller's wallet. They are not in Autarki's hands. Autarki cannot move them. The seller's wallet has to stay on through the window. A phone that only opens the page does not hold the coins.
 - A shipped order is not held until a float is set aside. Provide a float records the choice. It does not send coins.
-- A referee is optional. Payment waits until both sides name the same person, or both name nobody. That person is told when the names match. The referee does not hold the coins. There is no refund button. A return is this hold sending the coins back.
+- A referee is optional. Payment waits until both sides name the same person, or both name nobody. That person is told when the names match. The referee does not hold the coins and cannot spend them. There is no refund button. A return is the seller's node sending the coins back.
 - Copy a public name from [Find a referee](https://autarki.app/referee). A shop sale does not name a referee. A store stall does not name one.
 - The ad names two dates. The seller has one to four days to mark it shipped, with a carrier and a tracking number. The usual hold after that is 14 days. An overseas ad can say 28 days. The ad shows which one it is.
 - Before it is shipped, Cancel is still open and the coins go back. After it is shipped, Cancel is closed. Mark received pays the seller. If the buyer does nothing, the seller is paid when the hold ends, only while that wallet is on. If the wallet stays off through the window, the coins go back.

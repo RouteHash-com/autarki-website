@@ -146,7 +146,7 @@
       <div class="wrap">
         <p class="kicker">Another node</p>
         <h1>Incoming room for a node that is not this wallet.</h1>
-        <p class="lede">This page is for a node that is not the Autarki wallet in front of you. A home node you open from a phone, or another Blake2b or SHA-256 node, can buy incoming room from Autarki's pool. If Autarki is already open in front of you, stay there. Press Use Autarki's pool when a payment needs a channel.</p>
+        <p class="lede">This page is for a node that is not the Autarki wallet in front of you. A home node you open from a phone, or another Blake2b or SHA-256 node, can buy incoming room from a node other people operate. The wallet button says Use Autarki's pool. If Autarki is already open in front of you, stay there. Press Use Autarki's pool when a payment needs a channel.</p>
         <nav class="page-nav" aria-label="On this page">
           <a href="#stay">Stay in the wallet</a>
           <a href="#outside">Another node</a>
@@ -170,7 +170,7 @@
     <section class="band" id="outside">
       <div class="wrap">
         <h2>This door is for a node outside that page.</h2>
-        <p class="lede">Blake2b has no public place to buy incoming room. Magma cannot open a Blake2b channel. SHA-256 BTC already has Magma, so this page, for BTC, is for someone who wants a channel to Autarki's pool at Autarki's price.</p>
+        <p class="lede">Blake2b has no public place to buy incoming room. Magma cannot open a Blake2b channel. SHA-256 BTC already has Magma, so this page, for BTC, is for someone who wants a channel to that node, at the price the node charges.</p>
         <div class="choices">
           <article>
             <p class="kicker">Blake2b XBT</p>
@@ -191,7 +191,7 @@
         </div>
         <ul class="brief">
           <li>No stablecoin. No monthly fee. The price is sats. A dollar figure is not the size.</li>
-          <li>The bought channel does not hold a shipment. When the seller holds a float, the coins sit on the seller's own node until Mark received. Without that float, the shipment is not held.</li>
+          <li>The bought channel does not hold a shipment. When the seller holds a float, the coins sit on the seller's own node until Mark received. Autarki cannot move them. Without that float, the shipment is not held.</li>
           <li>An Autarki user can still use this page. The channel can land on an Autarki node.</li>
         </ul>
       </div>
@@ -200,13 +200,13 @@
     <section class="band" id="price">
       <div class="wrap">
         <h2>The price is sats.</h2>
-        <p class="lede">The price is 1,000 sats plus 1 percent of the room.</p>
+        <p class="lede">The price is 1,000 sats plus 1 percent of the room. The node charges it. Autarki does not collect it.</p>
         <ul class="brief">
           <li>Room stays between 20,000 and 1,000,000 sats, in steps of 100.</li>
           <li>20,000 sats of room costs 1,200 sats. 100,000 sats of room costs 2,000 sats. 1,000,000 sats of room costs 11,000 sats.</li>
           <li>A size is for sale only when that pool can open it. This page does not see the pool's open room, so it shows the price and does not take the fee.</li>
           <li>A bare fee does not name the node. The amount names the room size. The pool opens toward a node only after the payment is tied to that public name.</li>
-          <li>Autarki does not take a cut of the catalog price. Lightning still costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000.</li>
+          <li>Autarki does not take a cut of the catalog price. The node charges the Lightning costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000. A room fee is what that node charges for incoming room. Autarki does not collect it.</li>
         </ul>
       </div>
     </section>

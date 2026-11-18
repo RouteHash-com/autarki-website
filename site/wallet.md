@@ -25,9 +25,9 @@ Mara holds XBT. Lightning comes with her wallet. She pays a Lightning invoice. X
 
 Jon holds BTC. Lightning comes with his wallet. He pays a Lightning invoice. BTC leaves. Mara's shop is paid in XBT Lightning.
 
-You confirm the amount first. The fee is 1.5%, plus the normal network fees, and it is already in that amount. One XBT sat is not one BTC sat. If your wallet cannot pay, nothing is sent. If that direction cannot pay, the other coin stays off the screen.
+You confirm the amount first. The node that carries the payment charges 1.5%, plus the normal network fees, and that fee is already in the amount. Autarki does not collect it. One XBT sat is not one BTC sat. If your wallet cannot pay, nothing is sent. If that direction cannot pay, the other coin stays off the screen.
 
-The button says Pay with the other coin. Pay with XBT still spends XBT. Pay with BTC still spends BTC. This does not turn the coins already in your wallet into the other coin. Coins that arrive on Lightning are not added to Balance. Balance is the confirmed coins still held on-chain. Lightning is a separate jar. Routing through Autarki's pool is at most 1,000 sats.
+The button says Pay with the other coin. Pay with XBT still spends XBT. Pay with BTC still spends BTC. This does not turn the coins already in your wallet into the other coin. Coins that arrive on Lightning are not added to Balance. Balance is the confirmed coins still held on-chain. Lightning is a separate jar. The wallet connects to nodes other people operate. Routing through that node is at most 1,000 sats. The node charges it. Autarki does not collect it.
 
 Lightning comes with the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android. A Raspberry Pi, Umbrel arm64, the Umbrel community store, and the iPhone build do not start Lightning. On those, use Lightning on another Autarki that you keep running. That choice is under Settings, then Coin Nodes.
 
@@ -70,23 +70,24 @@ Capacity is the sats locked in the channel. Outbound capacity is what your node 
 
 ## Autarki's pool
 
-Autarki's pool is one channel you can open. The page calls that pool the LSP. The button says Use Autarki's pool. There is one pool for XBT Lightning and one for BTC Lightning.
+Autarki's pool is one channel you can open to a node other people operate. The page calls that pool the LSP. The button says Use Autarki's pool. That node charges the fee. Autarki does not collect it. There is one pool for XBT Lightning and one for BTC Lightning.
 
 - One channel can pay this shop, or this seller, and later shops that already have inbound capacity with the LSP.
-- Your own channel has no LSP fee and pays only that one node. The wallet already knows the node. You never type the shop's public key.
+- Your own channel pays no fee to that node and pays only that one shop or that one seller. The wallet already knows the shop. You never type the shop's public key.
 - The first open waits about ten minutes and pays a miner fee, either way. Nothing opens until you confirm.
 - If the Autarki LSP cannot be reached, the page offers the direct channel. Nothing was sent.
 - Inbound room is 1,200 sats for 20,000 sats of capacity, or 2,000 sats for 100,000. The buttons say Pay 1,200 sats for Blake2b pool room and Pay 1,200 sats for Bitcoin pool room. Prepare, then Broadcast. The page does not open the room.
 - The seller's node has to be on. It does not need its own confirmed sats. Zero inbound capacity does not block a buyer who will open a channel.
-- The LSP does not hold the sale and does not take a cut of the catalog price. Lightning still costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000. A buyer still needs a channel.
+- The LSP does not hold the sale and does not take a cut of the catalog price. The node charges the Lightning costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000. A room fee is what that node charges for incoming room. A routing fee is what it charges to carry the payment. Autarki does not collect them. A buyer still needs a channel.
+- With a float, a shipped order stays in the seller's wallet until Mark received. Autarki cannot move it. Autarki's pool does not hold that order.
 - A mining payment does not use the LSP. Install does not open a channel. The Umbrel community store, a Raspberry Pi, Umbrel arm64, and the iPhone build leave Lightning off.
 - Sitting at your computer, Use Autarki's pool does the same open. The [channel page](https://autarki.app/channel) is the extra door for a node that is not the page in front of you. Fill Send does not open a channel.
 
 ## Fees, with a dollar hint
 
-Sats are the price. One XBT sat and one BTC sat are not the same dollar. The wallet page reads the current NeoEX USDC quote and replaces these hints. A dollar hint does not change the sats. This file keeps the quote from the last publish: about $280 for one XBT, and about $75,000 for one BTC.
+Sats are the price. One XBT sat and one BTC sat are not the same dollar. The wallet page reads the current NeoEX USDC quote and replaces these hints. A dollar hint does not change the sats. This file keeps the quote from the last publish: about $280 for one XBT, and about $75,000 for one BTC. The node charges these amounts. Autarki does not collect them.
 
-- Routing through the LSP, at most 1,000 sats: about $0.0028 on XBT, about $0.75 on BTC.
+- Routing through that node, at most 1,000 sats: about $0.0028 on XBT, about $0.75 on BTC.
 - Inbound room of 20,000 sats costs 1,200 sats: about $0.0034 on XBT, about $0.90 on BTC. That room is about $0.06 of XBT, or about $15 of BTC. The figure is the capacity.
 - Inbound room of 100,000 sats costs 2,000 sats: about $0.0056 on XBT, about $1.50 on BTC. That room is about $0.28 of XBT, or about $75 of BTC.
 
@@ -101,9 +102,9 @@ Take one order of $100. Online, 2.9% of $100 is $2.90. Add $0.30 and the card fe
 | Room of 100,000 sats, once | 2,000 sats. About $0.0056. | 2,000 sats. About $1.50. | No room fee. |
 
 - On this $100 sale, the three XBT fees are each under one cent. On BTC the routing cap is about 75 cents.
-- Autarki does not charge the card and does not take that percent. Lightning still costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000. On a sale near $5, the online card fee is about $0.45. The BTC routing cap is about $0.75. That cap can cost more than the card fee.
+- Autarki does not charge the card and does not take that percent. The node charges the Lightning costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000. Autarki does not collect those. On a sale near $5, the online card fee is about $0.45. The BTC routing cap is about $0.75. That cap can cost more than the card fee.
 - Room is paid once. Opening a channel also pays a miner fee. That amount is whatever the chain asks that day.
-- A node publishes a fee to forward toward each peer, and each peer publishes a fee to forward back. Those are the fees in both directions. The routing cap is what you pay through the LSP. Inbound capacity is the room a shop buys.
+- A node publishes a fee to forward toward each peer, and each peer publishes a fee to forward back. Those are the fees in both directions. The routing cap is what you pay the node that carries the payment. Autarki does not collect it. Inbound capacity is the room a shop buys from that node.
 
 ## Install
 

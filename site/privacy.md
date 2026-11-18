@@ -40,9 +40,9 @@ The notice board on this site can ask for the camera for that same scan. The pic
 
 A payment is signed on your device for XBT or for BTC. The node you use, and the node that is paid, see that payment. A silent payment code is made on your device. Autarki does not make that code and does not see a coin paid to it.
 
-Lightning on a computer can open a channel to Autarki's pool or to one shop. That other side sees the channel. The pool does not hold the sale and does not take a cut of the catalog price.
+Lightning on a computer can open a channel to a node other people operate, or to one shop. The wallet button for that node says Use Autarki's pool. That other side sees the channel. The node charges its own routing fee and its own room fee. Autarki does not collect them. The pool does not hold the sale and does not take a cut of the catalog price.
 
-Mining talks to [RouteHash](https://routehash.com) after you paste a token and press Mine XBT or Mine BTC. Mine itself does not spend. The next reward address is your wallet's.
+Mining talks to [RouteHash](https://routehash.com) after you paste a token and press Mine XBT or Mine BTC. RouteHash is a separate site. Autarki connects to it and does not collect the hire. Mine itself does not spend. The next reward address is your wallet's.
 
 ## This site
 
@@ -51,6 +51,10 @@ Mining talks to [RouteHash](https://routehash.com) after you paste a token and p
 - A tester install is offered through Firebase. That sign-in is Google's. The phone app does not include the Firebase library.
 - The iPhone test is Apple's public TestFlight link. This site does not take an email for it.
 - The page can ask to show a notice when something arrives. You can refuse. The notice is drawn on the device.
+
+## Where you may use it
+
+Do not use this where the law where you are forbids it, including a place under sanction. Autarki does not check where you are.
 
 ## Children
 

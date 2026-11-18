@@ -201,9 +201,9 @@
               <em>Mara asked for XBT</em>
             </div>
           </div>
-          <figcaption>You confirm the amount first. The fee is 1.5%, plus the normal network fees, and it is already in that amount. One XBT sat is not one BTC sat. If your wallet cannot pay, nothing is sent. If that direction cannot pay, the other coin stays off the screen.</figcaption>
+          <figcaption>You confirm the amount first. The node that carries the payment charges 1.5%, plus the normal network fees, and that fee is already in the amount. Autarki does not collect it. One XBT sat is not one BTC sat. If your wallet cannot pay, nothing is sent. If that direction cannot pay, the other coin stays off the screen.</figcaption>
         </figure>
-        <p>The button says Pay with the other coin. Pay with XBT still spends XBT. Pay with BTC still spends BTC. This does not turn the coins already in your wallet into the other coin. Coins that arrive on Lightning are not added to Balance. Balance is the confirmed coins still held on-chain. Lightning is a separate jar. Routing through Autarki's pool is at most 1,000 sats.</p>
+        <p>The button says Pay with the other coin. Pay with XBT still spends XBT. Pay with BTC still spends BTC. This does not turn the coins already in your wallet into the other coin. Coins that arrive on Lightning are not added to Balance. Balance is the confirmed coins still held on-chain. Lightning is a separate jar. The wallet connects to nodes other people operate. Routing through that node is at most 1,000 sats. The node charges it. Autarki does not collect it.</p>
         <p>Lightning comes with the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android. A Raspberry Pi, Umbrel arm64, the Umbrel community store, and the iPhone build do not start Lightning. On those, use Lightning on another Autarki that you keep running. That choice is under Settings, then Coin Nodes.</p>
       </div>
     </section>
@@ -331,7 +331,7 @@
           <li>A channel you just funded has almost no inbound capacity. The coins are on your side, so a customer cannot pay you on it yet.</li>
         </ul>
         <h3 class="subhead">Autarki's pool, or your own channel.</h3>
-        <p class="lede">Autarki's pool is one channel you can open. The page calls that pool the LSP. The button says Use Autarki's pool.</p>
+        <p class="lede">Autarki's pool is one channel you can open to a node other people operate. The page calls that pool the LSP. The button says Use Autarki's pool. That node charges the fee. Autarki does not collect it.</p>
         <div class="table-wrap">
           <table>
             <thead>
@@ -350,7 +350,7 @@
               <tr>
                 <th scope="row">Fee</th>
                 <td>Routing at most 1,000 sats. Your coins stay on your side until the payment.</td>
-                <td>No LSP fee. The wallet already knows the node.</td>
+                <td>No fee from that node. The wallet already knows the shop.</td>
               </tr>
               <tr>
                 <th scope="row">First open</th>
@@ -370,10 +370,10 @@
           <li>A channel that can already pay is used. No choice appears.</li>
           <li>If the Autarki LSP cannot be reached, the page offers the direct channel. Nothing was sent.</li>
           <li>Install does not open a channel. A mining payment does not use the LSP.</li>
-          <li>The LSP does not hold the sale and does not take a cut of the catalog price. Lightning still costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000. A buyer still needs a channel.</li>
+          <li>The LSP does not hold the sale and does not take a cut of the catalog price. The node charges the Lightning costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000. A room fee is what that node charges for incoming room. A routing fee is what it charges to carry the payment. Autarki does not collect them. A buyer still needs a channel.</li>
         </ul>
         <h3 class="subhead">What the fees are, in dollars.</h3>
-        <p class="lede" id="fee-spot" data-xbt="279.59649414" data-btc="75000.01">Sats are the price. One XBT sat and one BTC sat are not the same dollar. These hints follow the NeoEX USDC quote: about $280 for one XBT, and about $75,000 for one BTC. They move. A dollar hint does not change the sats.</p>
+        <p class="lede" id="fee-spot" data-xbt="279.59649414" data-btc="75000.01">Sats are the price. One XBT sat and one BTC sat are not the same dollar. These hints follow the NeoEX USDC quote: about $280 for one XBT, and about $75,000 for one BTC. They move. A dollar hint does not change the sats. The node charges these amounts. Autarki does not collect them.</p>
         <div class="table-wrap">
           <table>
             <thead>
@@ -386,7 +386,7 @@
             </thead>
             <tbody>
               <tr>
-                <th scope="row">Routing through the LSP, each payment</th>
+                <th scope="row">Routing through that node, each payment</th>
                 <td>At most 1,000</td>
                 <td data-fee="1000-xbt">About $0.0028</td>
                 <td data-fee="1000-btc">About $0.75</td>
@@ -443,9 +443,9 @@
         <ul class="brief">
           <li id="fee-scale">On this $100 sale, the three XBT fees are each under one cent. On BTC the routing cap is about 75 cents.</li>
           <li id="fee-capacity">20,000 sats of inbound capacity is about $0.06 of XBT, or about $15 of BTC. 100,000 sats is about $0.28 of XBT, or about $75 of BTC. That figure is the capacity.</li>
-          <li id="fee-card">Autarki does not charge the card and does not take that percent. Lightning still costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000. On a sale near $5, the online card fee is about $0.45. The BTC routing cap is about $0.75. That cap can cost more than the card fee.</li>
+          <li id="fee-card">Autarki does not charge the card and does not take that percent. The node charges the Lightning costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000. Autarki does not collect those. On a sale near $5, the online card fee is about $0.45. The BTC routing cap is about $0.75. That cap can cost more than the card fee.</li>
           <li>Room is paid once. Opening a channel also pays a miner fee. That amount is whatever the chain asks that day.</li>
-          <li>A node publishes a fee to forward toward each peer, and each peer publishes a fee to forward back. Those are the fees in both directions. The routing cap is what you pay through the LSP. Inbound capacity is the room a shop buys.</li>
+          <li>A node publishes a fee to forward toward each peer, and each peer publishes a fee to forward back. Those are the fees in both directions. The routing cap is what you pay the node that carries the payment. Autarki does not collect it. Inbound capacity is the room a shop buys from that node.</li>
         </ul>
         <h3 class="subhead">When a payment needs a new channel.</h3>
         <ul class="brief">
@@ -472,7 +472,7 @@
             <h3>This shop, or this seller.</h3>
             <ul class="brief">
               <li>Open a direct channel to this shop, or Open a direct channel to this seller.</li>
-              <li>No LSP fee. It pays only that one node.</li>
+              <li>No fee from the pool node. It pays only that one shop or that one seller.</li>
               <li>Same ten minutes. A later payment to that node can reuse it.</li>
             </ul>
           </article>
@@ -504,8 +504,8 @@
         </div>
         <ul class="brief">
           <li>The Autarki LSP does not hold the sale and does not take a cut of the catalog price.</li>
-          <li>The room fee and the routing fee are the Lightning costs.</li>
-          <li>With a float, a shipped order stays in the seller's wallet until Mark received. Autarki's pool does not hold that order.</li>
+          <li>A room fee is what the node charges for incoming room. A routing fee is what it charges to carry the payment. Autarki does not collect either one.</li>
+          <li>With a float, a shipped order stays in the seller's wallet until Mark received. Autarki cannot move it. Autarki's pool does not hold that order.</li>
         </ul>
         <p>Sitting at your computer, Use Autarki's pool does the same open. The <a href="/channel">channel page</a> is the extra door for a node that is not the page in front of you.</p>
         <p class="more"><a href="/classifieds#protection">How a shipment is protected</a></p>

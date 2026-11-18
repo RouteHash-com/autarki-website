@@ -155,7 +155,7 @@ Shop wallet. No coin moves in this procedure.
 10. Open Clerks. Turn on Enable clerk assignment. Type a staff name and press Add this clerk. On Ledger, then Sell, the active clerk is chosen there. An empty roster says “Add a clerk under Store.”
 11. The first-run selling card asks “Will a customer pay while standing there?” In person sets the counter. Online sets the shipment path. Both records both.
 12. Press Provide a float or Continue without a float. Either press records the choice. Neither press sends coins.
-13. The room card can offer Pay 1,200 sats for Blake2b pool room, Pay 1,200 sats for Bitcoin pool room, or Use a direct channel. Paying the fee only fills Send. Nothing is sent until Prepare payment, then Broadcast this payment. Use a direct channel has no pool fee. Skip that card when this procedure is only turning the store on.
+13. The room card can offer Pay 1,200 sats for Blake2b pool room, Pay 1,200 sats for Bitcoin pool room, or Use a direct channel. Paying the fee only fills Send. Nothing is sent until Prepare payment, then Broadcast this payment. The node charges that room fee. Autarki does not collect it. Use a direct channel does not pay it. Skip that card when this procedure is only turning the store on.
 
 ### 10. Publish the stall
 
@@ -209,11 +209,11 @@ One of three endings. The first two pay the seller. The third stops both.
 1. **Spend:** Buyer presses Mark received. That pays the seller.
 2. **Spend:** Or the hold ends and the seller is paid. Domestic and Overseas set that hold on a classified. The shop order uses the shipment clock the page already shows. No extra button.
 3. Or the buyer presses Not received. Read “Not received stops the automatic payment. It does not return the coins by itself.”
-4. A shop shipment does not name a referee. On a classified shipment, the coins stay where they are until the referee decides. [Procedure 20](https://autarki.app/guide#dispute). There is no button named Dispute.
+4. A shop shipment does not name a referee. On a classified shipment, the coins stay on the seller's node until the referee decides. The referee cannot spend them. Autarki cannot move them. [Procedure 20](https://autarki.app/guide#dispute). There is no button named Dispute.
 
 ### 14. Name a referee
 
-Classified shipment. Before pay. Each side names the same person, or both name nobody. Payment waits until those names match. Copy a public name from [Find a referee](https://autarki.app/referee). A shop sale does not name a referee. A store stall does not name one.
+Classified shipment. Before pay. Each side names the same person, or both name nobody. Payment waits until those names match. Copy a public name from [Find a referee](https://autarki.app/referee). The referee does not hold the coins and cannot spend them. Autarki cannot move them. A shop sale does not name a referee. A store stall does not name one.
 
 1. On the checkout, open Dispute Referee?.
 2. The hint says a referee is optional, and that payment waits until both sides name the same person or both name nobody.
@@ -343,10 +343,10 @@ The buyer opens it. The seller does not fund it.
 
 1. Coins have to be confirmed in the Lightning node’s own wallet. [Procedure 23](https://autarki.app/guide#balance) puts them there. Balance itself cannot open the channel.
 2. On a purchase that needs a channel, press Use Autarki Pool or Use Shop Channel. A classified seller uses Use Seller Channel for the direct path.
-3. The pool is one channel that can pay many shops that already have incoming room. The routing fee cap is 1,000 sats. A direct channel has no pool fee and pays only that shop or that seller.
+3. The pool is one channel to a node other people operate. It can pay many shops that already have incoming room. The routing fee cap is 1,000 sats. The node charges it. Autarki does not collect it. A direct channel does not pay that node's fee and pays only that shop or that seller.
 4. The first opening waits about ten minutes for one confirmation. A later payment on a channel that can cover the amount does not.
 5. Adding room waits for one confirmation.
-6. Paying a pool fee, including Pay 1,200 sats for Blake2b pool room or the Bitcoin room button, only fills Send. Nothing is sent until Prepare payment, then Broadcast this payment. **Spend:** that broadcast. The page does not open the room by itself.
+6. Paying that node's room fee, including Pay 1,200 sats for Blake2b pool room or the Bitcoin room button, only fills Send. Autarki does not collect it. Nothing is sent until Prepare payment, then Broadcast this payment. **Spend:** that broadcast. The page does not open the room by itself.
 7. Open a channel, the form under the Lightning card, is for a node whose public name you already have. Do not type a shop or a customer into that form. A purchase does not use it.
 
 ### 25. Pay the other coin
@@ -358,7 +358,7 @@ A Lightning invoice in the other coin spends the coin this wallet already holds.
 3. Press Lightning.
 4. Paste the payment request, or press Scan payment request.
 5. Read the amount. If the other coin can pay it, the button reads Pay with the other coin and then names the amount in the coin this wallet holds.
-6. The line under it includes the pool fee. That fee is 1.5 percent. Read the amount and the fee before you continue.
+6. The line under it includes that node's fee. That fee is 1.5 percent. The node that carries the payment charges it. Autarki does not collect it. Read the amount and the fee before you continue.
 7. **Spend:** Press that pay button. That press sends.
 8. If it cannot finish, it is not sent. Do not press it again until you know the first one did not leave.
 

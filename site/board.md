@@ -15,6 +15,11 @@ The page is [https://autarki.app/board](https://autarki.app/board). It is dated 
 - Child sexual content is forbidden. That includes any sexual content involving a person under 18. Do not post it, ask for it, or link to it.
 - The wallet refuses a note that asks for one of those before it is sent. The sentence is "This note cannot be posted. It asks for something this board does not carry." The same check runs when a wallet reads a classified, and on this site before a Nostr extension is asked to sign. A note already on a relay that asks for one of those is left off the board.
 
+## Where you may post
+
+- Do not use this where the law where you are forbids it, including a place under sanction.
+- Autarki does not check where you are.
+
 ## Report and block
 
 - Block this seller stays on that computer. Ignore stays on that computer. Block and Ignore hide the ad on that device only.

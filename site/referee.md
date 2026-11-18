@@ -1,12 +1,12 @@
 # Find a referee
 
-> A referee is named on a classified shipment. Both sides name the same person before payment, or both name nobody. The referee does not hold the coins. A shop sale does not name one.
+> A referee is named on a classified shipment. Both sides name the same person before payment, or both name nobody. The referee does not hold the coins and cannot spend them. Autarki cannot move them. A shop sale does not name one.
 
 The page is [https://autarki.app/referee](https://autarki.app/referee).
 
 ## Find a referee.
 
-Both sides of a classified shipment name the same person before payment, or both name nobody. Copy a public name from here. The referee does not hold the coins. Autarki does not check the Discord message. A shop sale does not name a referee. A store stall does not name one.
+Both sides of a classified shipment name the same person before payment, or both name nobody. Copy a public name from here. The referee does not hold the coins and cannot spend them. Autarki cannot move them. Autarki does not check the Discord message. A shop sale does not name a referee. A store stall does not name one.
 
 ## Search.
 
