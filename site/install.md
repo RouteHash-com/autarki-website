@@ -1,6 +1,6 @@
 # Install
 
-> Lightning for XBT and for BTC is in the AMD and Intel StartOS package, the Ubuntu image, the Umbrel amd64 image file, and Android. The Umbrel community store, a Raspberry Pi, and Umbrel arm64 leave Lightning off. An iPhone joins the public TestFlight test at https://testflight.apple.com/join/2WMBzSpM.
+> The buyer pays you, and you keep the keys. One install is the wallet and the shop. Sell at the counter, ship a classified, and hire a rig.
 
 The page is [https://autarki.app/install](https://autarki.app/install).
 
