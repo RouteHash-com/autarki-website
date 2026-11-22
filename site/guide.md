@@ -100,7 +100,9 @@ The shop is already published as Online. Ship and Pick up are on that checkout. 
 8. **Spend:** Press Broadcast this payment. That is the spend.
 9. Cancel this payment drops the prepared payment and does not spend. An open wallet broadcasts without asking again, so do not press Broadcast unless this payment is intended.
 
-The shop records the sale when the coin arrives. Paying on-chain needs no Lightning channel.
+The shop records the sale when the coin arrives. Paying on-chain needs no Lightning channel. On a shop that is not this computer, Prepare payment fills Send with that shop's silent-payment code. That prepare does not need your own node. A silent-payment code typed on the Send tab does. [Procedure 22](https://autarki.app/guide#send).
+
+Pickup can show Pay with XBTC when this wallet's XBTC node is on and the shop published an XBTC account. A shipment does not offer XBTC.
 
 ### 6. Pay a pickup with Lightning
 
@@ -114,7 +116,7 @@ Same order as [procedure 5](https://autarki.app/guide#pickup-chain). The shop is
 4. **Spend:** When the channel can cover the amount, the page pays the shop. The line is “The Lightning node is sending this payment.”
 5. The sale stays open until the shop node reports the payment. The shop can press Check this payment after the customer has sent it. That check does not send a second payment.
 6. The first opening waits about ten minutes for one confirmation. A later payment on a channel that can cover the amount does not wait.
-7. If the payment needs a new channel, the page offers Use Autarki Pool or Use Shop Channel. Nothing is sent until that choice is confirmed. Coins have to be confirmed in the Lightning node’s own wallet first. [Procedure 24](https://autarki.app/guide#open-channel) puts them there.
+7. If the payment needs a new channel, the page offers Use Public pool or Use Shop Channel. A classified uses Use Seller Channel. Nothing is sent until that choice is confirmed. Balance can open the channel. [Procedure 24](https://autarki.app/guide#open-channel).
 
 ### 7. Finish an amount still due
 
@@ -128,14 +130,14 @@ An order that already has a payment and still owes sats. A refund is a later ord
 6. **Spend:** On-chain, Broadcast this payment is the spend. Lightning, the send is the spend, and only after a channel can cover the remainder.
 7. Open this order is the other Balance button. Use it when nothing has been sent to the shop yet. It is not the remainder path.
 
-### 8. Cancel an unpaid order
+### 8. Cancel an order
 
 1. Customer opens Shop.
-2. Under Open orders, open the unpaid order.
+2. Under Open orders, open the order.
 3. Press Cancel.
 4. If nothing was paid, the shop’s Check for orders drops that card from Check Outs.
-5. If the order has shipped, Cancel is closed. The page says to mark it received, or to say it was not received. Use [procedure 13](https://autarki.app/guide#close-shipment).
-6. A paid shipment that has not shipped is not this procedure. Cancel on that order checks whether it has shipped before it closes.
+5. **Spend:** Before it is marked shipped, Cancel closes the order and the coins go back to the buyer.
+6. If the order has shipped, Cancel is closed. The page says to mark it received, or to say it was not received. Use [procedure 13](https://autarki.app/guide#close-shipment).
 
 ## Shop, seller side
 
@@ -143,8 +145,8 @@ An order that already has a payment and still owes sats. A refund is a later ord
 
 Shop wallet. No coin moves in this procedure.
 
-1. Open Settings, then Nostr.
-2. Turn on Enable storefront features on this device. Store appears. Turning it off hides Store. Orders and the catalog stay on this computer.
+1. Open Settings, then Nostr, then Nostr Nodes.
+2. Turn on Enable storefront features on this device. Store appears. Classifieds is on that same screen. Turning the store off hides Store. Orders and the catalog stay on this computer.
 3. Open Store, then Catalog. Press Add a catalog item.
 4. Leave For sale pressed. Type the name and the price. Sats is the default. US dollars and Canadian dollars are the other units.
 5. Picture and Description are optional. On hand counts the shelf. Leave it empty and the product is not counted.
@@ -183,7 +185,7 @@ Shop. This is the clerk screen. It does not record the payment by itself.
 
 ### 12. Ship a shop order
 
-The shop is published as Online. Ship is Lightning only. The customer has to choose Ship or Pick up before pay. A shop sale does not name a referee. A store stall does not name one.
+The shop is published as Online. Ship is Lightning only. A shipment does not offer XBTC. The customer has to choose Ship or Pick up before pay. A shop sale does not name a referee. A store stall does not name one.
 
 Customer, before pay
 
@@ -204,12 +206,15 @@ Shop, after the payment is recorded
 
 ### 13. Close a shipment
 
-One of three endings. The first two pay the seller. The third stops both.
+A shop sale does not name a referee. On a classified, Domestic is 14 days and Overseas is 28 days. The clock starts when the payment is accepted. Overseas can stop with “This Lightning node cannot hold a shipment for 28 days.”
 
-1. **Spend:** Buyer presses Mark received. That pays the seller.
-2. **Spend:** Or the hold ends and the seller is paid. Domestic and Overseas set that hold on a classified. The shop order uses the shipment clock the page already shows. No extra button.
-3. Or the buyer presses Not received. Read “Not received stops the automatic payment. It does not return the coins by itself.”
-4. A shop shipment does not name a referee. On a classified shipment, the coins stay on the seller's node until the referee decides. The referee cannot spend them. Autarki cannot move them. [Procedure 20](https://autarki.app/guide#dispute). There is no button named Dispute.
+1. **Spend:** Before it is marked shipped, Cancel closes the order and the coins go back to the buyer. [Procedure 8](https://autarki.app/guide#cancel-order).
+2. **Spend:** If it is not marked shipped, with a carrier and a tracking number, by the ship-by day, the coins go back.
+3. **Spend:** Buyer presses Mark received. That pays the seller. A carrier scan does not move the coins.
+4. **Spend:** If it was shipped and the buyer does nothing, the seller is paid when the hold ends.
+5. Not received stops both automatic moves. It does not return the coins by itself.
+6. On a classified shipment, the coins stay on the seller's node until the referee decides. The referee cannot spend them. Autarki cannot move them. [Procedure 20](https://autarki.app/guide#dispute). There is no button named Dispute.
+7. **Spend:** If the referee never decides, the Lightning window still sends the coins back.
 
 ### 14. Name a referee
 
@@ -257,20 +262,20 @@ Shop ledger. Lightning payments and counter payments stay off the coin journal.
 Tax and a tip are not added.
 
 1. Open the ad.
-2. Press Ship or Pick up.
+2. Press Ship or Pick up. Pickup can show Pay with XBTC when this wallet's XBTC node is on and the ad published an XBTC account. A shipment does not offer XBTC.
 3. Ship asks for a destination. Type Postal / Zip Code and Country code, or press Use my location.
 4. Press FedEx or Canada Post. That price is added before pay. Pickup adds none.
 5. If the ad left postal code, country, and weight blank, Ship pays the item price only.
 6. Open Dispute Referee? and finish [procedure 14](https://autarki.app/guide#referee), or both sides name nobody. Copy a public name from [Find a referee](https://autarki.app/referee).
 7. Press XBT Lightning or BTC Lightning.
-8. **Spend:** The payment request is not the payment. A channel has to be able to pay before anything is sent. The Lightning send is the spend.
+8. **Spend:** The payment request is not the payment. A channel has to be able to pay before anything is sent. The Lightning send is the spend. If the payment needs a new channel, press Use Public pool or Use Seller Channel. Nothing is sent until that choice is confirmed.
 9. After you pay, the seller marks it shipped. Then Mark received is available.
 
 ### 18. Seller’s own ad
 
 1. Open the ad you published.
 2. Set shipping days: 1 day, 2 days, 3 days, or 4 days.
-3. Press Domestic or Overseas.
+3. Press Domestic or Overseas. Domestic is 14 days. Overseas is 28 days. The clock starts when the payment is accepted. Overseas can stop with “This Lightning node cannot hold a shipment for 28 days.”
 4. Type the postal code you ship from, the country code, and the package weight in kilograms. Use my location can fill the origin.
 5. Press Publish. That saves the shipping promise. A buyer uses those three to ask FedEx or Canada Post. The price is not written on the ad. Leave them blank and the item price is the total.
 6. Each order is its own card with the order number.
@@ -306,7 +311,7 @@ There is no button named Dispute.
 No coin leaves this wallet.
 
 1. Open Receive. If the wallet file is locked, press Open wallet once. Later addresses do not ask again.
-2. Press XBT, BTC, or XBTC. The chain is named beside the address.
+2. Press XBT, BTC, or XBTC. The chain is named beside the address. On a wallet made on this page, the same Taproot text is an XBT address and a SHA-256d address. Tell the payer the chain. XBTC is a separate address that starts with bc1q.
 3. Press New XBT address, or the same button renamed for the chain you selected.
 4. The address and Show QR are on this page. Do not copy the address into a chat or a note.
 5. A coin that has not confirmed yet is waiting for its first confirmation. It is not spendable on Balance until it confirms.
@@ -319,7 +324,7 @@ No coin leaves this wallet.
 1. Open Send.
 2. Press XBT, BTC, or XBTC.
 3. Type the destination and the amount in sats.
-4. A silent-payment code needs your own node. A normal address can use Autarki's server.
+4. A silent-payment code typed on this Send tab needs your own node. A normal address can use Autarki's server. Paying a remote shop from checkout is different. That prepare does not need your own node. [Procedure 5](https://autarki.app/guide#pickup-chain).
 5. Press Prepare payment. That sets the exact total. Nothing is sent. The wallet password opens this computer. Prepare does not sign.
 6. Read the destination, the amount, and the miner fee.
 7. Press Sign on this computer.
@@ -339,26 +344,29 @@ On Balance, Prepare the transfer is the same idea when the page is already askin
 
 ### 24. Open a channel
 
-The buyer opens it. The seller does not fund it.
+The buyer opens it. The seller does not fund it. Balance can open the channel.
 
-1. Coins have to be confirmed in the Lightning node’s own wallet. [Procedure 23](https://autarki.app/guide#balance) puts them there. Balance itself cannot open the channel.
-2. On a purchase that needs a channel, press Use Autarki Pool or Use Shop Channel. A classified seller uses Use Seller Channel for the direct path.
-3. The pool is one channel to a node other people operate. It can pay many shops that already have incoming room. The routing fee cap is 1,000 sats. The node charges it. Autarki does not collect it. A direct channel does not pay that node's fee and pays only that shop or that seller.
-4. The first opening waits about ten minutes for one confirmation. A later payment on a channel that can cover the amount does not.
-5. Adding room waits for one confirmation.
-6. Paying that node's room fee, including Pay 1,200 sats for Blake2b pool room or the Bitcoin room button, only fills Send. Autarki does not collect it. Nothing is sent until Prepare payment, then Broadcast this payment. **Spend:** that broadcast. The page does not open the room by itself.
-7. Open a channel, the form under the Lightning card, is for a node whose public name you already have. Do not type a shop or a customer into that form. A purchase does not use it.
+1. The button is Open a channel to Public pool. It asks for at least 20,000 sats on your side and leaves 2,000 sats in the Lightning wallet for the miner fee. The other side starts at 0. The sats have to be confirmed, and not already in a channel. Nothing is sent until you confirm. Press Open the channel. Cancel sends nothing.
+2. On a purchase that needs a channel, press Use Public pool or Use Shop Channel. A classified uses Use Seller Channel.
+3. Public pool is one channel to a node other people operate. It can pay many shops that already have incoming room. The routing fee cap is 1,000 sats. The node charges it. Autarki does not collect it. A direct channel does not pay that node's fee and pays only that shop or that seller.
+4. Add funds puts more sats on your side of that same channel. It does not add room for other people to pay you.
+5. A channel you fund starts with You can receive at 0. The seller gets room when Public pool opens toward them after the room fee, or when someone opens a direct channel.
+6. The first opening waits about ten minutes for one confirmation. A later payment on a channel that can cover the amount does not. Adding room waits for one confirmation.
+7. Locking the page does not stop the Lightning node. Closing the phone app does. Public pool does not hold the payment while that node is stopped.
+8. Paying that node's room fee, including Pay 1,200 sats for Blake2b pool room or the Bitcoin room button, only fills Send. Autarki does not collect it. Nothing is sent until Prepare payment, then Broadcast this payment. **Spend:** that broadcast. The page does not open the room by itself.
+9. Close this channel pays a miner fee from what you can pay now. Cancel leaves the channel open. The sats return to that Lightning node's own wallet after the closing transaction confirms. They return to Balance only after a later send.
+10. Open a channel, the form under the Lightning card, is for a node whose public name you already have. Do not type a shop or a customer into that form. A purchase does not use it.
 
 ### 25. Pay the other coin
 
-A Lightning invoice in the other coin spends the coin this wallet already holds. XBT can pay a BTC Lightning invoice. BTC paying an XBT invoice stays hidden while that side cannot send.
+A Lightning invoice in the other coin spends the coin this wallet already holds. The button is Pay with the other coin. It is there when that side can pay.
 
 1. Open Send.
 2. Press the chain this wallet will spend.
 3. Press Lightning.
 4. Paste the payment request, or press Scan payment request.
 5. Read the amount. If the other coin can pay it, the button reads Pay with the other coin and then names the amount in the coin this wallet holds.
-6. The line under it includes that node's fee. That fee is 1.5 percent. The node that carries the payment charges it. Autarki does not collect it. Read the amount and the fee before you continue.
+6. The fee is whatever the line under that button shows. The node that carries the payment charges it. Autarki does not collect it. Read the amount and the fee before you continue.
 7. **Spend:** Press that pay button. That press sends.
 8. If it cannot finish, it is not sent. Do not press it again until you know the first one did not leave.
 
@@ -418,19 +426,20 @@ This wallet does not join Discord. Publishing replaces the previous link. The us
 
 ### 29. Backup and the page
 
-Save a copy writes the shop book to a file. It does not back up the 24 words or the Lightning channel. Page contrast stays in this browser.
+Three papers cover three different things. None of them restores an open Lightning channel.
 
-1. Open Settings, then Other.
-2. Under Backup, press Save a copy. Save the file on this computer or a drive.
-3. The file keeps the profile, the contact list, the mute list, the relay list, the Discord link, vouches, and shipment receipts this wallet has already published.
-4. The file leaves out the 24 words, the wallet file, a secret key, a macaroon, and a node password. It does not hold the Lightning channel. That state stays on the Lightning node. The 24 words do not bring the shop book back.
-5. The stall, each product, and each classified are already public notes on the Nostr node. Anyone can read them. They are not an encrypted copy of this computer. The orders, the catalog counts, the taxes, the clerks, and the drafts stay on this computer. Publish this shop, or publish a classified, sends those notes to the current node. This wallet does not send the shop book to the shared node.
-6. Press Bring a copy back only when you mean to replace the shop files named in that file. Choose the file. Page contrast is not in the file, so this step does not change Paper, Ink, or Console.
-  - Paper keeps this page.
-  - Ink is light text on black.
-  - Console is green on black.
-
-7. Under Page contrast, press one of these. The choice stays in this browser:
-8. Language, on the same Other page, is English, Español, Português, Français, or Deutsch. This browser asks once, the first time it opens the page. The choice stays on this browser. It does not change the 24 words, the shop book, or the dollar hint.
+1. The 24 words bring back the on-chain wallet and the Nostr key made from those words. They do not bring the shop book back.
+2. Each Lightning node's paper brings back the coins still in that node's own wallet, after the scan. Blake2b and SHA-256 each have their own paper.
+3. An open Lightning channel is not in this file. After this device's data is deleted, the channel list is gone. The other side does not send its record here. The channel does not keep working. Open a channel again when you want to pay.
+4. Open Settings, then Other. Under Backup, press Save a copy. Save the file on this computer or a drive. An empty book is left out.
+5. The file can hold the catalog, orders, the shop coin journal, a checkout still open, a shipment still held, classified drafts, the ignore list, messages, which lines were already read, the bell, receive addresses, and payments this page sent. It also keeps the profile, the contact list, the mute list, the relay list, the Discord link, vouches, and shipment receipts this wallet has already published.
+6. The file leaves out the 24 words, the wallet file, a secret key, a macaroon, and a node password.
+7. The stall, each product, and each classified are already public notes on the Nostr node. Anyone can read them. They are not an encrypted copy of this computer. The orders, the catalog counts, the taxes, the clerks, and the drafts stay on this computer. Publish this shop, or publish a classified, sends those notes to the current node. This wallet does not send the shop book to the shared node.
+8. Press Bring a copy back only when you mean to replace the books named in that file. Choose the file. An older file that names only the shop books still replaces those books. Bring a copy back also puts back Paper, Ink, or Console, the language, which chains are hidden, and Leave this copy unlocked. The language is in that copy too.
+9. Under Page contrast, press one of these.
+   - Paper keeps this page.
+   - Ink is light text on black.
+   - Console is green on black.
+10. Language, on the same Other page, is English, Español, Português, Français, or Deutsch. It does not change the 24 words or the dollar hint.
 
 That is the end of the 29 procedures.

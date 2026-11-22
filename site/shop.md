@@ -10,7 +10,7 @@ The shop runs on your computer. People can look before they make a wallet. An or
 
 - Autarki does not take a cut of the catalog price. A routing fee and a room fee are charged by nodes other people operate. Autarki does not collect them. The amounts are on the [wallet page](https://autarki.app/wallet#fee-spot).
 - One product can keep a price in US dollars or Canadian dollars. The dollar price stays and the coin amount is set when you pay. A product still priced in sats stays in sats. A cart can hold both.
-- Autarki's pool does not hold the sale. Autarki cannot move those coins. A shop sale does not name a referee. A store stall does not name one. A shipped classified is on the [classifieds page](https://autarki.app/classifieds#protection).
+- Public pool does not hold the sale. Autarki cannot move those coins. A shop sale does not name a referee. A store stall does not name one. A shipped classified is on the [classifieds page](https://autarki.app/classifieds#protection).
 - The stall, each product, and the place are public. The key and the books stay on your computer.
 - A shop is the counter until the owner picks Online and publishes. Pay Counter records the sale. It does not charge the card, and it does not talk to a card terminal. Pay Counter records cash, debit, credit, a coupon, store credit, bitcoin, or a mix. A dollar price records those dollars. The page does not write a coin. The clerk uses the card machine.
 - On Sales, a dollar row shows the locked dollars and the sats collected beside them. Download sales keeps the currency, the dollar total, and the prices used for that sale.

@@ -68,20 +68,20 @@ On-chain is the bank. Each payment waits for a confirmation and pays a miner fee
 
 Capacity is the sats locked in the channel. Outbound capacity is what your node can send. Those coins sit on your side. Inbound capacity is what your node can receive. Those coins sit on the other node's side. You can pay only up to your outbound capacity. A shop can receive only up to its inbound capacity. A channel you just funded has almost no inbound capacity, so a customer cannot pay you on it yet.
 
-## Autarki's pool
+## Public pool
 
-Autarki's pool is one channel you can open to a node other people operate. The page calls that pool the LSP. The button says Use Autarki's pool. That node charges the fee. Autarki does not collect it. There is one pool for XBT Lightning and one for BTC Lightning.
+Public pool is one channel you can open to a node other people operate. The button says Use Public pool. That node charges the fee. Autarki does not collect it. There is one pool for XBT Lightning and one for BTC Lightning.
 
-- One channel can pay this shop, or this seller, and later shops that already have inbound capacity with the LSP.
+- One channel can pay this shop, or this seller, and later shops that already have incoming room with Public pool.
 - Your own channel pays no fee to that node and pays only that one shop or that one seller. The wallet already knows the shop. You never type the shop's public key.
 - The first open waits about ten minutes and pays a miner fee, either way. Nothing opens until you confirm.
-- If the Autarki LSP cannot be reached, the page offers the direct channel. Nothing was sent.
+- If Public pool cannot be reached, the page offers the direct channel. Nothing was sent.
 - Inbound room is 1,200 sats for 20,000 sats of capacity, or 2,000 sats for 100,000. The buttons say Pay 1,200 sats for Blake2b pool room and Pay 1,200 sats for Bitcoin pool room. Prepare, then Broadcast. The page does not open the room.
 - The seller's node has to be on. It does not need its own confirmed sats. Zero inbound capacity does not block a buyer who will open a channel.
-- The LSP does not hold the sale and does not take a cut of the catalog price. The node charges the Lightning costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000. A room fee is what that node charges for incoming room. A routing fee is what it charges to carry the payment. Autarki does not collect them. A buyer still needs a channel.
-- With a float, a shipped order stays in the seller's wallet until Mark received. Autarki cannot move it. Autarki's pool does not hold that order.
-- A mining payment does not use the LSP. Install does not open a channel. The Umbrel community store, a Raspberry Pi, Umbrel arm64, and the iPhone build leave Lightning off.
-- Sitting at your computer, Use Autarki's pool does the same open. The [channel page](https://autarki.app/channel) is the extra door for a node that is not the page in front of you. Fill Send does not open a channel.
+- Public pool does not hold the sale and does not take a cut of the catalog price. The node charges the Lightning costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000. A room fee is what that node charges for incoming room. A routing fee is what it charges to carry the payment. Autarki does not collect them. A buyer still needs a channel.
+- With a float, a shipped order stays in the seller's wallet until Mark received. Autarki cannot move it. Public pool does not hold that order.
+- A mining payment does not use Public pool. Install does not open a channel. The Umbrel community store, a Raspberry Pi, Umbrel arm64, and the iPhone build leave Lightning off.
+- Sitting at your computer, Use Public pool does the same open. The [channel page](https://autarki.app/channel) is the extra door for a node that is not the page in front of you. Fill Send does not open a channel.
 
 ## Fees, with a dollar hint
 

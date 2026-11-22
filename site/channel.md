@@ -6,11 +6,11 @@ The page is [https://autarki.app/channel](https://autarki.app/channel).
 
 ## The wallet already opens it
 
-This page is for a node that is not the Autarki wallet in front of you. A home node you open from a phone, or another Blake2b or SHA-256 node, can buy incoming room from a node other people operate. The wallet button says Use Autarki's pool. If Autarki is already open in front of you, stay there. Press Use Autarki's pool when a payment needs a channel.
+This page is for a node that is not the Autarki wallet in front of you. A home node you open from a phone, or another Blake2b or SHA-256 node, can buy incoming room from a node other people operate. The wallet button says Use Public pool. If Autarki is already open in front of you, stay there. Press Use Public pool when a payment needs a channel.
 
 - The best way to create the channel is Autarki. Install Autarki. The wallet opens a pool channel when a payment needs one.
 - Fill Send only moves your own sats into the Lightning wallet. That move does not open a channel.
-- Someone sitting at that computer does not need this website. Use Autarki's pool there does the same open.
+- Someone sitting at that computer does not need this website. Use Public pool there does the same open.
 
 ## This door is for a node outside that page
 

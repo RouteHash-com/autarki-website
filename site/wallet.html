@@ -154,7 +154,7 @@
           <a href="#chains">XBT and BTC</a>
           <a href="#balance">Balance</a>
           <a href="#lightning">Lightning</a>
-          <a href="#lsp">Autarki's pool</a>
+          <a href="#lsp">Public pool</a>
           <a href="#node">Your node</a>
         </nav>
       </div>
@@ -330,21 +330,21 @@
           <li>You can pay only up to your outbound capacity. A shop can receive only up to its inbound capacity.</li>
           <li>A channel you just funded has almost no inbound capacity. The coins are on your side, so a customer cannot pay you on it yet.</li>
         </ul>
-        <h3 class="subhead">Autarki's pool, or your own channel.</h3>
-        <p class="lede">Autarki's pool is one channel you can open to a node other people operate. The page calls that pool the LSP. The button says Use Autarki's pool. That node charges the fee. Autarki does not collect it.</p>
+        <h3 class="subhead">Public pool, or your own channel.</h3>
+        <p class="lede">Public pool is one channel you can open to a node other people operate. The button says Use Public pool. That node charges the fee. Autarki does not collect it.</p>
         <div class="table-wrap">
           <table>
             <thead>
               <tr>
                 <th scope="col">Compared</th>
-                <th scope="col">Autarki LSP</th>
+                <th scope="col">Public pool</th>
                 <th scope="col">Your own channel</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <th scope="row">Who it pays</th>
-                <td>This shop, or this seller, and later shops that already have inbound capacity with the LSP.</td>
+                <td>This shop, or this seller, and later shops that already have incoming room with Public pool.</td>
                 <td>Only that one node.</td>
               </tr>
               <tr>
@@ -366,11 +366,11 @@
           </table>
         </div>
         <ul class="brief">
-          <li>There is an Autarki LSP for Blake2b Lightning, on XBT, and one for SHA-256 Lightning, on BTC.</li>
+          <li>There is a Public pool for Blake2b Lightning, on XBT, and one for SHA-256 Lightning, on BTC.</li>
           <li>A channel that can already pay is used. No choice appears.</li>
-          <li>If the Autarki LSP cannot be reached, the page offers the direct channel. Nothing was sent.</li>
-          <li>Install does not open a channel. A mining payment does not use the LSP.</li>
-          <li>The LSP does not hold the sale and does not take a cut of the catalog price. The node charges the Lightning costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000. A room fee is what that node charges for incoming room. A routing fee is what it charges to carry the payment. Autarki does not collect them. A buyer still needs a channel.</li>
+          <li>If Public pool cannot be reached, the page offers the direct channel. Nothing was sent.</li>
+          <li>Install does not open a channel. A mining payment does not use Public pool.</li>
+          <li>Public pool does not hold the sale and does not take a cut of the catalog price. The node charges the Lightning costs: routing at most 1,000 sats, and room of 1,200 sats for 20,000 or 2,000 sats for 100,000. A room fee is what that node charges for incoming room. A routing fee is what it charges to carry the payment. Autarki does not collect them. A buyer still needs a channel.</li>
         </ul>
         <h3 class="subhead">What the fees are, in dollars.</h3>
         <p class="lede" id="fee-spot" data-xbt="279.59649414" data-btc="75000.01">Sats are the price. One XBT sat and one BTC sat are not the same dollar. These hints follow the NeoEX USDC quote: about $280 for one XBT, and about $75,000 for one BTC. They move. A dollar hint does not change the sats. The node charges these amounts. Autarki does not collect them.</p>
@@ -451,15 +451,15 @@
         <ul class="brief">
           <li>A channel that can already pay is used. No choice appears.</li>
           <li>A store order uses that store's node. A classified uses the seller's node.</li>
-          <li>A mining payment does not use the Autarki LSP.</li>
+          <li>A mining payment does not use Public pool.</li>
           <li>A new channel asks first. Nothing opens until you confirm.</li>
-          <li>You never type the shop's node. Blake2b and SHA-256 already know the Autarki LSP.</li>
+          <li>You never type the shop's node. Blake2b and SHA-256 already know Public pool.</li>
           <li>Both ways use coins already confirmed in that node's wallet, and both pay a miner fee.</li>
-          <li>If the Autarki LSP cannot be reached, the page says so and offers the direct channel. Nothing was sent.</li>
+          <li>If Public pool cannot be reached, the page says so and offers the direct channel. Nothing was sent.</li>
         </ul>
         <div class="choices">
           <article>
-            <p class="kicker">Use Autarki's pool</p>
+            <p class="kicker">Use Public pool</p>
             <h3>One channel, later shops.</h3>
             <ul class="brief">
               <li>Pays this shop, or this seller, and later shops that already have room.</li>
@@ -472,7 +472,7 @@
             <h3>This shop, or this seller.</h3>
             <ul class="brief">
               <li>Open a direct channel to this shop, or Open a direct channel to this seller.</li>
-              <li>No fee from the pool node. It pays only that one shop or that one seller.</li>
+              <li>No fee from that node. It pays only that one shop or that one seller.</li>
               <li>Same ten minutes. A later payment to that node can reuse it.</li>
             </ul>
           </article>
@@ -487,7 +487,7 @@
               <li>20,000 sats of room costs 1,200 sats. 100,000 sats of room costs 2,000 sats.</li>
               <li>Pay 1,200 sats for Blake2b pool room. Pay 1,200 sats for Bitcoin pool room.</li>
               <li>Nothing is sent until Prepare, then Broadcast. The page does not open the room.</li>
-              <li>Then a buyer who already has a channel to the Autarki LSP can pay this node. Routing at most 1,000 sats.</li>
+              <li>Then a buyer who already has a channel to Public pool can pay this node. Routing at most 1,000 sats.</li>
               <li>The seller's node has to be on. It does not need its own confirmed sats to accept that channel.</li>
             </ul>
           </article>
@@ -503,11 +503,11 @@
           </article>
         </div>
         <ul class="brief">
-          <li>The Autarki LSP does not hold the sale and does not take a cut of the catalog price.</li>
+          <li>Public pool does not hold the sale and does not take a cut of the catalog price.</li>
           <li>A room fee is what the node charges for incoming room. A routing fee is what it charges to carry the payment. Autarki does not collect either one.</li>
-          <li>With a float, a shipped order stays in the seller's wallet until Mark received. Autarki cannot move it. Autarki's pool does not hold that order.</li>
+          <li>With a float, a shipped order stays in the seller's wallet until Mark received. Autarki cannot move it. Public pool does not hold that order.</li>
         </ul>
-        <p>Sitting at your computer, Use Autarki's pool does the same open. The <a href="/channel">channel page</a> is the extra door for a node that is not the page in front of you.</p>
+        <p>Sitting at your computer, Use Public pool does the same open. The <a href="/channel">channel page</a> is the extra door for a node that is not the page in front of you.</p>
         <p class="more"><a href="/classifieds#protection">How a shipment is protected</a></p>
       </div>
     </section>

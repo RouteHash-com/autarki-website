@@ -40,7 +40,7 @@ The notice board on this site can ask for the camera for that same scan. The pic
 
 A payment is signed on your device for XBT or for BTC. The node you use, and the node that is paid, see that payment. A silent payment code is made on your device. Autarki does not make that code and does not see a coin paid to it.
 
-Lightning on a computer can open a channel to a node other people operate, or to one shop. The wallet button for that node says Use Autarki's pool. That other side sees the channel. The node charges its own routing fee and its own room fee. Autarki does not collect them. The pool does not hold the sale and does not take a cut of the catalog price.
+Lightning on a computer can open a channel to a node other people operate, or to one shop. The wallet button for that node says Use Public pool. That other side sees the channel. The node charges its own routing fee and its own room fee. Autarki does not collect them. Public pool does not hold the sale and does not take a cut of the catalog price.
 
 Mining talks to [RouteHash](https://routehash.com) after you paste a token and press Mine XBT or Mine BTC. RouteHash is a separate site. Autarki connects to it and does not collect the hire. Mine itself does not spend. The next reward address is your wallet's.
 
