@@ -36,7 +36,7 @@ Lightning for XBT and for BTC comes with this package.
 
 ## iPhone
 
-Version 0.1.0, build 17. The iPhone test is still this build. The computer and Android packages on this page are newer.
+Version 0.1.0, build 18. The same page as the computer and Android packages.
 
 This build does not start Lightning. It uses Lightning on another Autarki that you keep running. Use other Autarki Lightning nodes stays on.
 
