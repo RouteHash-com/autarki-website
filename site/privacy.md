@@ -48,7 +48,7 @@ Mining talks to [RouteHash](https://routehash.com) after you paste a token and p
 
 - This site does not keep an account. Paper, Ink, and Console stay in this browser. The wallet page on this site reads the NeoEX USDC quote for the dollar hint. That request carries no wallet data.
 - Cloudflare serves autarki.app and can see an ordinary request: the address, the page, and the time. There is no advertising and no tracking across other sites.
-- A tester install is offered through Firebase. That sign-in is Google's. The phone app does not include the Firebase library.
+- Android open testing is on Google Play. This site does not take an email for it. The phone app does not include the Firebase library.
 - The iPhone test is Apple's public TestFlight link. This site does not take an email for it.
 - The page can ask to show a notice when something arrives. You can refuse. The notice is drawn on the device.
 

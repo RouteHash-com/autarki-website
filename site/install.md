@@ -28,9 +28,7 @@ A phone on the same network can open your computer's page. That phone holds no s
 
 Version 0.1.0 (78) is the same program as the computer. The phone needs a 64-bit processor and Android 8 or newer. The same 99 digits do not rebuild a wallet. This phone adds its own randomness.
 
-Google Play offers open testing. Join from the Play Store at [https://play.google.com/store/apps/details?id=app.autarki](https://play.google.com/store/apps/details?id=app.autarki), or from the web at [https://play.google.com/apps/testing/app.autarki](https://play.google.com/apps/testing/app.autarki).
-
-Or download [autarki-android.apk](https://github.com/RouteHash-com/autarki/releases/download/0.1.0/autarki-android.apk) from release 0.1.0 and allow the phone to install it. Check that file against `SHA256SUMS` from the same release. This file installs over the previous signed 0.1.0 package. A phone that already has 0.1.0 (1) has to uninstall that copy before this one will install. Or [request access](https://appdistribution.firebase.dev/i/2ae8a6c81ce866a4). Sign in with a Google account. Firebase emails the install.
+Google Play offers open testing. Join from the Play Store at [https://play.google.com/store/apps/details?id=app.autarki](https://play.google.com/store/apps/details?id=app.autarki), or from the web at [https://play.google.com/apps/testing/app.autarki](https://play.google.com/apps/testing/app.autarki). This install replaces the previous signed 0.1.0 package. A phone that already has 0.1.0 (1) has to uninstall that copy before this one will install.
 
 Lightning for XBT and for BTC comes with this package.
 

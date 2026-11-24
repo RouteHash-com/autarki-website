@@ -49,7 +49,7 @@ Without that float, the shipment is not held. Autarki cannot move the coins. [Ho
 
 ## Install Autarki.
 
-It runs on your computer. A 64-bit Android phone can join Google Play open testing, or install the file. An iPhone can join the public TestFlight test. A phone on the same network can still open your computer's page. routehash.com is the mining site. The hire happens in your wallet. Autarki does not collect the hire.
+It runs on your computer. A 64-bit Android phone can join Google Play open testing. An iPhone can join the public TestFlight test. A phone on the same network can still open your computer's page. routehash.com is the mining site. The hire happens in your wallet. Autarki does not collect the hire.
 
 ## Pages
 
