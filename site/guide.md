@@ -5,6 +5,7 @@ The page is [https://autarki.app/guide](https://autarki.app/guide).
 ## The 29 procedures.
 
 - A step marked Spend is the click that moves coins. Prepare payment fills Send and does not spend. A Lightning payment request is not a payment.
+- Channels, the reserve, and a held shipment are on the [Lightning page](https://autarki.app/lightning).
 - Do not paste a seed, a secret key, a payment request, an address, or an order number into a note.
 
 ## Shop, customer side

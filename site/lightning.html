@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="paper">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    try {
+      var t = localStorage.getItem("autarki-theme");
+      if (t === "ink" || t === "console" || t === "paper") {
+        document.documentElement.setAttribute("data-theme", t);
+      }
+    } catch (e) {}
+  </script>
+  <title>Lightning. Autarki</title>
+  <meta name="description" content="Your node holds the coins. A channel pays the shop. A shipment stays on the seller's node until it is marked received.">
+  <link rel="canonical" href="https://autarki.app/lightning">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta property="og:site_name" content="Autarki">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Lightning. Autarki">
+  <meta property="og:description" content="Your node holds the coins. A channel pays the shop. A shipment stays on the seller's node until it is marked received.">
+  <meta property="og:url" content="https://autarki.app/lightning">
+  <meta property="og:image" content="https://autarki.app/assets/og.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Autarki. No platform. Just the sale.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Lightning. Autarki">
+  <meta name="twitter:description" content="Your node holds the coins. A channel pays the shop. A shipment stays on the seller's node until it is marked received.">
+  <meta name="twitter:image" content="https://autarki.app/assets/og.png">
+  <meta name="twitter:image:alt" content="Autarki. No platform. Just the sale.">
+  <link rel="alternate" type="text/markdown" href="https://autarki.app/lightning.md" title="Lightning">
+  <link rel="describedby" href="https://autarki.app/llms.txt" type="text/plain">
+  <meta name="theme-color" content="#f7f4ef">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/site.css?v=20261122a">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://autarki.app/#website",
+        "name": "Autarki",
+        "url": "https://autarki.app/",
+        "description": "The buyer pays you, and you keep the keys. Autarki is the wallet and the shop.",
+        "inLanguage": "en",
+        "publisher": { "@id": "https://autarki.app/#software" }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://autarki.app/#software",
+        "name": "Autarki",
+        "url": "https://autarki.app/",
+        "description": "The buyer pays you, and you keep the keys. Autarki is the wallet and the shop. It runs on your computer. A 64-bit Android phone can install its own copy. A phone on the same network can still open your computer's page.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "StartOS, Umbrel, Ubuntu, Android",
+        "softwareVersion": "0.1.0",
+        "downloadUrl": "https://github.com/RouteHash-com/autarki/releases/tag/0.1.0",
+        "image": "https://autarki.app/assets/og.png",
+        "sameAs": [
+          "https://github.com/RouteHash-com/autarki",
+          "https://discord.gg/VBxvzQXvt"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://autarki.app/lightning#webpage",
+        "url": "https://autarki.app/lightning",
+        "name": "Lightning. Autarki",
+        "description": "Your node holds the coins. A channel pays the shop. A shipment stays on the seller's node until it is marked received.",
+        "isPartOf": { "@id": "https://autarki.app/#website" },
+        "about": { "@id": "https://autarki.app/#software" },
+        "inLanguage": "en",
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://autarki.app/assets/og.png",
+          "width": 1200,
+          "height": 630
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://autarki.app/lightning#webpage-crumbs",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Autarki",
+            "item": "https://autarki.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Lightning",
+            "item": "https://autarki.app/lightning"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="beta-banner">
+    <p class="wrap">Autarki is in beta. Please report bugs in <a href="https://discord.gg/VBxvzQXvt">Discord #autarki</a>.</p>
+  </div>
+  <header class="site-header">
+    <div class="wrap header-bar">
+      <a class="brand" href="/">
+        <svg class="mark" viewBox="-80 -80 1000 1000" aria-hidden="true">
+          <path fill="currentColor" fill-rule="evenodd" d="M435 0H840V345H640V840H0V200H435Z M145 345H495V695H145Z"/>
+        </svg>
+        <span class="brand-name">Autarki</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="/notice-board">Notice board</a></li>
+          <li><a href="/wallet">Wallet</a></li>
+          <li><a href="/shop">Shop</a></li>
+          <li><a href="/classifieds">Classifieds</a></li>
+          <li><a href="/mining">Mining</a></li>
+          <li><a href="/install">Install</a></li>
+          <li><a href="/guide">Guide</a></li>
+          <li><a href="/channel">Another node</a></li>
+        </ul>
+      </nav>
+      <div class="themes" role="group" aria-label="Contrast">
+        <button type="button" data-theme-choice="paper" aria-pressed="true">Paper</button>
+        <button type="button" data-theme-choice="ink" aria-pressed="false">Ink</button>
+        <button type="button" data-theme-choice="console" aria-pressed="false">Console</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <header class="page-hero">
+      <div class="wrap">
+        <p class="kicker">Lightning</p>
+        <h1>Lightning on Autarki.</h1>
+        <p class="lede">Your node holds the coins. A counter sale and a pickup pay the shop. A shipment stays on the seller's node until the parcel is marked received, the hold ends, or the coins come back.</p>
+        <nav class="page-nav" aria-label="On this page">
+          <a href="#facts">Three facts</a>
+          <a href="#connect">Two ways to connect</a>
+          <a href="#other-coin">Paying the other coin</a>
+          <a href="#shipment">Counter, pickup, shipment</a>
+          <a href="#rules">Four rules</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="band" id="facts">
+      <div class="wrap">
+        <h2>Three facts.</h2>
+        <div class="benefits">
+          <article>
+            <h3>XBT, then BTC.</h3>
+            <p>Lightning for Blake2b XBT and for SHA-256 BTC comes with the wallet. Pay with the coin you hold. Pay with XBT still spends XBT. Pay with BTC still spends BTC.</p>
+          </article>
+          <article>
+            <h3>About 1 percent stays reserved.</h3>
+            <p>About 1 percent of the channel stays reserved. What you can send is what is on your side, minus that reserve. Fund a little more than the payment.</p>
+          </article>
+          <article>
+            <h3>The seller's node holds a shipment.</h3>
+            <p>A shipment pays with Lightning. The coins sit on the seller's node. Autarki cannot move them. Public pool does not hold the sale.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="connect">
+      <div class="wrap">
+        <h2>Two ways to connect.</h2>
+        <p class="lede">A <span class="num">100,000</span> sat price, worked the way the wallet works it. Nothing on this page is sent.</p>
+        <div class="switch" role="tablist" aria-label="How the channel opens">
+          <button type="button" id="tab-direct" role="tab" aria-selected="true" aria-controls="panel-direct">Use Seller Channel</button>
+          <button type="button" id="tab-pool" role="tab" aria-selected="false" aria-controls="panel-pool">Use Public pool</button>
+        </div>
+
+        <div class="lightning-panel" id="panel-direct" role="tabpanel" aria-labelledby="tab-direct">
+          <p>A shop shows Use Shop Channel. A classified shows Use Seller Channel. The buyer opens one channel to that shop or that seller. The seller does not pay a room fee. The buyer's leftover can pay this shop or this seller again. It does not pay a later shop.</p>
+          <ol class="steps">
+            <li>The seller publishes the Lightning node and keeps that node on. The seller does not put sats into a channel for this sale.</li>
+            <li>The buyer sends <span class="num">122,000</span> sats on-chain into their own Lightning wallet. <span class="num">120,000</span> open the channel. <span class="num">2,000</span> stay in that wallet for the miner fee of the open. What the miner does not take stays there. Moving the sats from the on-chain wallet pays that wallet's own miner fee.</li>
+            <li>The buyer opens a channel of <span class="num">120,000</span> sats. Nothing is pushed to the other side. After one confirmation, the buyer pays the <span class="num">100,000</span> sat request. A direct channel does not pay Public pool's routing fee.</li>
+            <li>The seller then has <span class="num">100,000</span> sats on their side. The buyer keeps <span class="num">20,000</span> sats on their side. About <span class="num">18,800</span> of that can be sent. The rest is the 1 percent reserve.</li>
+          </ol>
+        </div>
+
+        <div class="lightning-panel" id="panel-pool" role="tabpanel" aria-labelledby="tab-pool" hidden>
+          <p>Use this when buyers already have a channel to Public pool, or when the seller wants that room. The seller pays the room fee only. Public pool puts its own sats into the channel.</p>
+          <ol class="steps">
+            <li>A room of <span class="num">100,000</span> sats can forward <span class="num">98,800</span> sats after the 1 percent reserve. To receive a <span class="num">100,000</span> sat payment, the wallet asks for <span class="num">101,300</span> sats of incoming room. The smallest room is <span class="num">20,000</span> sats, in steps of <span class="num">100</span>.</li>
+            <li>The seller pays <span class="num">2,013</span> sats. That is <span class="num">1,000</span> sats plus 1 percent of the <span class="num">101,300</span> sat room, plus the miner fee on that on-chain payment. The node charges the <span class="num">2,013</span>. Autarki does not collect it. Public pool puts <span class="num">121,300</span> sats into the channel and pushes <span class="num">20,000</span> to the seller. After the reserve, <span class="num">100,087</span> sats can be forwarded. Incoming room is ready after that open confirms. Paying the fee fills Send. This page does not open the room.</li>
+            <li>A buyer who already has a funded channel to Public pool can pay then. A buyer who does not opens the same <span class="num">120,000</span> sat channel toward Public pool. That Lightning wallet still needs <span class="num">122,000</span> sats before the open. The payment is <span class="num">100,000</span> sats, plus a routing fee of at most <span class="num">1,000</span> sats. The node charges that fee. Autarki does not collect it.</li>
+          </ol>
+        </div>
+
+        <div class="table-wrap">
+          <table class="sale-fees">
+            <caption>A 100,000 sat price, a direct channel beside Public pool.</caption>
+            <thead>
+              <tr>
+                <th scope="col">A 100,000 sat price</th>
+                <th scope="col">Use Seller Channel</th>
+                <th scope="col">Use Public pool</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Seller puts into a channel</th>
+                <td data-col="Use Seller Channel"><span class="num">0</span> sats</td>
+                <td data-col="Use Public pool"><span class="num">0</span> sats. Public pool puts <span class="num">121,300</span> sats into the channel.</td>
+              </tr>
+              <tr>
+                <th scope="row">Seller pays up front</th>
+                <td data-col="Use Seller Channel"><span class="num">0</span> sats</td>
+                <td data-col="Use Public pool"><span class="num">2,013</span> sats, plus the miner fee on that payment</td>
+              </tr>
+              <tr>
+                <th scope="row">Buyer puts into the channel</th>
+                <td data-col="Use Seller Channel"><span class="num">120,000</span> sats, toward the seller</td>
+                <td data-col="Use Public pool"><span class="num">120,000</span> sats, toward Public pool, unless a channel is already open</td>
+              </tr>
+              <tr>
+                <th scope="row">Left in the buyer's Lightning wallet</th>
+                <td data-col="Use Seller Channel"><span class="num">2,000</span> sats for the open. What the miner does not take stays there.</td>
+                <td data-col="Use Public pool"><span class="num">2,000</span> sats for the open. What the miner does not take stays there.</td>
+              </tr>
+              <tr>
+                <th scope="row">Routing fee</th>
+                <td data-col="Use Seller Channel"><span class="num">0</span> sats</td>
+                <td data-col="Use Public pool">At most <span class="num">1,000</span> sats</td>
+              </tr>
+              <tr>
+                <th scope="row">What the buyer can still send</th>
+                <td data-col="Use Seller Channel">About <span class="num">18,800</span> sats, at this shop or this seller</td>
+                <td data-col="Use Public pool">About <span class="num">18,800</span> sats after the <span class="num">100,000</span> sat payment, at shops that already have room with Public pool. A routing fee comes out of that same channel.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <ul class="brief">
+          <li>A named room still has the posted price. <span class="num">20,000</span> sats of room costs <span class="num">1,200</span>. <span class="num">100,000</span> costs <span class="num">2,000</span>. <span class="num">1,000,000</span> costs <span class="num">11,000</span>. The price is <span class="num">1,000</span> sats plus 1 percent of the room. The node charges it. Autarki does not collect it.</li>
+          <li>The first opening waits about ten minutes for one confirmation. A later payment on that channel does not wait.</li>
+          <li>A channel you fund starts with You can receive at <span class="num">0</span>. The seller gets room when Public pool opens toward them after the room fee, or when someone opens a direct channel.</li>
+          <li>Balance can open the channel. The button is Open a channel to Public pool. It asks for at least <span class="num">20,000</span> sats on your side and leaves <span class="num">2,000</span> sats in the Lightning wallet for the miner fee. The other side starts at <span class="num">0</span>.</li>
+        </ul>
+        <p class="more"><a href="/wallet#lsp">Public pool on the wallet page</a><a href="/channel">Another node</a><a href="/guide#open-channel">Procedure 24</a></p>
+      </div>
+    </section>
+
+    <section class="band" id="other-coin">
+      <div class="wrap prose">
+        <h2>Paying the other coin.</h2>
+        <p>Paying the coin the listing asks for does not add this fee. Pay with XBT still spends XBT. Pay with BTC still spends BTC.</p>
+        <p>A Lightning invoice in the other coin spends the coin this wallet already holds. The button is Pay with the other coin. It is there when that side can pay. The person you pay is paid in the coin they asked for.</p>
+        <p>The node that carries the payment charges 1.5%, plus the normal network fees. Autarki does not collect that fee. One XBT sat is not one BTC sat. Read the amount and the fee on the line under the button before you continue. A routing fee is separate and is at most <span class="num">1,000</span> sats. The node charges that too.</p>
+        <p class="more"><a href="/wallet#other-coin">The wallet page</a><a href="/guide#other-coin">Procedure 25</a></p>
+      </div>
+    </section>
+
+    <section class="band" id="shipment">
+      <div class="wrap">
+        <h2>Counter, pickup, and a shipment.</h2>
+        <p class="lede">A counter sale and a pickup pay the shop node. A shipment waits. Without a <a href="/classifieds#protection">float</a>, the shipment is not held.</p>
+        <ol class="hold-path">
+          <li>
+            <h3>Counter sale or pickup</h3>
+            <p>Pays the shop node. No hold. A shop sale does not name a referee. A store stall does not name one.</p>
+          </li>
+          <li>
+            <h3>Shipment, shop or classified</h3>
+            <p>The seller's node accepts the Lightning hold. The coins sit on that node. Autarki cannot move them. The preimage stays on the seller's computer in <code>secrets/holds</code>. It is not in the order book. Keep a copy of that file as private as the wallet.</p>
+            <p>Domestic is 14 days, about <span class="num">2,016</span> blocks. Overseas is 28 days, about <span class="num">4,032</span> blocks. The clock starts when the payment is accepted. The seller names 1, 2, 3, or 4 days to ship.</p>
+            <ul class="brief">
+              <li>Before it is marked shipped, Cancel closes the order and the coins go back to the buyer.</li>
+              <li>If it is not marked shipped, with a carrier and a tracking number, by the ship-by day, the coins go back when the seller's wallet is on. If that wallet stays off, the coins sit until the Lightning window ends, and the network sends them back.</li>
+              <li>A carrier scan does not move the coins.</li>
+              <li>Mark received pays the seller. The seller's unlocked wallet reads <code>secrets/holds</code> while the node is on.</li>
+              <li>If it was shipped and the buyer does nothing, the seller is paid when the hold ends, when the seller's wallet is on. If that wallet never acts, the Lightning window still sends the coins back.</li>
+              <li>Not received stops both automatic moves. It does not return the coins by itself.</li>
+            </ul>
+          </li>
+          <li>
+            <h3>A classified can name a referee</h3>
+            <p>A shop sale does not name a referee. On a classified, both sides name the same person before payment, or both name nobody. The referee does not hold the coins and cannot spend them.</p>
+            <ul class="brief">
+              <li>Decide for the seller pays the seller. That is not Mark received. Mark received closes once that decision is stored.</li>
+              <li>Decide for the buyer cancels the hold and records a returned delivery. The order stays.</li>
+              <li>A decision after the window is ignored. The Lightning window still sends the coins back.</li>
+            </ul>
+          </li>
+        </ol>
+        <p class="more"><a href="/guide#close-shipment">Procedure 13</a><a href="/guide#cancel-order">Procedure 8</a><a href="/classifieds#protection">When a float holds a shipment</a></p>
+      </div>
+    </section>
+
+    <section class="band" id="rules">
+      <div class="wrap">
+        <h2>Four rules.</h2>
+        <details class="rule" open>
+          <summary>You can restart during a hold. Unlock before the window ends.</summary>
+          <p>The preimage that settles a shipment is in <code>secrets/holds</code> on this computer. Restarting is fine. Unlock the wallet and bring the node back on before the 14 or 28 days end. Locking the page does not stop the Lightning node. Closing the phone app does. Public pool does not hold the payment while that node is stopped.</p>
+        </details>
+        <details class="rule">
+          <summary>The 24 words do not bring a held shipment back.</summary>
+          <p>The 24 words bring back the on-chain wallet and the Nostr key made from those words. They do not bring the shop book back, and they do not bring <code>secrets/holds</code> back. Each Lightning node's paper brings back the coins still in that node's own wallet, after the scan. Blake2b and SHA-256 each have their own paper. On this computer, the SHA-256 paper is two lines. On a phone, that paper is 24 words. An open channel is not in this file and is not on that paper. After this device's data is deleted, the channel list is gone. The other side does not send its record here. The channel does not keep working.</p>
+          <p>Save a copy, under Settings, then Other, then Backup, can hold a shipment still held, and it includes <code>secrets/holds</code>. Do not wipe the disk while a shipment is in transit unless that copy is saved. This wallet does not send the shop book to the shared node.</p>
+        </details>
+        <details class="rule">
+          <summary>Overseas needs a node that can hold 28 days.</summary>
+          <p>A 28-day hold asks for <span class="num">4,032</span> blocks. Paying adds 3, and one pool hop adds 80. This wallet's Blake2b Lightning node is set to <span class="num">4,224</span> blocks, so that hold fits. A node left at <span class="num">2,016</span> blocks refuses the invoice. The page says “This Lightning node cannot hold a shipment for 28 days.” On this computer, SHA-256 Lightning is Eclair. An Eclair build that cannot hold a shipment refuses the payment. Pay on-chain until that computer is running the build that holds a payment.</p>
+        </details>
+        <details class="rule">
+          <summary>Closing a channel is a later step.</summary>
+          <p>Settled sats stay in the channel until you close it. Close this channel asks the peer to close. Each side is paid the balance it holds now. You are paid what you can pay now. The peer is paid what you can receive. The closing transaction pays a miner fee from this channel. The fee stays the smaller one. It comes from the side that can pay it and still keep its output. Cancel leaves the channel open. The sats return to that Lightning node's own wallet after the closing transaction confirms. They return to Balance only after a later send.</p>
+        </details>
+        <p class="more"><a href="/guide#backup">Procedure 29</a><a href="/guide#open-channel">Procedure 24</a><a href="/install">Where Lightning starts</a></p>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap">
+        <h2>Install Autarki.</h2>
+        <p class="lede">It runs on your computer. A 64-bit Android phone can install its own copy. A phone on the same network can still open your computer's page.</p>
+        <div class="actions">
+          <a class="button" href="/install">Install Autarki</a>
+          <a class="button button-ghost" href="/notice-board">Browse the notice board</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="footer-slogan">No platform. Just the sale.</p>
+      <p>Autarki is a beta. It runs on your computer. A 64-bit Android phone can install its own copy. A phone on the same network can still open your computer's page.</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/RouteHash-com/autarki/releases/tag/0.1.0">Download 0.1.0</a></li>
+        <li><a href="/install#android">Android 0.1.0</a></li>
+        <li><a href="/install#iphone">iPhone 0.1.0</a></li>
+        <li><a href="https://github.com/RouteHash-com/umbrel-store">Umbrel community store</a></li>
+        <li><a href="https://discord.gg/VBxvzQXvt">Discord #autarki</a></li>
+        <li><a href="/lightning" aria-current="page">Lightning</a></li>
+        <li><a href="/channel">Another node</a></li>
+        <li><a href="/guide">Guide</a></li>
+        <li><a href="/support">Support</a></li>
+        <li><a href="/board">Board rules</a></li>
+        <li><a href="/privacy">Privacy</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      var direct = document.getElementById("tab-direct");
+      var pool = document.getElementById("tab-pool");
+      var directPanel = document.getElementById("panel-direct");
+      var poolPanel = document.getElementById("panel-pool");
+      function show(which) {
+        var usePool = which === "pool";
+        direct.setAttribute("aria-selected", usePool ? "false" : "true");
+        pool.setAttribute("aria-selected", usePool ? "true" : "false");
+        directPanel.hidden = usePool;
+        poolPanel.hidden = !usePool;
+      }
+      direct.addEventListener("click", function () { show("direct"); });
+      pool.addEventListener("click", function () { show("pool"); });
+    })();
+  </script>
+  <script src="js/site.js"></script>
+</body>
+</html>
