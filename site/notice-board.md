@@ -13,7 +13,7 @@ A person publishes a [Store](https://autarki.app/notice-board#stores) or a [Clas
 - A store shows Lightning on XBT or Lightning on BTC when its published stall includes incoming room. A classified from that seller shows the same line. This page does not see the node.
 - This page asks one relay, shows what came back, and closes. Nothing is stored on this site.
 - A note this board does not carry is left off. A report does not remove the ad. Block and Ignore hide it on that device only. The rules are on the [board rules](https://autarki.app/board.md) page. The relay can still keep the original note.
-- A sold ad stays on this board. Sold is across the card. Cancel this ad hides the note.
+- A sold ad stays on this board, under the ads still for sale. Sold is across the card. An ad that is still being paid says Order processing. Remove from public, or Unpublish, takes that note off this board. Cancel this ad hides the note.
 - A description that starts with Available only on Autarki; is left off, so that note does not sit beside the sale.
 - Search a shop, a product, a place, or a public name. Search and the chips run on this page. Nothing is ranked by payment.
 - Autarki does not approve a stall and does not take the order.

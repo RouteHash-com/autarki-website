@@ -7,6 +7,7 @@
   --line: #e3d9cf;
   --accent: #a15c38;
   --on-accent: #fffaf6;
+  --no: #8d3b2e;
   --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   --sans: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --measure: 40rem;
@@ -23,6 +24,7 @@ html[data-theme="ink"] {
   --line: #3a332c;
   --accent: #e0a080;
   --on-accent: #141210;
+  --no: #e7a196;
 }
 
 html[data-theme="console"] {
@@ -34,6 +36,7 @@ html[data-theme="console"] {
   --line: #1d3d28;
   --accent: #3dff6e;
   --on-accent: #07140c;
+  --no: #ff5f5f;
 }
 
 *,
@@ -1501,20 +1504,20 @@ code {
   margin: 0.35rem 0 0;
 }
 
-.board-card.is-sold {
+.board-card.is-sold summary {
   position: relative;
 }
 
 .sold-banner {
   position: absolute;
-  left: 0;
-  right: 0;
+  left: -1.15rem;
+  right: -1.15rem;
   top: 50%;
   z-index: 2;
   transform: translateY(-50%);
   margin: 0;
   padding: 0.35rem 0.5rem;
-  background: #8d3b2e;
+  background: var(--no);
   color: #fff;
   font-family: var(--sans);
   font-size: 1.35rem;

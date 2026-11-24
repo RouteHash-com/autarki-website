@@ -196,7 +196,12 @@
     });
     ads.forEach(function (ad) { attachPerson(ad, profiles, discords); });
     stalls.sort(function (a, b) { return a.name.localeCompare(b.name); });
-    ads.sort(function (a, b) { return b.publishedAt - a.publishedAt || a.title.localeCompare(b.title); });
+    ads.sort(function (a, b) {
+      var aSold = a.status === "sold" ? 1 : 0;
+      var bSold = b.status === "sold" ? 1 : 0;
+      if (aSold !== bSold) return aSold - bSold;
+      return b.publishedAt - a.publishedAt || a.title.localeCompare(b.title);
+    });
     return { stalls: stalls, classifieds: ads };
   }
 
@@ -396,6 +401,7 @@
       cc: ship.days ? countryCode(first(source, "cc")) : "",
       kg: ship.days ? line(first(source, "kg"), 12) : "",
       publishedAt: count(first(source, "published_at")),
+      paidAt: count(first(event, "paid_at")),
       createdAt: created(event)
     };
   }
@@ -771,14 +777,9 @@
     title.textContent = ad.title || "Classified";
     heading.appendChild(title);
     addPersonLine(heading, ad);
-    if (ad.status === "held") {
-      var mark = document.createElement("p");
-      mark.className = "sold";
-      mark.textContent = "Held.";
-      heading.appendChild(mark);
-    } else if (ad.cents) {
+    if (ad.cents) {
       dollarBlock(heading, ad);
-      if (ad.unpaid && ad.status !== "sold") {
+      if (ad.unpaid && ad.status === "active") {
         var unpaidDollars = document.createElement("p");
         unpaidDollars.className = "price";
         unpaidDollars.textContent = "That listing cannot be paid yet. It has no payment code.";
@@ -786,7 +787,7 @@
       }
     } else if (ad.price) {
       priceLine(heading, sats(ad.price) + " · " + ad.coin.toUpperCase(), ad.price, ad.coin, ad.country);
-      if (ad.unpaid && ad.status !== "sold") {
+      if (ad.unpaid && ad.status === "active") {
         var unpaid = document.createElement("p");
         unpaid.className = "price";
         unpaid.textContent = "That listing cannot be paid yet. It has no payment code.";
@@ -811,6 +812,12 @@
       summaryText.className = "summary";
       summaryText.textContent = ad.summary;
       heading.appendChild(summaryText);
+    }
+    if (ad.status === "held") {
+      var mark = document.createElement("p");
+      mark.className = "quiet";
+      mark.textContent = heldLine(ad);
+      heading.appendChild(mark);
     }
     top.appendChild(heading);
     summary.appendChild(top);
@@ -841,9 +848,19 @@
       var banner = document.createElement("p");
       banner.className = "sold-banner";
       banner.textContent = "Sold";
-      card.appendChild(banner);
+      summary.appendChild(banner);
     }
     return card;
+  }
+
+  function heldLine(ad) {
+    if (!(ad.paidAt > 0)) return "Order processing.";
+    var days = ad.shipDays;
+    if (days >= 1 && days <= 4) {
+      var when = day(ad.paidAt + days * 86400);
+      if (when) return "This ad is taken. The seller has until " + when + " to mark it shipped. If that time passes, it can be offered again.";
+    }
+    return "This ad is taken.";
   }
 
   function orderBlock(shopName, person) {
