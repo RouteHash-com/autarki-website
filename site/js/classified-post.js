@@ -663,8 +663,25 @@
     return { ok: true, name: name };
   }
 
+  function buildSold(fields) {
+    if (!dOk(fields.d)) return fail("Enter the listing id this key already published.");
+    var built = buildPost(fields);
+    if (!built.ok) return built;
+    var tags = [];
+    var i;
+    for (i = 0; i < built.tags.length; i++) {
+      var name = built.tags[i][0];
+      if (name === "pay" || name === "node") continue;
+      tags.push(built.tags[i]);
+    }
+    tags.push(["status", "sold"]);
+    built.tags = tags;
+    return built;
+  }
+
   function buildStatus(fields) {
-    var status = fields.status === "canceled" ? "canceled" : fields.status === "sold" ? "sold" : "";
+    if (fields.status === "sold") return buildSold(fields);
+    var status = fields.status === "canceled" ? "canceled" : "";
     if (!status) return fail("The note could not be prepared.");
     if (!dOk(fields.d)) return fail("Enter the listing id this key already published.");
     var published = Number(fields.publishedAt);
@@ -891,6 +908,7 @@
   var api = {
     RELAY: RELAY,
     buildPost: buildPost,
+    buildSold: buildSold,
     buildStatus: buildStatus,
     signedOk: signedOk,
     postingRefused: postingRefused,
@@ -1944,6 +1962,15 @@
   if (signpostInput) signpostInput.addEventListener("change", paintSignpostLinks);
   if (dInput) dInput.addEventListener("input", paintSignpostLinks);
 
+  var copyButton = document.getElementById("classified-copy");
+  if (copyButton) {
+    copyButton.addEventListener("click", function () {
+      if (busy) return;
+      dInput.value = "";
+      say("This is a new ad. Post this ad to publish it.");
+    });
+  }
+
   form.addEventListener("submit", function (event) {
     event.preventDefault();
     if (busy) return;
@@ -2005,7 +2032,7 @@
       })
       .then(function () {
         if (act === "sold") {
-          say("The note is marked sold. A wallet hides it. Listing id " + built.d + ".");
+          say("The ad stays on the board. Sold is across it. The payment code is left off this note. Listing id " + built.d + ".");
           return;
         }
         if (act === "canceled") {

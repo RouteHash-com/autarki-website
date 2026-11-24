@@ -44,11 +44,11 @@ A signed note from any Nostr key shows on the wallet board when the note is one 
 - An image is one https address on a line. Four is the limit. Images are for goods, a service, a rental, or a giveaway.
 - A map link is the https address from OpenStreetMap, Google Maps, or Apple Maps. A city name is not a map link. A map is for goods, a service, or a rental.
 - Ship appears when the note names the public Lightning name for XBT or BTC, and that coin already has a payment code.
-- Mark sold or Cancel this ad hides the note. A person a wallet has blocked or ignored is hidden on that wallet only.
+- Mark sold keeps the ad on the board and shows Sold across it. The payment code is left off that note. Copy this ad keeps the words and posts them as a new ad. Cancel this ad hides the note. A person a wallet has blocked or ignored is hidden on that wallet only.
 - This page checks the note before it is signed. A note this board does not carry is not sent. A report is sent to the Autarki relay. The ad stays on the board. The relay can still keep the original note.
 - Preview this ad shows the note on this page. It does not publish it.
 - Show this ad on other markets posts a second note. That note has no price. The sale stays on the relay this board reads. Turning it off and posting drops that second note. Mark sold and Cancel this ad leave it alone.
 - Accept the board terms before the first note is saved.
-- This site does not keep the key or the note. Use the Autarki app for easy ad management.
+- Mark sold needs the listing id this key already published. The ad stays on the board, and Sold is across it. Copy this ad clears that id and keeps the words, so Post this ad publishes a new one. Cancel this ad hides the note. This site does not keep the key or the note. Use the Autarki app for easy ad management.
 
 Published classifieds are on the [notice board](https://autarki.app/notice-board.md).

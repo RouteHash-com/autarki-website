@@ -1501,6 +1501,31 @@ code {
   margin: 0.35rem 0 0;
 }
 
+.board-card.is-sold {
+  position: relative;
+}
+
+.sold-banner {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  z-index: 2;
+  transform: translateY(-50%);
+  margin: 0;
+  padding: 0.35rem 0.5rem;
+  background: #8d3b2e;
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  line-height: 1.1;
+  text-align: center;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
 .lightning-mark {
   display: inline-block;
   margin: 0.5rem 0 0;

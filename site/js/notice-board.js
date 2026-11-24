@@ -771,14 +771,14 @@
     title.textContent = ad.title || "Classified";
     heading.appendChild(title);
     addPersonLine(heading, ad);
-    if (ad.status === "sold" || ad.status === "held") {
+    if (ad.status === "held") {
       var mark = document.createElement("p");
       mark.className = "sold";
-      mark.textContent = ad.status === "sold" ? "Sold." : "Held.";
+      mark.textContent = "Held.";
       heading.appendChild(mark);
     } else if (ad.cents) {
       dollarBlock(heading, ad);
-      if (ad.unpaid) {
+      if (ad.unpaid && ad.status !== "sold") {
         var unpaidDollars = document.createElement("p");
         unpaidDollars.className = "price";
         unpaidDollars.textContent = "That listing cannot be paid yet. It has no payment code.";
@@ -786,7 +786,7 @@
       }
     } else if (ad.price) {
       priceLine(heading, sats(ad.price) + " · " + ad.coin.toUpperCase(), ad.price, ad.coin, ad.country);
-      if (ad.unpaid) {
+      if (ad.unpaid && ad.status !== "sold") {
         var unpaid = document.createElement("p");
         unpaid.className = "price";
         unpaid.textContent = "That listing cannot be paid yet. It has no payment code.";
@@ -836,6 +836,13 @@
       if (who) body.appendChild(who);
     }
     card.appendChild(body);
+    if (ad.status === "sold") {
+      card.classList.add("is-sold");
+      var banner = document.createElement("p");
+      banner.className = "sold-banner";
+      banner.textContent = "Sold";
+      card.appendChild(banner);
+    }
     return card;
   }
 
@@ -1803,5 +1810,5 @@
     if (stop) stop.addEventListener("click", halt);
     window.addEventListener("pagehide", halt);
   }
-  return { parseBoard: parseBoard, npubFromHex: npubFromHex, readRelay: readRelay, mount: mount };
+  return { parseBoard: parseBoard, npubFromHex: npubFromHex, readRelay: readRelay, mount: mount, adCard: adCard };
 });

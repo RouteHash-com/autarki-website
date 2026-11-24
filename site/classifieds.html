@@ -197,7 +197,7 @@
           <li>An image is an https address. Four is the limit. Images are for goods, a service, a rental, or a giveaway.</li>
           <li>A map link is the https address from OpenStreetMap, Google Maps, or Apple Maps. A map is for goods, a service, or a rental.</li>
           <li>Ship appears when the note names the public Lightning name for XBT or BTC, and that coin already has a payment code.</li>
-          <li>Mark sold or Cancel this ad hides the note. A person a wallet has blocked or ignored is hidden on that wallet only.</li>
+          <li>Mark sold keeps the ad on the board and shows Sold across it. The payment code is left off that note. Copy this ad keeps the words and posts them as a new ad. Cancel this ad hides the note. A person a wallet has blocked or ignored is hidden on that wallet only.</li>
           <li>This page checks the note before it is signed. A note this board does not carry is not sent. A report is sent to the Autarki relay. The ad stays on the board. The relay can still keep the original note.</li>
           <li>Preview this ad shows the note on this page. It does not publish it.</li>
           <li>Show this ad on other markets posts a second note. That note has no price. The sale stays on the relay this board reads. Turning it off and posting drops that second note. Mark sold and Cancel this ad leave it alone.</li>
@@ -387,11 +387,12 @@
             <button class="button button-ghost" type="button" id="classified-preview-open">Preview this ad</button>
             <button class="button" type="submit" name="act" value="post">Post this ad</button>
             <button class="button button-ghost" type="submit" name="act" value="sold">Mark sold</button>
+            <button class="button button-ghost" type="button" id="classified-copy">Copy this ad</button>
             <button class="button button-ghost" type="submit" name="act" value="canceled">Cancel this ad</button>
           </div>
           <p class="request-status" role="status"></p>
         </form>
-        <p>Sold and canceled need the listing id this key already published. This site does not keep the key or the note. Use the Autarki app for easy ad management.</p>
+        <p>Mark sold needs the listing id this key already published. The ad stays on the board, and Sold is across it. Copy this ad clears that id and keeps the words, so Post this ad publishes a new one. Cancel this ad hides the note. This site does not keep the key or the note. Use the Autarki app for easy ad management.</p>
       </div>
     </section>
 
@@ -601,6 +602,6 @@
   </footer>
   <script src="js/site.js"></script>
   <script src="js/price-hint.js?v=20261113d"></script>
-  <script src="js/classified-post.js?v=20261113d"></script>
+  <script src="js/classified-post.js?v=20261124a"></script>
 </body>
 </html>
